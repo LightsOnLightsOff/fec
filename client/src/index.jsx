@@ -1,15 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import Related from './components/Related.jsx';
 
 
-function App (props) {
 
-  return (
-   <div> Hello </div>
-  )
-}
 
-export default App
-
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Related />, document.getElementById('root'))
