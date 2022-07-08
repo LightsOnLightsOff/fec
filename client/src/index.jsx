@@ -1,18 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import axios from 'axios'
+
 
 function App (props) {
 
   return (
-    <div>
-      <h1>Hello World</h1>
-
-    </div>
-
+   <div> Hello </div>
   )
 }
 
-export default App;
+export default App
 
-ReactDOM.render(<App/>, document.getElementById('root')  )
+ReactDOM.render(<App />, document.getElementById('root'))
