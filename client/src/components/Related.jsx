@@ -1,20 +1,58 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
 
 function Related (props) {
-  axios
-    .get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/related', {
-      // params: { page: 5, count: 1 },
-      headers: {
-        Authorization: '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'
+  const imgs = 'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
+
+  const [obj,setO] = useState([]);
+  const [info,setInf] = useState({
+    img:"",
+    name:"",
+    price:"",
+    rating:"",
+  })
+
+  useEffect(()=>{
+    axios
+    .get(
+      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/related',
+      {
+        // params: { page: 5, count: 1 },
+        headers: {
+          Authorization: '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'
+        }
       }
-    })
+    )
     .then(res => {
-      console.log('this is the response', res.data)
+      console.log('Get post result:', res.data)
+      axios.all(
+        res.data.map((item, index) => {
+          return axios.get(
+            `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`,
+            {
+              headers: {
+                Authorization: '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'
+              }
+            }
+          )
+        })
+      )
+      .then((result)=>{
+        console.log('data',result);
+       return result.map((item)=>{
+          return item.data
+        })
+      })
+      .then((res)=>{
+        console.log('this is the data array',res);
+        setO(res);
+      })
     })
+  },[])
+
 
   const imgStyles = {
     width: '100%',
@@ -31,22 +69,15 @@ function Related (props) {
     gutter: 20,
     edgePadding: 200,
     controls: true,
-    controlsContainer: '.controls'
+    controlsContainer: '.controls',
     // prevButton:'#first-btn'
+    arrowKeys:true
   }
 
   const loadingImage =
     'data:image/gif;base64,\
   R0lGODlhAQABAPAAAMzMzAAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
 
-  const imgs = [
-    'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
-    'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg',
-    'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
-    'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg',
-    'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
-    'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg'
-  ]
 
   return (
     <>
@@ -59,20 +90,25 @@ function Related (props) {
             ❯
           </button>
         </div>
-        <button id="this">ffff</button>
+
         <TinySlider settings={settings}>
-          {imgs.map((item, index) => {
+        {/* <button id='this'>ffff</button> */}
+        if(obj){
+          obj.map((item, index) => {
             return (
-              <div key={index} style={{ position: 'relative' }}>
+              <section key={index} >
                 <img
                   className={`tns-lazy-img`}
-                  src={loadingImage}
-                  data-src={item}
+                  // src={imgs}
+                  data-src={imgs}
                   style={imgStyles}
                 />
-              </div>
+                <p>{item.name}</p>
+              </section>
             )
-          })}
+          })
+        }
+
         </TinySlider>
       </div>
     </>
@@ -133,3 +169,13 @@ export default Related
 </div> */
 }
 // </section>
+
+
+// const imgs = [
+//   'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
+//   'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg',
+//   'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
+//   'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg',
+//   'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
+//   'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg'
+// ]

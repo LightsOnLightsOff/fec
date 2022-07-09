@@ -70,7 +70,7 @@ body {
 #first-btn {
   cursor: pointer;
   position: absolute;
-  top: 400px;
+  top: 300px;
   width: auto;
   padding: 16px;
   margin-top: -22px;
@@ -84,7 +84,7 @@ body {
 }
 
 .slider{
-  margin-top: 100px;
+  margin-top: 50px;
   margin-right: 200px;
   margin-left: 100px;
 }
@@ -95,6 +95,9 @@ img{
 #this{
   position: relative;
   display: inline;
+}
 
+section{
+  position: 'relative';
 }
 
