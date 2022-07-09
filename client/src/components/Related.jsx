@@ -1,71 +1,135 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import TinySlider from 'tiny-slider-react'
+import 'tiny-slider/dist/tiny-slider.css'
 
 function Related (props) {
-  return <div> Hello </div>
+  axios
+    .get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/related', {
+      // params: { page: 5, count: 1 },
+      headers: {
+        Authorization: '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'
+      }
+    })
+    .then(res => {
+      console.log('this is the response', res.data)
+    })
+
+  const imgStyles = {
+    width: '100%',
+    height: '320px',
+    objectFit: 'cover'
+  }
+
+  const settings = {
+    lazyload: true,
+    nav: false,
+    mouseDrag: true,
+    loop: false,
+    items: 4,
+    gutter: 20,
+    edgePadding: 200,
+    controls: true,
+    controlsContainer: '.controls'
+    // prevButton:'#first-btn'
+  }
+
+  const loadingImage =
+    'data:image/gif;base64,\
+  R0lGODlhAQABAPAAAMzMzAAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+
+  const imgs = [
+    'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
+    'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg',
+    'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
+    'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg',
+    'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
+    'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg'
+  ]
+
+  return (
+    <>
+      <div className='slider'>
+        <div className='controls'>
+          <button id='first-btn' type='button'>
+            ❮
+          </button>
+          <button id='second-btn' type='button'>
+            ❯
+          </button>
+        </div>
+        <button id="this">ffff</button>
+        <TinySlider settings={settings}>
+          {imgs.map((item, index) => {
+            return (
+              <div key={index} style={{ position: 'relative' }}>
+                <img
+                  className={`tns-lazy-img`}
+                  src={loadingImage}
+                  data-src={item}
+                  style={imgStyles}
+                />
+              </div>
+            )
+          })}
+        </TinySlider>
+      </div>
+    </>
+  )
 }
 
-export default Related;
-// <div>
-//   <Carousel>
-//     <Carousel.Item style={{ backgroundColor: 'green' }}>
-//       {/* <img
-//            className='d-block w-100'
-//            src='https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
-//            alt='First slide'
-//          />
-//          <Carousel.Caption>
-//            <h3>First slide label</h3>
-//            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-//          </Carousel.Caption> */}
-//       <Card style={{ width: '18rem' }}>
-//         <Card.Img variant='top' src='holder.js/100px180' />
-//         <Card.Body>
-//           <Card.Title>Card Title</Card.Title>
-//           <Card.Text>
-//             Some quick example text to build on the card title and make up the
-//             bulk of the card's content.
-//           </Card.Text>
-//           <Button variant='primary'>Go somewhere</Button>
-//         </Card.Body>
-//       </Card>
-
-//       <Card style={{ width: '18rem' }}>
-//         <Card.Img variant='top' src='holder.js/100px180' />
-//         <Card.Body>
-//           <Card.Title>Card Title</Card.Title>
-//           <Card.Text>
-//             Some quick example text to build on the card title and make up the
-//             bulk of the card's content.
-//           </Card.Text>
-//           <Button variant='primary'>Go somewhere</Button>
-//         </Card.Body>
-//       </Card>
-//     </Carousel.Item>
-//     <Carousel.Item>
-//       <img
-//         className='d-block w-100'
-//         src='https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
-//         alt='Second slide'
-//       />
-
-//       <Carousel.Caption>
-//         <h3>Second slide label</h3>
-//         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-//       </Carousel.Caption>
-//     </Carousel.Item>
-//     <Carousel.Item>
-//       <img
-//         className='d-block w-100'
-//         src='https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
-//         alt='Third slide'
-//       />
-
-//       <Carousel.Caption>
-//         <h3>Third slide label</h3>
-//         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-//       </Carousel.Caption>
-//     </Carousel.Item>
-//   </Carousel>
-// </div>
+export default Related
+{
+  /* <section id='slider'> */
+}
+{
+  /* <div className='container'>
+  <div className='subcontainer'>
+    <div className='slider-wrapper'>
+      <div className='controller'>
+        <div>
+          <h2>RELATED PRODUCTS</h2>
+        </div>
+        <div id='controls'>
+          <button className='previous'>❮ </button>
+          <button className='next'>❯</button>
+        </div>
+        <br></br>
+        <div className='my-slider'>
+          <div>
+            <div className='slide'>
+              <div className='slide-img img-1'></div>
+              <br></br>
+              <div>
+                <p>This is the title of photo</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className='slide'>
+              <div className='slide-img img-1'>
+                <a href="#">Learn more</a>
+              </div>
+              <br></br>
+              <div>
+                <p>This is the title of photo</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className='slide'>
+              <div className='slide-img img-1'></div>
+              <br></br>
+              <div>
+                <p>This is the title of photo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> */
+}
+// </section>
