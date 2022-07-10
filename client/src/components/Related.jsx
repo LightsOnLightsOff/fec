@@ -5,71 +5,6 @@ import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
 
 function Related (props) {
-  var updateByid = function(clickedId){
-    axios
-    .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${clickedId}/related`,
-      {
-        headers: {
-          Authorization: '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'
-        }
-      }
-    )
-    .then(res => {
-      console.log('Get post result after click:', res.data)
-      var related = res.data
-      var promise = axios.all(
-        res.data.map((item, index) => {
-          return axios.get(
-            `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`,
-            {
-              headers: {
-                Authorization: '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'
-              }
-            }
-          )
-        })
-      )
-      return { promise, related }
-    })
-    .then(({ promise, related }) => {
-      console.log('combo', promise, related)
-      var p = promise.then(item => {
-        return item.map(item => item.data)
-      })
-      return { p, related }
-    })
-    .then(({ p, related }) => {
-      p.then(res => {
-        setO(res)
-      })
-      return axios
-        .all(
-          related.map((item, index) => {
-            return axios.get(
-              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}/styles`,
-              {
-                headers: {
-                  Authorization: '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'
-                }
-              }
-            )
-          })
-        )
-        .then(res => {
-          console.log('get products styles', res);
-          var a = res.map((item)=>item.data.results);
-          console.log('aaaaa',a)
-        })
-        .catch((err)=>console.log(err))
-    })
-  }
-
-
-
-
-
-
   const imgs =
     'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
 
@@ -80,45 +15,81 @@ function Related (props) {
     price: '',
     rating: ''
   })
-  // const [related, setR] = useState([])
   const [discount, setDis] = useState(false)
+  const [style, setStyle] = useState({})
+  const [related, setR] = useState([])
 
-  useEffect(() => {
+  var updateByid = function (id) {
     axios
       .get(
-        'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/related',
+        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
         {
-          // params: { page: 5, count: 1 },
           headers: {
             Authorization: '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'
           }
         }
       )
       .then(res => {
-        console.log('Get post result before click:', res.data)
-        axios
-          .all(
-            res.data.map((item, index) => {
-              return axios.get(
-                `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`,
-                {
-                  headers: {
-                    Authorization: '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'
-                  }
+        console.log('Get post result after click:', res.data)
+        var related = res.data
+        var promise = axios.all(
+          res.data.map((item, index) => {
+            return axios.get(
+              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`,
+              {
+                headers: {
+                  Authorization: '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'
                 }
-              )
-            })
-          )
-          .then(result => {
-            return result.map(item => {
-              return item.data
-            })
+              }
+            )
           })
-          .then(res => {
-            console.log('this is the data array default', res)
-            setO(res)
-          })
+        )
+        return { promise, related }
       })
+      .then(({ promise, related }) => {
+        console.log('combo', promise, related)
+        var p = promise.then(item => {
+          return item.map(item => item.data)
+        })
+        return { p, related }
+      })
+      .then(({ p, related }) => {
+        p.then(res => {
+          setO(res)
+        })
+      })
+  }
+
+  var findstyleByid = function (id) {
+    return axios
+      .get(
+        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
+        {
+          headers: {
+            Authorization: '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'
+          }
+        }
+      )
+      .then(res => {
+        console.log('get products styles======', res.data.results);
+        var eachStyle = res.data.results;
+        var allStyles = eachStyle.filter(item => {
+          return item['default?'];
+        })
+        var price = allStyles[0].sale_price;
+        var photo = allStyles[0].photos[0].thumbnail_url;
+        return {price,photo}
+      })
+  }
+
+  var find = async function(){
+    const obj = await findstyleByid(40344);
+    console.log('obj=====',obj);
+    setStyle(obj);
+  }
+
+  useEffect(() => {
+    updateByid(40344)
   }, [])
 
   const imgStyles = {
@@ -143,12 +114,13 @@ function Related (props) {
 
   var clickEvent = function (e) {
     var clickedId = e.target.attributes.getNamedItem('name').value
-     updateByid(clickedId);
+    updateByid(clickedId)
   }
-  // console.log(related)
-  if (obj) {
+
+  if (obj && style) {
     return (
       <>
+      {console.log('????',style)}
         <div className='slider'>
           <div className='controls'>
             <button id='first-btn' type='button'>
@@ -166,8 +138,8 @@ function Related (props) {
                 <section key={index} onClick={clickEvent}>
                   <img
                     className={`tns-lazy-img`}
-                    src={imgs}
-                    data-src={imgs}
+                    // src={imgs}
+                    data-src={style.photo}
                     style={imgStyles}
                     name={item.id}
                   />
