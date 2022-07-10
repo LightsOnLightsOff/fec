@@ -1,4 +1,23 @@
+/* Overview */
 .eachReview {
   border-bottom: solid black;
 }
+
+
+/* Review Index */
+.rating {
+  display : flex;
+  flex-direction : row;
+}
+
+/* Rating */
+.starProduct {
+  border: solid black;
+  display: flex;
+  flex-direction : column;
+  justify-content: space-between;
+
+}
+
+
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function Overview ({result}) {
+  //render out indivdual reviews
 
 
   return (

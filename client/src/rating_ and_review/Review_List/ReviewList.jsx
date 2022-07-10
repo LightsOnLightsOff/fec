@@ -12,12 +12,9 @@ function ReviewList(props) {
   //const [data, setData] = useState([])
   const [count, setCount] = useState(1)
   //var updateData = [] //storing the data but in pairs
-  console.log("Product : ", product)
-  console.log('COUNT: ', count)
+  // console.log("Product : ", product)
+  // console.log('COUNT: ', count)
 
-  // if (data) {
-  //   setProduct(data.splice(0,2))
-  // }
 
 
   /* Everytime the user clicks on a related products, state changes in the index.jsx and will pass down the new product_id */
@@ -75,14 +72,13 @@ function ReviewList(props) {
 
   if (product) {
     return (
-      <div className="ratings">
-        <h1>Rating and Reviews</h1>
+      <div className="review">
 
-        {/* <Rating /> */}
+        <Sorting /> {/* Pass down the data to here to filter */}
 
 
         <div className="reviewList">
-          <Sorting />
+
           <Review renderMoreReviews={renderMoreReviews} product={product} count={count} />
 
           {displayButton && <button onClick={renderMoreReviews}>More Reviews</button>}
