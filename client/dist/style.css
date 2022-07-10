@@ -9,35 +9,41 @@
 }
 
 .starRating {
- color: rgba(0, 0, 0, 0.2);
- display: flex;
- justify-content: row ;
- border: solid black;
+  color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: row;
+
 }
 
 .colorRating {
-  color: black
+  color: black;
+}
+
+.starsAndDate {
+  display: flex;
+  justify-content: space-between;
+
 }
 
 
 /* Review Index */
 .rating {
-  display : flex;
-  flex-direction : row;
+  display: flex;
+  flex-direction: row;
 }
 
 /* Rating */
 .starProduct {
-  border: solid black;
+  /* border: solid black; */
   display: flex;
-  flex-direction : column;
+  flex-direction: column;
 
 }
 
 /* Stars, Product */
-.stars, .product {
+.stars,
+.product {
   padding: 10px;
 }
 
 /* Product */
-

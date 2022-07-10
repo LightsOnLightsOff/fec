@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import Moment from 'moment'
 
 function Overview({ result }) {
   //render out indivdual reviews
+  const formatDate = Moment(result.date).format("MMMM Do, YYYY")
+  console.log("format data: ", formatDate)
   var greatBody = false
   console.log('results from Overview: ', result)
   if (result.body.length > 60) {
@@ -15,14 +18,14 @@ function Overview({ result }) {
     <div className="eachReview">
 
       <div className="starsAndDate">
-        <div className="starRating">
+        <span className="starRating">
         {[...Array(5)].map((star, index) => {
           index += 1;
           return (
               <p
                 key={index}
                 className="eachStarRating"
-                className={index < result.rating ? "colorRating" : "nothing" }
+                className={index - 1 < result.rating ? "colorRating" : "nothing" }
               >
                 <span>&#9733;</span>
               </p>
@@ -30,7 +33,10 @@ function Overview({ result }) {
 
         })}
 
-        </div>
+        </span>
+        <p>{result.reviewer_name}, {formatDate} </p>
+
+
 
 
 
