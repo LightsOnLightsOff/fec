@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Images from './Images.jsx'
 import Moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -7,12 +8,17 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 function Overview({ result }) {
   //render out indivdual reviews
   const formatDate = Moment(result.date).format("MMMM Do, YYYY")
-  console.log("format data: ", formatDate)
-  var greatBody = false
+  //console.log("format data: ", formatDate)
   console.log('results from Overview: ', result)
+
+  var greatBody = false
   if (result.body.length > 60) {
     greatBody = true
+  }
 
+  var greatSummary = false
+  if (result.summary.length > 250) {
+    greatSummary= true
   }
 
 
@@ -55,10 +61,12 @@ function Overview({ result }) {
 
       {result.response && <div> <p>Response:</p> <p>result.response</p> </div>}
 
+      {result.photos.length > 0 && <Images photos={result.photos} />}
+
 
       <div className="helpful">
         <p>Helpful? <span className="yes">Yes</span> ({result.helpfulness})
-          | <span>Report</span> </p>
+          | <span className="report">Report</span> </p>
       </div>
 
 

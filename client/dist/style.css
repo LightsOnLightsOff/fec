@@ -25,6 +25,20 @@
 
 }
 
+.yes, .report {
+  text-decoration: underline;
+}
+
+/* Images */
+.images {
+  display: flex;
+  flex-direction: row;
+}
+.eachImage {
+  padding: 5px;
+  height: 100px;
+  width: 100px;
+}
 
 /* Review Index */
 .rating {
