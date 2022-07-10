@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
+import EachReview from './EachReview.jsx'
 
-function Review(props) {
+function Review({ product, count, renderMoreReviews }) {
 
 
   return (
-    <div>I am a review!</div>
+    <div>
+      {product.slice(0, count).map((each) => {
+        return <EachReview key={each} each={each} renderMoreReviews={renderMoreReviews} />
+      })}
+
+    </div>
+
+    // <div>I am a review!</div>
+    // <p></p>
   )
 }
 
