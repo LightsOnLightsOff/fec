@@ -85,8 +85,8 @@ body {
 
 .slider{
   margin-top: 50px;
-  margin-right: 200px;
-  margin-left: 100px;
+  margin-right: 450px;
+  margin-left: 380px;
 }
 img{
   position: relative;
@@ -101,3 +101,6 @@ section{
   position: 'relative';
 }
 
+.controls{
+display:block;
+}
