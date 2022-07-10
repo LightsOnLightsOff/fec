@@ -7,7 +7,7 @@ function Review({ product, count, renderMoreReviews }) {
   return (
     <div>
       {product.slice(0, count).map((each) => {
-        return <EachReview key={each} each={each} renderMoreReviews={renderMoreReviews} />
+        return <EachReview key={each.review_id} each={each} renderMoreReviews={renderMoreReviews} />
       })}
 
     </div>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import Overview from '../Individual_Review/Overview.jsx'
 
 function EachReview ({each, renderMoreReviews}) {
   //map it again with the 2 review items
 
   return (
-    <div>
+    <div >
       {each.map((result) => {
-        return <p key={result.review_id}>{result.reviewer_name} and {result.summary}</p>
+        return <Overview key={result.review_id} result={result} />
       })}
 
 
