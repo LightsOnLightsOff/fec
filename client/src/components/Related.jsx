@@ -5,6 +5,71 @@ import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
 
 function Related (props) {
+  var updateByid = function(clickedId){
+    axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${clickedId}/related`,
+      {
+        headers: {
+          Authorization: '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'
+        }
+      }
+    )
+    .then(res => {
+      console.log('Get post result after click:', res.data)
+      var related = res.data
+      var promise = axios.all(
+        res.data.map((item, index) => {
+          return axios.get(
+            `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`,
+            {
+              headers: {
+                Authorization: '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'
+              }
+            }
+          )
+        })
+      )
+      return { promise, related }
+    })
+    .then(({ promise, related }) => {
+      console.log('combo', promise, related)
+      var p = promise.then(item => {
+        return item.map(item => item.data)
+      })
+      return { p, related }
+    })
+    .then(({ p, related }) => {
+      p.then(res => {
+        setO(res)
+      })
+      return axios
+        .all(
+          related.map((item, index) => {
+            return axios.get(
+              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}/styles`,
+              {
+                headers: {
+                  Authorization: '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'
+                }
+              }
+            )
+          })
+        )
+        .then(res => {
+          console.log('get products styles', res);
+          var a = res.map((item)=>item.data.results);
+          console.log('aaaaa',a)
+        })
+        .catch((err)=>console.log(err))
+    })
+  }
+
+
+
+
+
+
   const imgs =
     'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
 
@@ -15,7 +80,7 @@ function Related (props) {
     price: '',
     rating: ''
   })
-  const [related, setR] = useState([])
+  // const [related, setR] = useState([])
   const [discount, setDis] = useState(false)
 
   useEffect(() => {
@@ -71,66 +136,16 @@ function Related (props) {
     gutter: 20,
     edgePadding: 200,
     controls: true,
-    controlsContainer: '.controls',
+    controlsContainer: '.controls'
     // prevButton:'#first-btn'
     // arrowKeys: true
   }
 
   var clickEvent = function (e) {
     var clickedId = e.target.attributes.getNamedItem('name').value
-
-    axios
-      .get(
-        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${clickedId}/related`,
-        {
-          headers: {
-            Authorization: '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'
-          }
-        }
-      )
-      .then(res => {
-        console.log('Get post result after click:', res.data);
-        setR(res.data);
-        return axios.all(
-          res.data.map((item, index) => {
-            return axios.get(
-              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`,
-              {
-                headers: {
-                  Authorization: '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'
-                }
-              }
-            )
-          })
-        )
-      })
-      .then(result => {
-        return result.map(item => item.data)
-      })
-      .then(res => {
-        setO(res);
-        return axios.all(
-          related.map((item, index) => {
-            return axios.get(
-              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}/styles`,
-              {
-                headers: {
-                  Authorization: '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'
-                }
-              }
-            )
-          })
-        )
-      })
-      .then((res) => {
-        // if(related.length > 1){
-          console.log('get products styles',related)
-        // }
-
-      })
-
+     updateByid(clickedId);
   }
-
+  // console.log(related)
   if (obj) {
     return (
       <>
