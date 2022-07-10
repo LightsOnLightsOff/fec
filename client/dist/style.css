@@ -1,6 +1,22 @@
 /* Overview */
 .eachReview {
+  padding: 10px;
   border-bottom: solid black;
+}
+
+.summary {
+  padding-top: 8px;
+}
+
+.starRating {
+ color: rgba(0, 0, 0, 0.2);
+ display: flex;
+ justify-content: row ;
+ border: solid black;
+}
+
+.colorRating {
+  color: black
 }
 
 
@@ -15,9 +31,13 @@
   border: solid black;
   display: flex;
   flex-direction : column;
-  justify-content: space-between;
 
 }
 
+/* Stars, Product */
+.stars, .product {
+  padding: 10px;
+}
 
+/* Product */
 

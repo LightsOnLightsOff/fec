@@ -4,7 +4,7 @@ function Stars (props) {
 
 
   return (
-    <div>
+    <div className="stars">
       <code>This will be the star ratings</code>
 
     </div>

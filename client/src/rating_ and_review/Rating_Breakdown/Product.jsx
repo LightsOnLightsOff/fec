@@ -4,7 +4,7 @@ function Product (props) {
 
 
   return (
-    <div>
+    <div className="product">
       <code>This will be the product ratings</code>
 
     </div>
