@@ -16,11 +16,11 @@ function Related (props) {
     rating: ''
   })
   const [discount, setDis] = useState(false)
-  const [style, setStyle] = useState({})
+  const [style, setStyle] = useState([])
   const [related, setR] = useState([])
 
   var updateByid = function (id) {
-    axios
+    return axios
       .get(
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
         {
@@ -32,6 +32,7 @@ function Related (props) {
       .then(res => {
         console.log('Get post result after click:', res.data)
         var related = res.data
+        setR(related)
         var promise = axios.all(
           res.data.map((item, index) => {
             return axios.get(
@@ -57,6 +58,7 @@ function Related (props) {
         p.then(res => {
           setO(res)
         })
+        return related
       })
   }
 
@@ -71,25 +73,40 @@ function Related (props) {
         }
       )
       .then(res => {
-        console.log('get products styles======', res.data.results);
-        var eachStyle = res.data.results;
-        var allStyles = eachStyle.filter(item => {
-          return item['default?'];
+        console.log('get products styles======', res.data.results)
+        var eachStyle = res.data.results
+        var allStyles = eachStyle.map((item,index) => {
+          if(index !== eachStyle.length-1 ){
+            if(item['default?']){
+              return item;
+             }
+          }return eachStyle[0]
+
+          //  console.log('when we filter the default style',eachStyle,item['default?']);
         })
-        var price = allStyles[0].sale_price;
-        var photo = allStyles[0].photos[0].thumbnail_url;
-        return {price,photo}
+        var price = allStyles[0].sale_price
+        var photo = allStyles[0].photos[0].thumbnail_url
+        return { price, photo }
       })
   }
 
-  var find = async function(){
-    const obj = await findstyleByid(40344);
-    console.log('obj=====',obj);
-    setStyle(obj);
+  var find = async function (id) {
+    const obj = await findstyleByid(id);
+    console.log('obj=====', obj);
+    setStyle(pre => {
+      console.log('pre', pre)
+      return [...pre,obj];
+    })
   }
 
   useEffect(() => {
     updateByid(40344)
+    .then(resRelated => {
+      resRelated.forEach(item => {
+        console.log('before click the related item ', item)
+        find(item);
+      })
+    })
   }, [])
 
   const imgStyles = {
@@ -120,7 +137,7 @@ function Related (props) {
   if (obj && style) {
     return (
       <>
-      {console.log('????',style)}
+
         <div className='slider'>
           <div className='controls'>
             <button id='first-btn' type='button'>
@@ -139,12 +156,13 @@ function Related (props) {
                   <img
                     className={`tns-lazy-img`}
                     // src={imgs}
-                    data-src={style.photo}
+                    data-src={ imgs }
                     style={imgStyles}
                     name={item.id}
                   />
                   <p>{item.category}</p>
                   <h3>{item.name}</h3>
+                  {console.log('div=====',style[index])}
                   <p
                     style={discount ? { textDecoration: 'line-through' } : null}
                   >{`$${item.default_price}`}</p>
