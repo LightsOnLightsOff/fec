@@ -17,11 +17,7 @@ function Related (props) {
   })
   const [discount, setDis] = useState(false)
   const [style, setStyle] = useState([])
-  // const [eachStyle,setES] = useState({
-  //   price:'',
-  //   photo:''
-  // })
-    const [related, setR] = useState([])
+  const [related, setR] = useState([])
 
   var updateByid = function (id) {
     return axios
@@ -34,7 +30,7 @@ function Related (props) {
         }
       )
       .then(res => {
-        console.log('Get post result after click:', res.data)
+        console.log('Related products for id:', res.data)
         var related = res.data
         setR(related)
         var promise = axios.all(
@@ -77,7 +73,7 @@ function Related (props) {
         }
       )
       .then(res => {
-        console.log('get products styles======', res.data.results)
+        console.log('get products styles', res.data.results)
         var eachStyle = res.data.results
         var allStyles = eachStyle.map((item, index) => {
           if (index !== eachStyle.length - 1) {
@@ -94,21 +90,29 @@ function Related (props) {
       })
   }
 
-  var findStyle = async function (id) {
-    const obj = await findstyleByid(id)
-    console.log('obj+++++',id, obj);
+  var updateStyle = function (id) {
+    const obj = findstyleByid(id)
+
+    console.log('obj+++++', id, obj)
     setStyle(pre => {
-      console.log('pre', pre)
+      console.log('previous style pushed to style array', pre)
       return [...pre, obj]
     })
   }
 
+
   useEffect(() => {
-    updateByid(40344).then(resRelated => {
-      resRelated.forEach(item => {
-        console.log('before click the related item ', item)
-        findStyle(item);
-      })
+    updateByid(40344).then(related => {
+      axios
+        .all(
+          related.map(item => {
+            return findstyleByid(item)
+          })
+        )
+        .then(res => {
+          console.log('array of styles', res);
+          setStyle(res);
+        })
     })
   }, [])
 
@@ -133,13 +137,28 @@ function Related (props) {
   }
 
   var clickEvent = function (e) {
+    setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
+    console.log('I am clicking the picuture id:', clickedId)
     updateByid(clickedId)
+    .then(related => {
+      axios
+        .all(
+          related.map(item => {
+            return findstyleByid(item)
+          })
+        )
+        .then(res => {
+          console.log('array of styles', res);
+          setStyle(res);
+        })
+    })
   }
-// console.log('this is array ')
-  if (obj.length>1 && style.length>1 && style.length === obj.length) {
+  console.log('&&&&&& result ', obj, style)
+  if (obj.length > 1 && style.length > 1 && style.length === obj.length) {
     return (
       <>
+        {/* {console.log('div=====', obj, style)} */}
         <div className='slider'>
           <div className='controls'>
             <button id='first-btn' type='button'>
@@ -158,13 +177,12 @@ function Related (props) {
                   <img
                     className={`tns-lazy-img`}
                     // src={imgs}
-                    data-src={style[index].photo? style[index].photo :imgs}
+                    data-src={style[index].photo ? style[index].photo : imgs}
                     style={imgStyles}
                     name={item.id}
                   />
                   <p>{item.category}</p>
                   <h3>{item.name}</h3>
-                  {console.log('div=====',obj,style)}
                   <p
                     style={discount ? { textDecoration: 'line-through' } : null}
                   >{`$${item.default_price}`}</p>
