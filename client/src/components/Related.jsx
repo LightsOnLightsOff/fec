@@ -17,7 +17,11 @@ function Related (props) {
   })
   const [discount, setDis] = useState(false)
   const [style, setStyle] = useState([])
-  const [related, setR] = useState([])
+  // const [eachStyle,setES] = useState({
+  //   price:'',
+  //   photo:''
+  // })
+    const [related, setR] = useState([])
 
   var updateByid = function (id) {
     return axios
@@ -75,13 +79,13 @@ function Related (props) {
       .then(res => {
         console.log('get products styles======', res.data.results)
         var eachStyle = res.data.results
-        var allStyles = eachStyle.map((item,index) => {
-          if(index !== eachStyle.length-1 ){
-            if(item['default?']){
-              return item;
-             }
-          }return eachStyle[0]
-
+        var allStyles = eachStyle.map((item, index) => {
+          if (index !== eachStyle.length - 1) {
+            if (item['default?']) {
+              return item
+            }
+          }
+          return eachStyle[0]
           //  console.log('when we filter the default style',eachStyle,item['default?']);
         })
         var price = allStyles[0].sale_price
@@ -90,21 +94,20 @@ function Related (props) {
       })
   }
 
-  var find = async function (id) {
-    const obj = await findstyleByid(id);
-    console.log('obj=====', obj);
+  var findStyle = async function (id) {
+    const obj = await findstyleByid(id)
+    console.log('obj+++++',id, obj);
     setStyle(pre => {
       console.log('pre', pre)
-      return [...pre,obj];
+      return [...pre, obj]
     })
   }
 
   useEffect(() => {
-    updateByid(40344)
-    .then(resRelated => {
+    updateByid(40344).then(resRelated => {
       resRelated.forEach(item => {
         console.log('before click the related item ', item)
-        find(item);
+        findStyle(item);
       })
     })
   }, [])
@@ -133,11 +136,10 @@ function Related (props) {
     var clickedId = e.target.attributes.getNamedItem('name').value
     updateByid(clickedId)
   }
-
-  if (obj && style) {
+// console.log('this is array ')
+  if (obj.length>1 && style.length>1 && style.length === obj.length) {
     return (
       <>
-
         <div className='slider'>
           <div className='controls'>
             <button id='first-btn' type='button'>
@@ -156,13 +158,13 @@ function Related (props) {
                   <img
                     className={`tns-lazy-img`}
                     // src={imgs}
-                    data-src={ imgs }
+                    data-src={style[index].photo? style[index].photo :imgs}
                     style={imgStyles}
                     name={item.id}
                   />
                   <p>{item.category}</p>
                   <h3>{item.name}</h3>
-                  {console.log('div=====',style[index])}
+                  {console.log('div=====',obj,style)}
                   <p
                     style={discount ? { textDecoration: 'line-through' } : null}
                   >{`$${item.default_price}`}</p>
