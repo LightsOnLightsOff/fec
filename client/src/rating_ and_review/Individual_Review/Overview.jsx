@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Images from './Images.jsx'
 import Moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons'
 
 
 function Overview({ result }) {

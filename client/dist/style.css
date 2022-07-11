@@ -1,3 +1,10 @@
+#root {
+  display: flex;
+align-items: center;
+justify-content: center;
+border: solid black;
+}
+
 /* Overview */
 .eachReview {
   padding: 10px;
@@ -39,6 +46,40 @@
   height: 100px;
   width: 100px;
 }
+
+.eachImage:hover {
+  cursor: pointer;
+  border: solid black 2px;
+}
+
+/* ImageModa */
+.modal-image {
+  height: 300px;
+  width: 300px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
 
 /* Review Index */
 .rating {
