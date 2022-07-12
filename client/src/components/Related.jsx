@@ -23,11 +23,11 @@ function Related (props) {
   const [show, setShow] = useState(false)
   const [currentProduct, setCurrent] = useState({
     name: '',
-    feastures: ''
+    features: []
   })
   const [compareProduct, setCompare] = useState({
     name: '',
-    feastures: ''
+    features: []
   })
 
   var getRelatedProduct = function (id) {
@@ -216,12 +216,24 @@ function Related (props) {
     })
   }
 
-  var clickStar = function (e) {
+  var clickStar = function (item) {
     setShow(true)
-    setCompare('compare', 40345)
+    console.log('modal window for comparison', item.features)
+    setCompare({ name: item.name, features: item.features })
+  }
+  var closeModal = function (e) {
+    setShow(false)
   }
 
-  console.log('product &&&&&& style ', product, style)
+  console.log(
+    'product &&&&&& style ',
+    product,
+    style,
+    'compare',
+    currentProduct,
+    compareProduct
+  )
+
   if (
     product.length > 1 &&
     style.length > 1 &&
@@ -231,72 +243,100 @@ function Related (props) {
       <>
         <button onClick={clickStar}>click me to pop up</button>
         <div className='slider'>
-            <TinySlider settings={settings}>
-              {product.map((item, index) => {
-                return (
-                  <section key={index}>
-                    <button id='fav-1' onClick={clickStar}>
-                      ☆
-                    </button>
-                    <img
-                      onClick={clickProduct}
-                      className={`tns-lazy-img`}
-                      data-src={style[index].photo ? style[index].photo : imgs}
-                      style={imgStyles}
-                      name={item.id}
-                    />
-                    <p>{item.category}</p>
-                    <h3>{item.name}</h3>
-                    <p
-                      style={
-                        style[index].salePrice
-                          ? {
-                              textDecoration: 'line-through',
-                              display: 'inline'
-                            }
-                          : null
-                      }
-                    >{`$${item.default_price}`}</p>
-                    <p style={{ display: 'inline' }}>
-                      {style[index].salePrice}
-                    </p>
-                    {/* <FontAwesomeIcon className="star" icon={faStar} /> */}
-                    <FontAwesomeIcon icon={faStar} />
-                  </section>
-                )
-              })}
-            </TinySlider>
+          <TinySlider settings={settings}>
+            {product.map((item, index) => {
+              return (
+                <section key={index}>
+                  <button
+                    id='fav-1'
+                    onClick={() => {
+                      clickStar(item)
+                    }}
+                    name={item.name}
+                  >
+                    ☆
+                  </button>
+                  <img
+                    onClick={clickProduct}
+                    className={`tns-lazy-img`}
+                    data-src={style[index].photo ? style[index].photo : imgs}
+                    style={imgStyles}
+                    name={item.id}
+                  />
+                  <p>{item.category}</p>
+                  <h3>{item.name}</h3>
+                  <p
+                    style={
+                      style[index].salePrice
+                        ? {
+                            textDecoration: 'line-through',
+                            display: 'inline'
+                          }
+                        : null
+                    }
+                  >{`$${item.default_price}`}</p>
+                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
+                  {/* <FontAwesomeIcon className="star" icon={faStar} /> */}
+                  <FontAwesomeIcon icon={faStar} />
+                </section>
+              )
+            })}
+          </TinySlider>
           <div className='controls'>
-          <button id='first-btn' type='button'>
-            ❮
-          </button>
-          <button id='second-btn' type='button'>
-            ❯
-          </button>
+            <button id='first-btn' type='button'>
+              ❮
+            </button>
+            <button id='second-btn' type='button'>
+              ❯
+            </button>
+          </div>
         </div>
-        </div>
-
-
 
         <div
           className='modal-container'
           style={show ? null : { display: 'none' }}
         >
+          <button onClick={closeModal}>×</button>
           <table>
             <thead>
               <tr>
                 <th>{currentProduct.name}</th>
                 <th className='centerText'>Characteristic</th>
-                <th className='left-tick'>Compared Product Name</th>
+                <th className='left-tick'>{compareProduct.name}</th>
               </tr>
             </thead>
-            <thead>
-              <tr>
-                <th>✔</th>
-                <th className='centerText'>cotton.........</th>
-                <th className='left-tick'>✔</th>
-              </tr>
-            </thead>
+            {currentProduct.feastures.map((item, index) => {
+              {
+                 console.log('current modal window information', item)
+              }
+              return (
+                <thead key={index}>
+                <tr >
+                  <th>{currentProduct.feastures.includes(item) && '✔'}</th>
+                  <th className='centerText'>{item.value}</th>
+                  <th className='left-tick'>
+                    {compareProduct.features.includes(item) && '✔'}
+                  </th>
+                </tr>
+                </thead>
+              )
+            })}
+            {compareProduct.features.map((item, index) => {
+              console.log('modal window information', item)
+              if (item.value) {
+                return (
+                  <thead key={index}>
+                    <tr key={index}>
+                      <th>{currentProduct.features.includes(item) && '✔'}</th>
+                      <th className='centerText'>{item.value}</th>
+                      <th className='left-tick'>
+                        {compareProduct.features.includes(item) && '✔'}
+                      </th>
+                    </tr>
+                  </thead>
+                )
+              }
+            })}
           </table>
         </div>
       </>
