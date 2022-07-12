@@ -3,40 +3,45 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Related (props) {
   const imgs =
     'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
 
-  const [obj, setO] = useState([])
+  const [product, setP] = useState([])
   const [info, setInf] = useState({
     img: '',
     name: '',
-    price: '',
+    salePrice: '',
     rating: ''
   })
   const [discount, setDis] = useState(false)
   const [style, setStyle] = useState([])
   const [related, setR] = useState([])
 
-  var updateByid = function (id) {
-    return axios
-      .get(
-        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
-        {
-          headers: {
-            Authorization: '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'
-          }
+  var getRelatedProduct = function (id) {
+    return axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
+      {
+        headers: {
+          Authorization: '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'
         }
-      )
+      }
+    )
+  }
+
+  var updateProductByid = function (id) {
+    return getRelatedProduct(id)
       .then(res => {
         console.log('Related products for id:', res.data)
         var related = res.data
         setR(related)
         var promise = axios.all(
-          res.data.map((item, index) => {
+          res.data.map((eachProduct, index) => {
             return axios.get(
-              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${item}`,
+              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${eachProduct}`,
               {
                 headers: {
                   Authorization: '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'
@@ -48,7 +53,7 @@ function Related (props) {
         return { promise, related }
       })
       .then(({ promise, related }) => {
-        console.log('combo', promise, related)
+        // console.log('combo', promise, related)
         var p = promise.then(item => {
           return item.map(item => item.data)
         })
@@ -56,7 +61,7 @@ function Related (props) {
       })
       .then(({ p, related }) => {
         p.then(res => {
-          setO(res)
+          setP(res)
         })
         return related
       })
@@ -73,7 +78,7 @@ function Related (props) {
         }
       )
       .then(res => {
-        console.log('get products styles', res.data.results)
+        // console.log('get products styles', res.data.results)
         var eachStyle = res.data.results
         var allStyles = eachStyle.map((item, index) => {
           if (index !== eachStyle.length - 1) {
@@ -84,25 +89,50 @@ function Related (props) {
           return eachStyle[0]
           //  console.log('when we filter the default style',eachStyle,item['default?']);
         })
-        var price = allStyles[0].sale_price
+        var salePrice = allStyles[0].sale_price
         var photo = allStyles[0].photos[0].thumbnail_url
-        return { price, photo }
+        return { salePrice, photo }
       })
   }
 
-  var updateStyle = function (id) {
-    const obj = findstyleByid(id)
+  var findReviewById = function (id) {
+    getRelatedProduct(id).then(({ data }) =>
+      axios
+        .all(
+          data.map(review =>
+            axios.get(
+              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`,
+              {
+                params: { product_id: review },
+                headers: {
+                  Authorization: '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'
+                }
+              }
+            )
+          )
+        )
+        .then(res => {
+          return res.map(item => item.data.results)
+        })
+        .then(array => {
+          console.log('review array to calculate average rating', array);
+         return array.map(allreview=>{
+            var total = 0;
+            allreview.map((obj)=> {
 
-    console.log('obj+++++', id, obj)
-    setStyle(pre => {
-      console.log('previous style pushed to style array', pre)
-      return [...pre, obj]
-    })
+              total += obj.rating;
+              // console.log('obj.rating',typeof total);
+            })
+            return  total/(allreview.length)
+          })
+        })
+        .then((res)=>console.log('array of averages',res))
+    )
   }
 
-
   useEffect(() => {
-    updateByid(40344).then(related => {
+    findReviewById(40344)
+    updateProductByid(40344).then(related => {
       axios
         .all(
           related.map(item => {
@@ -110,8 +140,8 @@ function Related (props) {
           })
         )
         .then(res => {
-          console.log('array of styles', res);
-          setStyle(res);
+          console.log('array of styles', res)
+          setStyle(res)
         })
     })
   }, [])
@@ -140,8 +170,7 @@ function Related (props) {
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
     console.log('I am clicking the picuture id:', clickedId)
-    updateByid(clickedId)
-    .then(related => {
+    updateProductByid(clickedId).then(related => {
       axios
         .all(
           related.map(item => {
@@ -149,16 +178,20 @@ function Related (props) {
           })
         )
         .then(res => {
-          console.log('array of styles', res);
-          setStyle(res);
+          console.log('array of styles', res)
+          setStyle(res)
         })
     })
   }
-  console.log('&&&&&& result ', obj, style)
-  if (obj.length > 1 && style.length > 1 && style.length === obj.length) {
+  console.log('&&&&&& result ', product, style)
+  if (
+    product.length > 1 &&
+    style.length > 1 &&
+    style.length === product.length
+  ) {
     return (
       <>
-        {/* {console.log('div=====', obj, style)} */}
+        {/* {console.log('div=====', product, style)} */}
         <div className='slider'>
           <div className='controls'>
             <button id='first-btn' type='button'>
@@ -171,7 +204,7 @@ function Related (props) {
 
           <TinySlider settings={settings}>
             {/* <button id='this'>ffff</button> */}
-            {obj.map((item, index) => {
+            {product.map((item, index) => {
               return (
                 <section key={index} onClick={clickEvent}>
                   <img
@@ -184,9 +217,15 @@ function Related (props) {
                   <p>{item.category}</p>
                   <h3>{item.name}</h3>
                   <p
-                    style={discount ? { textDecoration: 'line-through' } : null}
+                    style={
+                      style[index].salePrice
+                        ? { textDecoration: 'line-through', display: 'inline' }
+                        : null
+                    }
                   >{`$${item.default_price}`}</p>
-                  <p>Rating Star....</p>
+                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
+                  {/* <FontAwesomeIcon className="star" icon={faStar} /> */}
+                  <FontAwesomeIcon icon={faStar} />
                 </section>
               )
             })}
