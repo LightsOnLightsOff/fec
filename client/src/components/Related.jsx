@@ -23,11 +23,11 @@ function Related (props) {
   const [show, setShow] = useState(false)
   const [currentProduct, setCurrent] = useState({
     name: '',
-    feastures: ''
+    features: []
   })
   const [compareProduct, setCompare] = useState({
     name: '',
-    feastures: ''
+    features: []
   })
 
   var getRelatedProduct = function (id) {
@@ -152,11 +152,11 @@ function Related (props) {
         console.log('current product', data.features)
         if (which === 'current') {
           setCurrent(pre => {
-            return { ...pre, name: data.name, feastures: data.features }
+            return { ...pre, name: data.name, features: data.features }
           })
         } else {
           setCompare(pre => {
-            return { ...pre, name: data.name, feastures: data.features }
+            return { ...pre, name: data.name, features: data.features }
           })
         }
       })
@@ -216,12 +216,24 @@ function Related (props) {
     })
   }
 
-  var clickStar = function (e) {
+  var clickStar = function (item) {
     setShow(true)
-    setCompare('compare', 40345)
+    console.log('modal window for comparison', item.features)
+    setCompare({ name: item.name, features: item.features })
   }
 
-  console.log('product &&&&&& style ', product, style)
+  var closeModal = function (e) {
+    setShow(false)
+  }
+
+  console.log(
+    'product &&&&&& style ',
+    product,
+    style,
+    'compare',
+    currentProduct,
+    compareProduct
+  )
   if (
     product.length > 1 &&
     style.length > 1 &&
@@ -229,73 +241,98 @@ function Related (props) {
   ) {
     return (
       <>
-        <button onClick={clickStar}>click me to pop up</button>
         <div className='slider'>
-            <TinySlider settings={settings}>
-              {product.map((item, index) => {
-                return (
-                  <section key={index}>
-                    <button id='fav-1' onClick={clickStar}>
-                      ☆
-                    </button>
-                    <img
-                      onClick={clickProduct}
-                      className={`tns-lazy-img`}
-                      data-src={style[index].photo ? style[index].photo : imgs}
-                      style={imgStyles}
-                      name={item.id}
-                    />
-                    <p>{item.category}</p>
-                    <h3>{item.name}</h3>
-                    <p
-                      style={
-                        style[index].salePrice
-                          ? {
-                              textDecoration: 'line-through',
-                              display: 'inline'
-                            }
-                          : null
-                      }
-                    >{`$${item.default_price}`}</p>
-                    <p style={{ display: 'inline' }}>
-                      {style[index].salePrice}
-                    </p>
-                    {/* <FontAwesomeIcon className="star" icon={faStar} /> */}
-                    <FontAwesomeIcon icon={faStar} />
-                  </section>
-                )
-              })}
-            </TinySlider>
+          <TinySlider settings={settings}  >
+            {product.map((item, index) => {
+              return (
+                <section key={index}>
+                  <button
+                    id='fav-1'
+                    onClick={() => {
+                      clickStar(item)
+                    }}
+                    name={item.name}
+                  >
+                    ☆
+                  </button>
+                  <img
+                    onClick={clickProduct}
+                    className={`tns-lazy-img`}
+                    data-src={style[index].photo ? style[index].photo : imgs}
+                    style={imgStyles}
+                    name={item.id}
+                  />
+                  <p >{item.category}</p>
+                  <h3>{item.name}</h3>
+                  <p
+                    style={
+                      style[index].salePrice
+                        ? {
+                            textDecoration: 'line-through',
+                            display: 'inline'
+                          }
+                        : null
+                    }
+                  >{`$${item.default_price}`}</p>
+                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
+                  <FontAwesomeIcon icon={faStar} />
+                </section>
+              )
+            })}
+          </TinySlider>
+
           <div className='controls'>
-          <button id='first-btn' type='button'>
-            ❮
-          </button>
-          <button id='second-btn' type='button'>
-            ❯
-          </button>
+            <button id='first-btn' type='button'>
+              ❮
+            </button>
+            <button id='second-btn' type='button'>
+              ❯
+            </button>
+          </div>
         </div>
-        </div>
-
-
 
         <div
           className='modal-container'
           style={show ? null : { display: 'none' }}
         >
+          <button onClick={closeModal}>×</button>
           <table>
             <thead>
               <tr>
                 <th>{currentProduct.name}</th>
                 <th className='centerText'>Characteristic</th>
-                <th className='left-tick'>Compared Product Name</th>
+                <th className='left-tick'>{compareProduct.name}</th>
               </tr>
             </thead>
             <thead>
-              <tr>
-                <th>✔</th>
-                <th className='centerText'>cotton.........</th>
-                <th className='left-tick'>✔</th>
-              </tr>
+              {currentProduct.features.map((item, index) => {
+                {
+                  /* console.log('modal window information', item) */
+                }
+                return (
+                  <tr key={index}>
+                    <th>{currentProduct.features.includes(item) && '✔'}</th>
+                    <th className='centerText'>{item.value}</th>
+                    <th className='left-tick'>
+                      {compareProduct.features.includes(item) && '✔'}
+                    </th>
+                  </tr>
+                )
+              })}
+              {compareProduct.features.map((item, index) => {
+                console.log('modal window information', item)
+                if (item.value) {
+                  return (
+                    <tr key={index}>
+                      <th>{currentProduct.features.includes(item) && '✔'}</th>
+                      <th className='centerText'>{item.value}</th>
+                      <th className='left-tick'>
+                        {compareProduct.features.includes(item) && '✔'}
+                      </th>
+                    </tr>
+                  )
+                }
+              })}
             </thead>
           </table>
         </div>
@@ -305,69 +342,3 @@ function Related (props) {
 }
 
 export default Related
-{
-  /* <section id='slider'> */
-}
-{
-  /* <div className='container'>
-  <div className='subcontainer'>
-    <div className='slider-wrapper'>
-      <div className='controller'>
-        <div>
-          <h2>RELATED PRODUCTS</h2>
-        </div>
-        <div id='controls'>
-          <button className='previous'>❮ </button>
-          <button className='next'>❯</button>
-        </div>
-        <br></br>
-        <div className='my-slider'>
-          <div>
-            <div className='slide'>
-              <div className='slide-img img-1'></div>
-              <br></br>
-              <div>
-                <p>This is the title of photo</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className='slide'>
-              <div className='slide-img img-1'>
-                <a href="#">Learn more</a>
-              </div>
-              <br></br>
-              <div>
-                <p>This is the title of photo</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className='slide'>
-              <div className='slide-img img-1'></div>
-              <br></br>
-              <div>
-                <p>This is the title of photo</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> */
-}
-// </section>
-
-// const imgs = [
-//   'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
-//   'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg',
-//   'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
-//   'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg',
-//   'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg',
-//   'https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg'
-// ]
-
-// const loadingImage =
-//   'data:image/gif;base64,\
-// R0lGODlhAQABAPAAAMzMzAAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
