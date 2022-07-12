@@ -5,7 +5,7 @@ import axios from 'axios';
 import StyleName from './StyleName.jsx';
 import StyleThumbnail from './StyleThumbnail.jsx';
 
-function StyleSelectorOverview ({setOriginalPrice, setSalePrice, setSKUS, skus}) {
+function StyleSelectorOverview ({setOriginalPrice, setSalePrice, setSKUS, skus, setStyleName, setThumbnailURL}) {
   const [styles, setStyles] = useState(0);
   const [clickedName, setClickedName] = useState('');
 
@@ -26,8 +26,8 @@ function StyleSelectorOverview ({setOriginalPrice, setSalePrice, setSKUS, skus})
   return (
     <div>
       <div>Style Selector Section</div>
-      <StyleName style = {styles} clickedName = {clickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice}/>
-      <StyleThumbnail style = {styles} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus}/>
+      <StyleName style = {styles} clickedName = {clickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setStyleName = {setStyleName} />
+      <StyleThumbnail style = {styles} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
     </div>
   )
 }

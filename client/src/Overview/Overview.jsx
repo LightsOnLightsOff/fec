@@ -10,15 +10,15 @@ function Overview (props) {
   const [originalPrice, setOriginalPrice] = useState('');
   const [salePrice, setSalePrice] = useState ('');
   const [skus, setSKUS] = useState({});
-
-  console.log ('original Price: ' + originalPrice, 'sale Price: ' + salePrice);
-  console.log ('----------------------------->sku Object', skus);
+  const [productName, setProductName] = useState('');
+  const [styleName, setStyleName] = useState('');
+  const [thumbnailURL, setThumbnailURL] = useState('');
 
   return (
     <div>
-      <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice}/>
-      <StyleSelectorOverview setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus}/>
-      <AddToCartOverview skus = {skus}/>
+      <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
+      <StyleSelectorOverview setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL}/>
+      <AddToCartOverview skus = {skus} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL}/>
       <ShareSocialMedia />
     </div>
   )

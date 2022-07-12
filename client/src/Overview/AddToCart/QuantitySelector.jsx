@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-
+import React, {useState} from 'react';
 
 function QuantitySelector ({quantityDisabled, quantityAvailable, setQuantityPurchased}) {
 
@@ -12,7 +11,6 @@ function QuantitySelector ({quantityDisabled, quantityAvailable, setQuantityPurc
 
   const handleSelect = (event) => {
     setQuantityPurchased(event.target.value)
-    console.log(event.target.value)
   }
 
   return (

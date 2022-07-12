@@ -4,11 +4,12 @@ import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 import AddToCartFunction from './AddToCartFunction.jsx';
 
-function AddToCartOverview ({skus}) {
-  const [sizeOption, setSizeOption] = useState('Select Size');
+function AddToCartOverview ({skus, productName, styleName, thumbnailURL}) {
+  const [sizeOption, setSizeOption] = useState('');
   const [quantityAvailable, setQuantityAvailable] = useState(0);
   const [quantityDisabled, setQuantityDisabled] = useState(true);
   const [quantityPurchased, setQuantityPurchased] = useState(0);
+  const [itemsInCart, setItemsInCart] = useState([]);
 
   const activateQuantity = (size) => {
     if (size != 'Select Size') {
@@ -19,10 +20,7 @@ function AddToCartOverview ({skus}) {
     }
   }
 
-  console.log (quantityDisabled, 'Quantity Disabled')
-  console.log (sizeOption, 'size option in overview')
-  console.log (quantityAvailable, 'quantity option in overview')
-  console.log (quantityPurchased, 'quantity purchased in overview')
+  console.log(itemsInCart, 'current Cart Status in AddCartOverview')
 
   return (
     <div>
@@ -30,7 +28,7 @@ function AddToCartOverview ({skus}) {
       <div>{sizeOption}</div>
       <SizeSelector skus = {skus} activateQuantity = {activateQuantity} setSizeOption = {setSizeOption} setQuantityAvailable = {setQuantityAvailable}/>
       <QuantitySelector quantityDisabled = {quantityDisabled} quantityAvailable = {quantityAvailable} setQuantityPurchased = {setQuantityPurchased}/>
-      <AddToCartFunction quantityDisabled = {quantityDisabled} quantityPurchased = {quantityPurchased}/>
+      <AddToCartFunction sizeOption = {sizeOption} quantityDisabled = {quantityDisabled} quantityPurchased = {quantityPurchased} setItemsInCart = {setItemsInCart} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL} itemsInCart = {itemsInCart} setItemsInCart = {setItemsInCart}/>
     </div>
   )
 }

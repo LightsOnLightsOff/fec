@@ -3,15 +3,13 @@ import axios from 'axios';
 
 //my current DEFAULT product: Camo Onesie (id: 65631)
 
-function ProductDetail ({originalPrice, salePrice}) {
+function ProductDetail ({originalPrice, salePrice, setProductName}) {
 
   const [id, setID] = useState(0);
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [slogan, setSlogan] = useState('');
   const [description, setDescription] = useState('');
-
-  console.log (originalPrice, salePrice, '------------------ in Product Overview')
 
   useEffect(() => {
 
@@ -26,8 +24,6 @@ function ProductDetail ({originalPrice, salePrice}) {
       console.log('this is the response', res.data)
     })
 
-
-
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65633', {
      params: { page: 1, count: 1 },
      headers: {
@@ -40,6 +36,7 @@ function ProductDetail ({originalPrice, salePrice}) {
       setID(productDetail.id);
       setCategory(productDetail.category);
       setName(productDetail.name);
+      setProductName(productDetail.name)
       setSlogan(productDetail.slogan);
       setDescription(productDetail.description);
     })
