@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import axios from 'axios'
 
+import Overview from './Overview/Overview.jsx';
 
 function App (props) {
 
   return (
-   <div> Hello </div>
+    <div>
+      <div> Hello </div>
+      <Overview />
+    </div>
   )
 }
 

@@ -1,0 +1,31 @@
+import React, {useState, useEffect} from 'react';
+
+
+function QuantitySelector ({quantityDisabled, quantityAvailable, setQuantityPurchased}) {
+
+  let maxQuantity = (quantityAvailable > 15) ? 15 : quantityAvailable;
+  let quantityArray = [];
+
+  for (let i = 1; i <= maxQuantity; i++) {
+    quantityArray.push(i);
+  }
+
+  const handleSelect = (event) => {
+    setQuantityPurchased(event.target.value)
+    console.log(event.target.value)
+  }
+
+  return (
+    <div>
+      <div>Quantity Selector</div>
+      <select disabled = {quantityDisabled} onChange = {handleSelect}>
+        <option selected value = 'Select Quantity'>Select Quantity</option>
+       {quantityArray.map((count) => {
+         return <option value = {count}>{count}</option>
+       })}
+      </select>
+    </div>
+  )
+}
+
+export default QuantitySelector;
