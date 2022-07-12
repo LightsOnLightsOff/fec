@@ -20,6 +20,15 @@ function Related (props) {
   const [discount, setDis] = useState(false)
   const [style, setStyle] = useState([])
   const [related, setR] = useState([])
+  const [show, setShow] = useState(false)
+  const [currentProduct, setCurrent] = useState({
+    name: '',
+    feastures: ''
+  })
+  const [compareProduct, setCompare] = useState({
+    name: '',
+    feastures: ''
+  })
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -115,22 +124,41 @@ function Related (props) {
           return res.map(item => item.data.results)
         })
         .then(array => {
-          console.log('review array to calculate average rating', array);
-         return array.map(allreview=>{
-            var total = 0;
-            allreview.map((obj)=> {
-
-              total += obj.rating;
+          // console.log('review array to calculate average rating', array)
+          return array.map(allreview => {
+            var total = 0
+            allreview.map(obj => {
+              total += obj.rating
               // console.log('obj.rating',typeof total);
             })
-            return  total/(allreview.length)
+            return total / allreview.length
           })
         })
-        .then((res)=>console.log('array of averages',res))
+        .then(res => console.log('array of averages', res))
     )
   }
 
+  var findNameandFeature = function (id) {
+    axios
+      .get(
+        `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
+        {
+          headers: {
+            Authorization: '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'
+          }
+        }
+      )
+      .then(({data}) => {
+        console.log('current product', data.features)
+        setCurrent(pre => {
+          return { ...pre, name: data.name,feastures:data.features }
+        })
+
+      })
+  }
+
   useEffect(() => {
+    findNameandFeature(40344)
     findReviewById(40344)
     updateProductByid(40344).then(related => {
       axios
@@ -166,9 +194,10 @@ function Related (props) {
     // arrowKeys: true
   }
 
-  var clickEvent = function (e) {
+  var clickProduct = function (e) {
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
+    findNameandFeature(clickedId)
     console.log('I am clicking the picuture id:', clickedId)
     updateProductByid(clickedId).then(related => {
       axios
@@ -183,7 +212,11 @@ function Related (props) {
         })
     })
   }
-  console.log('&&&&&& result ', product, style)
+  var clickStar = function () {
+    setShow(true)
+  }
+
+  console.log('product &&&&&& style ', product, style)
   if (
     product.length > 1 &&
     style.length > 1 &&
@@ -191,7 +224,7 @@ function Related (props) {
   ) {
     return (
       <>
-        {/* {console.log('div=====', product, style)} */}
+        <button onClick={clickStar}>click me to pop up</button>
         <div className='slider'>
           <div className='controls'>
             <button id='first-btn' type='button'>
@@ -201,15 +234,38 @@ function Related (props) {
               ❯
             </button>
           </div>
+          <div
+            className='modal-container'
+            style={show ? null : { display: 'none' }}
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>{currentProduct.name}</th>
+                  <th className='centerText'>Characteristic</th>
+                  <th className='left-tick'>Compared Product Name</th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th>✔</th>
+                  <th className='centerText'>cotton.........</th>
+                  <th className='left-tick'>✔</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
 
           <TinySlider settings={settings}>
-            {/* <button id='this'>ffff</button> */}
             {product.map((item, index) => {
               return (
-                <section key={index} onClick={clickEvent}>
+                <section key={index} style={{display:'none'}}>
+                  <button id='fav-1' onClick={clickStar}>
+                    ☆
+                  </button>
                   <img
+                    onClick={clickProduct}
                     className={`tns-lazy-img`}
-                    // src={imgs}
                     data-src={style[index].photo ? style[index].photo : imgs}
                     style={imgStyles}
                     name={item.id}
