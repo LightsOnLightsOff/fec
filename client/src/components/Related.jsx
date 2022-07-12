@@ -138,7 +138,7 @@ function Related (props) {
     )
   }
 
-  var findNameandFeature = function (id) {
+  var findFeature = function (which, id) {
     axios
       .get(
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
@@ -148,17 +148,22 @@ function Related (props) {
           }
         }
       )
-      .then(({data}) => {
+      .then(({ data }) => {
         console.log('current product', data.features)
-        setCurrent(pre => {
-          return { ...pre, name: data.name,feastures:data.features }
-        })
-
+        if (which === 'current') {
+          setCurrent(pre => {
+            return { ...pre, name: data.name, feastures: data.features }
+          })
+        } else {
+          setCompare(pre => {
+            return { ...pre, name: data.name, feastures: data.features }
+          })
+        }
       })
   }
 
   useEffect(() => {
-    findNameandFeature(40344)
+    findFeature('current', 40344)
     findReviewById(40344)
     updateProductByid(40344).then(related => {
       axios
@@ -190,15 +195,13 @@ function Related (props) {
     edgePadding: 200,
     controls: true,
     controlsContainer: '.controls'
-    // prevButton:'#first-btn'
-    // arrowKeys: true
   }
 
   var clickProduct = function (e) {
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
-    findNameandFeature(clickedId)
     console.log('I am clicking the picuture id:', clickedId)
+    findFeature('current', clickedId)
     updateProductByid(clickedId).then(related => {
       axios
         .all(
@@ -212,8 +215,10 @@ function Related (props) {
         })
     })
   }
-  var clickStar = function () {
+
+  var clickStar = function (e) {
     setShow(true)
+    setCompare('compare', 40345)
   }
 
   console.log('product &&&&&& style ', product, style)
@@ -226,66 +231,73 @@ function Related (props) {
       <>
         <button onClick={clickStar}>click me to pop up</button>
         <div className='slider'>
+            <TinySlider settings={settings}>
+              {product.map((item, index) => {
+                return (
+                  <section key={index}>
+                    <button id='fav-1' onClick={clickStar}>
+                      ☆
+                    </button>
+                    <img
+                      onClick={clickProduct}
+                      className={`tns-lazy-img`}
+                      data-src={style[index].photo ? style[index].photo : imgs}
+                      style={imgStyles}
+                      name={item.id}
+                    />
+                    <p>{item.category}</p>
+                    <h3>{item.name}</h3>
+                    <p
+                      style={
+                        style[index].salePrice
+                          ? {
+                              textDecoration: 'line-through',
+                              display: 'inline'
+                            }
+                          : null
+                      }
+                    >{`$${item.default_price}`}</p>
+                    <p style={{ display: 'inline' }}>
+                      {style[index].salePrice}
+                    </p>
+                    {/* <FontAwesomeIcon className="star" icon={faStar} /> */}
+                    <FontAwesomeIcon icon={faStar} />
+                  </section>
+                )
+              })}
+            </TinySlider>
           <div className='controls'>
-            <button id='first-btn' type='button'>
-              ❮
-            </button>
-            <button id='second-btn' type='button'>
-              ❯
-            </button>
-          </div>
-          <div
-            className='modal-container'
-            style={show ? null : { display: 'none' }}
-          >
-            <table>
-              <thead>
-                <tr>
-                  <th>{currentProduct.name}</th>
-                  <th className='centerText'>Characteristic</th>
-                  <th className='left-tick'>Compared Product Name</th>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <th>✔</th>
-                  <th className='centerText'>cotton.........</th>
-                  <th className='left-tick'>✔</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
+          <button id='first-btn' type='button'>
+            ❮
+          </button>
+          <button id='second-btn' type='button'>
+            ❯
+          </button>
+        </div>
+        </div>
 
-          <TinySlider settings={settings}>
-            {product.map((item, index) => {
-              return (
-                <section key={index} style={{display:'none'}}>
-                  <button id='fav-1' onClick={clickStar}>
-                    ☆
-                  </button>
-                  <img
-                    onClick={clickProduct}
-                    className={`tns-lazy-img`}
-                    data-src={style[index].photo ? style[index].photo : imgs}
-                    style={imgStyles}
-                    name={item.id}
-                  />
-                  <p>{item.category}</p>
-                  <h3>{item.name}</h3>
-                  <p
-                    style={
-                      style[index].salePrice
-                        ? { textDecoration: 'line-through', display: 'inline' }
-                        : null
-                    }
-                  >{`$${item.default_price}`}</p>
-                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
-                  {/* <FontAwesomeIcon className="star" icon={faStar} /> */}
-                  <FontAwesomeIcon icon={faStar} />
-                </section>
-              )
-            })}
-          </TinySlider>
+
+
+        <div
+          className='modal-container'
+          style={show ? null : { display: 'none' }}
+        >
+          <table>
+            <thead>
+              <tr>
+                <th>{currentProduct.name}</th>
+                <th className='centerText'>Characteristic</th>
+                <th className='left-tick'>Compared Product Name</th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th>✔</th>
+                <th className='centerText'>cotton.........</th>
+                <th className='left-tick'>✔</th>
+              </tr>
+            </thead>
+          </table>
         </div>
       </>
     )
