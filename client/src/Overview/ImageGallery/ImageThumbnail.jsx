@@ -6,7 +6,7 @@ function ImageThumbnail ({show, children}) {
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(children.length)
 
-console.log (children.length, 'number of thumbnail')
+  console.log (index, 'index of main image array')
 
   useEffect(() => {
     setLength(children.length)
@@ -14,7 +14,6 @@ console.log (children.length, 'number of thumbnail')
 
   const previousImage = (event) => {
     event.preventDefault();
-    console.log ('previous image plz!')
     if (index > 0) {
       setIndex(prevState => prevState - 1)
     }
@@ -22,7 +21,6 @@ console.log (children.length, 'number of thumbnail')
 
   const nextImage = (event) => {
     event.preventDefault();
-    console.log ('next image plz!')
     if (index < (length - show)) {
       setIndex(prevState => prevState + 1)
     }

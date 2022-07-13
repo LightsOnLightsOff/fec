@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function MainImage ({children}) {
+function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClicked, setThumbnailClicked}) {
   //children - content to be displayed on Carousel
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(children.length)
@@ -8,6 +8,16 @@ function MainImage ({children}) {
   useEffect(() => {
     setLength(children.length)
   }, [children])
+
+  if (thumbnailClicked) {
+    if (index < indexOfPicture) {
+      setIndex(prevState => prevState + 1)
+    }
+    if (index > indexOfPicture) {
+      setIndex(prevState => prevState - 1)
+    }
+    setThumbnailClicked(false)
+  }
 
   const previousImage = (event) => {
     event.preventDefault();
