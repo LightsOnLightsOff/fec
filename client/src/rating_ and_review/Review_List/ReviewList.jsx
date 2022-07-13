@@ -9,11 +9,11 @@ function ReviewList(props) {
   const [displayButton, setDisplayButton] = useState(true) //display button only if there are more reviews
   //const [count, setCount] = useState(0) //this will display two reviews at a time
   const [product, setProduct] = useState([]) //storing the data of results
-  //const [data, setData] = useState([])
+  const [data, setData] = useState([])
   const [count, setCount] = useState(1)
   //var updateData = [] //storing the data but in pairs
   // console.log("Product : ", product)
-  // console.log('COUNT: ', count)
+   console.log('DATA: ', data)
 
 
 
@@ -40,6 +40,7 @@ function ReviewList(props) {
       if (splitData.length < 2) {
         setDisplayButton(true)
       }
+      setData(newData.results)
       setProduct(splitData)
 
     }
@@ -69,17 +70,33 @@ function ReviewList(props) {
 
   }
 
+  const addHelpfull = (reviewId) => {
+    console.log("this works and need id: ", reviewId)
+    const request = {reveiw_id: reviewId}
+    const headers = {
+      Authorization: "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"
+    }
+    axios.put('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/:review_id/helpful', request, {headers}  )
+    .then((data) => {
+      console.log("Did we get any data: ", data.data)
+    })
+    .catch((err) => {
+      console.log("error from add helpful: ", err)
+    })
+
+  }
+
 
   if (product) {
     return (
       <div className="review">
 
-        <Sorting /> {/* Pass down the data to here to filter */}
+        <Sorting data={data} /> {/* Pass down the data to here to filter */}
 
 
         <div className="reviewList">
 
-          <Review renderMoreReviews={renderMoreReviews} product={product} count={count} />
+          <Review addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={product} count={count} />
 
           {displayButton && <button onClick={renderMoreReviews}>More Reviews</button>}
           <button>Add </button>

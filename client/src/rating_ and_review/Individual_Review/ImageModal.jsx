@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faCatSpace} from '@fortawesome/free-solid-svg-icons'
+
 
 function Modal({ isShowing, hide, image }) {
   console.log("modal is working: ", isShowing)

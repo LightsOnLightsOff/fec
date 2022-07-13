@@ -9,6 +9,7 @@ border: solid black;
 .eachReview {
   padding: 10px;
   border-bottom: solid black;
+  padding-left: 15px;
 }
 
 .summary {
@@ -32,9 +33,119 @@ border: solid black;
 
 }
 
-.yes, .report {
+.yes, .report, .no {
   text-decoration: underline;
 }
+.yes:hover, .report:hover {
+  cursor: pointer;
+}
+
+/* Sorting */
+
+
+.sort {
+  /* border: #000 solid; */
+  padding-left: 10px;
+  padding-bottom: 40px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.sortList  {
+  /* border: #000 solid; */
+  width: fit-content;
+  display: none;
+  height: fit-content;
+  position: absolute;
+  padding-left: 5px;
+  background-color: #f9f9f9;
+  min-width: 90px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  margin-top: -20px;
+  margin-bottom: 0px;
+}
+
+.newest, .helpful {
+  height: 30px;
+  /* border: #000 solid; */
+  width: fit-content;
+}
+
+
+.newest:hover, .helpful:hover {
+  cursor: pointer;
+
+}
+
+.relevant:hover {
+  cursor: pointer;
+  display: block;
+}
+
+.filter {
+  padding-bottom: 0px;
+  height: 40px;
+  /* border: #000 solid; */
+}
+
+
+.relevant {
+  padding-left: 5px;
+  padding-bottom: 0px;
+  text-decoration: underline;
+  /* border: solid black; */
+}
+
+
+
+.dropDown {
+/* border: #000 solid; */
+padding-left: 0px;
+/* display: flex; */
+/* flex-direction: column; */
+
+}
+
+.dropDown:hover .relevant {
+  background-color: azure;
+}
+
+.dropDown:hover .sortList {
+  display: block;
+  /* visibility: visible; */
+}
+
+/* .dropDown {
+  border: solid black;
+  width: fit-content;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  margin-top: 1rem;
+  left: 0;
+  display: none;
+} */
+
+.dropDown li {
+  display: block;
+  transition-duration: 0.5s;
+}
+
+.dropDown li:hover{
+    cursor: pointer;
+}
+
+/* .relevant:hover, .dropDown:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  cursor: pointer;
+
+} */
 
 /* Images */
 .images {
@@ -66,11 +177,12 @@ border: solid black;
   width: 100vw;
   height: 100vh;
   background-color: #000;
-  opacity: 0.9;
+  opacity: 0.95;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 
 
 
@@ -89,9 +201,11 @@ border: solid black;
 
 /* Rating */
 .starProduct {
-  /* border: solid black; */
+
+  padding: 60px;
   display: flex;
   flex-direction: column;
+  width: 80px
 
 }
 

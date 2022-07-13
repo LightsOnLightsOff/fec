@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Images from './Images.jsx'
 import Moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faArrowAltCircleLeft, faUserAstronaut, faFaceLaughWink } from '@fortawesome/free-solid-svg-icons'
 
 
-function Overview({ result }) {
-  //render out indivdual reviews
+function Overview({ result, addHelpfull }) {
+  //body description
+  const [showDescription, setShowDescription] = useState(false)
+  //helpfullness data
+  //provide correct format date
   const formatDate = Moment(result.date).format("MMMM Do, YYYY")
   //console.log("format data: ", formatDate)
   console.log('results from Overview: ', result)
@@ -43,7 +46,7 @@ function Overview({ result }) {
         })}
 
         </span>
-        <p>{result.reviewer_name}, {formatDate} </p>
+        <p><FontAwesomeIcon icon={faUserAstronaut}/> {result.reviewer_name}, {formatDate} </p>
       </div>
 
 
@@ -54,10 +57,15 @@ function Overview({ result }) {
 
       {/* result summary */}
       <div className="summary">
-        <p>{result.summary}</p>
+        {!greatSummary && !showDescription && <div> <p>{result.summary}</p> </div>}
+        {greatSummary && !showDescription && <div> <p>{result.summary.slice(0,250)}...<span onClick={() => {setShowDescription(true)}}>show more</span></p> </div> }
+        {greatSummary && showDescription && <div> <p>{result.summary}</p> </div>}
+
       </div>
 
-      {result.recommend && <p> <span><FontAwesomeIcon icon={faCheck} /> </span>  I recommend this product</p> }
+
+
+      {result.recommend && <p> <span><FontAwesomeIcon icon={faFaceLaughWink} /> </span>  I recommend this product</p> }
 
       {result.response && <div> <p>Response:</p> <p>result.response</p> </div>}
 
@@ -65,8 +73,9 @@ function Overview({ result }) {
 
 
       <div className="helpful">
-        <p>Helpful? <span className="yes">Yes</span> ({result.helpfulness})
-          | <span className="report">Report</span> </p>
+        {/*Idk if i should add a "No" */}
+        <p>Helpful? <span onClick={() => {addHelpfull(result.review_id)}} className="yes">Yes</span> ({result.helpfulness})
+           | <span className="report">Report</span> </p>
       </div>
 
 
