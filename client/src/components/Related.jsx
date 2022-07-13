@@ -252,7 +252,6 @@ function Related (props) {
   ) {
     return (
       <>
-        {console.log('make me happy', config['TOKEN'])}
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
@@ -287,8 +286,7 @@ function Related (props) {
                     }
                   >{`$${item.default_price}`}</p>
                   <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
-                  {/* <FontAwesomeIcon className="star" icon={faStar} /> */}
-                  <FontAwesomeIcon icon={faStar} />
+                  <span className="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </section>
               )
             })}

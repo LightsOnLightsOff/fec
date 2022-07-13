@@ -6,28 +6,6 @@ body {
   color: green;
 }
 
-/* #slider {
-  height: 500px;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-
-#first-btn {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.slide-img:hover{
-  box-shadow: 0 0 0 200px burlywood inset;
-} */
-
 #first-btn {
   cursor: pointer;
   position: absolute;
@@ -84,20 +62,18 @@ img{
 
 img{
   position: relative;
-  /* display: inline; */
-  z-index: -1;
 }
 
 .star {
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: px;
   color: #ddd;
 }
 
 .star:after {
   font-family: FontAwesome;
-  content: "\f005";
+  content: "\2605\2605\2605\2605\2605";
   position: absolute;
   left: 0;
   top: 0;
@@ -143,4 +119,6 @@ img{
 .fav{
   /* position: absolute; */
 }
+
+
 
