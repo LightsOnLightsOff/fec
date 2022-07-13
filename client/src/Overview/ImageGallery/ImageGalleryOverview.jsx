@@ -12,7 +12,17 @@ function ImageGalleryOverview (props) {
         <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
         <img src="https://via.placeholder.com/1600x300" alt="placeholder" />
       </MainImage>
-      <ImageThumbnail />
+      <ImageThumbnail show = {7}>
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+        <img src="https://via.placeholder.com/200x200" alt="placeholder" />
+
+      </ImageThumbnail>
     </div>
   )
 }

@@ -4,15 +4,14 @@ function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvaila
 
   console.log(defaultSKU, 'default SKU in sizeSelector')
 
+  let sizeArray = [];
+  let quantityArray = [];
+
   useEffect(() => {
-    console.log(defaultSKU, 'default SKU in useeffect')
     var sku = defaultSKU.skus
-    console.log (sku, 'sku before setSKUS in sizeSelector')
     setSKUS(sku)
   })
 
-  let sizeArray = [];
-  let quantityArray = [];
   for (var key in skus) {
     if (skus[key].quantity > 0) {
       sizeArray.push(skus[key].size)
