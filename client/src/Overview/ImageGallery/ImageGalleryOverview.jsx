@@ -38,12 +38,12 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       <div>---------------Image Gallery Overview--------------</div>
       <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked}>
         {imageArray.map(url => {
-          return <img height="300px" width="300px" src= {url}/>
+          return <div style = {{display: 'flex', justifyContent: 'center'}}><img style = {{height: 300, width: 'auto'}} src= {url}/></div>
         })}
       </MainImage>
       <ImageThumbnail show = {7} >
         {thumbnailArray.map(url => {
-          return <div src= {url} onClick = {handleClick}><img height="150px" width="150px" src= {url} /></div>
+          return <div src= {url} onClick = {handleClick}><img style = {{height: 50, width: 'auto'}} src= {url} /></div>
         })}
       </ImageThumbnail>
     </div>

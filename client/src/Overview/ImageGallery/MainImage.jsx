@@ -38,7 +38,7 @@ function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClick
   return (
     <div>
       <div>---------------Main Image--------------</div>
-      <div className = 'carousel-container'>
+      <div className = 'carousel-container' style = {{width: '50%'}}>
         <div className = 'carousel-wrapper'>
           {(index > 0) && <button className = 'left-arrow' onClick = {previousImage}>&lt;</button>}
           <div className = 'carousel-content-wrapper'>
