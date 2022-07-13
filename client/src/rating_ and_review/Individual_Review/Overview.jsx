@@ -33,7 +33,7 @@ function Overview({ result, addHelpfull }) {
 
   return (
     <div className="eachReview">
-      <span className="starBaby">&#9733;</span>
+
       {/* star, username and data */}
       <div className="starsAndDate">
         <span className="starRating">

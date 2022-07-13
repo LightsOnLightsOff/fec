@@ -3,9 +3,10 @@ import axios from 'axios';
 import Stars from './Stars.jsx';
 import Product from './Product.jsx'
 
-function Ratings (props) {
+function Ratings(props) {
 
-  const [ratings, setRating] = useState([])
+  const [ratings, setRatings] = useState([])
+  console.log("WE GOT RATINGS: ", ratings)
   /*
   Data broken down:
   product_id:
@@ -55,8 +56,8 @@ function Ratings (props) {
       const newData = await response.data
 
       //useState to update
-      console.log("We got data from ratings: ", newData)
-      //setRating(splitData)
+      //console.log("We got data from ratings: ", newData)
+      setRatings(newData)
 
     }
     //invoke the getData
@@ -68,14 +69,17 @@ function Ratings (props) {
 
   }, [props.id])
 
-
+if (Object.keys(ratings).length > 0) {
   return (
-   <div className="starProduct">
-    <Stars />
-    <Product />
+    <div className="starProduct">
+      <Stars rate={ratings.ratings} recommended={ratings.recommended} />
+      <Product ratings={ratings} />
 
-   </div>
+    </div>
   )
+
+}
+
 }
 
 
