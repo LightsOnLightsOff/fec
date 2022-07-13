@@ -6,6 +6,8 @@ function ImageThumbnail ({show, children}) {
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(children.length)
 
+console.log (children.length, 'number of thumbnail')
+
   useEffect(() => {
     setLength(children.length)
   }, [children])
@@ -25,7 +27,6 @@ function ImageThumbnail ({show, children}) {
       setIndex(prevState => prevState + 1)
     }
   }
-
 
   return (
     <div>

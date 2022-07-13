@@ -31,11 +31,10 @@ function ImageGalleryOverview ({selectedStyle}) {
         })}
       </MainImage>
       <ImageThumbnail show = {7}>
-        {thumbnailArray.map(url => {
+        {imageArray.map(url => {
           return <img height="300px" width="300px" src= {url}/>
         })}
-
-      </ImageThumbnail>
+        </ImageThumbnail>
     </div>
   )
 }
