@@ -18,8 +18,8 @@ function IndividualThumbnail ({setSelectedStyle, style, setClickedName, setOrigi
 
   return (
     <div>
-      <div onClick = {handleClick}>
-        <img height="100px" width="100px" src={thumbnailURL}></img>
+      <div onClick = {handleClick} style = {{display: 'flex', justifyContent: 'right'}}>
+        <img style = {{height: 75, width: 'auto'}} src={thumbnailURL}></img>
       </div>
     </div>
   )
