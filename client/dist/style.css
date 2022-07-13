@@ -64,7 +64,7 @@ body {
 #first-btn {
   cursor: pointer;
   position: absolute;
-  top: 300px;
+  top: 250px;
   width: auto;
   padding: 16px;
   margin-top: -22px;
@@ -81,7 +81,7 @@ body {
 #second-btn {
   cursor: pointer;
   position: absolute;
-  top: 300px;
+  top: 250px;
   width: auto;
   padding: 16px;
   margin-top: -22px;
