@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function StyleName ({style, clickedName, setOriginalPrice, setSalePrice, setStyleName}) {
+function StyleName ({style, clickedName, setOriginalPrice, setSalePrice, setStyleName, setDefaultSKU}) {
   console.log ({style}, '<---------- In Style Name ------------->')
   console.log(clickedName, 'clickedName!!!! in StylName')
 
@@ -16,6 +16,7 @@ function StyleName ({style, clickedName, setOriginalPrice, setSalePrice, setStyl
             setStyleName(style[i].name)
             setOriginalPrice(style[i].original_price)
             setSalePrice(style[i].sale_price)
+            setDefaultSKU(style[i])
           }
         }
       }

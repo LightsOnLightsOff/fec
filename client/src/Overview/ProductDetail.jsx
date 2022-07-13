@@ -12,7 +12,6 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-
     //used to find products, DELETE AFTERWARDS
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products', {
      //params: { page: 1, count: 1 },

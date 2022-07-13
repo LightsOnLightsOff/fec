@@ -1,6 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvailable}) {
+function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvailable, defaultSKU, setSKUS}) {
+
+  console.log(defaultSKU, 'default SKU in sizeSelector')
+
+  useEffect(() => {
+    console.log(defaultSKU, 'default SKU in useeffect')
+    var sku = defaultSKU.skus
+    console.log (sku, 'sku before setSKUS in sizeSelector')
+    setSKUS(sku)
+  })
 
   let sizeArray = [];
   let quantityArray = [];
