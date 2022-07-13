@@ -7,7 +7,7 @@ function ReviewIndex(props) {
 
   return (
     <div>
-      <h1>Rating & Reviews</h1>
+      <h1 className="ratingAndReview">Rating & Reviews ʕ•ᴥ•ʔ</h1>
       <div className="rating">
         <Ratings />
 

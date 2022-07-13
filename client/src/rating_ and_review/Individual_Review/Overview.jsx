@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Images from './Images.jsx'
 import Moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faArrowAltCircleLeft, faUserAstronaut, faFaceLaughWink } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faArrowAltCircleLeft, faUserAstronaut, faFaceLaughWink, faStar } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components';
 
 
 function Overview({ result, addHelpfull }) {
@@ -11,7 +12,8 @@ function Overview({ result, addHelpfull }) {
   //helpfullness data
   //provide correct format date
   const formatDate = Moment(result.date).format("MMMM Do, YYYY")
-  //console.log("format data: ", formatDate)
+  const anotherDate =  Moment(result.date).format("YYYY-MM-DD")
+  console.log("format data: ", anotherDate)
   console.log('results from Overview: ', result)
 
   var greatBody = false
@@ -24,10 +26,14 @@ function Overview({ result, addHelpfull }) {
     greatSummary= true
   }
 
+  //style components
+  // const Wrapper = styled.
+
 
 
   return (
     <div className="eachReview">
+      <span className="starBaby">&#9733;</span>
       {/* star, username and data */}
       <div className="starsAndDate">
         <span className="starRating">
@@ -72,7 +78,7 @@ function Overview({ result, addHelpfull }) {
       {result.photos.length > 0 && <Images photos={result.photos} />}
 
 
-      <div className="helpful">
+      <div >
         {/*Idk if i should add a "No" */}
         <p>Helpful? <span onClick={() => {addHelpfull(result.review_id)}} className="yes">Yes</span> ({result.helpfulness})
            | <span className="report">Report</span> </p>

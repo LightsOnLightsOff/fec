@@ -5,7 +5,7 @@ import { faCheck, faCatSpace} from '@fortawesome/free-solid-svg-icons'
 
 
 function Modal({ isShowing, hide, image }) {
-  console.log("modal is working: ", isShowing)
+  // console.log("modal is working: ", isShowing)
   if (isShowing) {
     return ReactDOM.createPortal(
       <React.Fragment>

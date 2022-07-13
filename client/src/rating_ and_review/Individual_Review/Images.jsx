@@ -12,13 +12,14 @@ function Images({ photos }) {
 
   }
 
+  //props.primary ? "white" : "palevioletred" to check if image if valid
 
 
 
   return (
     <div className="images">
       {photos.map((each, index) => {
-        return <div key={index}> <img className="eachImage" src={each.url} onClick={() => { toggle(each.url) }} />
+        return <div key={index}> <img className="eachImage" src={each.url} alt="Sorry, Image Cannot Load &#9785;" onClick={() => { toggle(each.url) }} />
         </div>
       })}
 

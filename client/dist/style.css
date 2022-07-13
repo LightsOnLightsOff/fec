@@ -1,11 +1,43 @@
-#root {
+html, body {
   display: flex;
 align-items: center;
 justify-content: center;
-border: solid black;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid black;
+  /* max-height: 1000px;
+overflow-y: auto; */
+  width: fit-content;
+
+}
+
+/* reviewIndex */
+.ratingAndReview {
+  padding: 10px;
 }
 
 /* Overview */
+.starBaby {
+  display: inline-block;
+  position: relative;
+  font-size: 100px;
+  color: #ddd;
+}
+.starBaby:after {
+  font-family: FontAwesome;
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f80;
+}
+
 .eachReview {
   padding: 10px;
   border-bottom: solid black;
@@ -33,11 +65,25 @@ border: solid black;
 
 }
 
-.yes, .report, .no {
+.yes,
+.report,
+.no {
   text-decoration: underline;
 }
-.yes:hover, .report:hover {
+
+.yes:hover,
+.report:hover {
   cursor: pointer;
+}
+
+/* ReviewList */
+.reviewList {
+  /* border: #000 solid; */
+  max-height: 900px;
+  overflow-y: auto;
+  width: 900px;
+  overflow-x: auto;
+
 }
 
 /* Sorting */
@@ -54,7 +100,7 @@ border: solid black;
 
 }
 
-.sortList  {
+.sortList {
   /* border: #000 solid; */
   width: fit-content;
   display: none;
@@ -63,24 +109,27 @@ border: solid black;
   padding-left: 5px;
   background-color: #f9f9f9;
   min-width: 90px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   margin-top: -20px;
   margin-bottom: 0px;
 }
 
-.newest, .helpful {
+.newest,
+.helpful {
   height: 30px;
   /* border: #000 solid; */
   width: fit-content;
 }
 
 
-.newest:hover, .helpful:hover {
+.newest:hover,
+.helpful:hover,
+.relevant:hover {
   cursor: pointer;
 
 }
 
-.relevant:hover {
+.helpful:hover {
   cursor: pointer;
   display: block;
 }
@@ -92,7 +141,7 @@ border: solid black;
 }
 
 
-.relevant {
+.helpful {
   padding-left: 5px;
   padding-bottom: 0px;
   text-decoration: underline;
@@ -102,14 +151,14 @@ border: solid black;
 
 
 .dropDown {
-/* border: #000 solid; */
-padding-left: 0px;
-/* display: flex; */
-/* flex-direction: column; */
+  /* border: #000 solid; */
+  padding-left: 0px;
+  /* display: flex; */
+  /* flex-direction: column; */
 
 }
 
-.dropDown:hover .relevant {
+.dropDown:hover .helpful {
   background-color: azure;
 }
 
@@ -135,8 +184,8 @@ padding-left: 0px;
   transition-duration: 0.5s;
 }
 
-.dropDown li:hover{
-    cursor: pointer;
+.dropDown li:hover {
+  cursor: pointer;
 }
 
 /* .relevant:hover, .dropDown:hover {
@@ -152,6 +201,7 @@ padding-left: 0px;
   display: flex;
   flex-direction: row;
 }
+
 .eachImage {
   padding: 5px;
   height: 100px;
@@ -205,8 +255,7 @@ padding-left: 0px;
   padding: 60px;
   display: flex;
   flex-direction: column;
-  width: 80px
-
+  width: 300px
 }
 
 /* Stars, Product */

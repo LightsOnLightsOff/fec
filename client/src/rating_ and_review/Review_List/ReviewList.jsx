@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Review from './Review.jsx'
 import Sorting from '../Sorting/Sorting.jsx'
+import Moment from 'moment'
 
 
 function ReviewList(props) {
@@ -14,6 +15,7 @@ function ReviewList(props) {
   //var updateData = [] //storing the data but in pairs
   // console.log("Product : ", product)
    console.log('DATA: ', data)
+   console.log("PRODUCT: ", product)
 
 
 
@@ -70,6 +72,65 @@ function ReviewList(props) {
 
   }
 
+  //sort the data based off what was clicked on
+  const sortData = (value) => {
+    var sortData;
+    var reduceData;
+    console.log("WHAT IS VALUE IN SORT DATA: ", value, value.length)
+
+    //sort the data, reduce the data, change the product
+    if(value === ' Newest') {
+
+      sortData = [...data].sort((a,b) => new Date(Moment(b.date).format("YYYY-MM-DD")) - new Date(Moment(a.date).format("YYYY-MM-DD")))
+      console.log("Sort data newest: ", sortData)
+
+      reduceData = sortData.reduce((result, value, index, array) => {
+        if (index % 2 === 0) {
+          result.push(array.slice(index, index + 2))
+        }
+        return result
+      }, [])
+      console.log("Reduce data newest: ", reduceData)
+
+      setData(sortData)
+      setProduct(reduceData)
+
+    } else if (value === ' Helpful') {
+
+      sortData = [...data].sort((a,b) => b.helpfulness - a.helpfulness)
+      console.log("Sort data: ", sortData)
+
+      reduceData = sortData.reduce((result, value, index, array) => {
+        if (index % 2 === 0) {
+          result.push(array.slice(index, index + 2))
+        }
+        return result
+      }, [])
+      console.log("Reduce data: ", reduceData)
+
+      setData(sortData)
+      setProduct(reduceData)
+
+    }
+
+
+
+  //   console.log("Went into sortData:", value)
+  //    if (value === "relevant") {
+  //   console.log("it worked")
+  //   //filter out the data with relevant
+  // } else if (value === "helpful") {
+  //   console.log("helpful worked")
+  //   var sliceProduct = product.slice(0, count)
+  //   const numDescending = [...sliceProduct].sort((a, b) => b.helpfulness - a.helpfulness);
+  //   console.log("This is the helpfulness data: ", numDescending)
+  // } else if (value === "newest") {
+  //   console.log("newest worked")
+  // }
+
+  }
+
+  //increment the helpfull yes button (still not working )
   const addHelpfull = (reviewId) => {
     console.log("this works and need id: ", reviewId)
     const request = {reveiw_id: reviewId}
@@ -87,11 +148,11 @@ function ReviewList(props) {
   }
 
 
-  if (product) {
+  // if (product) {
     return (
       <div className="review">
 
-        <Sorting data={data} /> {/* Pass down the data to here to filter */}
+        <Sorting sortData={sortData} data={data} /> {/* Pass down the data to here to filter */}
 
 
         <div className="reviewList">
@@ -105,7 +166,7 @@ function ReviewList(props) {
       </div>
     )
 
-  }
+  // }
 }
 
 export default ReviewList;
