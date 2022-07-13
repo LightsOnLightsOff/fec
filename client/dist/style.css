@@ -6,7 +6,7 @@ body {
   color: green;
 }
 
-#slider {
+/* #slider {
   height: 500px;
   border: 1px solid black;
   display: flex;
@@ -59,12 +59,8 @@ body {
 
 .slide-img:hover{
   box-shadow: 0 0 0 200px burlywood inset;
-}
+} */
 
-
-.img-1 {
-  background-image: url(https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg);
-}
 
 
 #first-btn {

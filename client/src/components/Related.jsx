@@ -35,7 +35,7 @@ function Related (props) {
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
       {
         headers: {
-          Authorization: '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'
+          Authorization: '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'
         }
       }
     )
@@ -53,7 +53,7 @@ function Related (props) {
               `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${eachProduct}`,
               {
                 headers: {
-                  Authorization: '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'
+                  Authorization: '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'
                 }
               }
             )
@@ -82,7 +82,7 @@ function Related (props) {
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
         {
           headers: {
-            Authorization: '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'
+            Authorization: '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'
           }
         }
       )
@@ -114,7 +114,7 @@ function Related (props) {
               {
                 params: { product_id: review },
                 headers: {
-                  Authorization: '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'
+                  Authorization: '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'
                 }
               }
             )
@@ -144,7 +144,7 @@ function Related (props) {
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
         {
           headers: {
-            Authorization: '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'
+            Authorization: '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'
           }
         }
       )
@@ -152,11 +152,11 @@ function Related (props) {
         console.log('current product', data.features)
         if (which === 'current') {
           setCurrent(pre => {
-            return { ...pre, name: data.name, feastures: data.features }
+            return { ...pre, name: data.name, features: data.features }
           })
         } else {
           setCompare(pre => {
-            return { ...pre, name: data.name, feastures: data.features }
+            return { ...pre, name: data.name, features: data.features }
           })
         }
       })
@@ -305,14 +305,14 @@ function Related (props) {
                 <th className='left-tick'>{compareProduct.name}</th>
               </tr>
             </thead>
-            {currentProduct.feastures.map((item, index) => {
+            {currentProduct.features.map((item, index) => {
               {
                  console.log('current modal window information', item)
               }
               return (
                 <thead key={index}>
                 <tr >
-                  <th>{currentProduct.feastures.includes(item) && '✔'}</th>
+                  <th>{currentProduct.features.includes(item) && '✔'}</th>
                   <th className='centerText'>{item.value}</th>
                   <th className='left-tick'>
                     {compareProduct.features.includes(item) && '✔'}
