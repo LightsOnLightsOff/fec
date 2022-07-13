@@ -5,6 +5,8 @@ import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import config from '../../../config.js'
+
 
 function Related (props) {
   const imgs =
@@ -32,7 +34,7 @@ function Related (props) {
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related`,
       {
         headers: {
-          Authorization: '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'
+          Authorization: config.TOKEN
         }
       }
     )
@@ -79,7 +81,7 @@ function Related (props) {
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
         {
           headers: {
-            Authorization: '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'
+            Authorization:  config.TOKEN
           }
         }
       )
@@ -111,7 +113,7 @@ function Related (props) {
               {
                 params: { product_id: review },
                 headers: {
-                  Authorization: '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'
+                  Authorization: config.TOKEN
                 }
               }
             )
@@ -141,7 +143,7 @@ function Related (props) {
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
         {
           headers: {
-            Authorization: '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'
+            Authorization:  config.TOKEN
           }
         }
       )
@@ -251,7 +253,7 @@ function Related (props) {
   ) {
     return (
       <>
-        {console.log('difffff', arrowDiff, leftArrow, rightArrow)}
+        {console.log('make me happy',config['TOKEN'])}
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
