@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
 
-
 function Related (props) {
   const imgs =
     'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
@@ -81,7 +80,7 @@ function Related (props) {
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles`,
         {
           headers: {
-            Authorization:  config.TOKEN
+            Authorization: config.TOKEN
           }
         }
       )
@@ -143,7 +142,7 @@ function Related (props) {
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
         {
           headers: {
-            Authorization:  config.TOKEN
+            Authorization: config.TOKEN
           }
         }
       )
@@ -192,9 +191,9 @@ function Related (props) {
   }
 
   var clickProduct = function (e) {
-    setLeft(0);
-    setRight(0);
-    setDiff(0);
+    setLeft(0)
+    setRight(0)
+    setDiff(0)
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
     console.log('I am clicking the picuture id:', clickedId)
@@ -253,7 +252,7 @@ function Related (props) {
   ) {
     return (
       <>
-        {console.log('make me happy',config['TOKEN'])}
+        {console.log('make me happy', config['TOKEN'])}
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
@@ -303,7 +302,14 @@ function Related (props) {
             >
               ❮
             </button>
-            <button onClick={arrowClick} id='second-btn' type='button'  style={arrowDiff === style.length-3? { display: 'none' } : null}>
+            <button
+              onClick={arrowClick}
+              id='second-btn'
+              type='button'
+              style={
+                arrowDiff === style.length - 3 ? { display: 'none' } : null
+              }
+            >
               ❯
             </button>
           </div>
@@ -326,17 +332,19 @@ function Related (props) {
               {
                 console.log('current modal window information', item)
               }
-              return (
-                <thead key={index}>
-                  <tr>
-                    <th>{currentProduct.features.includes(item) && '✔'}</th>
-                    <th className='centerText'>{item}</th>
-                    <th className='left-tick'>
-                      {compareProduct.features.includes(item) && '✔'}
-                    </th>
-                  </tr>
-                </thead>
-              )
+              if (item) {
+                return (
+                  <thead key={index}>
+                    <tr>
+                      <th>{currentProduct.features.includes(item) && '✔'}</th>
+                      <th className='centerText'>{item}</th>
+                      <th className='left-tick'>
+                        {compareProduct.features.includes(item) && '✔'}
+                      </th>
+                    </tr>
+                  </thead>
+                )
+              }
             })}
             {compareProduct.features.map((item, index) => {
               console.log(
