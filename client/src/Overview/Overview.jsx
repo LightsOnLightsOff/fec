@@ -23,7 +23,7 @@ function Overview (props) {
   return (
     <div>
       <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
-      <ImageGalleryOverview selectedStyle = {selectedStyle}/>
+      <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU}/>
       <StyleSelectorOverview setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
       <AddToCartOverview skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL}/>
       <ShareSocialMedia />

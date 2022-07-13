@@ -1,26 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import MainImage from './MainImage.jsx';
 import ImageThumbnail from './ImageThumbnail.jsx';
 
-function ImageGalleryOverview ({selectedStyle}) {
+function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
 
-  let photos = selectedStyle.photos;
   let imageArray = [];
   let thumbnailArray = [];
 
-
-
-  for (let key in photos) {
-    console.log (key, 'key in photos')
-    console.log (photos[key].thumbnail_url, 'thumbnail url')
-    console.log (photos[key].url, 'url')
-
-    thumbnailArray.push(photos[key].thumbnail_url)
-    imageArray.push(photos[key].url)
+  if (Object.keys(selectedStyle).length === 0 ) {
+    let photos = defaultSKU.photos;
+    for (let key in photos) {
+      thumbnailArray.push(photos[key].thumbnail_url)
+      imageArray.push(photos[key].url)
+    }
+  } else {
+    let photos = selectedStyle.photos;
+    for (let key in photos) {
+      thumbnailArray.push(photos[key].thumbnail_url)
+      imageArray.push(photos[key].url)
+    }
   }
-
-  console.log (thumbnailArray, 'thumbnail array')
-  console.log (imageArray, 'image array')
 
   return (
     <div>
@@ -31,7 +30,7 @@ function ImageGalleryOverview ({selectedStyle}) {
         })}
       </MainImage>
       <ImageThumbnail show = {7}>
-        {imageArray.map(url => {
+        {thumbnailArray.map(url => {
           return <img height="300px" width="300px" src= {url}/>
         })}
         </ImageThumbnail>
