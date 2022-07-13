@@ -11,12 +11,6 @@ function Related (props) {
     'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
 
   const [product, setP] = useState([])
-  const [info, setInf] = useState({
-    img: '',
-    name: '',
-    salePrice: '',
-    rating: ''
-  })
   const [discount, setDis] = useState(false)
   const [style, setStyle] = useState([])
   const [related, setR] = useState([])
@@ -29,6 +23,9 @@ function Related (props) {
     name: '',
     features: []
   })
+  const [leftArrow, setLeft] = useState(0)
+  const [rightArrow, setRight] = useState(0)
+  const [arrowDiff, setDiff] = useState(0)
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -149,8 +146,8 @@ function Related (props) {
         }
       )
       .then(({ data }) => {
-        console.log('current product', data.features);
-        var f = data.features.map(item=>item.value);
+        console.log('current product', data.features)
+        var f = data.features.map(item => item.value)
         setCurrent(pre => {
           return { ...pre, name: data.name, features: f }
         })
@@ -193,6 +190,9 @@ function Related (props) {
   }
 
   var clickProduct = function (e) {
+    setLeft(0);
+    setRight(0);
+    setDiff(0);
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
     console.log('I am clicking the picuture id:', clickedId)
@@ -221,13 +221,27 @@ function Related (props) {
     setShow(false)
   }
 
+  var arrowClick = function (e) {
+    if (e.target.getAttribute('id') === 'first-btn') {
+      setLeft(pre => pre + 1)
+      var diff = rightArrow - leftArrow - 1
+      setDiff(diff)
+    } else {
+      setRight(pre => pre + 1)
+      var diff = rightArrow + 1 - leftArrow
+      setDiff(diff)
+    }
+  }
+
   console.log(
     'product &&&&&& style ',
     product,
     style,
     'compare',
     currentProduct,
-    compareProduct
+    compareProduct,
+    rightArrow,
+    leftArrow
   )
 
   if (
@@ -237,7 +251,7 @@ function Related (props) {
   ) {
     return (
       <>
-        <button onClick={clickStar}>click me to pop up</button>
+        {console.log('difffff', arrowDiff, leftArrow, rightArrow)}
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
@@ -279,10 +293,15 @@ function Related (props) {
             })}
           </TinySlider>
           <div className='controls'>
-            <button id='first-btn' type='button'>
+            <button
+              onClick={arrowClick}
+              id='first-btn'
+              type='button'
+              style={arrowDiff === 0 ? { display: 'none' } : null}
+            >
               ❮
             </button>
-            <button id='second-btn' type='button'>
+            <button onClick={arrowClick} id='second-btn' type='button'  style={arrowDiff === style.length-3? { display: 'none' } : null}>
               ❯
             </button>
           </div>
