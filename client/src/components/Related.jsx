@@ -138,7 +138,7 @@ function Related (props) {
     )
   }
 
-  var findFeature = function (which, id) {
+  var findFeature = function (id) {
     axios
       .get(
         `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
@@ -149,21 +149,16 @@ function Related (props) {
         }
       )
       .then(({ data }) => {
-        console.log('current product', data.features)
-        if (which === 'current') {
-          setCurrent(pre => {
-            return { ...pre, name: data.name, features: data.features }
-          })
-        } else {
-          setCompare(pre => {
-            return { ...pre, name: data.name, features: data.features }
-          })
-        }
+        console.log('current product', data.features);
+        var f = data.features.map(item=>item.value);
+        setCurrent(pre => {
+          return { ...pre, name: data.name, features: f }
+        })
       })
   }
 
   useEffect(() => {
-    findFeature('current', 40344)
+    findFeature(40344)
     findReviewById(40344)
     updateProductByid(40344).then(related => {
       axios
@@ -201,7 +196,7 @@ function Related (props) {
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
     console.log('I am clicking the picuture id:', clickedId)
-    findFeature('current', clickedId)
+    findFeature(clickedId)
     updateProductByid(clickedId).then(related => {
       axios
         .all(
@@ -219,7 +214,8 @@ function Related (props) {
   var clickStar = function (item) {
     setShow(true)
     console.log('modal window for comparison', item.features)
-    setCompare({ name: item.name, features: item.features })
+    var f = item.features.map(obj => obj.value)
+    setCompare({ name: item.name, features: f })
   }
   var closeModal = function (e) {
     setShow(false)
@@ -307,28 +303,32 @@ function Related (props) {
             </thead>
             {currentProduct.features.map((item, index) => {
               {
-                 console.log('current modal window information', item)
+                console.log('current modal window information', item)
               }
               return (
                 <thead key={index}>
-                <tr >
-                  <th>{currentProduct.features.includes(item) && '✔'}</th>
-                  <th className='centerText'>{item.value}</th>
-                  <th className='left-tick'>
-                    {compareProduct.features.includes(item) && '✔'}
-                  </th>
-                </tr>
+                  <tr>
+                    <th>{currentProduct.features.includes(item) && '✔'}</th>
+                    <th className='centerText'>{item}</th>
+                    <th className='left-tick'>
+                      {compareProduct.features.includes(item) && '✔'}
+                    </th>
+                  </tr>
                 </thead>
               )
             })}
             {compareProduct.features.map((item, index) => {
-              console.log('modal window information', item)
-              if (item.value) {
+              console.log(
+                'modal window information',
+                item,
+                currentProduct.features.includes(item)
+              )
+              if (item && !currentProduct.features.includes(item)) {
                 return (
                   <thead key={index}>
                     <tr key={index}>
                       <th>{currentProduct.features.includes(item) && '✔'}</th>
-                      <th className='centerText'>{item.value}</th>
+                      <th className='centerText'>{item}</th>
                       <th className='left-tick'>
                         {compareProduct.features.includes(item) && '✔'}
                       </th>
