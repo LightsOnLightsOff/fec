@@ -19,15 +19,17 @@ function ShareSocialMedia (props) {
   const [toLineInstagram, setToLineInstqgram] = useState ('');
 
   return (
-    <div>
-      <InstagramButton onOpen = {() => {if (!isOpenFacebook && !isOpenPinterest && !isOpenTwitter) {setIsOpenInstagram(true)}}}/>
-      <InstagramModal open = {isOpenInstagram} onClose = {() => setIsOpenInstagram(false)}></InstagramModal>
-      <FacebookButton onOpen = {() => {if (!isOpenInstagram && !isOpenPinterest && !isOpenTwitter) {setIsOpenFacebook(true)}}}/>
-      <FacebookModal open = {isOpenFacebook} onClose = {() => setIsOpenFacebook(false)}>Facebook Modal</FacebookModal>
-      <TwitterButton onOpen = {() => {if (!isOpenFacebook && !isOpenPinterest && !isOpenInstagram) {setIsOpenTwitter(true)}}}/>
-      <TwitterModal open = {isOpenTwitter} onClose = {() => setIsOpenTwitter(false)}>Twitter Modal</TwitterModal>
-      <PinterestButton onOpen = {() => {if (!isOpenFacebook && !isOpenInstagram && !isOpenTwitter) {setIsOpenPinterest(true)}}}/>
-      <PinterestModal open = {isOpenPinterest} onClose = {() => setIsOpenPinterest(false)}>Pinterest Modal</PinterestModal>
+    <div style = {{display: 'flex', justifyContent: 'right'}}>
+      <div>
+        <InstagramButton onOpen = {() => {if (!isOpenFacebook && !isOpenPinterest && !isOpenTwitter) {setIsOpenInstagram(true)}}}/>
+        <InstagramModal open = {isOpenInstagram} onClose = {() => setIsOpenInstagram(false)}></InstagramModal>
+        <FacebookButton onOpen = {() => {if (!isOpenInstagram && !isOpenPinterest && !isOpenTwitter) {setIsOpenFacebook(true)}}}/>
+        <FacebookModal open = {isOpenFacebook} onClose = {() => setIsOpenFacebook(false)}>Facebook Modal</FacebookModal>
+        <TwitterButton onOpen = {() => {if (!isOpenFacebook && !isOpenPinterest && !isOpenInstagram) {setIsOpenTwitter(true)}}}/>
+        <TwitterModal open = {isOpenTwitter} onClose = {() => setIsOpenTwitter(false)}>Twitter Modal</TwitterModal>
+        <PinterestButton onOpen = {() => {if (!isOpenFacebook && !isOpenInstagram && !isOpenTwitter) {setIsOpenPinterest(true)}}}/>
+        <PinterestModal open = {isOpenPinterest} onClose = {() => setIsOpenPinterest(false)}>Pinterest Modal</PinterestModal>
+      </div>
     </div>
   );
 }

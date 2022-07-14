@@ -23,12 +23,14 @@ function AddToCartOverview ({skus, productName, styleName, thumbnailURL, default
   console.log(itemsInCart, 'current Cart Status in AddCartOverview')
 
   return (
-    <div>
-      <div>---------------Add to Cart Overall Function----------------</div>
-      <div>{sizeOption}</div>
-      <SizeSelector skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} activateQuantity = {activateQuantity} setSizeOption = {setSizeOption} setQuantityAvailable = {setQuantityAvailable}/>
-      <QuantitySelector quantityDisabled = {quantityDisabled} quantityAvailable = {quantityAvailable} setQuantityPurchased = {setQuantityPurchased}/>
-      <AddToCartFunction sizeOption = {sizeOption} quantityDisabled = {quantityDisabled} quantityPurchased = {quantityPurchased} setItemsInCart = {setItemsInCart} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL} itemsInCart = {itemsInCart} setItemsInCart = {setItemsInCart}/>
+    <div style = {{display: 'flex', justifyContent: 'right'}}>
+      <div>
+        <div>---------------Add to Cart Overall Function----------------</div>
+        <div>{sizeOption}</div>
+        <SizeSelector skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} activateQuantity = {activateQuantity} setSizeOption = {setSizeOption} setQuantityAvailable = {setQuantityAvailable}/>
+        <QuantitySelector quantityDisabled = {quantityDisabled} quantityAvailable = {quantityAvailable} setQuantityPurchased = {setQuantityPurchased}/>
+        <AddToCartFunction sizeOption = {sizeOption} quantityDisabled = {quantityDisabled} quantityPurchased = {quantityPurchased} setItemsInCart = {setItemsInCart} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL} itemsInCart = {itemsInCart} setItemsInCart = {setItemsInCart}/>
+      </div>
     </div>
   )
 }
