@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-
 import '../../../dist/style.css';
 
 function ImageThumbnail ({show, children}) {
@@ -29,7 +28,7 @@ function ImageThumbnail ({show, children}) {
   return (
     <div>
       <div>---------------Image Thumbnail--------------</div>
-      <div className = 'carousel-container' style = {{width: '50%'}}>
+      <div className = 'carousel-container'>
         <div className = 'carousel-wrapper'>
           {(index > 0) && <button className = 'left-arrow' onClick = {previousImage}>&lt;</button>}
           <div className = 'carousel-content-wrapper'>

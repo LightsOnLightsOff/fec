@@ -14,15 +14,14 @@ function QuantitySelector ({quantityDisabled, quantityAvailable, setQuantityPurc
   }
 
   return (
-    <div>
-      <div>---------------Quantity Selector------------------</div>
+    <span>
       <select disabled = {quantityDisabled} onChange = {handleSelect}>
         <option selected value = 'Select Quantity'>Select Quantity</option>
        {quantityArray.map((count) => {
          return <option value = {count}>{count}</option>
        })}
       </select>
-    </div>
+    </span>
   )
 }
 

@@ -24,12 +24,12 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
   }, [])
 
   return (
-    <div>
-      <div style = {{display: 'flex', justifyContent: 'right'}}>------------Style Selector Section--------------------</div>
-      <div style = {{display: 'flex', justifyContent: 'right'}}>
+    <div className = 'style-selector-section'>
+      <div >------------Style Selector Section--------------------</div>
+      <div>
         <StyleName style = {styles} clickedName = {clickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setStyleName = {setStyleName} setDefaultSKU = {setDefaultSKU}/>
       </div>
-      <div style = {{display: 'flex', justifyContent: 'right'}}>
+      <div>
         <StyleThumbnail setSelectedStyle = {setSelectedStyle} style = {styles} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
       </div>
     </div>

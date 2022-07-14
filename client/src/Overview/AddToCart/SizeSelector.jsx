@@ -29,24 +29,22 @@ function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvaila
 
   if (sizeArray.length){
     return (
-      <div>
-        <div>---------------Size Selector-------------------</div>
+      <span>
           <select onChange = {handleSelect}>
             <option selected value ='Select Size'>Select Size</option>
             {sizeArray.map(size => {
               return <option value = {size}>{size}</option>
             })}
           </select>
-      </div>
+      </span>
     )
   } else {
     return (
-      <div>
-        <div>---------------Size Selector-------------------</div>
+      <span>
         <select disabled = {true}>
           <option selected value ='OUT OF STOCK'>OUT OF STOCK</option>
         </select>
-      </div>
+      </span>
     )
   }
 }

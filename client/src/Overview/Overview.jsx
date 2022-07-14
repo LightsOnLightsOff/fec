@@ -17,16 +17,19 @@ function Overview (props) {
   const [defaultSKU, setDefaultSKU] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
 
-  console.log(selectedStyle, 'this is the selected style after user click in OVERVIEW')
-
-
   return (
     <div>
-      <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
-      <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU}/>
-      <StyleSelectorOverview setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
-      <AddToCartOverview skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL}/>
-      <ShareSocialMedia />
+      <div style = {{display: 'flex', flexDirection: 'row'}}>
+
+        <ImageGalleryOverview className = 'image-gallery' selectedStyle = {selectedStyle} defaultSKU = {defaultSKU}/>
+        <div className = 'product-information-and-style'>
+          <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
+          <StyleSelectorOverview  setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
+          <AddToCartOverview skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL}/>
+          <ShareSocialMedia />
+        </div>
+      </div>
+
     </div>
   )
 }

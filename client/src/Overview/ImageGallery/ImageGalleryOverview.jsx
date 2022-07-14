@@ -50,7 +50,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       <div>---------------Image Gallery Overview--------------</div>
       <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked}>
         {imageArray.map(url => {
-          return  <div style = {{display: 'flex'}}>
+          return  <div >
                     <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto'}} src= {url}/>
                     {clickedOnImage ? <button onClick = {exitExpandedImage}>Exit Expanded View</button> : null}
                   </div>
@@ -59,9 +59,8 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       </MainImage>
       <ImageThumbnail show = {7} >
         {thumbnailArray.map(url => {
-          return  <div src= {url} style = {{display: 'flex', justifyContent: 'center', flexShrink: 1}}>
+          return  <div src= {url}>
                     <img onClick = {handleClickThumbnail} style = {{height: 50, width: 'auto'}} src= {url} />
-
                   </div>
         })}
       </ImageThumbnail>

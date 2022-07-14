@@ -5,9 +5,9 @@ function StyleThumbnail ({setSelectedStyle, style, setClickedName, setOriginalPr
   console.log ({style}.style, '<---------- In Style Thumbnail ------------->')
 
   return (
-    <div style = {{display: 'flex', justifyContent: 'right'}}>
+    <div >
       <div>------------Style Thumbnail----------------
-        <div style = {{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr'}}>
+        <div className = 'style-thumbnail-layout'>
           {(style) ? style.map((style) => {
               return <IndividualThumbnail setSelectedStyle = {setSelectedStyle} style = {style} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
           }) : null}

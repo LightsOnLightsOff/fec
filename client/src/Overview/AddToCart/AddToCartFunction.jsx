@@ -11,7 +11,6 @@ function AddToCartFunction ({sizeOption, quantityDisabled, quantityPurchased, se
 
   return (
     <div>
-      <div>---------------Add to Cart Button---------------</div>
       <button disabled = {quantityDisabled || (quantityPurchased === 0 || quantityPurchased === 'Select Quantity')} onClick = {handleClick}>Add To Cart</button>
     </div>
   )

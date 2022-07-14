@@ -19,7 +19,7 @@ function ShareSocialMedia (props) {
   const [toLineInstagram, setToLineInstqgram] = useState ('');
 
   return (
-    <div style = {{display: 'flex', justifyContent: 'right'}}>
+    <div className = 'display-media'>
       <div>
         <InstagramButton onOpen = {() => {if (!isOpenFacebook && !isOpenPinterest && !isOpenTwitter) {setIsOpenInstagram(true)}}}/>
         <InstagramModal open = {isOpenInstagram} onClose = {() => setIsOpenInstagram(false)}></InstagramModal>
