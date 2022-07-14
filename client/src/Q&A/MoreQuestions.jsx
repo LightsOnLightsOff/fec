@@ -2,7 +2,7 @@ import React from 'react';
 
 function MoreQuestions(props) {
   return (
-    <button class='q&aButton'>
+    <button>
       MORE QUESTIONS
     </button>
   )
