@@ -9,6 +9,9 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
 
   const [indexOfPicture, setIndexOfPicture] = useState(null);
   const [thumbnailClicked, setThumbnailClicked] = useState(false);
+  const [defaultMainImageHeight, setDefaultMainImageHeight] = useState(300)
+  const [clickedOnImage, setClickedOnImage] = useState (false);
+  const [zoomedView, setZoomedView] = useState(false);
 
   if (Object.keys(selectedStyle).length === 0 ) {
     let photos = defaultSKU.photos;
@@ -24,13 +27,22 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
     }
   }
 
-  const handleClick = (event) => {
+  const expandImage = (event) => {
+    setClickedOnImage(true);
+    setDefaultMainImageHeight(700)
+  }
+
+  const handleClickThumbnail = (event) => {
     event.preventDefault();
-    console.log (event.target.src) // url of thumbnail image clicked on
-    console.log('it clicked')
     var index = thumbnailArray.indexOf (event.target.src)
     setIndexOfPicture(index)
     setThumbnailClicked(true)
+  }
+
+  const exitExpandedImage = (event) => {
+    event.preventDefault();
+    setDefaultMainImageHeight(300)
+    setClickedOnImage(false)
   }
 
   return (
@@ -38,12 +50,19 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       <div>---------------Image Gallery Overview--------------</div>
       <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked}>
         {imageArray.map(url => {
-          return <div style = {{display: 'flex', justifyContent: 'center'}}><img style = {{height: 300, width: 'auto'}} src= {url}/></div>
+          return  <div style = {{display: 'flex'}}>
+                    <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto'}} src= {url}/>
+                    {clickedOnImage ? <button onClick = {exitExpandedImage}>Exit Expanded View</button> : null}
+                  </div>
         })}
+
       </MainImage>
       <ImageThumbnail show = {7} >
         {thumbnailArray.map(url => {
-          return <div src= {url} onClick = {handleClick} style = {{display: 'flex', justifyContent: 'center', flexShrink: 1}}><img style = {{height: 50, width: 'auto'}} src= {url} /></div>
+          return  <div src= {url} style = {{display: 'flex', justifyContent: 'center', flexShrink: 1}}>
+                    <img onClick = {handleClickThumbnail} style = {{height: 50, width: 'auto'}} src= {url} />
+
+                  </div>
         })}
       </ImageThumbnail>
     </div>
