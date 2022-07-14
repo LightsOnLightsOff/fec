@@ -24,7 +24,7 @@ function ReviewList(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344', {
+      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40347', {
         headers: {
           Authorization: "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"
         }
@@ -115,19 +115,6 @@ function ReviewList(props) {
 
 
 
-  //   console.log("Went into sortData:", value)
-  //    if (value === "relevant") {
-  //   console.log("it worked")
-  //   //filter out the data with relevant
-  // } else if (value === "helpful") {
-  //   console.log("helpful worked")
-  //   var sliceProduct = product.slice(0, count)
-  //   const numDescending = [...sliceProduct].sort((a, b) => b.helpfulness - a.helpfulness);
-  //   console.log("This is the helpfulness data: ", numDescending)
-  // } else if (value === "newest") {
-  //   console.log("newest worked")
-  // }
-
   }
 
   //increment the helpfull yes button (still not working )
@@ -148,7 +135,7 @@ function ReviewList(props) {
   }
 
 
-  // if (product) {
+  if (product) {
     return (
       <div className="review">
 
@@ -166,7 +153,7 @@ function ReviewList(props) {
       </div>
     )
 
-  // }
+  }
 }
 
 export default ReviewList;

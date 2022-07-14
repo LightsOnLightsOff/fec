@@ -17,64 +17,49 @@ overflow-y: auto; */
 
 /* reviewIndex */
 
-.bear {
+/* .bear {
   color: #f80
-}
+} */
 
-.ratingAndReview {
+/* .ratingAndReview {
   padding: 10px;
-}
+} */
 
 /* Overview */
-.starBaby {
-  display: inline-block;
-  position: relative;
-  font-size: 30px;
-  color: #ddd;
-}
-.starBaby:after {
-  font-family: FontAwesome;
-  content: "\2605\2605\2605\2605\2605";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 65%;
-  overflow: hidden;
-  color: #f80;
-}
 
-.eachReview {
+
+/* .eachReview {
   padding: 10px;
   border-bottom: solid black;
   padding-left: 15px;
-}
+} */
 
-.summary {
+/* .summary {
   padding-top: 8px;
-}
+} */
 
-.starRating {
+/* .starRating {
   color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: row;
 
-}
+} */
 
-.colorRating {
+/* .colorRating {
   color: black;
-}
+} */
 
-.starsAndDate {
+/* .starsAndDate {
   display: flex;
   justify-content: space-between;
 
-}
+} */
 
-.yes,
+/* .yes,
 .report,
 .no {
   text-decoration: underline;
-}
+} */
 
 .yes:hover,
 .report:hover {
@@ -267,6 +252,23 @@ overflow-y: auto; */
 .stars,
 .product {
   padding: 10px;
+}
+
+.starBaby {
+  display: inline-block;
+  position: relative;
+  font-size: 30px;
+  color: #ddd;
+}
+.starBaby:after {
+  font-family: FontAwesome;
+  content: "\2605\2605\2605\2605\2605";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 70%;
+  overflow: hidden;
+  color: #f80;
 }
 
 /* Product */

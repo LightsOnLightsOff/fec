@@ -32,28 +32,30 @@ function Overview({ result, addHelpfull }) {
 
 
   return (
-    <div className="eachReview">
+    <EachReview>
 
       {/* star, username and data */}
-      <div className="starsAndDate">
-        <span className="starRating">
+      <StarsAndDate >
+        <StarRating>
         {[...Array(5)].map((star, index) => {
           index += 1;
           return (
-              <p
+              <EachStarRating
                 key={index}
-                className="eachStarRating"
-                className={index - 1 < result.rating ? "colorRating" : "nothing" }
+                index={index}
+                rating={result.rating}
+                // className="eachStarRating"
+                // className={index - 1 < result.rating ? "colorRating" : "nothing" }
               >
                 <span>&#9733;</span>
-              </p>
+              </EachStarRating>
           )
 
         })}
 
-        </span>
+        </StarRating>
         <p><FontAwesomeIcon icon={faUserAstronaut}/> {result.reviewer_name}, {formatDate} </p>
-      </div>
+      </StarsAndDate>
 
 
       {/* result body*/}
@@ -62,12 +64,12 @@ function Overview({ result, addHelpfull }) {
 
 
       {/* result summary */}
-      <div className="summary">
+      <Summary>
         {!greatSummary && !showDescription && <div> <p>{result.summary}</p> </div>}
         {greatSummary && !showDescription && <div> <p>{result.summary.slice(0,250)}...<span onClick={() => {setShowDescription(true)}}>show more</span></p> </div> }
         {greatSummary && showDescription && <div> <p>{result.summary}</p> </div>}
 
-      </div>
+      </Summary>
 
 
 
@@ -80,13 +82,49 @@ function Overview({ result, addHelpfull }) {
 
       <div >
         {/*Idk if i should add a "No" */}
-        <p>Helpful? <span onClick={() => {addHelpfull(result.review_id)}} className="yes">Yes</span> ({result.helpfulness})
-           | <span className="report">Report</span> </p>
+        <p>Helpful? <Yes onClick={() => {addHelpfull(result.review_id)}}>Yes</Yes> ({result.helpfulness})
+           | <Yes >Report</Yes> </p>
       </div>
 
 
-    </div>
+    </EachReview>
   )
 }
 
 export default Overview;
+
+
+const EachReview = styled.div`
+  padding: 10px;
+  border-bottom: solid black;
+  padding-left: 15px;
+`;
+
+const Summary = styled.div`
+  padding-top: 8px;
+`;
+
+const StarRating = styled.span`
+  color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: row;
+`;
+
+const EachStarRating = styled.p`
+color: ${props => props.index - 1 < props.rating ? "black" : "nothing" }
+`;
+
+const StarsAndDate = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+`;
+
+const Yes = styled.span`
+text-decoration: underline;
+
+&:hover: {
+  cursor: pointer;
+}
+`;
+
