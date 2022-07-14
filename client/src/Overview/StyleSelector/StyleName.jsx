@@ -28,8 +28,8 @@ function StyleName ({style, clickedName, setOriginalPrice, setSalePrice, setStyl
 
   return (
     <div>
-      <div>Style ></div>
-      <div>{name}</div>
+      <span>Style > </span>
+      <span>{name}</span>
     </div>
   )
 }

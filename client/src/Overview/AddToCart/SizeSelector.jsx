@@ -30,7 +30,7 @@ function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvaila
   if (sizeArray.length){
     return (
       <div>
-        <div>Size Selector</div>
+        <div>---------------Size Selector-------------------</div>
           <select onChange = {handleSelect}>
             <option selected value ='Select Size'>Select Size</option>
             {sizeArray.map(size => {
@@ -42,7 +42,7 @@ function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvaila
   } else {
     return (
       <div>
-        <div>Size Selector</div>
+        <div>---------------Size Selector-------------------</div>
         <select disabled = {true}>
           <option selected value ='OUT OF STOCK'>OUT OF STOCK</option>
         </select>

@@ -24,7 +24,7 @@ function AddToCartOverview ({skus, productName, styleName, thumbnailURL, default
 
   return (
     <div>
-      <div>Add to Cart Overall Function</div>
+      <div>---------------Add to Cart Overall Function----------------</div>
       <div>{sizeOption}</div>
       <SizeSelector skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} activateQuantity = {activateQuantity} setSizeOption = {setSizeOption} setQuantityAvailable = {setQuantityAvailable}/>
       <QuantitySelector quantityDisabled = {quantityDisabled} quantityAvailable = {quantityAvailable} setQuantityPurchased = {setQuantityPurchased}/>

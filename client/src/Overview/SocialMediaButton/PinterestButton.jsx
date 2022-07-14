@@ -4,11 +4,11 @@ function PinterestButton ({onOpen}) {
   let pinterestURL = 'https://www.rockymountainfoodtours.com/wp-content/uploads/2016/02/Pinterest-Logo.png';
 
   return (
-    <div>
+    <span>
       <button onClick = {onOpen}>
         <img height="10px" width="10px" src={pinterestURL} />
       </button>
-    </div>
+    </span>
   )
 }
 
