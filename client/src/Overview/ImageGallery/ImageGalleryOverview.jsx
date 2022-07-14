@@ -43,7 +43,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       </MainImage>
       <ImageThumbnail show = {7} >
         {thumbnailArray.map(url => {
-          return <div src= {url} onClick = {handleClick} style = {{display: 'flex', justifyContent: 'center'}}><img style = {{height: 50, width: 'auto'}} src= {url} /></div>
+          return <div src= {url} onClick = {handleClick} style = {{display: 'flex', justifyContent: 'center', flexShrink: 1}}><img style = {{height: 50, width: 'auto'}} src= {url} /></div>
         })}
       </ImageThumbnail>
     </div>

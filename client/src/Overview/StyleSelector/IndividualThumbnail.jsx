@@ -12,16 +12,13 @@ function IndividualThumbnail ({setSelectedStyle, style, setClickedName, setOrigi
     setSalePrice({style}.style.sale_price)
     setSKUS({style}.style.skus)
     setThumbnailURL({style}.style.photos[0].thumbnail_url)
-    console.log({style}.style, 'clicked style in individual thumbnail')
     setSelectedStyle({style}.style);
   }
 
   return (
-    <div>
-      <div onClick = {handleClick} style = {{display: 'flex', justifyContent: 'right'}}>
-        <img style = {{height: 75, width: 'auto'}} src={thumbnailURL}></img>
-      </div>
-    </div>
+    <span className = 'container' onClick = {handleClick}>
+        <img style = {{height: 75, width: 'auto'}} src={thumbnailURL}/>
+    </span>
   )
 }
 

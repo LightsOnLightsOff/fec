@@ -25,9 +25,13 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
 
   return (
     <div>
-      <div>Style Selector Section</div>
-      <StyleName style = {styles} clickedName = {clickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setStyleName = {setStyleName} setDefaultSKU = {setDefaultSKU}/>
-      <StyleThumbnail setSelectedStyle = {setSelectedStyle} style = {styles} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
+      <div style = {{display: 'flex', justifyContent: 'right'}}>------------Style Selector Section--------------------</div>
+      <div style = {{display: 'flex', justifyContent: 'right'}}>
+        <StyleName style = {styles} clickedName = {clickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setStyleName = {setStyleName} setDefaultSKU = {setDefaultSKU}/>
+      </div>
+      <div style = {{display: 'flex', justifyContent: 'right'}}>
+        <StyleThumbnail setSelectedStyle = {setSelectedStyle} style = {styles} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
+      </div>
     </div>
   )
 }

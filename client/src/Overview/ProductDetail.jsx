@@ -43,7 +43,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
 
   return (
     <div>
-      <div>List of Product Details</div>
+      <div>------------------List of Product Details--------------</div>
         <div>{id}</div>
         <div>{category}</div>
         <div>{name}</div>
