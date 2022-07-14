@@ -16,7 +16,7 @@ function IndividualThumbnail ({setSelectedStyle, style, setClickedName, setOrigi
   }
 
   return (
-    <span className = 'container' onClick = {handleClick}>
+    <span onClick = {handleClick}>
         <img style = {{height: 75, width: 'auto'}} src={thumbnailURL}/>
     </span>
   )

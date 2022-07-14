@@ -5,11 +5,14 @@ function StyleThumbnail ({setSelectedStyle, style, setClickedName, setOriginalPr
   console.log ({style}.style, '<---------- In Style Thumbnail ------------->')
 
   return (
-    <div>
-      <div style = {{display: 'flex', justifyContent: 'right'}}>------------Style Thumbnail----------------</div>
-      {(style) ? style.map((style) => {
-        return <IndividualThumbnail setSelectedStyle = {setSelectedStyle} style = {style} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
-      }) : null}
+    <div style = {{display: 'flex', justifyContent: 'right'}}>
+      <div>------------Style Thumbnail----------------
+        <div style = {{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr'}}>
+          {(style) ? style.map((style) => {
+              return <IndividualThumbnail setSelectedStyle = {setSelectedStyle} style = {style} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
+          }) : null}
+        </div>
+      </div>
     </div>
   )
 }
