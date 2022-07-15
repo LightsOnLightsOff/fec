@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 import Product from './Product.jsx'
+import config from '../../../../config.js'
 
 function Ratings(props) {
 

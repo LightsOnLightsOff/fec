@@ -4,6 +4,7 @@ import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
 import AddQuestionButton from './AddQuestionButton.jsx';
 import MoreQuestions from './MoreQuestions.jsx'
+import config from '../../../config.js'
 
 function QandA (props) {
 
@@ -18,7 +19,7 @@ function QandA (props) {
         page: 1,
         count: 5
       },
-      headers: {Authorization: ''}
+      headers: {Authorization: config.js}
     })
     .then((results) => {
       setQuestions(results.data);
