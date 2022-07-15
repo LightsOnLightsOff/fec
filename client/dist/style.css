@@ -90,6 +90,11 @@
   justify-content: left;
 }
 
+.display-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
 .style-thumbnail-layout {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -105,6 +110,19 @@
   width: 30px;
   height: 30px;
   border-radius: 10px;
+}
+
+#instagram-button {
+  display: grid;
+  grid-column-start: 2;
+}
+
+#instagram-button,
+#facebook-button,
+#pinterest-button,
+#twitter-button {
+  display: grid;
+  place-items: center;
 }
 
 .close-modal-button {

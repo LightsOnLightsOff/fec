@@ -20,7 +20,6 @@ function ShareSocialMedia (props) {
 
   return (
     <div className = 'display-media'>
-      <div>
         <InstagramButton onOpen = {() => {if (!isOpenFacebook && !isOpenPinterest && !isOpenTwitter) {setIsOpenInstagram(true)}}}/>
         <InstagramModal open = {isOpenInstagram} onClose = {() => setIsOpenInstagram(false)}></InstagramModal>
         <FacebookButton onOpen = {() => {if (!isOpenInstagram && !isOpenPinterest && !isOpenTwitter) {setIsOpenFacebook(true)}}}/>
@@ -29,7 +28,6 @@ function ShareSocialMedia (props) {
         <TwitterModal open = {isOpenTwitter} onClose = {() => setIsOpenTwitter(false)}>Twitter Modal</TwitterModal>
         <PinterestButton onOpen = {() => {if (!isOpenFacebook && !isOpenInstagram && !isOpenTwitter) {setIsOpenPinterest(true)}}}/>
         <PinterestModal open = {isOpenPinterest} onClose = {() => setIsOpenPinterest(false)}>Pinterest Modal</PinterestModal>
-      </div>
     </div>
   );
 }

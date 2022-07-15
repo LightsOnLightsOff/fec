@@ -4,7 +4,7 @@ function PinterestButton ({onOpen}) {
   let pinterestURL = 'https://www.rockymountainfoodtours.com/wp-content/uploads/2016/02/Pinterest-Logo.png';
 
   return (
-    <span>
+    <span id = 'pinterest-button'>
       <img className = 'social-media-button' onClick = {onOpen}  src={pinterestURL} />
     </span>
   )
