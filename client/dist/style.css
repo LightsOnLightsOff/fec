@@ -1,7 +1,12 @@
-.carousel-container {
+.carousel-container,
+.carousel-container-thumbnail {
   display: flex;
   flex-direction: column;
   max-width: 800px;
+}
+
+.carousel-container-thumbnail{
+  margin-left: 50px;
 }
 
 .carousel-wrapper {
@@ -18,7 +23,6 @@
 .carousel-content {
   display: flex;
   transition: all 250ms linear;
-
 }
 
 /* hide scrollbar in webkit browser */
@@ -81,10 +85,6 @@
   right: 10px;
 }
 
-.image-gallery {
-  z-index: 1000;
-}
-
 .product-information-and-style {
   flex-direction: column;
 }
@@ -139,10 +139,11 @@
 }
 
 .close-expanded-view {
-  position: absolute;
+  position: relative;
   color: rgb(35, 25, 35);
   background-color: white;
   border: none;
+  top: -49%
 }
 
 .thumbnail-image-carousel {

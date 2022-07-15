@@ -21,7 +21,7 @@ function Overview (props) {
     <div>
       <div style = {{display: 'flex', flexDirection: 'row'}}>
 
-        <ImageGalleryOverview className = 'image-gallery' selectedStyle = {selectedStyle} defaultSKU = {defaultSKU}/>
+        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU}/>
         <div className = 'product-information-and-style'>
           <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
           <StyleSelectorOverview  setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
