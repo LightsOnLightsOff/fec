@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .carousel-container,
 .carousel-container-thumbnail {
   display: flex;
@@ -158,8 +157,7 @@
   justify-content: center;
   overflow: hidden;
 }
-=======
-<<<<<<< HEAD
+
 .q-and-a {
   padding: 100px
 }
@@ -179,8 +177,6 @@
   align-items: center;
 }
 
-.answers-list{
-=======
 /* html, body {
   display: flex;
 align-items: center;
@@ -418,16 +414,13 @@ overflow-y: auto; */
 
 /* Review Index */
 .rating {
->>>>>>> main
   display: flex;
   flex-direction: row;
 }
 
-<<<<<<< HEAD
 .answers-entry{
   padding: 20px;
 }
-=======
 /* Rating */
 .starProduct {
 
@@ -466,5 +459,4 @@ flex-direction: row;
 } */
 
 /* Product */
->>>>>>> main
->>>>>>> main
+
