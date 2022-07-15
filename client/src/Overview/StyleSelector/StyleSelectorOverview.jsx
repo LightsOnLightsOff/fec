@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import StyleName from './StyleName.jsx';
 import StyleThumbnail from './StyleThumbnail.jsx';
+import config from '../../../../config.js'
 
 function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePrice, setSKUS, skus, setStyleName, setThumbnailURL, setDefaultSKU}) {
   const [styles, setStyles] = useState(0);
@@ -14,7 +15,7 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
     params: { page: 1, count: 1 },
     headers: {
 
-      Authorization: ''
+      Authorization: config.TOKEN
     }
     })
     .then(res => {
