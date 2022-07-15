@@ -6,22 +6,19 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
+function ImgButton ({ item, style, index, imgs }) {
+  const imgStyles = {
+    width: '100%',
+    height: '320px',
+    objectFit: 'cover'
+  }
 
-const imgStyles = {
-  width: '100%',
-  height: '320px',
-  objectFit: 'cover'
-}
-
-function ImgButton ({item,style,index,imgs}) {
   var clickStar = function (item) {
-
     setShow(true)
     console.log('modal window for comparison', item.features)
     var f = item.features.map(obj => obj.value)
     setCompare({ name: item.name, features: f })
   }
-
 
   var clickProduct = function (e) {
     setLeft(0)
@@ -45,7 +42,6 @@ function ImgButton ({item,style,index,imgs}) {
     })
   }
 
-
   return (
     <div>
       <button
@@ -68,4 +64,4 @@ function ImgButton ({item,style,index,imgs}) {
   )
 }
 
-export default ImgButton
+export default memo(ImgButton)

@@ -28,4 +28,4 @@ function Description ({item,style,index}) {
   )
 }
 
-export default Description
+export default memo(Description)

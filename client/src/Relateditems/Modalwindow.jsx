@@ -67,4 +67,4 @@ function Modal ({currentProduct,compareProduct}) {
   )
 }
 
-export default Modal
+export default memo(Modal)
