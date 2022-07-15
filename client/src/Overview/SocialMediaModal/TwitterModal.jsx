@@ -12,7 +12,7 @@ function TwitterModal ({open, onClose}) {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#FFF',
-    padding: '50px',
+    padding: '10px',
     zIndex: 1000
   }
   const OVERLAY_STYLES = {
@@ -49,7 +49,7 @@ function TwitterModal ({open, onClose}) {
     <div>
       <div style = {OVERLAY_STYLES}></div>
       <div style = {MODAL_STYLES}>
-        <button onClick = {onClose}>Close Twitter Modal</button>
+        <button onClick = {onClose} className = 'close-modal-button'>X</button>
         <div>To:</div>
           <input value = {toLineTwitter} onChange = {handleChangeToLine} placeholder = 'Who are you going to tweet at?'></input>
           {submit && !toLineTwitter ? <div>Please enter valid handle(s).</div> : null}

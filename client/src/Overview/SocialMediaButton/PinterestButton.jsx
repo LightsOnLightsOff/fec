@@ -5,7 +5,7 @@ function PinterestButton ({onOpen}) {
 
   return (
     <span>
-      <img className =  'social-media-button' onClick = {onOpen}  src={pinterestURL} />
+      <img className = 'social-media-button' onClick = {onOpen}  src={pinterestURL} />
     </span>
   )
 }

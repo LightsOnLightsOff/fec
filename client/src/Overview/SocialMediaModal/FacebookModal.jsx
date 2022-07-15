@@ -12,7 +12,7 @@ function FacebookModal ({open, onClose}) {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#FFF',
-    padding: '50px',
+    padding: '10px',
     zIndex: 1000
   }
   const OVERLAY_STYLES = {
@@ -49,7 +49,7 @@ function FacebookModal ({open, onClose}) {
     <div>
       <div style = {OVERLAY_STYLES}></div>
       <div style = {MODAL_STYLES}>
-        <button onClick = {onClose}>Close Facebook Modal</button>
+        <button onClick = {onClose} className = 'close-modal-button'>X</button>
         <div>To:</div>
           <input value = {toLineFacebook} onChange = {handleChangeToLine} placeholder = 'facebook'></input>
           {submit && !toLineFacebook ? <div>Please enter valid username(s).</div> : null}
