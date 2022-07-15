@@ -50,7 +50,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       <div>---------------Image Gallery Overview--------------</div>
       <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked}>
         {imageArray.map(url => {
-          return  <div className = 'bad'>
+          return  <div className = 'main-image-carousel'>
                     <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20}} src= {url}/>
                     {clickedOnImage ? <button onClick = {exitExpandedImage} className = 'close-expanded-view'>X</button> : null}
                   </div>
@@ -59,7 +59,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       </MainImage>
       <ImageThumbnail show = {7} >
         {thumbnailArray.map(url => {
-          return  <div src= {url} className = 'blah'>
+          return  <div src= {url} className = 'thumbnail-image-carousel'>
                     <img onClick = {handleClickThumbnail} style = {{height: 50, width: 'auto', borderRadius: 5}} src= {url} />
                   </div>
         })}

@@ -17,7 +17,8 @@
 
 .carousel-content {
   display: flex;
-  transition: all 250ms linear
+  transition: all 250ms linear;
+
 }
 
 /* hide scrollbar in webkit browser */
@@ -54,7 +55,10 @@
 
 .carousel-content.show-7 > * {
   width: calc(100% / 7);
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+
 }
 
 .left-arrow, .right-arrow {
@@ -99,6 +103,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   place-items: center;
+  column-gap: 5px;
 }
 
 .add-to-cart-section {
@@ -140,12 +145,13 @@
   border: none;
 }
 
-.blah {
+.thumbnail-image-carousel {
   display: flex;
-  justify-content: left;
+  justify-content: center;
+  margin-left: auto;
 }
 
-.bad {
+.main-image-carousel {
   display: flex;
   justify-content: center;
   overflow: hidden;
