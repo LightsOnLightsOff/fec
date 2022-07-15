@@ -1,4 +1,4 @@
-import React, { useState, useEffect,memo } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../.config.js'
 import ImgandButton from './SliderImgButton.jsx'
+import Description from './SliderDescription.jsx'
+import Control from './SliderControl.jsx'
 
 function Related (props) {
   const imgs =
@@ -25,9 +27,7 @@ function Related (props) {
     name: '',
     features: []
   })
-  const [leftArrow, setLeft] = useState(0)
-  const [rightArrow, setRight] = useState(0)
-  const [arrowDiff, setDiff] = useState(0)
+
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -196,18 +196,6 @@ function Related (props) {
     setShow(false)
   }
 
-  var arrowClick = function (e) {
-    if (e.target.getAttribute('id') === 'first-btn') {
-      setLeft(pre => pre + 1)
-      var diff = rightArrow - leftArrow - 1
-      setDiff(diff)
-    } else {
-      setRight(pre => pre + 1)
-      var diff = rightArrow + 1 - leftArrow
-      setDiff(diff)
-    }
-  }
-
   console.log(
     'product &&&&&& style ',
     product,
@@ -215,8 +203,6 @@ function Related (props) {
     'compare',
     currentProduct,
     compareProduct,
-    rightArrow,
-    leftArrow,
     console.log(config.TOKEN)
   )
 
@@ -227,51 +213,24 @@ function Related (props) {
   ) {
     return (
       <>
-
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
               return (
                 <section key={index}>
-                 <ImgandButton item={item} style={style} index={index} imgs={imgs} imgStyles={imgStyles}/>
-                  <p>{item.category}</p>
-                  <h3>{item.name}</h3>
-                  <p
-                    style={
-                      style[index].salePrice
-                        ? {
-                            textDecoration: 'line-through',
-                            display: 'inline'
-                          }
-                        : null
-                    }
-                  >{`$${item.default_price}`}</p>
-                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
-                  <span className="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <ImgandButton
+                    item={item}
+                    style={style}
+                    index={index}
+                    imgs={imgs}
+                    imgStyles={imgStyles}
+                  />
+                  <Description item={item} style={style} index={index} />
                 </section>
               )
             })}
           </TinySlider>
-          <div className='controls'>
-            <button
-              onClick={arrowClick}
-              id='first-btn'
-              type='button'
-              style={arrowDiff === 0 ? { display: 'none' } : null}
-            >
-              ❮
-            </button>
-            <button
-              onClick={arrowClick}
-              id='second-btn'
-              type='button'
-              style={
-                arrowDiff === style.length - 3 ? { display: 'none' } : null
-              }
-            >
-              ❯
-            </button>
-          </div>
+          <Control style={style} />
         </div>
 
         <div
