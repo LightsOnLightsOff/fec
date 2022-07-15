@@ -51,8 +51,8 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked}>
         {imageArray.map(url => {
           return  <div >
-                    <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto'}} src= {url}/>
-                    {clickedOnImage ? <button onClick = {exitExpandedImage}>Exit Expanded View</button> : null}
+                    <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20}} src= {url}/>
+                    {clickedOnImage ? <button onClick = {exitExpandedImage} className = 'close-expanded-view'>X</button> : null}
                   </div>
         })}
 
@@ -60,7 +60,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
       <ImageThumbnail show = {7} >
         {thumbnailArray.map(url => {
           return  <div src= {url}>
-                    <img onClick = {handleClickThumbnail} style = {{height: 50, width: 'auto'}} src= {url} />
+                    <img onClick = {handleClickThumbnail} style = {{height: 50, width: 'auto', borderRadius: 5}} src= {url} />
                   </div>
         })}
       </ImageThumbnail>

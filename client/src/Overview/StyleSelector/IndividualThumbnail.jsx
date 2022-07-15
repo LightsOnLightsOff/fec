@@ -17,7 +17,7 @@ function IndividualThumbnail ({setSelectedStyle, style, setClickedName, setOrigi
 
   return (
     <span onClick = {handleClick}>
-        <img style = {{height: 75, width: 'auto'}} src={thumbnailURL}/>
+        <img style = {{height: 75, width: 'auto', borderRadius: 10}} src={thumbnailURL}/>
     </span>
   )
 }
