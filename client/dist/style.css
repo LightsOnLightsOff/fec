@@ -1,0 +1,279 @@
+/* html, body {
+  display: flex;
+align-items: center;
+justify-content: center;
+} */
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid black;
+  /* max-height: 1000px;
+overflow-y: auto; */
+  width: fit-content;
+
+}
+
+/* reviewIndex */
+
+/* .bear {
+  color: #f80
+} */
+
+/* .ratingAndReview {
+  padding: 10px;
+} */
+
+/* Overview */
+
+
+/* .eachReview {
+  padding: 10px;
+  border-bottom: solid black;
+  padding-left: 15px;
+} */
+
+/* .summary {
+  padding-top: 8px;
+} */
+
+/* .starRating {
+  color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: row;
+
+} */
+
+/* .colorRating {
+  color: black;
+} */
+
+/* .starsAndDate {
+  display: flex;
+  justify-content: space-between;
+
+} */
+
+/* .yes,
+.report,
+.no {
+  text-decoration: underline;
+} */
+
+/* .yes:hover,
+.report:hover {
+  cursor: pointer;
+} */
+
+/* ReviewList */
+.reviewList {
+  /* border: #000 solid; */
+  max-height: 600px;
+  overflow-y: auto;
+  width: 900px;
+  overflow-x: auto;
+
+}
+
+/* Sorting */
+
+
+.sort {
+  /* border: #000 solid; */
+  padding-left: 10px;
+  padding-bottom: 40px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.sortList {
+  /* border: #000 solid; */
+  width: fit-content;
+  display: none;
+  height: fit-content;
+  position: absolute;
+  padding-left: 5px;
+  background-color: #f9f9f9;
+  min-width: 90px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-top: -20px;
+  margin-bottom: 0px;
+}
+
+.newest,
+.helpful {
+  height: 30px;
+  /* border: #000 solid; */
+  width: fit-content;
+}
+
+
+.newest:hover,
+.helpful:hover,
+.relevant:hover {
+  cursor: pointer;
+
+}
+
+.helpful:hover {
+  cursor: pointer;
+  display: block;
+}
+
+.filter {
+  padding-bottom: 0px;
+  height: 40px;
+  /* border: #000 solid; */
+}
+
+
+.helpful {
+  padding-left: 5px;
+  padding-bottom: 0px;
+  text-decoration: underline;
+  /* border: solid black; */
+}
+
+
+
+.dropDown {
+  /* border: #000 solid; */
+  padding-left: 0px;
+  /* display: flex; */
+  /* flex-direction: column; */
+
+}
+
+.dropDown:hover .helpful {
+  background-color: azure;
+}
+
+.dropDown:hover .sortList {
+  display: block;
+  /* visibility: visible; */
+}
+
+/* .dropDown {
+  border: solid black;
+  width: fit-content;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  margin-top: 1rem;
+  left: 0;
+  display: none;
+} */
+
+.dropDown li {
+  display: block;
+  transition-duration: 0.5s;
+}
+
+.dropDown li:hover {
+  cursor: pointer;
+}
+
+/* .relevant:hover, .dropDown:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  cursor: pointer;
+
+} */
+
+/* Images */
+.images {
+  display: flex;
+  flex-direction: row;
+}
+
+.eachImage {
+  padding: 5px;
+  height: 100px;
+  width: 100px;
+}
+
+.eachImage:hover {
+  cursor: pointer;
+  border: solid black 2px;
+}
+
+/* ImageModa */
+.modal-image {
+  height: 300px;
+  width: 300px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+/* Review Index */
+.rating {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Rating */
+.starProduct {
+
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  width: 300px
+}
+
+/* Stars, Product */
+/* .StarBreakdown {
+  display: flex;
+flex-direction: row;
+} */
+
+.stars,
+.product {
+  padding: 10px;
+}
+
+/* .starBaby {
+  display: inline-block;
+  position: relative;
+  font-size: 30px;
+  color: #ddd;
+} */
+/* .starBaby:after {
+  font-family: FontAwesome;
+  content: "\2605\2605\2605\2605\2605";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  overflow: hidden;
+  color: #f80;
+} */
+
+/* Product */
