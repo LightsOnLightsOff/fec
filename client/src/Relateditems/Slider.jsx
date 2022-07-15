@@ -6,6 +6,7 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../.config.js'
+import ImgandButton from './SliderImgButton.jsx'
 
 function Related (props) {
   const imgs =
@@ -190,34 +191,7 @@ function Related (props) {
     controlsContainer: '.controls'
   }
 
-  var clickProduct = function (e) {
-    setLeft(0)
-    setRight(0)
-    setDiff(0)
-    setStyle([])
-    var clickedId = e.target.attributes.getNamedItem('name').value
-    console.log('I am clicking the picuture id:', clickedId)
-    findFeature(clickedId)
-    updateProductByid(clickedId).then(related => {
-      axios
-        .all(
-          related.map(item => {
-            return findstyleByid(item)
-          })
-        )
-        .then(res => {
-          console.log('array of styles', res)
-          setStyle(res)
-        })
-    })
-  }
 
-  var clickStar = function (item) {
-    setShow(true)
-    console.log('modal window for comparison', item.features)
-    var f = item.features.map(obj => obj.value)
-    setCompare({ name: item.name, features: f })
-  }
   var closeModal = function (e) {
     setShow(false)
   }
@@ -243,7 +217,7 @@ function Related (props) {
     compareProduct,
     rightArrow,
     leftArrow,
-    config.TOKEN
+    console.log(config.TOKEN)
   )
 
   if (
@@ -252,32 +226,17 @@ function Related (props) {
     style.length === product.length
   ) {
     return (
-      <div className="related-body">
+      <>
 
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
               return (
                 <section key={index}>
-                  <button
-                    id='fav-1'
-                    onClick={() => {
-                      clickStar(item)
-                    }}
-                    name={item.name}
-                  >
-                    ☆
-                  </button>
-                  <img
-                    onClick={clickProduct}
-                    className={`tns-lazy-img`}
-                    data-src={style[index].photo ? style[index].photo : imgs}
-                    style={imgStyles}
-                    name={item.id}
-                  />
-                  <p className="below-pic">{item.category}</p>
-                  <h3 className="below-pic">{item.name}</h3>
-                  <p className="below-pic"
+                 <ImgandButton item={item} style={style} index={index} imgs={imgs} imgStyles={imgStyles}/>
+                  <p>{item.category}</p>
+                  <h3>{item.name}</h3>
+                  <p
                     style={
                       style[index].salePrice
                         ? {
@@ -287,7 +246,7 @@ function Related (props) {
                         : null
                     }
                   >{`$${item.default_price}`}</p>
-                  <p className="below-pic" style={{ display: 'inline' }}>{style[index].salePrice}</p>
+                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
                   <span className="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </section>
               )
@@ -368,7 +327,7 @@ function Related (props) {
             })}
           </table>
         </div>
-      </div>
+      </>
     )
   }
 }

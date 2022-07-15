@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-import Related from './components/Related.jsx';
+import Related from './Relateditems/Slider.jsx';
 
 function App(){
   return <Related/>
@@ -10,6 +10,6 @@ function App(){
 import { createRoot } from 'react-dom/client';
 const container = document.getElementById('root');
 const root = createRoot(container);
-root.render(<App  />);
+root.render(<App />);
 
 // ReactDOM.render(<Related />, document.getElementById('root'))
