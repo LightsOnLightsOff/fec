@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import config from '../../../config.js'
 
 //my current DEFAULT product: Camo Onesie (id: 65631)
 
@@ -11,12 +12,13 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
   const [slogan, setSlogan] = useState('');
   const [description, setDescription] = useState('');
 
+
   useEffect(() => {
     //used to find products, DELETE AFTERWARDS
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products', {
      //params: { page: 1, count: 1 },
      headers: {
-       Authorization: ''
+       Authorization: config.TOKEN
      }
     })
     .then(res => {
@@ -26,7 +28,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65633', {
      params: { page: 1, count: 1 },
      headers: {
-       Authorization: ''
+       Authorization: config.TOKEN
      }
     })
     .then(res => {

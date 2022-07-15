@@ -4,6 +4,7 @@ import Review from './Review.jsx'
 import Sorting from '../Sorting/Sorting.jsx'
 import NewReview from "../New_Review/NewReview.jsx"
 import Moment from 'moment'
+import config from '../../../../config.js'
 
 
 function ReviewList(props) {
