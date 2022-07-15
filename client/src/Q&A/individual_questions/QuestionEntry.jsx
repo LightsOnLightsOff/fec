@@ -13,14 +13,14 @@ function QuestionEntry(props) {
   console.log(props.question.answers);
 
   return (
-    <>
-      <div style={headerStyle}>
-        <div>{props.question.question_body}</div>
+    <div className='question-entry'>
+      <div className='question-header'>
+        <h3>Q: {props.question.question_body}</h3>
         <div>helpful? ({props.question.question_helpfulness})</div>
         <button>Add an answer</button>
       </div>
       <AnswersList answers={props.question.answers}/>
-    </>
+    </div>
   )
 }
 

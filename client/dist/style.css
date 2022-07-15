@@ -1,0 +1,27 @@
+.q-and-a {
+  padding: 100px
+}
+
+.question-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 50px;
+}
+
+.answer-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.answers-list{
+  display: flex;
+  flex-direction: row;
+}
+
+.answers-entry{
+  padding: 20px;
+}

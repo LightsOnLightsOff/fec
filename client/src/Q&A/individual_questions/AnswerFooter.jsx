@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 function AnswerFooter(props) {
 
@@ -8,10 +9,12 @@ function AnswerFooter(props) {
     justifyContent: 'space-around'
   }
 
+
+
   return (
-    <div style={footerStyle}>
+    <div className='answer-footer'>
       <p>{props.answer.answerer_name}</p>
-      <p>{props.answer.date}</p>
+      <p>{moment(props.answer.date).fromNow()}</p>
       <p>helpful?({props.answer.helpfulness})</p>
       <button>report</button>
     </div>

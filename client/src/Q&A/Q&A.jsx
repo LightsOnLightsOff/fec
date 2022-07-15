@@ -14,7 +14,7 @@ function QandA (props) {
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
       params: {
-        product_id: 40344,
+        product_id: 44785,
         page: 1,
         count: 5
       },
@@ -33,12 +33,12 @@ function QandA (props) {
   }, [])
 
   return (
-    <div>
+    <div className='q-and-a'>
       <h2>QUESTIONS & ANSWERS</h2>
       <Search />
       <QuestionList currentQuestions={currentQuestions}/>
       <div>
-        <MoreQuestions />
+        <MoreQuestions changeCurrentQuestions={changeCurrentQuestions} currentQuestions= {currentQuestions} questionData={questionData}/>
         <AddQuestionButton />
       </div>
     </div>
