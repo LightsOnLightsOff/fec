@@ -55,12 +55,11 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
                     {clickedOnImage ? <button onClick = {exitExpandedImage} className = 'close-expanded-view'>X</button> : null}
                   </div>
         })}
-
       </MainImage>
       <ImageThumbnail show = {7} >
         {thumbnailArray.map(url => {
           return  <div src= {url} className = 'thumbnail-image-carousel'>
-                    <img onClick = {handleClickThumbnail} style = {{height: 50, width: 'auto', borderRadius: 5}} src= {url} />
+                    <img onClick = {handleClickThumbnail} style = {{height: 50,  width: 'auto', borderRadius: 5}} src= {url} />
                   </div>
         })}
       </ImageThumbnail>

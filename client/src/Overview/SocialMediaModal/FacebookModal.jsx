@@ -11,7 +11,7 @@ function FacebookModal ({open, onClose}) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#FFF',
+    backgroundColor: '#ccc',
     padding: '10px',
     zIndex: 1000
   }
@@ -21,8 +21,8 @@ function FacebookModal ({open, onClose}) {
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'rgba(0,0,0, 0.7)',
-    zIndex: 1000
+    background: 'rgb(0,0,255)',
+    zIndex:1000
   }
 
   const [toLineFacebook, setToLineFacebook] = useState('');
@@ -47,7 +47,7 @@ function FacebookModal ({open, onClose}) {
 
   return ReactDom.createPortal(
     <div>
-      <div style = {OVERLAY_STYLES}></div>
+
       <div style = {MODAL_STYLES}>
         <button onClick = {onClose} className = 'close-modal-button'>X</button>
         <div>To:</div>
@@ -60,6 +60,7 @@ function FacebookModal ({open, onClose}) {
           <button onClick = {handleSubmit}>Send!</button>
         </div>
       </div>
+      <div style = {OVERLAY_STYLES}></div>
     </div>,
     document.getElementById('portal')
   )

@@ -11,7 +11,7 @@ function TwitterModal ({open, onClose}) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#FFF',
+    backgroundColor: '#ccc',
     padding: '10px',
     zIndex: 1000
   }
