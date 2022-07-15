@@ -18,7 +18,7 @@ function QandA (props) {
         page: 1,
         count: 5
       },
-      headers: {Authorization: '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'}
+      headers: {Authorization: ''}
     })
     .then((results) => {
       setQuestions(results.data);
