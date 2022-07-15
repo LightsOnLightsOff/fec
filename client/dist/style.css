@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+.q-and-a {
+  padding: 100px
+}
+
+.question-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 50px;
+}
+
+.answer-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.answers-list{
+=======
 /* html, body {
   display: flex;
 align-items: center;
@@ -235,10 +257,16 @@ overflow-y: auto; */
 
 /* Review Index */
 .rating {
+>>>>>>> main
   display: flex;
   flex-direction: row;
 }
 
+<<<<<<< HEAD
+.answers-entry{
+  padding: 20px;
+}
+=======
 /* Rating */
 .starProduct {
 
@@ -277,3 +305,4 @@ flex-direction: row;
 } */
 
 /* Product */
+>>>>>>> main
