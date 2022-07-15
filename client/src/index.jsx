@@ -1,6 +1,8 @@
 import React, { useState, createContext } from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+
+import Overview from './Overview/Overview.jsx';
 import QandA from './Q&A/Q&A.jsx'
 import ReviewIndex from './rating_ and_review/ReviewIndex.jsx'
 
@@ -11,6 +13,7 @@ function App (props) {
 
   return (
     <div>
+      <Overview />
       <QandA />
       <ReviewIndex />
     </div>

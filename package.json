@@ -1,8 +1,10 @@
 {
   "scripts": {
+
     "dev": "webpack serve",
     "build": "webpack --watch ",
     "server": "nodemon server/index.js"
+
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
