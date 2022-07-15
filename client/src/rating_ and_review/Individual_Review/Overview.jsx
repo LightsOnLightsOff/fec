@@ -123,7 +123,7 @@ const StarsAndDate = styled.div`
 const Yes = styled.span`
 text-decoration: underline;
 
-&:hover: {
+&:hover {
   cursor: pointer;
 }
 `;

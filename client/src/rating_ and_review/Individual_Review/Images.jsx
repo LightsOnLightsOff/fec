@@ -4,10 +4,12 @@ import Modal from './ImageModal.jsx'
 function Images({ photos }) {
   const [toggleModal, setToggleModal] = useState(false)
   const [newUrl, setNewUrl] = useState('')
+  console.log("WHAT IS SETURL: ", newUrl)
 
   const toggle = (url) => {
-    //console.log("URL HERE: ", url)
+    console.log("URL HERE: ", url)
     setNewUrl(url)
+
     setToggleModal(!toggleModal)
 
   }

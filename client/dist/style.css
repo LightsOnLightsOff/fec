@@ -61,10 +61,10 @@ overflow-y: auto; */
   text-decoration: underline;
 } */
 
-.yes:hover,
+/* .yes:hover,
 .report:hover {
   cursor: pointer;
-}
+} */
 
 /* ReviewList */
 .reviewList {
@@ -249,31 +249,31 @@ overflow-y: auto; */
 }
 
 /* Stars, Product */
-.StarBreakdown {
+/* .StarBreakdown {
   display: flex;
 flex-direction: row;
-}
+} */
 
 .stars,
 .product {
   padding: 10px;
 }
 
-.starBaby {
+/* .starBaby {
   display: inline-block;
   position: relative;
   font-size: 30px;
   color: #ddd;
-}
-.starBaby:after {
+} */
+/* .starBaby:after {
   font-family: FontAwesome;
   content: "\2605\2605\2605\2605\2605";
   position: absolute;
   left: 0;
   top: 0;
-  width: 70%;
+  width: 60%;
   overflow: hidden;
   color: #f80;
-}
+} */
 
 /* Product */

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Review from './Review.jsx'
 import Sorting from '../Sorting/Sorting.jsx'
+import NewReview from "../New_Review/NewReview.jsx"
 import Moment from 'moment'
 
 
@@ -24,9 +25,9 @@ function ReviewList(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40347', {
+      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40355', {
         headers: {
-          Authorization: "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"
+          Authorization: "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"
         }
       }) //end of axios get req
       const newData = await response.data
@@ -117,14 +118,13 @@ function ReviewList(props) {
 
   }
 
-  //increment the helpfull yes button (still not working )
+  //increment the helpfull yes button (working! )
   const addHelpfull = (reviewId) => {
     console.log("this works and need id: ", reviewId)
-    const request = {reveiw_id: reviewId}
     const headers = {
-      Authorization: "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"
+      Authorization: "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"
     }
-    axios.put('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/:review_id/helpful', request, {headers}  )
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/helpful`, null, {headers}  )
     .then((data) => {
       console.log("Did we get any data: ", data.data)
     })
@@ -133,6 +133,8 @@ function ReviewList(props) {
     })
 
   }
+
+  //put request
 
 
   if (product) {
@@ -147,7 +149,7 @@ function ReviewList(props) {
           <Review addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={product} count={count} />
 
           {displayButton && <button onClick={renderMoreReviews}>More Reviews</button>}
-          <button>Add </button>
+          <NewReview />
         </div>
 
       </div>

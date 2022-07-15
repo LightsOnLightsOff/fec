@@ -10,7 +10,7 @@ function ReviewIndex(props) {
     <div>
       <RatingAndReview>Rating & Reviews <Bear>ʕ•ᴥ•ʔ</Bear></RatingAndReview>
       <div className="rating">
-        <Ratings />
+        <Ratings /> {/*this component will have product is passed down here as well */}
 
         <ReviewList /> {/*this componenet will have product id passed down */}
 

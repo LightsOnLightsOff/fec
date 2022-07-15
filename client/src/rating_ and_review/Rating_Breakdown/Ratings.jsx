@@ -48,9 +48,9 @@ function Ratings(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=40347', {
+      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=40355', {
         headers: {
-          Authorization: "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"
+          Authorization: "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"
         }
       }) //end of axios get req
       const newData = await response.data
