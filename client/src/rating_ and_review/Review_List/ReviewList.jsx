@@ -27,7 +27,7 @@ function ReviewList(props) {
     const getData = async () => {
       const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40355', {
         headers: {
-          Authorization: "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"
+          Authorization: config.TOKEN
         }
       }) //end of axios get req
       const newData = await response.data
@@ -122,7 +122,7 @@ function ReviewList(props) {
   const addHelpfull = (reviewId) => {
     console.log("this works and need id: ", reviewId)
     const headers = {
-      Authorization: "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"
+      Authorization: config.TOKEN
     }
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/helpful`, null, {headers}  )
     .then((data) => {
