@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-import Related from './Relateditems/Slider.jsx';
+import Related from './Relateditems/Main.jsx';
 
 function App(){
   return <Related/>

@@ -24,10 +24,6 @@ function Control ({style}) {
     }
   }
 
-  var closeModal = function (e) {
-    setShow(false)
-  }
-
 
   return (
     <div>

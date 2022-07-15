@@ -6,36 +6,46 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-var clickStar = function (item) {
-  setShow(true)
-  console.log('modal window for comparison', item.features)
-  var f = item.features.map(obj => obj.value)
-  setCompare({ name: item.name, features: f })
+
+const imgStyles = {
+  width: '100%',
+  height: '320px',
+  objectFit: 'cover'
 }
 
-var clickProduct = function (e) {
-  setLeft(0)
-  setRight(0)
-  setDiff(0)
-  setStyle([])
-  var clickedId = e.target.attributes.getNamedItem('name').value
-  console.log('I am clicking the picuture id:', clickedId)
-  findFeature(clickedId)
-  updateProductByid(clickedId).then(related => {
-    axios
-      .all(
-        related.map(item => {
-          return findstyleByid(item)
+function ImgButton ({item,style,index,imgs}) {
+  var clickStar = function (item) {
+
+    setShow(true)
+    console.log('modal window for comparison', item.features)
+    var f = item.features.map(obj => obj.value)
+    setCompare({ name: item.name, features: f })
+  }
+
+
+  var clickProduct = function (e) {
+    setLeft(0)
+    setRight(0)
+    setDiff(0)
+    setStyle([])
+    var clickedId = e.target.attributes.getNamedItem('name').value
+    console.log('I am clicking the picuture id:', clickedId)
+    findFeature(clickedId)
+    updateProductByid(clickedId).then(related => {
+      axios
+        .all(
+          related.map(item => {
+            return findstyleByid(item)
+          })
+        )
+        .then(res => {
+          console.log('array of styles', res)
+          setStyle(res)
         })
-      )
-      .then(res => {
-        console.log('array of styles', res)
-        setStyle(res)
-      })
-  })
-}
+    })
+  }
 
-function ImgButton ({item,style,index,imgs,imgStyles}) {
+
   return (
     <div>
       <button

@@ -9,6 +9,7 @@ import config from '../../../.config.js'
 import ImgandButton from './SliderImgButton.jsx'
 import Description from './SliderDescription.jsx'
 import Control from './SliderControl.jsx'
+import Modal from './Modalwindow.jsx'
 
 function Related (props) {
   const imgs =
@@ -18,7 +19,7 @@ function Related (props) {
   const [discount, setDis] = useState(false)
   const [style, setStyle] = useState([])
   const [related, setR] = useState([])
-  const [show, setShow] = useState(false)
+
   const [currentProduct, setCurrent] = useState({
     name: '',
     features: []
@@ -173,11 +174,6 @@ function Related (props) {
     })
   }, [])
 
-  const imgStyles = {
-    width: '100%',
-    height: '320px',
-    objectFit: 'cover'
-  }
 
   const settings = {
     lazyload: true,
@@ -189,11 +185,6 @@ function Related (props) {
     edgePadding: 200,
     controls: true,
     controlsContainer: '.controls'
-  }
-
-
-  var closeModal = function (e) {
-    setShow(false)
   }
 
   console.log(
@@ -232,60 +223,7 @@ function Related (props) {
           </TinySlider>
           <Control style={style} />
         </div>
-
-        <div
-          className='modal-container'
-          style={show ? null : { display: 'none' }}
-        >
-          <button onClick={closeModal}>×</button>
-          <table>
-            <thead>
-              <tr>
-                <th>{currentProduct.name}</th>
-                <th className='centerText'>Characteristic</th>
-                <th className='left-tick'>{compareProduct.name}</th>
-              </tr>
-            </thead>
-            {currentProduct.features.map((item, index) => {
-              {
-                console.log('current modal window information', item)
-              }
-              if (item) {
-                return (
-                  <thead key={index}>
-                    <tr>
-                      <th>{currentProduct.features.includes(item) && '✔'}</th>
-                      <th className='centerText'>{item}</th>
-                      <th className='left-tick'>
-                        {compareProduct.features.includes(item) && '✔'}
-                      </th>
-                    </tr>
-                  </thead>
-                )
-              }
-            })}
-            {compareProduct.features.map((item, index) => {
-              console.log(
-                'modal window information',
-                item,
-                currentProduct.features.includes(item)
-              )
-              if (item && !currentProduct.features.includes(item)) {
-                return (
-                  <thead key={index}>
-                    <tr key={index}>
-                      <th>{currentProduct.features.includes(item) && '✔'}</th>
-                      <th className='centerText'>{item}</th>
-                      <th className='left-tick'>
-                        {compareProduct.features.includes(item) && '✔'}
-                      </th>
-                    </tr>
-                  </thead>
-                )
-              }
-            })}
-          </table>
-        </div>
+        <Modal currentProduct={currentProduct} compareProduct={compareProduct}/>
       </>
     )
   }
