@@ -5,7 +5,7 @@ import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import config from '../../../config.js'
+import config from '../../../.config.js'
 
 function Related (props) {
   const imgs =
@@ -252,7 +252,7 @@ function Related (props) {
     style.length === product.length
   ) {
     return (
-      <>
+      <div className="related-body">
 
         <div className='slider'>
           <TinySlider settings={settings}>
@@ -275,9 +275,9 @@ function Related (props) {
                     style={imgStyles}
                     name={item.id}
                   />
-                  <p>{item.category}</p>
-                  <h3>{item.name}</h3>
-                  <p
+                  <p className="below-pic">{item.category}</p>
+                  <h3 className="below-pic">{item.name}</h3>
+                  <p className="below-pic"
                     style={
                       style[index].salePrice
                         ? {
@@ -287,7 +287,7 @@ function Related (props) {
                         : null
                     }
                   >{`$${item.default_price}`}</p>
-                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
+                  <p className="below-pic" style={{ display: 'inline' }}>{style[index].salePrice}</p>
                   <span className="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </section>
               )
@@ -368,7 +368,7 @@ function Related (props) {
             })}
           </table>
         </div>
-      </>
+      </div>
     )
   }
 }

@@ -1,9 +1,12 @@
-* {
+.below-pic{
   margin: 0;
 }
 
-body {
+
+.related-body {
   color: green;
+
+
 }
 
 #first-btn {
