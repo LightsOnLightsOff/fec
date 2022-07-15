@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,memo } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
@@ -51,7 +51,7 @@ function Related (props) {
               `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${eachProduct}`,
               {
                 headers: {
-                  Authorization: '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'
+                  Authorization: config.TOKEN
                 }
               }
             )
@@ -242,7 +242,8 @@ function Related (props) {
     currentProduct,
     compareProduct,
     rightArrow,
-    leftArrow
+    leftArrow,
+    config.TOKEN
   )
 
   if (
@@ -252,6 +253,7 @@ function Related (props) {
   ) {
     return (
       <>
+
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
@@ -371,4 +373,4 @@ function Related (props) {
   }
 }
 
-export default Related
+export default memo(Related)
