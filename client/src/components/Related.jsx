@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,memo } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import config from '../../../config.js'
+import config from '../../../.config.js'
 
 function Related (props) {
   const imgs =
@@ -51,7 +51,7 @@ function Related (props) {
               `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${eachProduct}`,
               {
                 headers: {
-                  Authorization: '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'
+                  Authorization: config.TOKEN
                 }
               }
             )
@@ -242,7 +242,8 @@ function Related (props) {
     currentProduct,
     compareProduct,
     rightArrow,
-    leftArrow
+    leftArrow,
+    config.TOKEN
   )
 
   if (
@@ -251,7 +252,8 @@ function Related (props) {
     style.length === product.length
   ) {
     return (
-      <>
+      <div className="related-body">
+
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
@@ -273,9 +275,9 @@ function Related (props) {
                     style={imgStyles}
                     name={item.id}
                   />
-                  <p>{item.category}</p>
-                  <h3>{item.name}</h3>
-                  <p
+                  <p className="below-pic">{item.category}</p>
+                  <h3 className="below-pic">{item.name}</h3>
+                  <p className="below-pic"
                     style={
                       style[index].salePrice
                         ? {
@@ -285,7 +287,7 @@ function Related (props) {
                         : null
                     }
                   >{`$${item.default_price}`}</p>
-                  <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
+                  <p className="below-pic" style={{ display: 'inline' }}>{style[index].salePrice}</p>
                   <span className="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </section>
               )
@@ -366,9 +368,9 @@ function Related (props) {
             })}
           </table>
         </div>
-      </>
+      </div>
     )
   }
 }
 
-export default Related
+export default memo(Related)
