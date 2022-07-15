@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReactDom from 'react-dom';
 
-function PinterestModal ({open, children, onClose}) {
+function PinterestModal ({open, onClose}) {
   if (!open) {
     return null
   }
@@ -48,14 +48,15 @@ function PinterestModal ({open, children, onClose}) {
       <div style = {OVERLAY_STYLES}></div>
       <div style = {MODAL_STYLES}>
         <button onClick = {onClose}>Close Pinterest Modal</button>
-        {children}
         <div>To:</div>
-        <input value = {toLinePinterest} onChange = {handleChangeToLine} placeholder = 'pinterest'></input>
-        {submit && !toLinePinterest ? <div>Please enter valid username(s).</div> : null}
+          <input value = {toLinePinterest} onChange = {handleChangeToLine} placeholder = 'pinterest'></input>
+          {submit && !toLinePinterest ? <div>Please enter valid username(s).</div> : null}
         <div>Message</div>
-        <input value = {messageLinePinterest} onChange = {handleChangeMessageLine} placeholder = 'Send a Message'></input>
-        {submit && !messageLinePinterest ? <div>Please enter a valid message.</div> : null}
-        <button onClick = {handleSubmit}>Send!</button>
+          <input value = {messageLinePinterest} onChange = {handleChangeMessageLine} placeholder = 'Send a Message'></input>
+          {submit && !messageLinePinterest ? <div>Please enter a valid message.</div> : null}
+        <div>
+          <button onClick = {handleSubmit}>Send!</button>
+        </div>
       </div>
     </div>,
     document.getElementById('portal')

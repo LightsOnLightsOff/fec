@@ -86,7 +86,6 @@
 }
 
 .display-media,
-.add-to-cart-section,
 .style-selector-section {
   justify-content: left;
 }
@@ -95,4 +94,15 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   place-items: center;
+}
+
+.add-to-cart-section {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.social-media-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
 }

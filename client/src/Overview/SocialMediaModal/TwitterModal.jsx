@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReactDom from 'react-dom';
 
-function TwitterModal ({open, children, onClose}) {
+function TwitterModal ({open, onClose}) {
   if (!open) {
     return null
   }
@@ -50,15 +50,17 @@ function TwitterModal ({open, children, onClose}) {
       <div style = {OVERLAY_STYLES}></div>
       <div style = {MODAL_STYLES}>
         <button onClick = {onClose}>Close Twitter Modal</button>
-        {children}
         <div>To:</div>
-        <input value = {toLineTwitter} onChange = {handleChangeToLine} placeholder = 'Who are you going to tweet at?'></input>
-        {submit && !toLineTwitter ? <div>Please enter valid handle(s).</div> : null}
+          <input value = {toLineTwitter} onChange = {handleChangeToLine} placeholder = 'Who are you going to tweet at?'></input>
+          {submit && !toLineTwitter ? <div>Please enter valid handle(s).</div> : null}
         <div>Message:</div>
-        <input value = {messageLineTwitter} onChange = {handleChangeMessageLine} placeholder = 'Send your message.'></input>
-        {submit && !messageLineTwitter ? <div>Please enter a valid message.</div> : null}
-        <button onClick = {handleSubmit}>Send!</button>
+          <input value = {messageLineTwitter} onChange = {handleChangeMessageLine} placeholder = 'Send your message.'></input>
+          {submit && !messageLineTwitter ? <div>Please enter a valid message.</div> : null}
+        <div>
+          <button onClick = {handleSubmit}>Send!</button>
+        </div>
       </div>
+
     </div>,
     document.getElementById('portal')
   )

@@ -10,9 +10,9 @@ function AddToCartFunction ({sizeOption, quantityDisabled, quantityPurchased, se
   }
 
   return (
-    <div>
+    <span>
       <button disabled = {quantityDisabled || (quantityPurchased === 0 || quantityPurchased === 'Select Quantity')} onClick = {handleClick}>Add To Cart</button>
-    </div>
+    </span>
   )
 }
 

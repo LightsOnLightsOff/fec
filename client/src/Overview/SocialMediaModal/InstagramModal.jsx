@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReactDom from 'react-dom';
 
-function InstagramModal ({open, children, onClose}) {
+function InstagramModal ({open, onClose}) {
   if (!open) {
     return null
   }
@@ -50,14 +50,15 @@ function InstagramModal ({open, children, onClose}) {
       <div style = {OVERLAY_STYLES}></div>
       <div style = {MODAL_STYLES}>
         <button onClick = {onClose}>Close Instagram Modal</button>
-        {children}
         <div>To:</div>
-        <input value = {toLineInstagram} onChange = {handleChangeToLine} placeholder = '@instagram' ></input>
-        {submit &&!toLineInstagram ? <div>Please enter valid username(s).</div> : null}
+          <input value = {toLineInstagram} onChange = {handleChangeToLine} placeholder = '@instagram' ></input>
+          {submit &&!toLineInstagram ? <div>Please enter valid username(s).</div> : null}
         <div>Message:</div>
-        <input value = {messageLineInstagram} onChange = {handleChangeMessageLine} placeholder = 'Send a message.'></input>
-        {submit && !messageLineInstagram ? <div>Please enter a valid message.</div> : null}
-        <button onClick = {submitButton}>Send!</button>
+          <input value = {messageLineInstagram} onChange = {handleChangeMessageLine} placeholder = 'Send a message.'></input>
+          {submit && !messageLineInstagram ? <div>Please enter a valid message.</div> : null}
+        <div>
+          <button onClick = {submitButton}>Send!</button>
+        </div>
       </div>
     </div>,
     document.getElementById('portal')

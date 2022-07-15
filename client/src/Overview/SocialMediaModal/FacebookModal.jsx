@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReactDom from 'react-dom';
 
-function FacebookModal ({open, children, onClose}) {
+function FacebookModal ({open, onClose}) {
   if (!open) {
     return null
   }
@@ -50,14 +50,15 @@ function FacebookModal ({open, children, onClose}) {
       <div style = {OVERLAY_STYLES}></div>
       <div style = {MODAL_STYLES}>
         <button onClick = {onClose}>Close Facebook Modal</button>
-        {children}
         <div>To:</div>
-        <input value = {toLineFacebook} onChange = {handleChangeToLine} placeholder = 'facebook'></input>
-        {submit && !toLineFacebook ? <div>Please enter valid username(s).</div> : null}
+          <input value = {toLineFacebook} onChange = {handleChangeToLine} placeholder = 'facebook'></input>
+          {submit && !toLineFacebook ? <div>Please enter valid username(s).</div> : null}
         <div>Message:</div>
-        <input value = {messageLineFacebook} onChange = {handleChangeMessageLine} placeholder = 'Send a message'></input>
-        {submit && !messageLineFacebook ? <div>Please enter a valid message.</div> : null}
-        <button onClick = {handleSubmit}>Send!</button>
+          <input value = {messageLineFacebook} onChange = {handleChangeMessageLine} placeholder = 'Send a message'></input>
+          {submit && !messageLineFacebook ? <div>Please enter a valid message.</div> : null}
+        <div>
+          <button onClick = {handleSubmit}>Send!</button>
+        </div>
       </div>
     </div>,
     document.getElementById('portal')
