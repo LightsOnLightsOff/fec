@@ -21,7 +21,7 @@ function FacebookModal ({open, onClose}) {
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'rgb(0,0,255)',
+    background: 'rgba(0,0,0,0.75)',
     zIndex:1000
   }
 
@@ -47,7 +47,7 @@ function FacebookModal ({open, onClose}) {
 
   return ReactDom.createPortal(
     <div>
-
+    <div style = {OVERLAY_STYLES}>
       <div style = {MODAL_STYLES}>
         <button onClick = {onClose} className = 'close-modal-button'>X</button>
         <div>To:</div>
@@ -60,7 +60,7 @@ function FacebookModal ({open, onClose}) {
           <button onClick = {handleSubmit}>Send!</button>
         </div>
       </div>
-      <div style = {OVERLAY_STYLES}></div>
+      </div>
     </div>,
     document.getElementById('portal')
   )

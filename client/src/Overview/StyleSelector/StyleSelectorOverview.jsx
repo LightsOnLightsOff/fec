@@ -13,7 +13,7 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65633/styles', {
     params: { page: 1, count: 1 },
     headers: {
-      Authorization: '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'
+      Authorization: ''
     }
     })
     .then(res => {

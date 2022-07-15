@@ -16,7 +16,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products', {
      //params: { page: 1, count: 1 },
      headers: {
-       Authorization: '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'
+       Authorization: ''
      }
     })
     .then(res => {
@@ -26,7 +26,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65633', {
      params: { page: 1, count: 1 },
      headers: {
-       Authorization: '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'
+       : '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'
      }
     })
     .then(res => {
