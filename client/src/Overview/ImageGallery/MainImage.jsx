@@ -45,7 +45,7 @@ function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClick
           {(index > 0) && <button className = 'left-arrow' onClick = {previousImage}>&lt;</button>}
           <div className = 'carousel-content-wrapper'>
           {(index < (length - 1)) && <button className="right-arrow" onClick = {nextImage}>&gt;</button>}
-            <div className = 'carousel-content' style={{ transform: `translateX(-${index * 100}%)` }}>
+            <div className = 'carousel-content' style={{ transform: `translateX(-${index * 100}%)`}}>
               {children}
             </div>
           </div>

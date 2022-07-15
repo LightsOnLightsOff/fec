@@ -17,6 +17,7 @@
 .carousel-content {
   display: flex;
   transition: all 250ms linear;
+
 }
 
 /* hide scrollbar in webkit browser */
@@ -28,6 +29,7 @@
   width: 100%;
   flex-shrink: 0;
   flex-grow: 1;
+
 }
 
 .carousel-content.show-2 > * {
@@ -52,6 +54,7 @@
 
 .carousel-content.show-7 > * {
   width: calc(100% / 7);
+  justify-content: center;
 }
 
 .left-arrow, .right-arrow {
@@ -90,5 +93,6 @@
 
 .style-thumbnail-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
 }
