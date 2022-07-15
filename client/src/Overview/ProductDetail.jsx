@@ -47,7 +47,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
         <div>{id}</div>
         <div>{category}</div>
         <div>{name}</div>
-        {originalPrice && !salePrice ? <div>{originalPrice}</div> : <div>{originalPrice} {salePrice}</div>}
+        {originalPrice && !salePrice ? <div>Price: {originalPrice}</div> : <div>Sale Price! {originalPrice} {salePrice}</div>}
         <div>{slogan}</div>
         <div>{description}</div>
     </div>
