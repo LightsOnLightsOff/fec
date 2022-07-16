@@ -16,8 +16,8 @@ function ReviewList(props) {
   const [count, setCount] = useState(1)
   //var updateData = [] //storing the data but in pairs
   // console.log("Product : ", product)
-   console.log('DATA: ', data)
-   console.log("PRODUCT: ", product)
+  //  console.log('DATA: ', data)
+  //  console.log("PRODUCT: ", product)
 
 
 
@@ -78,7 +78,7 @@ function ReviewList(props) {
   const sortData = (value) => {
     var sortData;
     var reduceData;
-    console.log("WHAT IS VALUE IN SORT DATA: ", value, value.length)
+    // console.log("WHAT IS VALUE IN SORT DATA: ", value, value.length)
 
     //sort the data, reduce the data, change the product
     if(value === ' Newest') {
@@ -92,7 +92,7 @@ function ReviewList(props) {
         }
         return result
       }, [])
-      console.log("Reduce data newest: ", reduceData)
+      // console.log("Reduce data newest: ", reduceData)
 
       setData(sortData)
       setProduct(reduceData)
@@ -100,7 +100,7 @@ function ReviewList(props) {
     } else if (value === ' Helpful') {
 
       sortData = [...data].sort((a,b) => b.helpfulness - a.helpfulness)
-      console.log("Sort data: ", sortData)
+      // console.log("Sort data: ", sortData)
 
       reduceData = sortData.reduce((result, value, index, array) => {
         if (index % 2 === 0) {
@@ -108,7 +108,7 @@ function ReviewList(props) {
         }
         return result
       }, [])
-      console.log("Reduce data: ", reduceData)
+      // console.log("Reduce data: ", reduceData)
 
       setData(sortData)
       setProduct(reduceData)
@@ -121,7 +121,7 @@ function ReviewList(props) {
 
   //increment the helpfull yes button (working! )
   const addHelpfull = (reviewId) => {
-    console.log("this works and need id: ", reviewId)
+    // console.log("this works and need id: ", reviewId)
     const headers = {
       Authorization: config.TOKEN
     }
