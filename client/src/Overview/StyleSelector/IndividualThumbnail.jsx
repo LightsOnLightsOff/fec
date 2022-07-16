@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 function IndividualThumbnail ({setSelectedStyle, style, setClickedName, setOriginalPrice, setSalePrice, setSKUS, skus, setThumbnailURL}) {
-  console.log ({style}.style, '<---------- In Individual Thumbnail ------------->')
 
   let thumbnailURL = {style}.style.photos[0].thumbnail_url;
 

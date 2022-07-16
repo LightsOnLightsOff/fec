@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import IndividualThumbnail from './IndividualThumbnail.jsx';
 
 function StyleThumbnail ({setSelectedStyle, style, setClickedName, setOriginalPrice, setSalePrice, setSKUS, skus, setThumbnailURL}) {
-  console.log ({style}.style, '<---------- In Style Thumbnail ------------->')
 
   return (
     <div >

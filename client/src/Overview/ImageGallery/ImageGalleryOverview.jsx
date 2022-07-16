@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import MainImage from './MainImage.jsx';
 import ImageThumbnail from './ImageThumbnail.jsx';
 
-function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
+function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView}) {
 
   let imageArray = [];
   let thumbnailArray = [];
@@ -29,7 +29,8 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
 
   const expandImage = (event) => {
     setClickedOnImage(true);
-    setDefaultMainImageHeight(700)
+    setDefaultMainImageHeight(400)
+    setInExpandedView(true)
   }
 
   const handleClickThumbnail = (event) => {
@@ -43,6 +44,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU}) {
     event.preventDefault();
     setDefaultMainImageHeight(300)
     setClickedOnImage(false)
+    setInExpandedView(false)
   }
 
   return (

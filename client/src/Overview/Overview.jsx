@@ -16,12 +16,14 @@ function Overview (props) {
   const [thumbnailURL, setThumbnailURL] = useState('');
   const [defaultSKU, setDefaultSKU] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
+  const [inExpandedView, setInExpandedView] = useState(false);
 
-  return (
-    <div>
-      <div style = {{display: 'flex', flexDirection: 'row'}}>
+  console.log (inExpandedView, 'the image is currently in expanded view')
 
-        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU}/>
+  if (!inExpandedView) {
+    return (
+      <div className = 'product-overview-container'>
+        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU} setInExpandedView = {setInExpandedView}/>
         <div className = 'product-information-and-style'>
           <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
           <StyleSelectorOverview  setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
@@ -29,9 +31,14 @@ function Overview (props) {
           <ShareSocialMedia />
         </div>
       </div>
-
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div className = 'expanded-image-only'>
+        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU} setInExpandedView = {setInExpandedView}/>
+      </div>
+    )
+  }
 }
 
 export default Overview;

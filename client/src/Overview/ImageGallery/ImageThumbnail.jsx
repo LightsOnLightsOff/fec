@@ -5,8 +5,6 @@ function ImageThumbnail ({show, children}) {
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(children.length)
 
-  console.log (index, 'index of main image array')
-
   useEffect(() => {
     setLength(children.length)
   }, [children])
