@@ -13,8 +13,8 @@ function Overview({ result, addHelpfull }) {
   //provide correct format date
   const formatDate = Moment(result.date).format("MMMM Do, YYYY")
   const anotherDate =  Moment(result.date).format("YYYY-MM-DD")
-  console.log("format data: ", anotherDate)
-  console.log('results from Overview: ', result)
+  // console.log("format data: ", anotherDate)
+  // console.log('results from Overview: ', result)
 
   var greatBody = false
   if (result.body.length > 60) {
