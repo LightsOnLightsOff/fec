@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import ProductDetail from './ProductDetail.jsx';
 import ImageGalleryOverview from './ImageGallery/ImageGalleryOverview.jsx';
 import StyleSelectorOverview from './StyleSelector/StyleSelectorOverview.jsx';
 import AddToCartOverview from './AddToCart/AddToCartOverview.jsx';
 import ShareSocialMedia from './ShareSocialMedia.jsx';
-
 
 function Overview (props) {
   const [originalPrice, setOriginalPrice] = useState('');
