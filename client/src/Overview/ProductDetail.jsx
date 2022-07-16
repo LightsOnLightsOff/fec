@@ -11,20 +11,12 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
   const [name, setName] = useState('');
   const [slogan, setSlogan] = useState('');
   const [description, setDescription] = useState('');
+  const [featureKey, setFeatureKey] = useState([]);
 
+  var tempArray = [];
+  var checkLogo = 'https://i.pinimg.com/originals/c7/75/fc/c775fc6d3433da085d8f579f54b7c758.jpg';
 
   useEffect(() => {
-    //used to find products, DELETE AFTERWARDS
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products', {
-     //params: { page: 1, count: 1 },
-     headers: {
-       Authorization: config.TOKEN
-     }
-    })
-    .then(res => {
-      console.log('this is the response', res.data)
-    })
-
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65633', {
      params: { page: 1, count: 1 },
      headers: {
@@ -32,8 +24,14 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
      }
     })
     .then(res => {
-      console.log('this is the response', res.data)
+      //console.log('this is the response', res.data)
       let productDetail = res.data;
+      var featureValue = productDetail.features;
+      for (let i = 0; i < featureValue.length; i++) {
+        var feature = Object.values(featureValue[i]);
+        tempArray.push(feature)
+      }
+      setFeatureKey(tempArray);
       setID(productDetail.id);
       setCategory(productDetail.category);
       setName(productDetail.name);
@@ -46,9 +44,16 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
   return (
     <div>
       <div>------------------List of Product Details--------------</div>
-        <div>{id}</div>
         <div>{category}</div>
         <div>{name}</div>
+        <div>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div>
+        <div>Product Features: </div>
+        {featureKey.map((featureValue) => {
+          return  <div key = {featureValue}>
+                    <img className = 'check-logo' src = {checkLogo}/>
+                    {featureValue[0]}: {featureValue[1]}
+                  </div>
+        })}
         {originalPrice && !salePrice ? <div>Price: {originalPrice}</div> : <div>Sale Price! {originalPrice} {salePrice}</div>}
         <div>{slogan}</div>
         <div>{description}</div>

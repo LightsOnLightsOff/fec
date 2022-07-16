@@ -31,7 +31,7 @@ function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvaila
           <select onChange = {handleSelect}>
             <option selected value ='Select Size'>Select Size</option>
             {sizeArray.map(size => {
-              return <option value = {size}>{size}</option>
+              return <option value = {size} key = {size}>{size}</option>
             })}
           </select>
       </span>

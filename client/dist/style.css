@@ -1,3 +1,9 @@
+.check-logo {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
 .product-overview-container {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -8,7 +8,7 @@ function StyleThumbnail ({setSelectedStyle, style, setClickedName, setOriginalPr
       <div>------------Style Thumbnail----------------
         <div className = 'style-thumbnail-layout'>
           {(style) ? style.map((style) => {
-              return <IndividualThumbnail setSelectedStyle = {setSelectedStyle} style = {style} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL}/>
+              return <IndividualThumbnail setSelectedStyle = {setSelectedStyle} style = {style} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL} />
           }) : null}
         </div>
       </div>
