@@ -4,7 +4,7 @@ function MoreQuestions(props) {
 
   const [showing, changeShowing] = useState(true);
 
-  var handleClick = async(e) => {
+  var handleClick = (e) => {
     props.changeCurrentQuestions(props.questionData.results.slice(0, props.currentQuestions.length + 2))
   }
 
