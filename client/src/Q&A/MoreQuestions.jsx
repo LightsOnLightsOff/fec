@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 
-var questionCounter = 2;
-
 function MoreQuestions(props) {
 
   const [showing, changeShowing] = useState(true);
