@@ -2,7 +2,6 @@ import React from 'react';
 import QuestionEntry from './individual_questions/QuestionEntry.jsx';
 
 function QuestionList(props) {
-  console.log(props.currentQuestions);
   return (
     <ul>
       {props.currentQuestions.map((question) => {
