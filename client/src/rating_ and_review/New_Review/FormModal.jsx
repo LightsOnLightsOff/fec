@@ -1,10 +1,48 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import Characteristics from './Characteristics.jsx'
 
 function FormModal({ toggle, showModal }) {
+  /*
+  This error will occur if:
+
+- Any mandatory fields are blank
+- The review body is less than 50 characters
+- The email address provided is not in correct email format
+- The images selected are invalid or unable to be uploaded.
+
+
+  */
+
+  const characteristicsData =[
+    {'character': 'size', '1': 'A size too small', '2': "½ a size too small", '3': "Perfect", '4': "½ a size too big", '5': "A size too wide", 'state': setSize},
+    {'character': 'width', '1': 'Too narrow', '2': "Slightly narrow", '3': "Perfect", '4': "Slightly wide", '5': "Too wide", 'state': setWidth},
+    {'character': 'comfort', '1': 'Unfomfortable', '2': "Slightly uncomfortable", '3': "Ok", '4': "Comfortable", '5': "Perfect", 'state': setComfort},
+    {'character': 'quality', '1': 'Poor', '2': "Below average", '3': "What I expected", '4': "Pretty great", '5': "Perfect", 'state': setQuality},
+    {'character': 'length', '1': 'Runs short', '2': "Runs slightly short", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setLength},
+    {'character': 'fit', '1': 'Runs tight', '2': "Runs slightly tight", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setFit},
+  ]
 
   const [starIndex, setStarIndex] = useState(0)
+  const [recommend, setRecommend] = useState(true)
+  //characteristics
+  const [size, setSize] = useState(0)
+  const [width, setWidth] = useState(0)
+  const [comfort, setComfort] = useState(0)
+  const [quality, setQuality] = useState(0)
+  const [length, setLength] = useState(0)
+  const [fit, setFit] = useState(0)
+  //summary 60 char cap
+  const [summary, setSummary] = useState("")
+  //body 1000 char cap
+  const [body, setBody] = useState("")
+  //cap 60 char
+  const [username, setUsername] = useState("")
+  //email cap 60 char
+  const [email, setEmail] = useState("")
+
+
 
   const rateStar = (index) => {
     // console.log("Star has been clicked!!!", index)
@@ -50,66 +88,9 @@ function FormModal({ toggle, showModal }) {
             </Recommend>
             <Recommend>
               <h3>Characteristics</h3>
-              <div>
-                <h4>How did the size fit?</h4>
-
-                <Size>
-                  <SizeRadio>
-                  <input name="size" type="radio" value="1" />
-                  <SizeList>A size too small</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="2" />
-                  <SizeList>½ a size too small</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="3" />
-                  <SizeList>Perfect</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="4" />
-                  <SizeList>½ a size too big</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="5" />
-                  <SizeList>A size too wide</SizeList>
-                  </SizeRadio>
-                </Size>
-              </div>
-              <div>
-                <h4>How was the width of the product?</h4>
-
-                <Size>
-                  <SizeRadio>
-                  <input name="size" type="radio" value="1" />
-                  <SizeList>Too narrow</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="2" />
-                  <SizeList>Slightly too Narrow</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="3" />
-                  <SizeList>Perfect</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="4" />
-                  <SizeList>Slightly wide</SizeList>
-                  </SizeRadio>
-
-                  <SizeRadio>
-                  <input name="size" type="radio" value="5" />
-                  <SizeList>Too wide</SizeList>
-                  </SizeRadio>
-                </Size>
-              </div>
+              {characteristicsData.map((data, index) => {
+                return <Characteristics key={index} data={data} />
+              })}
             </Recommend>
 
 
@@ -159,8 +140,7 @@ background-color: white;
 const FormWrapper = styled.div`
 background-color: #dcd0ff;
 box-shadow: 10px 10px 10px lightblue;
-width: 90vw;
-height: 90vh;
+
 
 `;
 
@@ -196,29 +176,4 @@ const Yes = styled.label`
 
 `;
 
-const Characteristics = styled.div`
 
-`
-
-const Size = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 10px
-
-`;
-
-const SizeList = styled.p`
-font-size: 12px;
-padding: 0px;
-margin-top: 0px;
-padding-left: 30px;
-padding-right: 30px;
-text-align: center;
-
-`;
-
-const SizeRadio = styled.div`
-display: flex;
-flex-direction: column;
-padding-bottom: 10px
-`;
