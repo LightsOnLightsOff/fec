@@ -78,14 +78,36 @@ function FormModal({ toggle, showModal }) {
                   <input name="size" type="radio" value="5" />
                   <SizeList>A size too wide</SizeList>
                   </SizeRadio>
+                </Size>
+              </div>
+              <div>
+                <h4>How was the width of the product?</h4>
 
+                <Size>
+                  <SizeRadio>
+                  <input name="size" type="radio" value="1" />
+                  <SizeList>Too narrow</SizeList>
+                  </SizeRadio>
 
+                  <SizeRadio>
+                  <input name="size" type="radio" value="2" />
+                  <SizeList>Slightly too Narrow</SizeList>
+                  </SizeRadio>
 
+                  <SizeRadio>
+                  <input name="size" type="radio" value="3" />
+                  <SizeList>Perfect</SizeList>
+                  </SizeRadio>
 
+                  <SizeRadio>
+                  <input name="size" type="radio" value="4" />
+                  <SizeList>Slightly wide</SizeList>
+                  </SizeRadio>
 
-
-
-
+                  <SizeRadio>
+                  <input name="size" type="radio" value="5" />
+                  <SizeList>Too wide</SizeList>
+                  </SizeRadio>
                 </Size>
               </div>
             </Recommend>
