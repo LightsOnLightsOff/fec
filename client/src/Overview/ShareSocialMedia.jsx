@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 import InstagramButton from '../Overview/SocialMediaButton/InstagramButton.jsx';
 import InstagramModal from '../Overview/SocialMediaModal/InstagramModal.jsx';
