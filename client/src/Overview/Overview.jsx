@@ -18,8 +18,6 @@ function Overview (props) {
   const [selectedStyle, setSelectedStyle] = useState({});
   const [inExpandedView, setInExpandedView] = useState(false);
 
-  console.log (inExpandedView, 'the image is currently in expanded view')
-
   if (!inExpandedView) {
     return (
       <div className = 'product-overview-container'>
