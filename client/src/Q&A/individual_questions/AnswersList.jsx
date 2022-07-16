@@ -14,12 +14,16 @@ function AnswersList(props) {
   const [showingAll, changeShowingAll] = useState(false)
 
   useEffect(() => {
-    changeCurrentAnswers(answerData?.slice(0, numAnswers))
-  }, [answerData, numAnswers])
+    if (showingAll) {
+      changeCurrentAnswers(answerData?.slice())
+    } else {
+      changeCurrentAnswers(answerData?.slice(0, 2))
+    }
+  }, [answerData, showingAll])
 
   var handleButton = (e) => {
     changeNumAnswers(answerData.length)
-    changeShowingAll(true)
+    changeShowingAll(!showingAll)
   }
 
   return (
@@ -34,7 +38,7 @@ function AnswersList(props) {
           )
         })}
       </ul>
-      <button onClick={handleButton}>show more answers</button>
+      {answerData.length > 2 && <button onClick={handleButton}>{!showingAll ? 'show more answers' : 'collapse answers'}</button>}
     </div>
   )
 }
