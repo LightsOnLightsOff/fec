@@ -10,8 +10,6 @@ function QuestionEntry(props) {
     justifyContent: 'space-around'
   }
 
-  console.log(props.question.answers);
-
   return (
     <div className='question-entry'>
       <div className='question-header'>

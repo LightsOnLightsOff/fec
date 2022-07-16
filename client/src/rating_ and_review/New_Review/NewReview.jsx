@@ -7,7 +7,7 @@ function NewReview(props) {
 
   //create function that will activate the form to open
   const formToggle = () => {
-    console.log("IVE BEEN CLICKED")
+    // console.log("IVE BEEN CLICKED")
     setToggleImage(!toggleImage)
   }
 

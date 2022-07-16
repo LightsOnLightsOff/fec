@@ -21,7 +21,7 @@ function Stars({ rate, recommended }) {
   // console.log("TOTAL KEY AND VALUE: ", totalKeyAndValues)
   const avgTotal = (totalKeyAndValues / totalValues).toFixed(1)
   const starAvg = (avgTotal * 100) / 5 + '%'
-  console.log("STAR AVG: ", starAvg)
+  // console.log("STAR AVG: ", starAvg)
 
 
   const recommendKeys = Object.values(recommended)
@@ -29,7 +29,7 @@ function Stars({ rate, recommended }) {
   recommendKeys.forEach((key, index) => {
     recommendTotal += Number(key)
   })
-  console.log("recommendTotal: ", recommendTotal)
+  // console.log("recommendTotal: ", recommendTotal)
 
 
 

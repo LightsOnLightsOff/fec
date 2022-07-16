@@ -19,7 +19,7 @@ function QandA (props) {
         page: 1,
         count: 5
       },
-      headers: {Authorization: config.js}
+      headers: {Authorization: config.TOKEN}
     })
     .then((results) => {
       setQuestions(results.data);

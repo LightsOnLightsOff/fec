@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import AnswersEntry from './AnswersEntry.jsx';
 
 function AnswersList(props) {
-  console.log('answerList prop answers: ', props.answers);
-
   return (
     <div className='answers-list'>
       <h3>
