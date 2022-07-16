@@ -214,6 +214,7 @@ function Related (props) {
                     style={style}
                     index={index}
                     imgs={imgs}
+                    // imgStyles={imgStyles}
                   />
                   <Description item={item} style={style} index={index} />
                 </section>
