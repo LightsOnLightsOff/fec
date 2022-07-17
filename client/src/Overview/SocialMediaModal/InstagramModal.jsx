@@ -37,7 +37,7 @@ function InstagramModal ({open, onClose}) {
           <div>Message:</div>
             <input value = {messageLineInstagram} onChange = {handleChangeMessageLine} placeholder = 'Send a message.'></input>
             {submit && !messageLineInstagram ? <div>Please enter a valid message.</div> : null}
-          <div>
+          <div className = 'send-social-modal'>
             <button onClick = {submitButton} style = {{cursor: 'pointer'}}>Send!</button>
           </div>
         </div>
