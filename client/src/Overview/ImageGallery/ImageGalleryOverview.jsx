@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import MainImage from './MainImage.jsx';
 import ImageThumbnail from './ImageThumbnail.jsx';
 
@@ -12,9 +12,9 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView}) {
   const [defaultMainImageHeight, setDefaultMainImageHeight] = useState(300)
   const [clickedOnImage, setClickedOnImage] = useState (false);
   const [zoomedView, setZoomedView] = useState(false);
-  //create a state for the inded you click on  ==> 0
   const [styleIndex, setStyleIndex] = useState(0);
 
+  const [defaultIndex, setDefaultIndex] = useState(0);
 
   if (Object.keys(selectedStyle).length === 0 ) {
     let photos = defaultSKU.photos;
@@ -42,8 +42,6 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView}) {
     setIndexOfPicture(index)
     setThumbnailClicked(true)
     setStyleIndex(indexThumbnail);
-    //event.target.style.border = 'double';
-
   }
 
   const exitExpandedImage = (event) => {
@@ -68,7 +66,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView}) {
         {thumbnailArray.map((url, index)=> {
           index += 1
           return  <div src= {url} className = 'thumbnail-image-carousel' >
-                    <img onClick = {() => {handleClickThumbnail(event, index)}} style = {{height: 50,  width: 'auto', borderRadius: 5, border: index === styleIndex ?  'double': 'none'}} src= {url} />
+                    <img onClick = {() => {handleClickThumbnail(event, index)}} style = {{height: 50, width: 'auto', borderRadius: 5, border: ((index === styleIndex))? 'double': 'none'}} src= {url} />
                   </div>
         })}
       </ImageThumbnail>
