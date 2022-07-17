@@ -227,10 +227,7 @@ function Related (props) {
     'product &&&&&& style ',
     product,
     style,
-
-    currentProduct,
-
-    console.log(config.TOKEN)
+    currentProduct
   )
 
   if (

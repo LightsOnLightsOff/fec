@@ -1,8 +1,8 @@
 .below-pic{
   margin-top: 0;
-  margin-bottom: 0;;
-}
+  margin-bottom: 0;
 
+}
 
 #first-btn {
   cursor: pointer;
@@ -44,22 +44,12 @@
   margin-left: 380px;
 }
 
-/* img{
-  position: relative;
-  display: inline;
-} */
-
-/* #this{
-  position: relative;
-  display: inline;
-} */
-
 .section{
   position: relative;
 }
 
 
-.thestar {
+ /* .thestar {
   display: inline-block;
   position: relative;
   font-size: px;
@@ -72,10 +62,10 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 60%;
+  width: 50%;
   overflow: hidden;
   color: #f80;
-}
+}  */
 
 .modal-container {
   position: absolute;
@@ -110,5 +100,15 @@
   /* position: absolute; */
 }
 
+/* img{
+  position: relative;
+  display: inline;
+} */
 
+/*
+section{
+  position: relative;
+}
+.tns-lazy-img{
 
+} */

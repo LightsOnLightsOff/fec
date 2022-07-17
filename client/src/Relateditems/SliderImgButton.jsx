@@ -11,9 +11,9 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar }) {
     width: '100%',
     height: '320px',
     objectFit: 'cover'
+    // position: 'absolute'
   }
-  const [show, setShow] = useState(false);
-
+  const [show, setShow] = useState(false)
 
   return (
     <div>
@@ -23,6 +23,7 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar }) {
           clickStar(item)
         }}
         name={item.name}
+        style={{ position: 'relative' }}
       >
         ☆
       </button>
