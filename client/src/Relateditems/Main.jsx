@@ -1,4 +1,4 @@
-import React, { useState, useEffect,memo } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
@@ -6,6 +6,10 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../.config.js'
+import ImgandButton from './SliderImgButton.jsx'
+import Description from './SliderDescription.jsx'
+import Control from './SliderControl.jsx'
+import Modal from './Modalwindow.jsx'
 
 function Related (props) {
   const imgs =
@@ -16,6 +20,10 @@ function Related (props) {
   const [style, setStyle] = useState([])
   const [related, setR] = useState([])
   const [show, setShow] = useState(false)
+  const [rating, setRating] = useState([])
+  const [leftArrow, setLeft] = useState(0)
+  const [rightArrow, setRight] = useState(0)
+  const [arrowDiff, setDiff] = useState(0)
   const [currentProduct, setCurrent] = useState({
     name: '',
     features: []
@@ -24,9 +32,6 @@ function Related (props) {
     name: '',
     features: []
   })
-  const [leftArrow, setLeft] = useState(0)
-  const [rightArrow, setRight] = useState(0)
-  const [arrowDiff, setDiff] = useState(0)
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -132,7 +137,10 @@ function Related (props) {
             return total / allreview.length
           })
         })
-        .then(res => console.log('array of averages', res))
+        .then(res => {
+          console.log('array of averages', res);
+          setRating(res);
+        })
     )
   }
 
@@ -172,24 +180,6 @@ function Related (props) {
     })
   }, [])
 
-  const imgStyles = {
-    width: '100%',
-    height: '320px',
-    objectFit: 'cover'
-  }
-
-  const settings = {
-    lazyload: true,
-    nav: false,
-    mouseDrag: true,
-    loop: false,
-    items: 3,
-    gutter: 20,
-    edgePadding: 200,
-    controls: true,
-    controlsContainer: '.controls'
-  }
-
   var clickProduct = function (e) {
     setLeft(0)
     setRight(0)
@@ -218,33 +208,24 @@ function Related (props) {
     var f = item.features.map(obj => obj.value)
     setCompare({ name: item.name, features: f })
   }
+
   var closeModal = function (e) {
     setShow(false)
   }
 
-  var arrowClick = function (e) {
-    if (e.target.getAttribute('id') === 'first-btn') {
-      setLeft(pre => pre + 1)
-      var diff = rightArrow - leftArrow - 1
-      setDiff(diff)
-    } else {
-      setRight(pre => pre + 1)
-      var diff = rightArrow + 1 - leftArrow
-      setDiff(diff)
-    }
+  const settings = {
+    lazyload: true,
+    nav: false,
+    mouseDrag: true,
+    loop: false,
+    items: 3,
+    gutter: 20,
+    edgePadding: 200,
+    controls: true,
+    controlsContainer: '.controls'
   }
 
-  console.log(
-    'product &&&&&& style ',
-    product,
-    style,
-    'compare',
-    currentProduct,
-    compareProduct,
-    rightArrow,
-    leftArrow,
-    config.TOKEN
-  )
+  console.log('product &&&&&& style ', product, style, currentProduct)
 
   if (
     product.length > 1 &&
@@ -252,122 +233,33 @@ function Related (props) {
     style.length === product.length
   ) {
     return (
-      <div className="related-body">
-
+      <div>
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
               return (
                 <section key={index}>
-                  <button
-                    id='fav-1'
-                    onClick={() => {
-                      clickStar(item)
-                    }}
-                    name={item.name}
-                  >
-                    ☆
-                  </button>
-                  <img
-                    onClick={clickProduct}
-                    className={`tns-lazy-img`}
-                    data-src={style[index].photo ? style[index].photo : imgs}
-                    style={imgStyles}
-                    name={item.id}
+                  <ImgandButton
+                    item={item}
+                    style={style}
+                    index={index}
+                    imgs={imgs}
+                    clickProduct={clickProduct}
+                    clickStar={clickStar}
                   />
-                  <p className="below-pic">{item.category}</p>
-                  <h3 className="below-pic">{item.name}</h3>
-                  <p className="below-pic"
-                    style={
-                      style[index].salePrice
-                        ? {
-                            textDecoration: 'line-through',
-                            display: 'inline'
-                          }
-                        : null
-                    }
-                  >{`$${item.default_price}`}</p>
-                  <p className="below-pic" style={{ display: 'inline' }}>{style[index].salePrice}</p>
-                  <span className="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <Description item={item} style={style} index={index} rating={rating} />
                 </section>
               )
             })}
           </TinySlider>
-          <div className='controls'>
-            <button
-              onClick={arrowClick}
-              id='first-btn'
-              type='button'
-              style={arrowDiff === 0 ? { display: 'none' } : null}
-            >
-              ❮
-            </button>
-            <button
-              onClick={arrowClick}
-              id='second-btn'
-              type='button'
-              style={
-                arrowDiff === style.length - 3 ? { display: 'none' } : null
-              }
-            >
-              ❯
-            </button>
-          </div>
+          <Control style={style} />
         </div>
-
-        <div
-          className='modal-container'
-          style={show ? null : { display: 'none' }}
-        >
-          <button onClick={closeModal}>×</button>
-          <table>
-            <thead>
-              <tr>
-                <th>{currentProduct.name}</th>
-                <th className='centerText'>Characteristic</th>
-                <th className='left-tick'>{compareProduct.name}</th>
-              </tr>
-            </thead>
-            {currentProduct.features.map((item, index) => {
-              {
-                console.log('current modal window information', item)
-              }
-              if (item) {
-                return (
-                  <thead key={index}>
-                    <tr>
-                      <th>{currentProduct.features.includes(item) && '✔'}</th>
-                      <th className='centerText'>{item}</th>
-                      <th className='left-tick'>
-                        {compareProduct.features.includes(item) && '✔'}
-                      </th>
-                    </tr>
-                  </thead>
-                )
-              }
-            })}
-            {compareProduct.features.map((item, index) => {
-              console.log(
-                'modal window information',
-                item,
-                currentProduct.features.includes(item)
-              )
-              if (item && !currentProduct.features.includes(item)) {
-                return (
-                  <thead key={index}>
-                    <tr key={index}>
-                      <th>{currentProduct.features.includes(item) && '✔'}</th>
-                      <th className='centerText'>{item}</th>
-                      <th className='left-tick'>
-                        {compareProduct.features.includes(item) && '✔'}
-                      </th>
-                    </tr>
-                  </thead>
-                )
-              }
-            })}
-          </table>
-        </div>
+        <Modal
+          currentProduct={currentProduct}
+          compareProduct={compareProduct}
+          closeModal={closeModal}
+          show={show}
+        />
       </div>
     )
   }
