@@ -14,8 +14,6 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   const [zoomedView, setZoomedView] = useState(false);
   const [styleIndex, setStyleIndex] = useState(0);
 
-  const [defaultIndex, setDefaultIndex] = useState(0);
-
   if (Object.keys(selectedStyle).length === 0 ) {
     let photos = defaultSKU.photos;
     for (let key in photos) {
@@ -36,7 +34,6 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
     setInExpandedView(true)
   }
 
-
   const handleClickThumbnail = (event, indexThumbnail) => {
     var index = thumbnailArray.indexOf(event.target.src)
     setIndexOfPicture(index)
@@ -50,8 +47,6 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
     setClickedOnImage(false)
     setInExpandedView(false)
   }
-
-
 
   return (
     <div>

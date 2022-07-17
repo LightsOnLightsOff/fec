@@ -3,7 +3,7 @@ import IndividualThumbnail from './IndividualThumbnail.jsx';
 
 function StyleThumbnail ({setSelectedStyle, style, setClickedName, setOriginalPrice, setSalePrice, setSKUS, skus, setThumbnailURL}) {
 
-  const [thumbnailIndex, setThumbnailIndex] = useState(0);
+  const [thumbnailIndex, setThumbnailIndex] = useState(1);
   const [changeBorder, setChangeBorder] = useState(false);
 
   if (changeBorder) {
