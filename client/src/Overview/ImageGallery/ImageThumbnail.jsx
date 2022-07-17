@@ -4,12 +4,19 @@ import '../../../dist/style.css';
 function ImageThumbnail ({show, children}) {
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(children.length)
-
-  console.log (index, 'index of main image array')
+  const [isShowing, setIsShowing] = useState (false)
 
   useEffect(() => {
     setLength(children.length)
   }, [children])
+
+  // useEffect(() =>{
+  //   if (isShowing) {
+  //     event.target.style.border = 'double'
+  //   } else {
+  //     event.target.style.border = 'none'
+  //   }
+  // }, [isShowing])
 
   const previousImage = (event) => {
     event.preventDefault();

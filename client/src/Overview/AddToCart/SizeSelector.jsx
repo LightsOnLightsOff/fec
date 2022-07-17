@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 
 function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvailable, defaultSKU, setSKUS}) {
 
-  console.log(defaultSKU, 'default SKU in sizeSelector')
-
   let sizeArray = [];
   let quantityArray = [];
 

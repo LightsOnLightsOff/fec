@@ -7,6 +7,7 @@ function AddToCartFunction ({sizeOption, quantityDisabled, quantityPurchased, se
     var newItem = [productName, styleName, sizeOption, quantityPurchased, thumbnailURL];
     itemsInCart.push(newItem);
     setItemsInCart(itemsInCart)
+
   }
 
   return (
