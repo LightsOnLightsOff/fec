@@ -175,6 +175,7 @@
   color: white;
   top: -10px;
   right: -10px;
+  cursor: pointer
 }
 
 .close-expanded-view {
@@ -195,6 +196,10 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+}
+
+.drop-down-menu {
+  cursor: pointer;
 }
 
 .q-and-a {

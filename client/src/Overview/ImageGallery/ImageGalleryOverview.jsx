@@ -64,7 +64,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
         {thumbnailArray.map((url, index)=> {
           index += 1
           return  <div src= {url} className = 'thumbnail-image-carousel' >
-                    <img onClick = {() => {handleClickThumbnail(event, index)}} style = {{height: 50, width: 'auto', borderRadius: 5, border: ((index === styleIndex))? 'double': 'none'}} src= {url} />
+                    <img onClick = {() => {handleClickThumbnail(event, index)}} style = {{height: 50, width: 'auto', borderRadius: 5, border: ((index === styleIndex))? 'double': 'none', cursor: 'pointer'}} src= {url} />
                   </div>
         })}
       </ImageThumbnail>

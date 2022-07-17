@@ -5,7 +5,7 @@ function TwitterButton ({onOpen}) {
 
   return (
     <span id = 'twitter-button'>
-      <img className = 'social-media-button' onClick = {onOpen}  src={twitterURL} />
+      <img className = 'social-media-button' onClick = {onOpen}  src={twitterURL} style = {{cursor: 'pointer'}}/>
     </span>
   )
 }
