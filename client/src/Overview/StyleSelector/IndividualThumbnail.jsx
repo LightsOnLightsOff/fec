@@ -19,7 +19,7 @@ function IndividualThumbnail ({setSelectedStyle, style, setClickedName, setOrigi
 
   return (
     <span >
-      <img onClick = {() => {handleClick (event, index)}} style = {{height: 75, width: 'auto', borderRadius: 10, border: index === thumbnailIndex ? 'double' : 'none', cursor: 'pointer'}} src={thumbnailURL}/>
+      <img onClick = {() => {handleClick (event, index)}} style = {{height: 75, width: 'auto', borderRadius: 10, border: index === thumbnailIndex ? '5px solid goldenrod' : 'none', cursor: 'pointer'}} src={thumbnailURL}/>
     </span>
   )
 }

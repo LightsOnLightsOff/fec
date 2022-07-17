@@ -207,6 +207,13 @@
   justify-content: center;
 }
 
+.individual-thumbnail-image-gallery {
+  height: 50px ;
+  width: 'auto';
+  border-radius: 5;
+  cursor: pointer;
+}
+
 .q-and-a {
   padding: 100px
 }
