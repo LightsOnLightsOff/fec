@@ -28,14 +28,14 @@ function ReviewList(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40355', {
+      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40350&count=200', {
         headers: {
           Authorization: config.TOKEN
         }
       }) //end of axios get req
       const newData = await response.data
       //update the data but in pairs
-      // console.log("THIS IS NEW DATA.DATA: ", newData)
+      console.log("THIS IS NEW DATA.DATA: ", newData)
       var splitData = newData.results.reduce((result, value, index, array) => {
         if (index % 2 === 0) {
           result.push(array.slice(index, index + 2))
@@ -146,7 +146,21 @@ function ReviewList(props) {
 
   }
 
-  //put request
+  //post request
+  const postData = (data) => {
+    axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews", data, {
+      headers: {
+        Authorization: config.TOKEN
+      }
+    })
+    .then((res) => {
+      console.log("ANYTHING?: ", res.data)
+    })
+    .catch((err) => {
+      console.log("ERROR WHEN DOING POST REQ: ", err)
+    })
+
+  }
 
 
   if (product) {
@@ -161,7 +175,7 @@ function ReviewList(props) {
           <Review productId={productId} addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={product} count={count} />
 
           {displayButton && <button onClick={renderMoreReviews}>More Reviews</button>}
-          <NewReview productId={productId} />
+          <NewReview postData={postData} productId={productId} />
         </div>
 
       </div>

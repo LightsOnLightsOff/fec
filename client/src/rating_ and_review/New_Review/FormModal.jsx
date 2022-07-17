@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import Characteristics from './Characteristics.jsx'
 import UploadImage from './UploadImage.jsx'
 import axios from 'axios'
+import config from '../../../../config.js'
 
-function FormModal({ toggle, showModal, productId }) {
+function FormModal({ toggle, showModal, productId, postData }) {
   /*
   This error will occur if:
 
@@ -21,7 +22,7 @@ function FormModal({ toggle, showModal, productId }) {
 
 
   const [starIndex, setStarIndex] = useState(0)
-  const [recommend, setRecommend] = useState(true)
+  const [recommends, setRecommend] = useState(true)
   // console.log("DO YOU RECOMMEND: ", recommend)
   //characteristics
   const [size, setSize] = useState(0)
@@ -31,16 +32,16 @@ function FormModal({ toggle, showModal, productId }) {
   const [length, setLength] = useState(0)
   const [fit, setFit] = useState(0)
   //summary 60 char cap
-  const [summary, setSummary] = useState("")
+  const [summarys, setSummary] = useState("")
   const [summaryLength, setSummaryLength] = useState(0)
   //body 1000 char cap
-  const [body, setBody] = useState("")
+  const [bodys, setBody] = useState("")
   const [bodyMin, setBodyMin] = useState(50)
   const [bodyLength, setBodyLength] = useState(0)
   //cap 60 char
   const [username, setUsername] = useState("")
   //email cap 60 char
-  const [email, setEmail] = useState("")
+  const [emails, setEmail] = useState("")
 
   const [showImage, setShowImage] = useState([]) //array of url images
   // console.log("THIS IS WHERE THE ARRAY OF PHOTOS WILL GO: ", showImage)
@@ -56,40 +57,29 @@ function FormModal({ toggle, showModal, productId }) {
 
   // console.log("CHARACTER DATA: ", characteristicsData)
   // console.log("SIZE DATA", size )
+  // '14': size,
+  // '15': width,
+  // '16': comfort,
+  // '17': quality,
+  // '18': length,
+  // '19': fit
 
   const postReq = () => {
     var data = {
-      'product_id': productId,
-      'rating': starIndex,
-      'summary': summary,
-      'body': body,
-      'recommend': recommend,
-      'name': username,
-      'email': email,
-      'photos' : showImage,
-      'characteristics' : {
-        '14': size,
-        '15': width,
-        '16': comfort,
-        '17': quality,
-        '18': length,
-        '19': fit
-      }
+      product_id: 40344,
+      rating: starIndex,
+      summary: summarys,
+      body: bodys,
+      recommend: recommends,
+      name: username,
+      email : emails,
+      photos : showImage,
+      characteristics : {}
 
     }
     console.log("DATA WE PUT TOGETHER: ", data)
+    // postData(data)
 
-    // axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews", data, {
-    //   headers: {
-    //     Authorization: config.TOKEN
-    //   }
-    // })
-    // .then((res) => {
-    //   console.log("ANYTHING?: ", res.data)
-    // })
-    // .catch((err) => {
-    //   console.log("ERROR WHEN DOING POST REQ: ", err)
-    // })
 
   }
 
@@ -155,7 +145,7 @@ function FormModal({ toggle, showModal, productId }) {
               </TextBox>
               <TextBox>
                 <p>Please provide your email</p>
-                <Name type="text" placeholder="jackson11@email.com" value={email} onChange={storeEmail}></Name>
+                <Name type="text" placeholder="jackson11@email.com" value={emails} onChange={storeEmail}></Name>
                 <code>*For authentication reasons, you will not be emailed</code>
               </TextBox>
             </OverallAndStar>
@@ -193,7 +183,7 @@ function FormModal({ toggle, showModal, productId }) {
 
           <TextBox>
             <Recommend>
-              <TextSummary placeholder="  Please provide summary: ie. Best purchase ever!" name="summary" rows="5" cols="60" value={summary} onChange={summarysLength}></TextSummary>
+              <TextSummary placeholder="  Please provide summary: ie. Best purchase ever!" name="summary" rows="5" cols="60" value={summarys} onChange={summarysLength}></TextSummary>
               <code>Characters: {summaryLength} / 60</code>
             </Recommend>
 
@@ -203,7 +193,7 @@ function FormModal({ toggle, showModal, productId }) {
             </Recommend>
 
             <Recommend>
-              <TextSummary placeholder="  Why did you like the product or not?" name="body" rows="10" cols="60" value={body} onChange={bodysLength} ></TextSummary>
+              <TextSummary placeholder="  Why did you like the product or not?" name="body" rows="10" cols="60" value={bodys} onChange={bodysLength} ></TextSummary>
               <code>Characters: {bodyLength} {bodyLength >= 50 && <code style={{ position: 'static' }}>Minimun reached &#128077;  </code>}</code>
             </Recommend>
           </TextBox>
