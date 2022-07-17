@@ -239,12 +239,12 @@ function Related (props) {
     style.length === product.length
   ) {
     return (
-      <>
+      <div >
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
               return (
-                <section key={index}>
+                <section key={index} >
                   <ImgandButton
                     item={item}
                     style={style}
@@ -252,7 +252,6 @@ function Related (props) {
                     imgs={imgs}
                     clickProduct={clickProduct}
                     clickStar={clickStar}
-                    // imgStyles={imgStyles}
                   />
                   <Description item={item} style={style} index={index} />
                 </section>
@@ -267,7 +266,7 @@ function Related (props) {
           closeModal={closeModal}
           show={show}
         />
-      </>
+      </div>
     )
   }
 }

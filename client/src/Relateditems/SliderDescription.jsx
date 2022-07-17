@@ -10,9 +10,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 function Description ({item,style,index}) {
   return (
     <div>
-      <p>{item.category}</p>
-      <h3>{item.name}</h3>
-      <p
+      <p className="below-pic">{item.category}</p>
+      <h3 className="below-pic">{item.name}</h3>
+      <p className="below-pic"
         style={
           style[index].salePrice
             ? {
@@ -22,8 +22,8 @@ function Description ({item,style,index}) {
             : null
         }
       >{`$${item.default_price}`}</p>
-      <p style={{ display: 'inline' }}>{style[index].salePrice}</p>
-      <span className='star'>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p className="below-pic" style={{ display: 'inline' }}>{style[index].salePrice}</p>
+      <span className='thestar'>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
     </div>
   )
 }

@@ -1,13 +1,8 @@
 .below-pic{
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;;
 }
 
-
-.related-body {
-  color: green;
-
-
-}
 
 #first-btn {
   cursor: pointer;
@@ -49,32 +44,29 @@
   margin-left: 380px;
 }
 
-img{
+/* img{
   position: relative;
   display: inline;
-}
+} */
 
-#this{
+/* #this{
   position: relative;
   display: inline;
-}
+} */
 
 .section{
   position: relative;
 }
 
-img{
-  position: relative;
-}
 
-.star {
+.thestar {
   display: inline-block;
   position: relative;
   font-size: px;
   color: #ddd;
 }
 
-.star:after {
+.thestar:after {
   font-family: FontAwesome;
   content: "\2605\2605\2605\2605\2605";
   position: absolute;
@@ -83,10 +75,6 @@ img{
   width: 60%;
   overflow: hidden;
   color: #f80;
-}
-
-.modal {
-  background: rgba(0, 0, 0, 0.6);
 }
 
 .modal-container {
@@ -99,15 +87,14 @@ img{
   border: 1px solid black;
 }
 
- th {
+ /* th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   color:black;
-}
+} */
 
- td, th {
-  /* border: 1px solid #ddd; */
+.modal-container td, .modal-container th {
   padding: 8px;
 }
 
