@@ -12,7 +12,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   const [defaultMainImageHeight, setDefaultMainImageHeight] = useState(300)
   const [clickedOnImage, setClickedOnImage] = useState (false);
   const [zoomedView, setZoomedView] = useState(false);
-  const [styleIndex, setStyleIndex] = useState(0);
+  const [styleIndex, setStyleIndex] = useState(1);
 
   if (Object.keys(selectedStyle).length === 0 ) {
     let photos = defaultSKU.photos;
