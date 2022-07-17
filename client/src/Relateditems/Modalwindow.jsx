@@ -6,12 +6,8 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-function Modal ({currentProduct,compareProduct}) {
-  const [show, setShow] = useState(false)
+function Modal ({currentProduct,compareProduct,closeModal,show}) {
 
-  var closeModal = function (e) {
-    setShow(false)
-  }
 
   return (
     <div className='modal-container' style={show ? null : { display: 'none' }}>
