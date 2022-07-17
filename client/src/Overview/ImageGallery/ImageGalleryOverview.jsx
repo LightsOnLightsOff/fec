@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import MainImage from './MainImage.jsx';
 import ImageThumbnail from './ImageThumbnail.jsx';
 
-function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView}) {
+function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, inExpandedView}) {
 
   let imageArray = [];
   let thumbnailArray = [];
@@ -51,13 +51,16 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView}) {
     setInExpandedView(false)
   }
 
+
+
   return (
     <div>
       <div>---------------Image Gallery Overview--------------</div>
+
       <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked}>
         {imageArray.map(url => {
           return  <div className = 'main-image-carousel'>
-                    <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20}} src= {url}/>
+                    <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: !inExpandedView ? 'pointer' : 'default'}} src= {url}/>
                     {clickedOnImage ? <button onClick = {exitExpandedImage} className = 'close-expanded-view'>X</button> : null}
                   </div>
         })}

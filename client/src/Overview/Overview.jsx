@@ -17,10 +17,12 @@ function Overview (props) {
   const [selectedStyle, setSelectedStyle] = useState({});
   const [inExpandedView, setInExpandedView] = useState(false);
 
+  console.log(inExpandedView, 'in expanded view?')
+
   if (!inExpandedView) {
     return (
       <div className = 'product-overview-container'>
-        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU} setInExpandedView = {setInExpandedView}/>
+        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU} setInExpandedView = {setInExpandedView} inExpandedView = {inExpandedView}/>
         <div className = 'product-information-and-style'>
           <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
           <StyleSelectorOverview  setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
@@ -32,7 +34,7 @@ function Overview (props) {
   } else {
     return (
       <div className = 'expanded-image-only'>
-        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU} setInExpandedView = {setInExpandedView}/>
+        <ImageGalleryOverview selectedStyle = {selectedStyle} defaultSKU = {defaultSKU} setInExpandedView = {setInExpandedView} inExpandedView = {inExpandedView}/>
         <div style = {{display : 'none'}}>
           <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
           <StyleSelectorOverview  setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
