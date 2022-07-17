@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Characteristics from './Characteristics.jsx'
+import UploadImage from './UploadImage.jsx'
+import axios from 'axios'
 
 function FormModal({ toggle, showModal }) {
   /*
@@ -15,13 +17,13 @@ function FormModal({ toggle, showModal }) {
 
   */
 
-  const characteristicsData =[
-    {'character': 'size', '1': 'A size too small', '2': "½ a size too small", '3': "Perfect", '4': "½ a size too big", '5': "A size too wide", 'state': setSize},
-    {'character': 'width', '1': 'Too narrow', '2': "Slightly narrow", '3': "Perfect", '4': "Slightly wide", '5': "Too wide", 'state': setWidth},
-    {'character': 'comfort', '1': 'Unfomfortable', '2': "Slightly uncomfortable", '3': "Ok", '4': "Comfortable", '5': "Perfect", 'state': setComfort},
-    {'character': 'quality', '1': 'Poor', '2': "Below average", '3': "What I expected", '4': "Pretty great", '5': "Perfect", 'state': setQuality},
-    {'character': 'length', '1': 'Runs short', '2': "Runs slightly short", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setLength},
-    {'character': 'fit', '1': 'Runs tight', '2': "Runs slightly tight", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setFit},
+  const characteristicsData = [
+    { 'character': 'size', '1': 'A size too small', '2': "½ a size too small", '3': "Perfect", '4': "½ a size too big", '5': "A size too wide", 'state': setSize },
+    { 'character': 'width', '1': 'Too narrow', '2': "Slightly narrow", '3': "Perfect", '4': "Slightly wide", '5': "Too wide", 'state': setWidth },
+    { 'character': 'comfort', '1': 'Unfomfortable', '2': "Slightly uncomfortable", '3': "Ok", '4': "Comfortable", '5': "Perfect", 'state': setComfort },
+    { 'character': 'quality', '1': 'Poor', '2': "Below average", '3': "What I expected", '4': "Pretty great", '5': "Perfect", 'state': setQuality },
+    { 'character': 'length', '1': 'Runs short', '2': "Runs slightly short", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setLength },
+    { 'character': 'fit', '1': 'Runs tight', '2': "Runs slightly tight", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setFit },
   ]
 
   const [starIndex, setStarIndex] = useState(0)
@@ -35,31 +37,90 @@ function FormModal({ toggle, showModal }) {
   const [fit, setFit] = useState(0)
   //summary 60 char cap
   const [summary, setSummary] = useState("")
+  const [summaryLength, setSummaryLength] = useState(0)
   //body 1000 char cap
   const [body, setBody] = useState("")
+  const [bodyMin, setBodyMin] = useState(50)
+  const [bodyLength, setBodyLength] = useState(0)
   //cap 60 char
   const [username, setUsername] = useState("")
   //email cap 60 char
   const [email, setEmail] = useState("")
 
+  const [showImage, setShowImage] = useState([]) //array of url images
 
+
+  const postReq = () => {
+
+  }
 
   const rateStar = (index) => {
     // console.log("Star has been clicked!!!", index)
     setStarIndex(index)
   }
 
+  const summarysLength = (e) => {
+    if (event.target.value.length > 60) {
+      return;
+    } else {
+      setSummary(event.target.value)
+      setSummaryLength(event.target.value.length)
+    }
+  }
+
+  const bodysLength = (e) => {
+    if (event.target.value.length > 1000) {
+      return;
+    } else
+      var answer = bodyLength - bodyMin
+    setBodyMin(answer)
+    setBody(event.target.value)
+    setBodyLength(event.target.value.length)
+
+  }
+
+  const storeUsername = (e) => {
+    if (event.target.value > 50) {
+      return;
+    } else {
+      setUsername(event.target.value)
+    }
+  }
+
+  const storeEmail = (e) => {
+    if (event.target.value > 50) {
+      return;
+    } else {
+      setEmail(event.target.value)
+    }
+  }
+
+
+
   // console.log('showModal', showModal)
   if (showModal) {
     // console.log("star modal trying to get in here!!!")
     return (
       <FormOverlay>
+        <button onClick={toggle} className="modal-button">
+          <span>&times;</span>
+        </button>
         <FormWrapper>
-          <button onClick={toggle} className="modal-button">
-            <span>&times;</span>
-          </button>
-          <form>
+          <Forms>
             <h2>About the <code>**Product Name**</code></h2>
+            <OverallAndStar>
+              <TextBox>
+                <p>But first, what do I call you?</p>
+                <Name type="text" placeholder="jackson11!" value={username} onChange={storeUsername}></Name>
+                <code> ( ͡° ͜ʖ ͡°) </code>
+              </TextBox>
+              <TextBox>
+                <p>Please provide your email</p>
+                <Name type="text" placeholder="jackson11@email.com" value={email} onChange={storeEmail}></Name>
+                <code>*For authentication reasons, you will not be emailed</code>
+              </TextBox>
+            </OverallAndStar>
+
             <OverallAndStar>
               <Overall>Overall Rating</Overall>
               <StarsAndDate>
@@ -82,21 +143,32 @@ function FormModal({ toggle, showModal }) {
                 <input name="recommend" type="radio" value="No" />
                 No
               </Yes>
-              {/* <Yes>
-                  <input type="radio" value="No">No</input>
-                </Yes> */}
             </Recommend>
             <Recommend>
-              <h3>Characteristics</h3>
               {characteristicsData.map((data, index) => {
                 return <Characteristics key={index} data={data} />
               })}
             </Recommend>
 
+          </Forms>
 
+          <TextBox>
+            <Recommend>
+              <TextSummary placeholder="  Please provide summary: ie. Best purchase ever!" name="summary" rows="5" cols="60" value={summary} onChange={summarysLength}></TextSummary>
+              <code>Characters: {summaryLength} / 60</code>
+            </Recommend>
 
+            <Recommend>
+              <UploadImage setShowImage={setShowImage} showImage={showImage} />
 
-          </form>
+            </Recommend>
+
+            <Recommend>
+              <TextSummary placeholder="  Why did you like the product or not?" name="body" rows="10" cols="60" value={body} onChange={bodysLength} ></TextSummary>
+              <code>Characters: {bodyLength} {bodyLength >= 50 && <code style={{ position: 'static' }}>Minimun reached &#128077;  </code>}</code>
+            </Recommend>
+          </TextBox>
+          <button>Submit Review</button>
         </FormWrapper>
       </FormOverlay>
 
@@ -112,7 +184,19 @@ export default FormModal;
 
 const OverallAndStar = styled.div`
 display: flex;
-justify-content: row;
+flex-direction: row;
+justify-content: center;
+padding-top: 15px;
+
+
+`;
+
+const Forms = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 80%;
+padding-right: 30px;
 
 
 `;
@@ -121,7 +205,7 @@ const Overall = styled.h3`
 padding: 20px;
 
 `;
-
+//DONT TOUCH THIS ONE
 const FormOverlay = styled.div`
 position: fixed;
 top: 0;
@@ -130,7 +214,7 @@ z-index: 1040;
 width: 100vw;
 height: 100vh;
 display: flex;
-align-items: center;
+flex-direction: column;
 justify-content: center;
 background-color: white;
 
@@ -138,13 +222,21 @@ background-color: white;
 `;
 
 const FormWrapper = styled.div`
+margin: 15px;
 background-color: #dcd0ff;
 box-shadow: 10px 10px 10px lightblue;
+border-radius: 15px;
+width: 70%;
+max-height: 100%;
+overflow-y: auto;
+
 
 
 `;
 
 const Form = styled.div`
+display: flex;
+justify-content: center;
 
 `;
 
@@ -169,11 +261,31 @@ font-size: 30px;
 `;
 
 const Recommend = styled(Overall)`
-  margin: 0px
+  margin: 20px;
+  margin-bottom: 5px;
 `;
 
 const Yes = styled.label`
 
 `;
 
+const TextSummary = styled.textarea`
+border-radius: 5px 30px 30px;
+
+`;
+
+const TextBox = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 10px;
+
+
+`;
+
+const Name = styled.input`
+border-radius: 5px;
+height: 20px;
+
+`;
 

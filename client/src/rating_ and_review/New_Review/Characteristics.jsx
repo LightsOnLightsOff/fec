@@ -12,7 +12,7 @@ function Characteristics({data}) {
 
   return (
     <div>
-      <h4>How did the {data.character} fit?</h4>
+      <Title>How was the {data.character}?</Title>
 
       <Size>
         <SizeRadio>
@@ -48,9 +48,15 @@ function Characteristics({data}) {
 export default Characteristics;
 
 
+const Title = styled.h4`
+text-align: center;
+`
+
+
 const Size = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   padding-bottom: 10px
 
 `;
