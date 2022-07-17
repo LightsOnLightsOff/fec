@@ -13,11 +13,13 @@ function ReviewList(props) {
   //const [count, setCount] = useState(0) //this will display two reviews at a time
   const [product, setProduct] = useState([]) //storing the data of results
   const [data, setData] = useState([])
+  const [productId, setProductId] = useState('') //TEMP KEEP THIS UNTIL WE USE USECONTEXT
   const [count, setCount] = useState(1)
   //var updateData = [] //storing the data but in pairs
+  const [yesHelpful, setYesHelpful] = useState(false)
   // console.log("Product : ", product)
   //  console.log('DATA: ', data)
-  //  console.log("PRODUCT: ", product)
+  //  console.log("PRODUCTID OVER HERE LOOK HERE LOOK HERE PLEASE: ", productId)
 
 
 
@@ -33,6 +35,7 @@ function ReviewList(props) {
       }) //end of axios get req
       const newData = await response.data
       //update the data but in pairs
+      // console.log("THIS IS NEW DATA.DATA: ", newData)
       var splitData = newData.results.reduce((result, value, index, array) => {
         if (index % 2 === 0) {
           result.push(array.slice(index, index + 2))
@@ -46,6 +49,7 @@ function ReviewList(props) {
       }
       setData(newData.results)
       setProduct(splitData)
+      setProductId(newData.product)
 
     }
     //invoke the getData
@@ -122,16 +126,23 @@ function ReviewList(props) {
   //increment the helpfull yes button (working! )
   const addHelpfull = (reviewId) => {
     // console.log("this works and need id: ", reviewId)
-    const headers = {
-      Authorization: config.TOKEN
+    if (yesHelpful) {
+      return;
+    } else{
+      const headers = {
+        Authorization: config.TOKEN
+      }
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/helpful`, null, {headers}  )
+      .then((data) => {
+        console.log("Did we get any data: ", data.data)
+        setYesHelpful(true)
+      })
+      .catch((err) => {
+        console.log("error from add helpful: ", err)
+      })
+
     }
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/helpful`, null, {headers}  )
-    .then((data) => {
-      console.log("Did we get any data: ", data.data)
-    })
-    .catch((err) => {
-      console.log("error from add helpful: ", err)
-    })
+
 
   }
 
@@ -147,10 +158,10 @@ function ReviewList(props) {
 
         <div className="reviewList">
 
-          <Review addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={product} count={count} />
+          <Review productId={productId} addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={product} count={count} />
 
           {displayButton && <button onClick={renderMoreReviews}>More Reviews</button>}
-          <NewReview />
+          <NewReview productId={productId} />
         </div>
 
       </div>

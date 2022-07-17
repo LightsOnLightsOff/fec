@@ -49,7 +49,7 @@ function UploadImage({setShowImage, showImage}) {
     <div>
       <h4>Add a photo</h4>
       <Div>
-        <ImageBox onClick={showWidget}>｡◕‿‿◕｡</ImageBox>
+        <ImageBox onClick={showWidget}>◕‿‿◕</ImageBox>
         {/* <Img src="https://res.cloudinary.com/dpbkoptqh/image/upload/v1658013211/ojuymnw187z1m0vcjvzx.jpg"></Img>
         <Img src="https://res.cloudinary.com/dpbkoptqh/image/upload/v1658013212/xcghswbujsdudywxvvw6.jpg"></Img> */}
         {showImage.map((url, index) => {
@@ -75,9 +75,9 @@ flex-direction: column;
 flex-wrap: wrap;
 align-content: center;
 align-item center;
-padding: 50px;
-height: 35px;
-width: 35px;
+padding: 30px;
+height: 3px;
+width: 3px;
 background-color: #fafafa;
 border: dashed #a9b7b8;
 border-width: 2px;
@@ -89,10 +89,10 @@ border-radius: 5px;
 `;
 
 const Img = styled.img`
-height: 140px;
-  width: 140px;
-  padding-left: 10px;
-  padding-right: 10px;
+height: 68px;
+  width: 68px;
+  padding-left: 5px;
+  padding-right: 5px;
 `;
 
 const Div = styled.div`

@@ -5,7 +5,7 @@ import Characteristics from './Characteristics.jsx'
 import UploadImage from './UploadImage.jsx'
 import axios from 'axios'
 
-function FormModal({ toggle, showModal }) {
+function FormModal({ toggle, showModal, productId }) {
   /*
   This error will occur if:
 
@@ -17,17 +17,12 @@ function FormModal({ toggle, showModal }) {
 
   */
 
-  const characteristicsData = [
-    { 'character': 'size', '1': 'A size too small', '2': "½ a size too small", '3': "Perfect", '4': "½ a size too big", '5': "A size too wide", 'state': setSize },
-    { 'character': 'width', '1': 'Too narrow', '2': "Slightly narrow", '3': "Perfect", '4': "Slightly wide", '5': "Too wide", 'state': setWidth },
-    { 'character': 'comfort', '1': 'Unfomfortable', '2': "Slightly uncomfortable", '3': "Ok", '4': "Comfortable", '5': "Perfect", 'state': setComfort },
-    { 'character': 'quality', '1': 'Poor', '2': "Below average", '3': "What I expected", '4': "Pretty great", '5': "Perfect", 'state': setQuality },
-    { 'character': 'length', '1': 'Runs short', '2': "Runs slightly short", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setLength },
-    { 'character': 'fit', '1': 'Runs tight', '2': "Runs slightly tight", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setFit },
-  ]
+
+
 
   const [starIndex, setStarIndex] = useState(0)
   const [recommend, setRecommend] = useState(true)
+  // console.log("DO YOU RECOMMEND: ", recommend)
   //characteristics
   const [size, setSize] = useState(0)
   const [width, setWidth] = useState(0)
@@ -48,9 +43,53 @@ function FormModal({ toggle, showModal }) {
   const [email, setEmail] = useState("")
 
   const [showImage, setShowImage] = useState([]) //array of url images
+  // console.log("THIS IS WHERE THE ARRAY OF PHOTOS WILL GO: ", showImage)
 
+  const characteristicsData = [
+    { 'character': 'size', '1': 'A size too small', '2': "½ a size too small", '3': "Perfect", '4': "½ a size too big", '5': "A size too wide", 'state': setSize },
+    { 'character': 'width', '1': 'Too narrow', '2': "Slightly narrow", '3': "Perfect", '4': "Slightly wide", '5': "Too wide", 'state': setWidth },
+    { 'character': 'comfort', '1': 'Unfomfortable', '2': "Slightly uncomfortable", '3': "Ok", '4': "Comfortable", '5': "Perfect", 'state': setComfort },
+    { 'character': 'quality', '1': 'Poor', '2': "Below average", '3': "What I expected", '4': "Pretty great", '5': "Perfect", 'state': setQuality },
+    { 'character': 'length', '1': 'Runs short', '2': "Runs slightly short", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setLength },
+    { 'character': 'fit', '1': 'Runs tight', '2': "Runs slightly tight", '3': "Perfect", '4': "Runs slightly long", '5': "Runs long", 'state': setFit },
+  ]
+
+  // console.log("CHARACTER DATA: ", characteristicsData)
+  // console.log("SIZE DATA", size )
 
   const postReq = () => {
+    var data = {
+      'product_id': productId,
+      'rating': starIndex,
+      'summary': summary,
+      'body': body,
+      'recommend': recommend,
+      'name': username,
+      'email': email,
+      'photos' : showImage,
+      'characteristics' : {
+        '14': size,
+        '15': width,
+        '16': comfort,
+        '17': quality,
+        '18': length,
+        '19': fit
+      }
+
+    }
+    console.log("DATA WE PUT TOGETHER: ", data)
+
+    // axios.post("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews", data, {
+    //   headers: {
+    //     Authorization: config.TOKEN
+    //   }
+    // })
+    // .then((res) => {
+    //   console.log("ANYTHING?: ", res.data)
+    // })
+    // .catch((err) => {
+    //   console.log("ERROR WHEN DOING POST REQ: ", err)
+    // })
 
   }
 
@@ -138,9 +177,9 @@ function FormModal({ toggle, showModal }) {
             <Recommend>
               <h3>Do you recommend this product?</h3>
               <Yes>
-                <input name="recommend" type="radio" value="Yes" />
+                <input onClick={() => {setRecommend(true)}} name="recommend" type="radio" value="Yes" />
                 Yes
-                <input name="recommend" type="radio" value="No" />
+                <input onClick={() => {setRecommend(false)}} name="recommend" type="radio" value="No" />
                 No
               </Yes>
             </Recommend>
@@ -168,7 +207,7 @@ function FormModal({ toggle, showModal }) {
               <code>Characters: {bodyLength} {bodyLength >= 50 && <code style={{ position: 'static' }}>Minimun reached &#128077;  </code>}</code>
             </Recommend>
           </TextBox>
-          <button>Submit Review</button>
+          <button onClick={postReq}>Submit Review</button>
         </FormWrapper>
       </FormOverlay>
 

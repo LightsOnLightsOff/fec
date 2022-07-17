@@ -4,6 +4,7 @@ import styled from 'styled-components';
 function Characteristics({data}) {
 
   const onChangeValue = (e) => {
+    // console.log("CHARACTERISTICCS: ", data.state, e.target.value )
     data.state(e.target.value)
 
   }
