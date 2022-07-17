@@ -10,6 +10,7 @@ import ImgandButton from './SliderImgButton.jsx'
 import Description from './SliderDescription.jsx'
 import Control from './SliderControl.jsx'
 import Modal from './Modalwindow.jsx'
+import Outfit from './Outfit.jsx'
 
 function Related (props) {
   const imgs =
@@ -30,7 +31,8 @@ function Related (props) {
   })
   const [compareProduct, setCompare] = useState({
     name: '',
-    features: []
+    features: [],
+    detail:[]
   })
 
   var getRelatedProduct = function (id) {
@@ -158,7 +160,7 @@ function Related (props) {
         console.log('current product', data.features)
         var f = data.features.map(item => item.value)
         setCurrent(pre => {
-          return { ...pre, name: data.name, features: f }
+          return { ...pre, name: data.name, features: f,detail:data }
         })
       })
   }
@@ -221,8 +223,8 @@ function Related (props) {
     items: 3,
     gutter: 20,
     edgePadding: 200,
-    controls: true,
-    controlsContainer: '.controls'
+    // controls: true,
+    // controlsContainer: '.controls'
   }
 
   console.log('product &&&&&& style ', product, style, currentProduct)
@@ -235,6 +237,7 @@ function Related (props) {
     return (
       <div>
         <div className='slider'>
+        <h4 className='title'>RELATED PRODUCTS</h4>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
               return (
@@ -260,6 +263,7 @@ function Related (props) {
           closeModal={closeModal}
           show={show}
         />
+         <Outfit currentProduct={currentProduct} settings={settings} clickProduct={clickProduct} imgs={imgs} style={style} />
       </div>
     )
   }
