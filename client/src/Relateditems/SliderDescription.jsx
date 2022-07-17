@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { ColorRating } from './style.css/star.js'
 
-function Description ({ item, style, index }) {
+function Description ({ item, style, index,rating }) {
   return (
     <div className='description'>
       <p className='below-pic'>{item.category}</p>
@@ -26,7 +26,8 @@ function Description ({ item, style, index }) {
       <p className='below-pic' style={{ display: 'inline' }}>
         {style[index].salePrice}
       </p>
-      <ColorRating wid='70%' >
+
+      <ColorRating wid={`${Math.floor(rating[index]/5*4)/4*100}%`} >
         <span className='thestar'>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       </ColorRating>
     </div>

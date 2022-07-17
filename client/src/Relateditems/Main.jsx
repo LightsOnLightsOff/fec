@@ -20,7 +20,7 @@ function Related (props) {
   const [style, setStyle] = useState([])
   const [related, setR] = useState([])
   const [show, setShow] = useState(false)
-
+  const [rating, setRating] = useState([])
   const [leftArrow, setLeft] = useState(0)
   const [rightArrow, setRight] = useState(0)
   const [arrowDiff, setDiff] = useState(0)
@@ -137,7 +137,10 @@ function Related (props) {
             return total / allreview.length
           })
         })
-        .then(res => console.log('array of averages', res))
+        .then(res => {
+          console.log('array of averages', res);
+          setRating(res);
+        })
     )
   }
 
@@ -206,7 +209,6 @@ function Related (props) {
     setCompare({ name: item.name, features: f })
   }
 
-
   var closeModal = function (e) {
     setShow(false)
   }
@@ -223,12 +225,7 @@ function Related (props) {
     controlsContainer: '.controls'
   }
 
-  console.log(
-    'product &&&&&& style ',
-    product,
-    style,
-    currentProduct
-  )
+  console.log('product &&&&&& style ', product, style, currentProduct)
 
   if (
     product.length > 1 &&
@@ -236,12 +233,12 @@ function Related (props) {
     style.length === product.length
   ) {
     return (
-      <div >
+      <div>
         <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
               return (
-                <section key={index} >
+                <section key={index}>
                   <ImgandButton
                     item={item}
                     style={style}
@@ -250,7 +247,7 @@ function Related (props) {
                     clickProduct={clickProduct}
                     clickStar={clickStar}
                   />
-                  <Description item={item} style={style} index={index} />
+                  <Description item={item} style={style} index={index} rating={rating} />
                 </section>
               )
             })}
