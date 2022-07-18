@@ -20,6 +20,7 @@ function Outfit ({
 }) {
   const [outfit, setOutfit] = useState([{ 0: 'button' }])
   const [currentStyle, setCurrS] = useState({ salePrice: '', photo: '' })
+  const [clicked,setC] = useState(false);
   const imgStyles = {
     width: '100%',
     height: '320px',
@@ -28,12 +29,15 @@ function Outfit ({
   }
 
   var clickPlus = function () {
-    setOutfit(pre => {
-      return [...pre, [currentProduct]]
-    })
+    if(!clicked){
+      setOutfit(pre => {
+        return [...pre, [currentProduct]]
+      })
+    }
     console.log('currentProduct.id',currentProduct.id)
-    findCurrentStyle(currentProduct.id)
+    setC(true);
   }
+
   var findCurrentStyle = function (id) {
     findstyleByid(id).then(res => {
       console.log('currentstyle', res)
@@ -42,12 +46,14 @@ function Outfit ({
   }
 
   useEffect(() => {
-    console.log('List of current', currentProduct)
+    console.log('List of current', currentProduct);
+    findCurrentStyle(currentProduct.id)
   }, [])
 
+  console.log('styleof localllll', currentStyle.photo)
   return (
     <div>
-      {console.log('styleof localllll', currentStyle.photo)}
+
       <h4 className='title'> YOUR OUTFIT</h4>
       <FontAwesomeIcon
         icon={faCirclePlus}
