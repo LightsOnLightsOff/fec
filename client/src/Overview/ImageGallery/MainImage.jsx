@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClicked, setThumbnailClicked}) {
+function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClicked, setThumbnailClicked, setLeftArrowClicked, setNewIndex, setRightArrowClicked}) {
   const [index, setIndex] = useState(0);
   const [length, setLength] = useState(children.length)
 
@@ -21,15 +21,20 @@ function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClick
   const previousImage = (event) => {
     event.preventDefault();
     if (index > 0) {
-      setIndex(prevState => prevState - 1)
+      setIndex(index - 1)
     }
+    setLeftArrowClicked(true);
+    setNewIndex(index)
   }
 
   const nextImage = (event) => {
     event.preventDefault();
     if (index < (length - 1)) {
-      setIndex(prevState => prevState + 1)
+      setIndex(index + 1)
     }
+    console.log (index, 'index in R arrorw click')
+    setRightArrowClicked(true);
+    setNewIndex(index)
   }
 
   const expandImage = (event) => {

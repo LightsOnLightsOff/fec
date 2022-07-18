@@ -14,6 +14,23 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   const [zoomedView, setZoomedView] = useState(false);
   const [styleIndex, setStyleIndex] = useState(1);
 
+  const[rightArrowClicked, setRightArrowClicked] = useState (false);
+  const [leftArrowClicked, setLeftArrowClicked] = useState(false);
+  const [newIndex, setNewIndex] = useState(0);
+
+  console.log(newIndex, 'index')
+
+
+  if (leftArrowClicked) {
+    setLeftArrowClicked(false);
+    setStyleIndex(newIndex)
+  }
+
+  if (rightArrowClicked) {
+    setRightArrowClicked(false);
+    setStyleIndex(newIndex+2)
+  }
+
   if (Object.keys(selectedStyle).length === 0 ) {
     let photos = defaultSKU.photos;
     for (let key in photos) {
@@ -52,7 +69,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
     <div>
       <div>---------------Image Gallery Overview--------------</div>
 
-      <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked}>
+      <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked} setLeftArrowClicked = {setLeftArrowClicked} setNewIndex = {setNewIndex} setRightArrowClicked = {setRightArrowClicked}>
         {imageArray.map(url => {
           return  <div className = 'main-image-carousel'>
                     <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: !inExpandedView ? 'pointer' : 'default'}} src= {url}/>

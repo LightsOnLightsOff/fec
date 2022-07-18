@@ -184,7 +184,8 @@
   color: rgb(35, 25, 35);
   background-color: white;
   border: none;
-  top: -49%
+  top: -49%;
+  cursor: pointer;
 }
 
 .thumbnail-image-carousel {
