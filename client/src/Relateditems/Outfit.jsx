@@ -33,7 +33,7 @@ function Outfit ({
     nav: false,
     mouseDrag: true,
     loop: false,
-    items: 3,
+    items: 4,
     gutter: 20,
     edgePadding: 200
     // controls: true,

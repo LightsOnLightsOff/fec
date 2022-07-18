@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect, memo, Component } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
@@ -11,6 +11,9 @@ import Description from './SliderDescription.jsx'
 import Control from './SliderControl.jsx'
 import Modal from './Modalwindow.jsx'
 import Outfit from './Outfit.jsx'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css" ;
+import "slick-carousel/slick/slick-theme.css";
 
 function Related (props) {
   const imgs =
