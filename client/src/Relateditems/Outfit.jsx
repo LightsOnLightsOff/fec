@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
 import { ColorRating } from './style.css/star.js'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css" ;
+import "slick-carousel/slick/slick-theme.css";
 
 function Outfit ({
   currentProduct,
-  // settings,
   style,
   imgs,
   findstyleByid,
@@ -30,16 +32,12 @@ function Outfit ({
   }
 
   const settings = {
-    lazyload: true,
-    nav: false,
-    mouseDrag: true,
-    loop: false,
-    items: 4,
-    gutter: 20,
-    edgePadding: 200
-    // controls: true,
-    // controlsContainer: '.controls'
-  }
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  };
 
   var clickPlus = function (e) {
     if (!clicked) {
@@ -53,7 +51,7 @@ function Outfit ({
 
   var findCurrentStyle = function (id) {
     findstyleByid(id).then(res => {
-      console.log('currentstyle invoke after mounting', res)
+      // console.log('currentstyle invoke after mounting', res)
       setCurrS(pre => [...pre, res])
     })
   }
@@ -63,7 +61,7 @@ function Outfit ({
     findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('      outfit before rendering', outfit)
+  // console.log('      outfit before rendering', outfit)
   return (
     <div>
       <h4 className='title'> YOUR OUTFIT</h4>
@@ -74,10 +72,10 @@ function Outfit ({
         onClick={clickPlus}
       />
       <div className='slider'>
-        <TinySlider settings={settings}>
+        <Slider {...settings}>
           {outfit.map((item, index) => {
             {
-               console.log('Loop index and current photo',  index,style)
+               console.log('Loop index and current photo',  index,currentStyle)
             }
             return (
               <section key={index} className='outfitSlider'>
@@ -113,7 +111,7 @@ function Outfit ({
               </section>
             )
           })}
-        </TinySlider>
+        </Slider>
 
         {/* <Control style={style} /> */}
       </div>

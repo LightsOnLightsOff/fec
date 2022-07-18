@@ -39,6 +39,7 @@ function Related (props) {
     detail: []
   })
   const [outfit, setOutfit] = useState([[{ detail:{category: '',name:''} }]])
+  // const [outfit, setOutfit] = useState([]);
   const [currentStyle, setCurrS] = useState([{ salePrice: '', photo: '' }])
 
   var getRelatedProduct = function (id) {
