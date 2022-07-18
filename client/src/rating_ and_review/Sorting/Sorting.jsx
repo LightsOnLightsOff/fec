@@ -6,9 +6,9 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 function Sorting({ data, sortData }) {
 
-  const [sort, setSort] = useState(" Helpful")
+  const [sort, setSort] = useState(" Relevant") //
   const [dropDown1, setDropDown1] = useState(" Newest")
-  const [dropDown2, setDropDown2] = useState(" Relevant")
+  const [dropDown2, setDropDown2] = useState(" Helpful") //
 
   const clickSort = (num) => {
     // console.log("WHAT IS NUM: ", num)

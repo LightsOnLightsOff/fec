@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormModal from './FormModal.jsx'
 
-function NewReview(props) {
+function NewReview({productId, postData}) {
   const [toggleImage, setToggleImage] = useState(false)
   const [newUrl, setNewUrl] = useState('')
 
@@ -18,6 +18,8 @@ function NewReview(props) {
       <FormModal
       toggle={formToggle}
       showModal={toggleImage}
+      productId={productId}
+      postData={postData}
       />
 
 

@@ -7,7 +7,7 @@ import config from '../../../../config.js'
 function Ratings(props) {
 
   const [ratings, setRatings] = useState([])
-  // console.log("WE GOT RATINGS: ", ratings)
+  console.log("WE GOT RATINGS: ", ratings)
   /*
   Data broken down:
   product_id:
@@ -49,7 +49,7 @@ function Ratings(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=40355', {
+      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=40344', {
         headers: {
           Authorization: config.TOKEN
         }
