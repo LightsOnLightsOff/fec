@@ -36,6 +36,7 @@ function Related (props) {
     detail: []
   })
   const [outfit, setOutfit] = useState([{ 0: 'button' }])
+  const [currentStyle, setCurrS] = useState([{ salePrice: '', photo: '' }])
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -272,13 +273,15 @@ function Related (props) {
         />
         <Outfit
           currentProduct={currentProduct}
-          settings={settings}
+          // settings={settings}
           findstyleByid={findstyleByid}
           clickProduct={clickProduct}
           imgs={imgs}
           style={style}
           outfit={outfit}
           setOutfit={setOutfit}
+          currentStyle={currentStyle}
+          setCurrS={setCurrS}
         />
       </div>
     )

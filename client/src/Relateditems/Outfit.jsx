@@ -11,21 +11,33 @@ import config from '../../../.config.js'
 
 function Outfit ({
   currentProduct,
-  settings,
+  // settings,
   style,
   imgs,
   findstyleByid,
   outfit,
-  setOutfit
+  setOutfit,
+  currentStyle,
+  setCurrS
 }) {
-  // const [outfit, setOutfit] = useState([{ 0: 'button' }])
-  const [currentStyle, setCurrS] = useState({ salePrice: '', photo: '' })
   const [clicked,setC] = useState(false);
   const imgStyles = {
     width: '100%',
     height: '320px',
     objectFit: 'cover'
     // position: 'absolute'
+  }
+
+  const settings = {
+    lazyload: true,
+    nav: false,
+    mouseDrag: true,
+    loop: false,
+    items: 3,
+    gutter: 20,
+    edgePadding: 200
+    // controls: true,
+    // controlsContainer: '.controls'
   }
 
   var clickPlus = function (e) {
@@ -41,8 +53,8 @@ function Outfit ({
 
   var findCurrentStyle = function (id) {
     findstyleByid(id).then(res => {
-      console.log('currentstyle', res)
-      setCurrS(res)
+      console.log('currentstyle invoke after mounting', res)
+      setCurrS(pre=>[...pre,res])
     })
   }
 
@@ -51,7 +63,7 @@ function Outfit ({
     findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('      outfit', outfit)
+  console.log('      outfit before rendering', outfit)
   return (
     <div>
 
@@ -65,13 +77,13 @@ function Outfit ({
       <div className='slider'>
         <TinySlider settings={settings}>
           {outfit.map((item, index) => {
-            console.log('outfittttt',  index,currentStyle.photo)
+            console.log('Loop index and current photo',  index,currentStyle[index])
             return (
               <section key={index} className='outfitSlider'>
                 <img
                   // onClick={clickProduct}
                   className={`tns-lazy-img`}
-                  data-src={currentStyle.photo &&  currentStyle.photo }
+                  data-src={currentStyle[index].photo &&  currentStyle[index].photo }
                   style={index === 0 ? { display: 'none' } : imgStyles}
                   name={item.id}
                 />
