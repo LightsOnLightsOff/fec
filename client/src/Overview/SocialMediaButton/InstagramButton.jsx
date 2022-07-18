@@ -5,7 +5,7 @@ function InstagramButton ({onOpen}) {
 
   return (
     <span id = 'instagram-button'>
-      <img className = 'social-media-button' onClick = {onOpen} src={instagramURL} />
+      <img className = 'social-media-button' onClick = {onOpen} src={instagramURL} style = {{cursor: 'pointer'}}/>
     </span>
   )
 }

@@ -28,10 +28,10 @@ function SizeSelector ({skus, activateQuantity, setSizeOption, setQuantityAvaila
   if (sizeArray.length){
     return (
       <span>
-          <select onChange = {handleSelect}>
+          <select onChange = {handleSelect} className = 'drop-down-menu'>
             <option selected value ='Select Size'>Select Size</option>
             {sizeArray.map(size => {
-              return <option value = {size}>{size}</option>
+              return <option value = {size} key = {size}>{size}</option>
             })}
           </select>
       </span>
