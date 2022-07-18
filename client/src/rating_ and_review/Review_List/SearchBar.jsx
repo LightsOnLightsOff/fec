@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReviewList from './ReviewList.jsx'
+import Ratings from '../Rating_Breakdown/Ratings.jsx'
 import styled from 'styled-components';
 import axios from 'axios'
 import config from '../../../../config.js'
@@ -32,7 +33,7 @@ function SearchBar(props) {
       }) //end of axios get req
       const newData = await response.data
       //update the data but in pairs
-      console.log("THIS IS NEW DATA.DATA: ", newData)
+      // console.log("THIS IS NEW DATA.DATA: ", newData)
       var splitData = newData.results.reduce((result, value, index, array) => {
         if (index % 2 === 0) {
           result.push(array.slice(index, index + 2))
@@ -102,7 +103,7 @@ function SearchBar(props) {
       return eachReview.summary.toLowerCase().includes(searchReview.toLowerCase()) || eachReview.body.toLowerCase().includes(searchReview.toLowerCase())
     })
 
-    console.log("SEARCHED DATA: ", filterData)
+    // console.log("SEARCHED DATA: ", filterData)
     const splitFilter = filterData.reduce((result, value, index, array) => {
       if (index % 2 === 0) {
         result.push(array.slice(index, index + 2))
@@ -110,9 +111,11 @@ function SearchBar(props) {
       return result
     }, [])
 
-    console.log("WHAT IS SPLIT FILTER: ", splitFilter)
+    // console.log("WHAT IS SPLIT FILTER: ", splitFilter)
   return (
-    <div>
+    <div className="rating">
+        <Ratings />
+      <div>
       <Input onChange={(e) => {setSearchReview(e.target.value)}} type="text" placeholder="Search Reviews"></Input>
       <ReviewList
       setDisplayButton={setDisplayButton}
@@ -132,6 +135,8 @@ function SearchBar(props) {
       currentReviewId={currentReviewId} />
 
     </div>
+    </div>
+
   )
   }
 }

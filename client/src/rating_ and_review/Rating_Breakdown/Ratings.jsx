@@ -7,7 +7,7 @@ import config from '../../../../config.js'
 function Ratings(props) {
 
   const [ratings, setRatings] = useState([])
-  console.log("WE GOT RATINGS: ", ratings)
+  // console.log("WE GOT RATINGS: ", ratings)
   /*
   Data broken down:
   product_id:

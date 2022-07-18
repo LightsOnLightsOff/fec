@@ -190,6 +190,9 @@ margin: 0px;
 padding: 0px;
 width: 90px;
 text-decoration: underline;
+&:hover {
+  cursor: pointer;
+}
 
 `
 
