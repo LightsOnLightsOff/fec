@@ -38,7 +38,7 @@ function Related (props) {
     features: [],
     detail: []
   })
-  const [outfit, setOutfit] = useState([{ 0: 'button' }])
+  const [outfit, setOutfit] = useState([[{ detail:{category: '',name:''} }]])
   const [currentStyle, setCurrS] = useState([{ salePrice: '', photo: '' }])
 
   var getRelatedProduct = function (id) {
@@ -253,7 +253,7 @@ function Related (props) {
         <div className='slider'>
         <Slider {...settings}>
             {product.map((item, index) => {
-              console.log('####Loop through index and style',index,style)
+              {/* console.log('####Loop through index and style',index,style) */}
               return (
                 <section key={index}>
                   <ImgandButton
@@ -294,6 +294,7 @@ function Related (props) {
           setOutfit={setOutfit}
           currentStyle={currentStyle}
           setCurrS={setCurrS}
+          rating={rating}
         />
       </div>
     )
