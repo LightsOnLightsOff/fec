@@ -30,11 +30,12 @@ function Related (props) {
     features: []
   })
   const [compareProduct, setCompare] = useState({
-    id:'',
+    id: '',
     name: '',
     features: [],
-    detail:[]
+    detail: []
   })
+  const [outfit, setOutfit] = useState([{ 0: 'button' }])
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -50,7 +51,7 @@ function Related (props) {
   var updateProductByid = function (id) {
     return getRelatedProduct(id)
       .then(res => {
-        console.log('Related products for id:', res.data)
+        // console.log('Related products for id:', res.data)
         var related = res.data
         setR(related)
         var promise = axios.all(
@@ -141,8 +142,8 @@ function Related (props) {
           })
         })
         .then(res => {
-          console.log('array of averages', res);
-          setRating(res);
+          // console.log('array of averages', res)
+          setRating(res)
         })
     )
   }
@@ -158,10 +159,10 @@ function Related (props) {
         }
       )
       .then(({ data }) => {
-        console.log('current product', data.features)
+        // console.log('product feature of current product', data.features)
         var f = data.features.map(item => item.value)
         setCurrent(pre => {
-          return { ...pre, name: data.name, features: f,detail:data,id:id }
+          return { ...pre, name: data.name, features: f, detail: data, id: id }
         })
       })
   }
@@ -177,7 +178,7 @@ function Related (props) {
           })
         )
         .then(res => {
-          // console.log('array of styles', res)
+          // console.log('THIS IS ONCE array of styles', res)
           setStyle(res)
         })
     })
@@ -223,7 +224,7 @@ function Related (props) {
     loop: false,
     items: 3,
     gutter: 20,
-    edgePadding: 200,
+    edgePadding: 200
     // controls: true,
     // controlsContainer: '.controls'
   }
@@ -237,8 +238,8 @@ function Related (props) {
   ) {
     return (
       <div>
-        <div className='slider'>
         <h4 className='title'>RELATED PRODUCTS</h4>
+        <div className='slider'>
           <TinySlider settings={settings}>
             {product.map((item, index) => {
               return (
@@ -251,7 +252,12 @@ function Related (props) {
                     clickProduct={clickProduct}
                     clickStar={clickStar}
                   />
-                  <Description item={item} style={style} index={index} rating={rating} />
+                  <Description
+                    item={item}
+                    style={style}
+                    index={index}
+                    rating={rating}
+                  />
                 </section>
               )
             })}
@@ -264,7 +270,16 @@ function Related (props) {
           closeModal={closeModal}
           show={show}
         />
-         <Outfit currentProduct={currentProduct} settings={settings} findstyleByid={findstyleByid} clickProduct={clickProduct} imgs={imgs} style={style} />
+        <Outfit
+          currentProduct={currentProduct}
+          settings={settings}
+          findstyleByid={findstyleByid}
+          clickProduct={clickProduct}
+          imgs={imgs}
+          style={style}
+          outfit={outfit}
+          setOutfit={setOutfit}
+        />
       </div>
     )
   }

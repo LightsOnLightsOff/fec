@@ -12,13 +12,13 @@ import config from '../../../.config.js'
 function Outfit ({
   currentProduct,
   settings,
-  control,
   style,
-  clickProduct,
   imgs,
-  findstyleByid
+  findstyleByid,
+  outfit,
+  setOutfit
 }) {
-  const [outfit, setOutfit] = useState([{ 0: 'button' }])
+  // const [outfit, setOutfit] = useState([{ 0: 'button' }])
   const [currentStyle, setCurrS] = useState({ salePrice: '', photo: '' })
   const [clicked,setC] = useState(false);
   const imgStyles = {
@@ -28,13 +28,14 @@ function Outfit ({
     // position: 'absolute'
   }
 
-  var clickPlus = function () {
+  var clickPlus = function (e) {
     if(!clicked){
       setOutfit(pre => {
+
         return [...pre, [currentProduct]]
       })
     }
-    console.log('currentProduct.id',currentProduct.id)
+    console.log('     currentProduct:',currentProduct)
     setC(true);
   }
 
@@ -46,11 +47,11 @@ function Outfit ({
   }
 
   useEffect(() => {
-    console.log('List of current', currentProduct);
+    // console.log('ONCE List of variable currentProduct', outfit,currentProduct);
     findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('styleof localllll', currentStyle.photo)
+  console.log('      outfit', outfit)
   return (
     <div>
 
@@ -64,12 +65,11 @@ function Outfit ({
       <div className='slider'>
         <TinySlider settings={settings}>
           {outfit.map((item, index) => {
-            console.log('outfittttt', item[0], index,currentStyle.photo)
-
+            console.log('outfittttt',  index,currentStyle.photo)
             return (
               <section key={index} className='outfitSlider'>
                 <img
-                  onClick={clickProduct}
+                  // onClick={clickProduct}
                   className={`tns-lazy-img`}
                   data-src={currentStyle.photo &&  currentStyle.photo }
                   style={index === 0 ? { display: 'none' } : imgStyles}
@@ -87,23 +87,4 @@ function Outfit ({
 }
 
 export default Outfit
-// if (index === 0) {
-//   console.log('item and index',item,index)
-//   return (
-//     <FontAwesomeIcon
-//       icon={faCirclePlus}
-//       size='3x'
-//       className='plus-button'
-//       onClick={clickPlus}
-//       key={index}
-//     />
-//   )
-// }
-// else {
-//   console.log('index is not 0',index,item)
-//   return (
-//     <section key={index}>
-//     <p>wolunlun</p>
-//     </section>
-//   )
-// }
+

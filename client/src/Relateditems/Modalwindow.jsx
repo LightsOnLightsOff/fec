@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Modal ({currentProduct,compareProduct,closeModal,show}) {
-
+  // useEffect(()=>console.log('ONCE MODAL'),[])
 
   return (
     <div className='modal-container' style={show ? null : { display: 'none' }}>
