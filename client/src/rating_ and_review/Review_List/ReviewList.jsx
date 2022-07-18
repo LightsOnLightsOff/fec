@@ -81,6 +81,13 @@ function ReviewList(props) {
 
   }
 
+  //this will filter out the info in the search bar
+  const filter = (changeData, changeProduct) => {
+    setData(changeData)
+    setProduct(changeProduct)
+
+  }
+
   //sort the data based off what was clicked on
   const sortData = (value) => {
     var sortData;
@@ -217,7 +224,7 @@ function ReviewList(props) {
       <div className="review">
 
         <Sorting sortData={sortData} data={data} /> {/* Pass down the data to here to filter */}
-        <SearchBar />
+        <SearchBar filter={filter} data={data} />
 
         <div className="reviewList">
 
