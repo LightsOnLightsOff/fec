@@ -3,6 +3,7 @@ import axios from 'axios'
 import Review from './Review.jsx'
 import Sorting from '../Sorting/Sorting.jsx'
 import NewReview from "../New_Review/NewReview.jsx"
+import SearchBar from './SearchBar.jsx'
 import Moment from 'moment'
 import config from '../../../../config.js'
 
@@ -130,8 +131,6 @@ function ReviewList(props) {
       setData(relevantData)
       setProduct(splitDataAgain)
 
-
-
     }
 
 
@@ -218,7 +217,7 @@ function ReviewList(props) {
       <div className="review">
 
         <Sorting sortData={sortData} data={data} /> {/* Pass down the data to here to filter */}
-
+        <SearchBar />
 
         <div className="reviewList">
 
