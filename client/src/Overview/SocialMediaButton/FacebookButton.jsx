@@ -5,7 +5,7 @@ function FacebookButton ({onOpen}) {
 
   return (
     <span id = 'facebook-button'>
-      <img className = 'social-media-button' onClick = {onOpen} src={facebookURL} />
+      <img className = 'social-media-button' onClick = {onOpen} src={facebookURL} style = {{cursor: 'pointer'}}/>
     </span>
   )
 }

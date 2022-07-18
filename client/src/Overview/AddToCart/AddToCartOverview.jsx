@@ -20,8 +20,6 @@ function AddToCartOverview ({skus, productName, styleName, thumbnailURL, default
     }
   }
 
-  console.log(itemsInCart, 'current Cart Status in AddCartOverview')
-
   return (
     <div>
       <div className = 'add-to-cart-section'>

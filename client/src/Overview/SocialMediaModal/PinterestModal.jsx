@@ -35,8 +35,8 @@ function PinterestModal ({open, onClose}) {
           <div>Message</div>
             <input value = {messageLinePinterest} onChange = {handleChangeMessageLine} placeholder = 'Send a Message'></input>
             {submit && !messageLinePinterest ? <div>Please enter a valid message.</div> : null}
-          <div>
-            <button onClick = {handleSubmit}>Send!</button>
+          <div className = 'send-social-modal'>
+            <button onClick = {handleSubmit} style = {{cursor: 'pointer'}}>Send!</button>
           </div>
         </div>
       </div>
