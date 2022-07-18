@@ -30,6 +30,7 @@ function Related (props) {
     features: []
   })
   const [compareProduct, setCompare] = useState({
+    id:'',
     name: '',
     features: [],
     detail:[]
@@ -160,7 +161,7 @@ function Related (props) {
         console.log('current product', data.features)
         var f = data.features.map(item => item.value)
         setCurrent(pre => {
-          return { ...pre, name: data.name, features: f,detail:data }
+          return { ...pre, name: data.name, features: f,detail:data,id:id }
         })
       })
   }
@@ -176,7 +177,7 @@ function Related (props) {
           })
         )
         .then(res => {
-          console.log('array of styles', res)
+          // console.log('array of styles', res)
           setStyle(res)
         })
     })
@@ -188,7 +189,7 @@ function Related (props) {
     setDiff(0)
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
-    console.log('I am clicking the picuture id:', clickedId)
+    // console.log('I am clicking the picuture id:', clickedId)
     findFeature(clickedId)
     updateProductByid(clickedId).then(related => {
       axios
@@ -206,7 +207,7 @@ function Related (props) {
 
   var clickStar = function (item) {
     setShow(true)
-    console.log('modal window for comparison', item.features)
+    // console.log('modal window for comparison', item.features)
     var f = item.features.map(obj => obj.value)
     setCompare({ name: item.name, features: f })
   }
@@ -227,7 +228,7 @@ function Related (props) {
     // controlsContainer: '.controls'
   }
 
-  console.log('product &&&&&& style ', product, style, currentProduct)
+  // console.log('product &&&&&& style ', product, style, currentProduct)
 
   if (
     product.length > 1 &&
@@ -263,7 +264,7 @@ function Related (props) {
           closeModal={closeModal}
           show={show}
         />
-         <Outfit currentProduct={currentProduct} settings={settings} clickProduct={clickProduct} imgs={imgs} style={style} />
+         <Outfit currentProduct={currentProduct} settings={settings} findstyleByid={findstyleByid} clickProduct={clickProduct} imgs={imgs} style={style} />
       </div>
     )
   }

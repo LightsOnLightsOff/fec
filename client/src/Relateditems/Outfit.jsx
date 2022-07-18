@@ -15,9 +15,11 @@ function Outfit ({
   control,
   style,
   clickProduct,
-  imgs
+  imgs,
+  findstyleByid
 }) {
   const [outfit, setOutfit] = useState([{ 0: 'button' }])
+  const [currentStyle, setCurrS] = useState({ salePrice: '', photo: '' })
   const imgStyles = {
     width: '100%',
     height: '320px',
@@ -29,6 +31,14 @@ function Outfit ({
     setOutfit(pre => {
       return [...pre, [currentProduct]]
     })
+    console.log('currentProduct.id',currentProduct.id)
+    findCurrentStyle(currentProduct.id)
+  }
+  var findCurrentStyle = function (id) {
+    findstyleByid(id).then(res => {
+      console.log('currentstyle', res)
+      setCurrS(res)
+    })
   }
 
   useEffect(() => {
@@ -37,7 +47,7 @@ function Outfit ({
 
   return (
     <div>
-
+      {console.log('styleof localllll', currentStyle.photo)}
       <h4 className='title'> YOUR OUTFIT</h4>
       <FontAwesomeIcon
         icon={faCirclePlus}
@@ -47,16 +57,16 @@ function Outfit ({
       />
       <div className='slider'>
         <TinySlider settings={settings}>
-
           {outfit.map((item, index) => {
-            console.log('outfittttt', outfit[index])
+            console.log('outfittttt', item[0], index,currentStyle.photo)
+
             return (
               <section key={index} className='outfitSlider'>
                 <img
                   onClick={clickProduct}
                   className={`tns-lazy-img`}
-                  data-src={style[index].photo ? style[index].photo : imgs}
-                  style={imgStyles}
+                  data-src={currentStyle.photo &&  currentStyle.photo }
+                  style={index === 0 ? { display: 'none' } : imgStyles}
                   name={item.id}
                 />
               </section>

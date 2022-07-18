@@ -22,7 +22,7 @@ function Modal ({currentProduct,compareProduct,closeModal,show}) {
         </thead>
         {currentProduct.features.map((item, index) => {
           {
-            console.log('current modal window information', item)
+            {/* console.log('current modal window information', item) */}
           }
           if (item) {
             return (
@@ -39,11 +39,11 @@ function Modal ({currentProduct,compareProduct,closeModal,show}) {
           }
         })}
         {compareProduct.features.map((item, index) => {
-          console.log(
+          {/* console.log(
             'modal window information',
             item,
             currentProduct.features.includes(item)
-          )
+          ) */}
           if (item && !currentProduct.features.includes(item)) {
             return (
               <thead key={index}>
