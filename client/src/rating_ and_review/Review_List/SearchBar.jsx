@@ -21,8 +21,10 @@ function SearchBar(props) {
   const [count, setCount] = useState(1)
   //var updateData = [] //storing the data but in pairs
   const [currentReviewId, setCurrentReviewId] = useState('') //check if the helpful already clicked
+  const [filterStarRating, setFilterStarRating] = useState(false) //check if we need to filter out the star
+  const [numStar, setNumStar] = useState(0)
 
-
+// console.log("THIS IS THE SET DATA IN SEARCH BAR: ", data)
 
   useEffect(() => {
     const getData = async () => {
@@ -75,23 +77,18 @@ function SearchBar(props) {
 
   }
 
+  const filterByStar = (num) => {
+    if (num === numStar && filterStarRating) {
+      setFilterStarRating(false)
+    } else {
+      setFilterStarRating(true)
+      setNumStar(num)
 
-    // if (data) {
-    //   const filterData = data.filter((eachReview) => {
-    //     return eachReview.summary.toLowerCase().includes(searchReview.toLowerCase()) ||
-    //     eachReview.body.toLowerCase().includes(searchReview.toLowerCase())
-    //   })
+    }
 
-    //   console.log("SEARCHED DATA: ", filterData)
-    //   const splitFilter = filterData.reduce((result, value, index, array) => {
-    //     if (index % 2 === 0) {
-    //       result.push(array.slice(index, index + 2))
-    //     }
-    //     return result
-    //   }, [])
+  }
 
-    //   console.log("WHAT IS SPLIT FILTER: ", splitFilter)
-    // }
+
 
 
 
@@ -99,12 +96,20 @@ function SearchBar(props) {
 
 
   if (product) {
-    const filterData = data.filter((eachReview) => {
+    var filterData;
+    var splitFilter
+    filterData = data.filter((eachReview) => {
       return eachReview.summary.toLowerCase().includes(searchReview.toLowerCase()) || eachReview.body.toLowerCase().includes(searchReview.toLowerCase())
     })
 
+    if (filterStarRating) {
+      filterData = filterData.filter((eachReview) => {
+        return eachReview.rating === numStar
+      })
+    }
+
     // console.log("SEARCHED DATA: ", filterData)
-    const splitFilter = filterData.reduce((result, value, index, array) => {
+    splitFilter = filterData.reduce((result, value, index, array) => {
       if (index % 2 === 0) {
         result.push(array.slice(index, index + 2))
       }
@@ -114,7 +119,7 @@ function SearchBar(props) {
     // console.log("WHAT IS SPLIT FILTER: ", splitFilter)
   return (
     <div className="rating">
-        <Ratings />
+        <Ratings filterByStar={filterByStar} />
       <div>
       <Input onChange={(e) => {setSearchReview(e.target.value)}} type="text" placeholder="Search Reviews"></Input>
       <ReviewList

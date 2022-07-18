@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-function Stars({ rate, recommended }) {
+function Stars({ rate, recommended, filterByStar}) {
 
   // console.log("RATE IN STARS: ", rate)
 
@@ -55,7 +55,7 @@ function Stars({ rate, recommended }) {
       <h4>{Math.round((recommended['true'] / recommendTotal) * 100)}% of reviews recommend this product</h4>
 
       <StarBreakdown>
-        <NumStar>5 stars</NumStar>
+        <NumStar onClick={() => {filterByStar(5)}}>5 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[4]}> </Breakdown>
         </Container>
@@ -64,26 +64,26 @@ function Stars({ rate, recommended }) {
         {/* <AnotherBreakDown></AnotherBreakDown> */}
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>4 stars</NumStar>
+        <NumStar onClick={() => {filterByStar(4)}}>4 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[3]}> </Breakdown>
         </Container>
         {/* <AnotherBreakDown></AnotherBreakDown> */}
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>3 stars</NumStar>
+        <NumStar onClick={() => {filterByStar(3)}}>3 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[2]}> </Breakdown>
         </Container>
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>2 stars</NumStar>
+        <NumStar onClick={() => {filterByStar(2)}}>2 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[1]}> </Breakdown>
         </Container>
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>1 stars</NumStar>
+        <NumStar onClick={() => {filterByStar(1)}}>1 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[0]}> </Breakdown>
         </Container>
