@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
-import AddQuestionButton from './AddQuestionButton.jsx';
+// import AddQuestionButton from './AddQuestionButton.jsx';
 import MoreQuestions from './MoreQuestions.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
 import config from '../../../config.js'
