@@ -21,6 +21,7 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
     .then(res => {
       let styleGuide = res.data;
       setStyles(styleGuide.results)
+      console.log (styleGuide.results, 'this is the styleguide')
     })
   }, [])
 

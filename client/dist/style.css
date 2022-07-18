@@ -216,6 +216,14 @@
   cursor: pointer;
 }
 
+.original-price-strikethrough{
+  text-decoration: line-through;
+}
+
+.sale-price {
+  color: red;
+}
+
 .q-and-a {
   padding: 100px
 }

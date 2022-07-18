@@ -53,7 +53,13 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
                     {featureValue[0]}: {featureValue[1]}
                   </div>
         })}
-        {originalPrice && !salePrice ? <div>Price: {originalPrice}</div> : <div>Sale Price! {originalPrice} {salePrice}</div>}
+        {originalPrice && !salePrice ? <div>Price: {originalPrice}</div> :
+          <div>
+            <span >Sale Price! </span>
+            <span className = 'original-price-strikethrough'>{originalPrice}</span>
+            <span className = 'sale-price'>    {salePrice}</span>
+          </div>
+        }
         <div>{slogan}</div>
         <div>{description}</div>
     </div>
