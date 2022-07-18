@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 function Stars({ rate, recommended }) {
 
+  // console.log("RATE IN STARS: ", rate)
+
   // console.log("RATe: ", rate)
   const keys = Object.keys(rate)
   const values = Object.values(rate)
@@ -30,6 +32,18 @@ function Stars({ rate, recommended }) {
     recommendTotal += Number(key)
   })
   // console.log("recommendTotal: ", recommendTotal)
+  var totalStars = 0
+  values.forEach((key) => {
+    totalStars += Number(key)
+  })
+
+
+
+  const eachStar = values.map((each) => {
+    return Math.round((each * 100) / totalStars) + "%"
+  })
+
+  //  console.log("TOTAL  Each STARS: ", eachStar)
 
 
 
@@ -42,25 +56,37 @@ function Stars({ rate, recommended }) {
 
       <StarBreakdown>
         <NumStar>5 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <Container>
+        <Breakdown starAvg={eachStar[4]}> </Breakdown>
+        </Container>
+
+
         {/* <AnotherBreakDown></AnotherBreakDown> */}
       </StarBreakdown>
       <StarBreakdown>
         <NumStar>4 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <Container>
+        <Breakdown starAvg={eachStar[3]}> </Breakdown>
+        </Container>
         {/* <AnotherBreakDown></AnotherBreakDown> */}
       </StarBreakdown>
       <StarBreakdown>
         <NumStar>3 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <Container>
+        <Breakdown starAvg={eachStar[2]}> </Breakdown>
+        </Container>
       </StarBreakdown>
       <StarBreakdown>
         <NumStar>2 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <Container>
+        <Breakdown starAvg={eachStar[1]}> </Breakdown>
+        </Container>
       </StarBreakdown>
       <StarBreakdown>
         <NumStar>1 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <Container>
+        <Breakdown starAvg={eachStar[0]}> </Breakdown>
+        </Container>
       </StarBreakdown>
 
 
@@ -91,30 +117,58 @@ const StarBaby = styled.span`
 `;
 
 const StarBreakdown = styled.div`
+
   display: flex;
   flex-direction: row;
   padding-bottom: 10px
 
 
 `;
+/**
+
+    left: -20;
+    right: 0px;
+    left: -30;
+    left: -20px;
+    top: 2px;
+
+ */
+
+const Container = styled.div`
+width: 230px;
+height: 8px;
+position: relative;
+background-color: #ddd;
+
+left: -20;
+    right: 0px;
+    left: -30;
+    left: -20px;
+    top: 4px;
+
+
+`;
+
+//&:after {
+
+//   background-color: blue;
+//   width: 200px;
+
+//   left: 0;
+//   top: 0;
+
+//   overflow: hidden;
+// }
+
 
 const Breakdown = styled.span`
-  width: 200px;
+  width: ${props => {return props.starAvg}};
   height: 8px;
   border-width: thin;
-  margin-top: 4px;
-  margin-left: 10px;
-  background-color: #ddd;
-  &:after {
-    position: relative;
-    background-color: black;
-    width: 200px;
-    height: 8px;
-    left: 0;
-    top: 0;
 
-    overflow: hidden;
-  }
+  background-color: #f80;
+  position: absolute;
+
 `;
 // position: absolute;
 //     left: 0;

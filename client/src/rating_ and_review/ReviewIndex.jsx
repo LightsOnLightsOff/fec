@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewList from './Review_List/ReviewList.jsx'
 import Ratings from './Rating_Breakdown/Ratings.jsx'
+import SearchBar from './Review_List/SearchBar.jsx'
 import styled from 'styled-components';
 
 function ReviewIndex(props) {
@@ -11,9 +12,9 @@ function ReviewIndex(props) {
 
       <RatingAndReview>Rating & Reviews &#128161; &#x1F4A1; <Bear>ʕ•ᴥ•ʔ</Bear></RatingAndReview>
       <div className="rating">
-        <Ratings /> {/*this component will have product is passed down here as well */}
-
-        <ReviewList /> {/*this componenet will have product id passed down */}
+         <Ratings />  {/*this component will have product is passed down here as well */}
+        <SearchBar />
+        {/*<ReviewList /> this componenet will have product id passed down */}
 
       </div>
 
