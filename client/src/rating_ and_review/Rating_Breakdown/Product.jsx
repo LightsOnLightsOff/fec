@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 function Product({ ratings }) {
-  console.log("WHAT IS THE RATING: ", ratings)
+  // console.log("WHAT IS THE RATING: ", ratings)
   const character = ratings.characteristics
   // console.log('ratings.characteristics', Math.round(Number(character.Fit.value)) + "0%")
 
