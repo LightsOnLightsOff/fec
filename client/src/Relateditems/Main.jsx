@@ -221,17 +221,24 @@ function Related (props) {
     setShow(false)
   }
 
+  // const settings = {
+  //   lazyload: true,
+  //   nav: false,
+  //   mouseDrag: true,
+  //   loop: false,
+  //   items: 3,
+  //   gutter: 20,
+  //   edgePadding: 200
+  //   controls: true,
+  //   controlsContainer: '.controls'
+  // }
   const settings = {
-    lazyload: true,
-    nav: false,
-    mouseDrag: true,
-    loop: false,
-    items: 3,
-    gutter: 20,
-    edgePadding: 200
-    // controls: true,
-    // controlsContainer: '.controls'
-  }
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  };
 
   // console.log('product &&&&&& style ', product, style, currentProduct)
 
@@ -244,7 +251,7 @@ function Related (props) {
       <div>
         <h4 className='title'>RELATED PRODUCTS</h4>
         <div className='slider'>
-          <TinySlider settings={settings}>
+        <Slider {...settings}>
             {product.map((item, index) => {
               return (
                 <section key={index}>
@@ -265,7 +272,7 @@ function Related (props) {
                 </section>
               )
             })}
-          </TinySlider>
+            </Slider>
           <Control style={style} />
         </div>
         <Modal
