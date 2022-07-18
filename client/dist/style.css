@@ -281,7 +281,7 @@ overflow-y: auto; */
 /* ReviewList */
 .reviewList {
   /* border: #000 solid; */
-  max-height: 600px;
+  max-height: 700px;
   overflow-y: auto;
   width: 900px;
   overflow-x: auto;
