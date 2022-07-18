@@ -32,7 +32,6 @@ function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClick
     if (index < (length - 1)) {
       setIndex(index + 1)
     }
-    console.log (index, 'index in R arrorw click')
     setRightArrowClicked(true);
     setNewIndex(index)
   }

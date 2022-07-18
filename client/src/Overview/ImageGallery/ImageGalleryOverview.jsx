@@ -18,9 +18,6 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   const [leftArrowClicked, setLeftArrowClicked] = useState(false);
   const [newIndex, setNewIndex] = useState(0);
 
-  console.log(newIndex, 'index')
-
-
   if (leftArrowClicked) {
     setLeftArrowClicked(false);
     setStyleIndex(newIndex)

@@ -24,7 +24,6 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
      }
     })
     .then(res => {
-      //console.log('this is the response', res.data)
       let productDetail = res.data;
       var featureValue = productDetail.features;
       for (let i = 0; i < featureValue.length; i++) {
