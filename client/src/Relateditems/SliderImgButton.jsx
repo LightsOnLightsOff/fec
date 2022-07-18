@@ -29,8 +29,7 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar }) {
       </button>
       <img
         onClick={clickProduct}
-        className={`tns-lazy-img`}
-        data-src={style[index].photo ? style[index].photo : imgs}
+        src={style[index].photo ? style[index].photo : imgs}
         style={imgStyles}
         name={item.id}
       />

@@ -5,7 +5,7 @@ import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import config from '../../../.config.js'
+import config from '../../../config.js'
 import ImgandButton from './SliderImgButton.jsx'
 import Description from './SliderDescription.jsx'
 import Control from './SliderControl.jsx'
@@ -253,6 +253,7 @@ function Related (props) {
         <div className='slider'>
         <Slider {...settings}>
             {product.map((item, index) => {
+              console.log('####Loop through index and style',index,style)
               return (
                 <section key={index}>
                   <ImgandButton
@@ -263,6 +264,7 @@ function Related (props) {
                     clickProduct={clickProduct}
                     clickStar={clickStar}
                   />
+
                   <Description
                     item={item}
                     style={style}

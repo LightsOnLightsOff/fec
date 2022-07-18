@@ -6,7 +6,7 @@ import 'tiny-slider/dist/tiny-slider.css'
 import Control from './SliderControl.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
-import config from '../../../.config.js'
+import config from '../../../config.js'
 // import OutfitImage from './OutfitImage.jsx'
 
 function Outfit ({
@@ -47,7 +47,7 @@ function Outfit ({
         return [...pre, [currentProduct]]
       })
     }
-    console.log('     currentProduct:',currentProduct)
+    console.log('currentProduct:',currentProduct)
     setC(true);
   }
 
@@ -77,13 +77,11 @@ function Outfit ({
       <div className='slider'>
         <TinySlider settings={settings}>
           {outfit.map((item, index) => {
-            console.log('Loop index and current photo',  index,currentStyle[index])
+            {/* console.log('Loop index and current photo',  index,currentStyle) */}
             return (
               <section key={index} className='outfitSlider'>
                 <img
-                  // onClick={clickProduct}
-                  className={`tns-lazy-img`}
-                  data-src={currentStyle[index].photo &&  currentStyle[index].photo }
+                  src={currentStyle[index].photo &&  currentStyle[index].photo }
                   style={index === 0 ? { display: 'none' } : imgStyles}
                   name={item.id}
                 />
