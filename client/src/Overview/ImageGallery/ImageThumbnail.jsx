@@ -26,7 +26,6 @@ function ImageThumbnail ({show, children}) {
 
   return (
     <div>
-      <div>---------------Image Thumbnail--------------</div>
       <div className = 'carousel-container-thumbnail'>
         <div className = 'carousel-wrapper'>
           {(index > 0) && <button className = 'left-arrow' onClick = {previousImage}>&lt;</button>}

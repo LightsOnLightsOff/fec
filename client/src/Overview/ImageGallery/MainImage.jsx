@@ -42,7 +42,6 @@ function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClick
 
   return (
     <div>
-      <div>---------------Main Image--------------</div>
       <div className = 'carousel-overall'>
         <div className = 'carousel-container'>
           <div className = 'carousel-wrapper' >

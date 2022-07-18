@@ -17,7 +17,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
   var checkLogo = 'https://i.pinimg.com/originals/c7/75/fc/c775fc6d3433da085d8f579f54b7c758.jpg';
 
   useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65633', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344', {
      params: { page: 1, count: 1 },
      headers: {
        Authorization: config.TOKEN
@@ -42,7 +42,6 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
 
   return (
     <div>
-      <div>------------------List of Product Details--------------</div>
         <div>{category}</div>
         <div>{name}</div>
         <div>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div>
