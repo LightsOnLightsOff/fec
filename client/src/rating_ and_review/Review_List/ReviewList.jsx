@@ -8,85 +8,9 @@ import Moment from 'moment'
 import config from '../../../../config.js'
 
 
-function ReviewList(props) {
-
-  const [displayButton, setDisplayButton] = useState(true) //display button only if there are more reviews
-  //const [count, setCount] = useState(0) //this will display two reviews at a time
-  const [product, setProduct] = useState([]) //storing the data of results
-  const [data, setData] = useState([])
-  const [relevantData, setRelevantData] = useState([])
-  const [productId, setProductId] = useState('') //TEMP KEEP THIS UNTIL WE USE USECONTEXT
-  const [count, setCount] = useState(1)
-  //var updateData = [] //storing the data but in pairs
-  const [currentReviewId, setCurrentReviewId] = useState('')
-  // console.log("Product : ", product)
-  //  console.log('DATA: ', data)
-  //  console.log("PRODUCTID OVER HERE LOOK HERE LOOK HERE PLEASE: ", productId)
+function ReviewList({setDisplayButton, setProduct, setData, setRelevantData, setProductId, setCount, setCurrentReviewId, splitFilter, filterData, relevantData, productId, renderMoreReviews, count, displayButton, currentReviewId }) {
 
 
-
-  /* Everytime the user clicks on a related products, state changes in the index.jsx and will pass down the new product_id */
-
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344&count=200&sort=relevant', {
-        headers: {
-          Authorization: config.TOKEN
-        }
-      }) //end of axios get req
-      const newData = await response.data
-      //update the data but in pairs
-      console.log("THIS IS NEW DATA.DATA: ", newData)
-      var splitData = newData.results.reduce((result, value, index, array) => {
-        if (index % 2 === 0) {
-          result.push(array.slice(index, index + 2))
-        }
-        return result
-      }, [])
-
-      //updateData response.data.results
-      if (splitData.length < 2) {
-        setDisplayButton(true)
-      }
-      setRelevantData(newData.results)
-      setData(newData.results)
-      setProduct(splitData)
-      setProductId(newData.product)
-
-    }
-    //invoke the getData
-    getData()
-      //catch the errors
-      .catch((err) => {
-        console.log("ERROR: ", err)
-      })
-
-  }, [props.id]) // use a dependency array, so that we only run this useEffect when id changes
-
-
-  //function when button is clicked will render 2 more reviews
-  const renderMoreReviews = () => {
-    //setCount(count + 1)
-    var increaseCount = count + 1
-    if (product.length === increaseCount) {
-      // //re-render last review and remove button
-      setDisplayButton(false)
-      setCount(count + 1)
-
-    } else {
-      //increment count
-      setCount(count + 1)
-    }
-
-  }
-
-  //this will filter out the info in the search bar
-  const filter = (changeData, changeProduct) => {
-    setData(changeData)
-    setProduct(changeProduct)
-
-  }
 
   //sort the data based off what was clicked on
   const sortData = (value) => {
@@ -97,7 +21,7 @@ function ReviewList(props) {
     //sort the data, reduce the data, change the product
     if(value === ' Newest') {
 
-      sortData = [...data].sort((a,b) => new Date(Moment(b.date).format("YYYY-MM-DD")) - new Date(Moment(a.date).format("YYYY-MM-DD")))
+      sortData = [...filterData].sort((a,b) => new Date(Moment(b.date).format("YYYY-MM-DD")) - new Date(Moment(a.date).format("YYYY-MM-DD")))
       console.log("Sort data newest: ", sortData)
 
       reduceData = sortData.reduce((result, value, index, array) => {
@@ -113,7 +37,7 @@ function ReviewList(props) {
 
     } else if (value === ' Helpful') {
 
-      sortData = [...data].sort((a,b) => b.helpfulness - a.helpfulness)
+      sortData = [...filterData].sort((a,b) => b.helpfulness - a.helpfulness)
       // console.log("Sort data: ", sortData)
 
       reduceData = sortData.reduce((result, value, index, array) => {
@@ -198,6 +122,25 @@ function ReviewList(props) {
 
     }
 
+  }
+
+  //add reported
+
+
+  const addReport = (reviewId) => {
+      const headers = {
+        Authorization: config.TOKEN
+      }
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/report`, null, {headers}  )
+      .then((data) => {
+        console.log("Did we get any data: ", data.data)
+
+      })
+      .catch((err) => {
+        console.log("error from add reporting data: ", err)
+      })
+
+
 
   }
 
@@ -219,25 +162,24 @@ function ReviewList(props) {
   }
 
 
-  if (product) {
+  //if (product) {
     return (
       <div className="review">
 
-        <Sorting sortData={sortData} data={data} /> {/* Pass down the data to here to filter */}
-        <SearchBar filter={filter} data={data} />
+        <Sorting sortData={sortData} data={filterData} /> {/* Pass down the data to here to filter */}
 
         <div className="reviewList">
 
-          <Review productId={productId} addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={product} count={count} />
+          <Review addReport={addReport} productId={productId} addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={splitFilter} count={count} />
 
           {displayButton && <button onClick={renderMoreReviews}>More Reviews</button>}
-          <NewReview postData={postData} productId={productId} />
+          <NewReview postData={postData} productId={splitFilter} />
         </div>
 
       </div>
     )
 
-  }
+  //}
 }
 
 export default ReviewList;
