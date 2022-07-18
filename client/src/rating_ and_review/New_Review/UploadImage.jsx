@@ -5,7 +5,7 @@ import { faCheck, faArrowAltCircleLeft, faUserAstronaut, faFaceLaughWink, faImag
 
 
 
-function UploadImage({setShowImage, showImage}) {
+function UploadImage({ setShowImage, showImage }) {
 
   //const [showImage, setShowImage] = useState([])
   // console.log("SHOW IMAGE: ", showImage)
@@ -46,7 +46,7 @@ function UploadImage({setShowImage, showImage}) {
 
 
   return (
-    <div>
+    <Main>
       <h4>Add a photo</h4>
       <Div>
         <ImageBox onClick={showWidget}>◕‿‿◕</ImageBox>
@@ -55,20 +55,31 @@ function UploadImage({setShowImage, showImage}) {
         {showImage.map((url, index) => {
           index += 1;
           return <Img key={index} src={url} alt="Sorry image cannot upload :("></Img>
-
-
         })}
 
-
-
       </Div>
-    </div>
+
+
+
+
+    </Main>
   )
 }
 
 export default UploadImage;
 
+const Main = styled.div`
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 10px;
+text-align: center;
+
+`;
+
 const ImageBox = styled.div`
+text-align: center;
 font-size: 15px;
 display: flex;
 flex-direction: column;
@@ -84,7 +95,8 @@ border-width: 2px;
 border-radius: 5px;
 &:hover {
   cursor: pointer
-}
+};
+
 
 `;
 
@@ -97,6 +109,10 @@ height: 68px;
 
 const Div = styled.div`
 display: flex;
-flex-direction: row:
+flex-direction: row;
+padding-left: 50px;
+
+
+
 
 `;

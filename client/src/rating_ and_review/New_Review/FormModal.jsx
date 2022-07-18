@@ -22,7 +22,7 @@ function FormModal({ toggle, showModal, productId, postData }) {
 
 
   const [starIndex, setStarIndex] = useState(0)
-  const [recommends, setRecommend] = useState(true)
+  const [recommends, setRecommend] = useState('')
   // console.log("DO YOU RECOMMEND: ", recommend)
   //characteristics
   const [size, setSize] = useState(0)
@@ -45,6 +45,8 @@ function FormModal({ toggle, showModal, productId, postData }) {
 
   const [showImage, setShowImage] = useState([]) //array of url images
   // console.log("THIS IS WHERE THE ARRAY OF PHOTOS WILL GO: ", showImage)
+
+  const [displayError, setDisplayError] = useState(false)
 
   const characteristicsData = [
     { 'character': 'size', '1': 'A size too small', '2': "½ a size too small", '3': "Perfect", '4': "½ a size too big", '5': "A size too wide", 'state': setSize },
@@ -72,19 +74,32 @@ function FormModal({ toggle, showModal, productId, postData }) {
       body: bodys,
       recommend: recommends,
       name: username,
-      email : emails,
-      photos : showImage,
-      characteristics : {}
+      email: emails,
+      photos: showImage,
+      characteristics: {}
 
     }
-    console.log("DATA WE PUT TOGETHER: ", data)
-    setUsername('')
-    setEmail('')
-    setSummary('')
-    setBody('')
-    setStarIndex(0)
-    toggle()
-    postData(data)
+
+    if (starIndex === 0 || summarys.length === 0 || bodys.length > 50 || recommends === ''
+      || username.length === 0 || emails.includes("@")) {
+      setDisplayError(true)
+      setTimeout(() => {
+        setDisplayError(false)
+      }, 3000)
+      return;
+    } else {
+      console.log("DATA WE PUT TOGETHER: ", data)
+      setUsername('')
+      setEmail('')
+      setSummary('')
+      setBody('')
+      setStarIndex(0)
+      toggle()
+      postData(data)
+
+    }
+
+
 
 
   }
@@ -136,28 +151,31 @@ function FormModal({ toggle, showModal, productId, postData }) {
   if (showModal) {
     // console.log("star modal trying to get in here!!!")
     return (
-      <FormOverlay>
+      <FormOverlay >
         <FormWrapper>
-        <button onClick={toggle} className="modal-button">
-          <span>&times;</span>
-        </button>
+          <Button onClick={toggle} className="modal-button">
+            <span>&times;</span>
+          </Button>
           <Forms>
-            <h2>About the <code>**Product Name**</code></h2>
+            <Title>About the <code>**Product Name**</code></Title>
             <OverallAndStar>
               <TextBox>
-                <p>But first, what do I call you?</p>
+                <p>But first, what do I call you?<Need>*</Need></p>
                 <Name type="text" placeholder="jackson11!" value={username} onChange={storeUsername}></Name>
+                {displayError && <Error>Please fill out</Error>}
                 <code> ( ͡° ͜ʖ ͡°) </code>
               </TextBox>
               <TextBox>
-                <p>Please provide your email</p>
+                <p>Please provide your email<Need>*</Need></p>
                 <Name type="text" placeholder="jackson11@email.com" value={emails} onChange={storeEmail}></Name>
+                {displayError && <Error>Please provide valid email</Error>}
                 <code>*For authentication reasons, you will not be emailed</code>
               </TextBox>
             </OverallAndStar>
 
             <OverallAndStar>
-              <Overall>Overall Rating</Overall>
+              <Overall>Overall Rating<Need>*</Need></Overall>
+              {displayError && <Error>Please rate</Error>}
               <StarsAndDate>
                 {[...Array(5)].map((star, index) => {
                   index += 1;
@@ -171,39 +189,42 @@ function FormModal({ toggle, showModal, productId, postData }) {
               </StarsAndDate>
             </OverallAndStar>
             <Recommend>
-              <h3>Do you recommend this product?</h3>
+              <h3>Do you recommend this product?<Need>*</Need></h3>
+              {displayError && <Error>Please fill out</Error>}
               <Yes>
-                <input onClick={() => {setRecommend(true)}} name="recommend" type="radio" value="Yes" />
+                <input onClick={() => { setRecommend(true) }} name="recommend" type="radio" value="Yes" />
                 Yes
-                <input onClick={() => {setRecommend(false)}} name="recommend" type="radio" value="No" />
+                <input onClick={() => { setRecommend(false) }} name="recommend" type="radio" value="No" />
                 No
               </Yes>
             </Recommend>
-            <Recommend>
+            <Character>
               {characteristicsData.map((data, index) => {
-                return <Characteristics key={index} data={data} />
+                return <Characteristics displayError={displayError} key={index} data={data} />
               })}
-            </Recommend>
+            </Character>
 
           </Forms>
 
           <TextBox>
             <Recommend>
+            {displayError && <Error>Please fill</Error>}
               <TextSummary placeholder="  Please provide summary: ie. Best purchase ever!" name="summary" rows="5" cols="60" value={summarys} onChange={summarysLength}></TextSummary>
               <code>Characters: {summaryLength} / 60</code>
             </Recommend>
 
-            <Recommend>
-              <UploadImage setShowImage={setShowImage} showImage={showImage} />
 
-            </Recommend>
+            <UploadImage setShowImage={setShowImage} showImage={showImage} />
+
+
 
             <Recommend>
+            {displayError && <Error>Please fill</Error>}
               <TextSummary placeholder="  Why did you like the product or not?" name="body" rows="10" cols="60" value={bodys} onChange={bodysLength} ></TextSummary>
               <code>Characters: {bodyLength} {bodyLength >= 50 && <code style={{ position: 'static' }}>Minimun reached &#128077;  </code>}</code>
             </Recommend>
           </TextBox>
-          <button onClick={postReq}>Submit Review</button>
+          <Button onClick={postReq}>Submit Review</Button>
         </FormWrapper>
       </FormOverlay>
 
@@ -226,12 +247,26 @@ padding-top: 15px;
 
 `;
 
+const Need = styled.span`
+color: red;
+`;
+
+const Error = styled.code`
+color: red;
+`;
+
+const Title = styled.h2`
+text-align: center;
+
+`;
+
 const Forms = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 width: 80%;
 padding-right: 30px;
+padding-left: 60px;
 
 
 `;
@@ -248,7 +283,7 @@ position: fixed;
   z-index: 1040;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: #7adfbb;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -259,16 +294,17 @@ position: fixed;
 const FormWrapper = styled.div`
 margin: 5px;
 margin-right: 20px;
-background-color: #dcd0ff;
-box-shadow: 10px 10px 10px lightblue;
-border-radius: 10px;
-width: 70%;
-max-height: 80%;
+background-color: white;
+box-shadow: 10px 10px 10px white;
+border-radius: 20px;
+width: 80%;
+max-height: 90%;
 overflow-y: auto;
 
 
 
 `;
+
 
 const Form = styled.div`
 display: flex;
@@ -299,6 +335,7 @@ font-size: 30px;
 const Recommend = styled(Overall)`
   margin: 20px;
   margin-bottom: 5px;
+  text-align: center;
 `;
 
 const Yes = styled.label`
@@ -311,6 +348,7 @@ border-radius: 5px 30px 30px;
 `;
 
 const TextBox = styled.div`
+width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -322,6 +360,27 @@ padding: 10px;
 const Name = styled.input`
 border-radius: 5px;
 height: 20px;
+
+`;
+
+const Character = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+
+padding-left: 80px;
+
+`;
+
+const Button = styled.button`
+padding: 8px;
+margin: 5px;
+border-radius: 7px;
+float: right;
+background-color: white;
+&:hover {
+  cursor: pointer
+}
 
 `;
 
