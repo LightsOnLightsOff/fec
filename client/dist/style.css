@@ -1,3 +1,9 @@
+.check-logo {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
 .product-overview-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -84,6 +90,7 @@
   border-radius: 24px;
   background-color: white;
   border: 1px solid #ddd;
+  cursor: pointer
 }
 
 .left-arrow {
@@ -169,6 +176,7 @@
   color: white;
   top: -10px;
   right: -10px;
+  cursor: pointer
 }
 
 .close-expanded-view {
@@ -176,7 +184,8 @@
   color: rgb(35, 25, 35);
   background-color: white;
   border: none;
-  top: -49%
+  top: -49%;
+  cursor: pointer;
 }
 
 .thumbnail-image-carousel {
@@ -189,6 +198,22 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+}
+
+.drop-down-menu {
+  cursor: pointer;
+}
+
+.send-social-modal {
+  display: flex;
+  justify-content: center;
+}
+
+.individual-thumbnail-image-gallery {
+  height: 50px ;
+  width: 'auto';
+  border-radius: 10;
+  cursor: pointer;
 }
 
 .q-and-a {

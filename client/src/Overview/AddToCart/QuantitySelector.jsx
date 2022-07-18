@@ -15,10 +15,10 @@ function QuantitySelector ({quantityDisabled, quantityAvailable, setQuantityPurc
 
   return (
     <span>
-      <select disabled = {quantityDisabled} onChange = {handleSelect}>
+      <select disabled = {quantityDisabled} onChange = {handleSelect} className = 'drop-down-menu'>
         <option selected value = 'Select Quantity'>Select Quantity</option>
        {quantityArray.map((count) => {
-         return <option value = {count}>{count}</option>
+         return <option value = {count} key = {count}>{count}</option>
        })}
       </select>
     </span>

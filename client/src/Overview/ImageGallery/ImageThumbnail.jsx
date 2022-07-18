@@ -10,14 +10,6 @@ function ImageThumbnail ({show, children}) {
     setLength(children.length)
   }, [children])
 
-  // useEffect(() =>{
-  //   if (isShowing) {
-  //     event.target.style.border = 'double'
-  //   } else {
-  //     event.target.style.border = 'none'
-  //   }
-  // }, [isShowing])
-
   const previousImage = (event) => {
     event.preventDefault();
     if (index > 0) {
