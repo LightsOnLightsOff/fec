@@ -13,10 +13,11 @@ function ReviewList(props) {
   //const [count, setCount] = useState(0) //this will display two reviews at a time
   const [product, setProduct] = useState([]) //storing the data of results
   const [data, setData] = useState([])
+  const [relevantData, setRelevantData] = useState([])
   const [productId, setProductId] = useState('') //TEMP KEEP THIS UNTIL WE USE USECONTEXT
   const [count, setCount] = useState(1)
   //var updateData = [] //storing the data but in pairs
-  const [yesHelpful, setYesHelpful] = useState(false)
+  const [currentReviewId, setCurrentReviewId] = useState('')
   // console.log("Product : ", product)
   //  console.log('DATA: ', data)
   //  console.log("PRODUCTID OVER HERE LOOK HERE LOOK HERE PLEASE: ", productId)
@@ -28,7 +29,7 @@ function ReviewList(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40350&count=200', {
+      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344&count=200&sort=relevant', {
         headers: {
           Authorization: config.TOKEN
         }
@@ -47,6 +48,7 @@ function ReviewList(props) {
       if (splitData.length < 2) {
         setDisplayButton(true)
       }
+      setRelevantData(newData.results)
       setData(newData.results)
       setProduct(splitData)
       setProductId(newData.product)
@@ -117,25 +119,72 @@ function ReviewList(props) {
       setData(sortData)
       setProduct(reduceData)
 
-    }
+    } else if (value === " Relevant") {
+      var splitDataAgain = relevantData.reduce((result, value, index, array) => {
+        if (index % 2 === 0) {
+          result.push(array.slice(index, index + 2))
+        }
+        return result
+      }, [])
 
+      setData(relevantData)
+      setProduct(splitDataAgain)
+
+
+
+    }
 
 
   }
 
+  const getDataAgain = (reviewId) => {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344&count=200&sort=relevant', {
+      headers: {
+        Authorization: config.TOKEN
+      }})
+      .then((newData) => {
+        var splitData = newData.data.results.reduce((result, value, index, array) => {
+          if (index % 2 === 0) {
+            result.push(array.slice(index, index + 2))
+          }
+          return result
+        }, [])
+        console.log("GET DATA HERE FROM HELPFUL: ", splitData.length)
+
+        //updateData response.data.results
+        if (splitData.length < 2) {
+          // console.log("SPLIT DATA WENT THOUGH")
+          setDisplayButton(true)
+        }
+        setData(newData.data.results)
+        setProduct(splitData)
+        setProductId(newData.data.product)
+        if (reviewId) {
+          setCurrentReviewId(reviewId)
+        }
+
+
+      })
+      .catch((error) => {
+        console.log("error when getting info after helpfullness: ", error)
+      })
+
+  }
+
   //increment the helpfull yes button (working! )
+  //setCurrentReviewId
   const addHelpfull = (reviewId) => {
-    // console.log("this works and need id: ", reviewId)
-    if (yesHelpful) {
+    if (currentReviewId === reviewId) {
       return;
-    } else{
+    } else {
       const headers = {
         Authorization: config.TOKEN
       }
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/helpful`, null, {headers}  )
       .then((data) => {
         console.log("Did we get any data: ", data.data)
-        setYesHelpful(true)
+        getDataAgain(reviewId)
+
       })
       .catch((err) => {
         console.log("error from add helpful: ", err)
@@ -155,6 +204,7 @@ function ReviewList(props) {
     })
     .then((res) => {
       console.log("ANYTHING?: ", res.data)
+      getDataAgain()
     })
     .catch((err) => {
       console.log("ERROR WHEN DOING POST REQ: ", err)

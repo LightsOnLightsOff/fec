@@ -78,7 +78,13 @@ function FormModal({ toggle, showModal, productId, postData }) {
 
     }
     console.log("DATA WE PUT TOGETHER: ", data)
-    // postData(data)
+    setUsername('')
+    setEmail('')
+    setSummary('')
+    setBody('')
+    setStarIndex(0)
+    toggle()
+    postData(data)
 
 
   }
