@@ -6,7 +6,7 @@ import 'tiny-slider/dist/tiny-slider.css'
 import Control from './SliderControl.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
-import config from '../../../.config.js'
+import config from '../../../config.js'
 // import OutfitImage from './OutfitImage.jsx'
 
 function Outfit ({
