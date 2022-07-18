@@ -137,10 +137,10 @@ function FormModal({ toggle, showModal, productId, postData }) {
     // console.log("star modal trying to get in here!!!")
     return (
       <FormOverlay>
+        <FormWrapper>
         <button onClick={toggle} className="modal-button">
           <span>&times;</span>
         </button>
-        <FormWrapper>
           <Forms>
             <h2>About the <code>**Product Name**</code></h2>
             <OverallAndStar>
@@ -243,26 +243,27 @@ padding: 20px;
 //DONT TOUCH THIS ONE
 const FormOverlay = styled.div`
 position: fixed;
-top: 0;
-left: 0;
-z-index: 1040;
-width: 100vw;
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-background-color: white;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 
 `;
 
 const FormWrapper = styled.div`
-margin: 15px;
+margin: 5px;
+margin-right: 20px;
 background-color: #dcd0ff;
 box-shadow: 10px 10px 10px lightblue;
-border-radius: 15px;
+border-radius: 10px;
 width: 70%;
-max-height: 100%;
+max-height: 80%;
 overflow-y: auto;
 
 
