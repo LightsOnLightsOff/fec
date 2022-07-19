@@ -10,7 +10,7 @@ import ReviewIndex from './rating_ and_review/ReviewIndex.jsx'
 
 const UserContext = createContext() // this will help us pass down down without having to chain every single child
 
-function App (props) {
+export default function App (props) {
   const [productId, setProductId] = useState('')
 
   return (
