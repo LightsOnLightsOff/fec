@@ -112,3 +112,8 @@ section{
 .tns-lazy-img{
 
 } */
+
+.slick-prev:before,
+.slick-next:before {
+  color: orange!important;
+}

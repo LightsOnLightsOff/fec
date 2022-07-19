@@ -223,19 +223,7 @@ function Related (props) {
     setShow(false)
   }
 
-  // const settings = {
-  //   lazyload: true,
-  //   nav: false,
-  //   mouseDrag: true,
-  //   loop: false,
-  //   items: 3,
-  //   gutter: 20,
-  //   edgePadding: 200
-  //   controls: true,
-  //   controlsContainer: '.controls'
-  // }
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -266,7 +254,6 @@ function Related (props) {
                     clickProduct={clickProduct}
                     clickStar={clickStar}
                   />
-
                   <Description
                     item={item}
                     style={style}

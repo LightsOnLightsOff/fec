@@ -34,8 +34,7 @@ function Outfit ({
   }
 
   const settings = {
-    dots: true,
-    infinite: outfit.length > 3,
+    infinite:false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3
