@@ -4,7 +4,7 @@ import Stars from './Stars.jsx';
 import Product from './Product.jsx'
 import config from '../../../../config.js'
 
-function Ratings(props) {
+function Ratings({filterByStar}) {
 
   const [ratings, setRatings] = useState([])
   // console.log("WE GOT RATINGS: ", ratings)
@@ -68,12 +68,12 @@ function Ratings(props) {
         console.log("ERROR: ", err)
       })
 
-  }, [props.id])
+  }, []) //props.id <---- will need this when we pass down the prop ID
 
 if (Object.keys(ratings).length > 0) {
   return (
     <div className="starProduct">
-      <Stars rate={ratings.ratings} recommended={ratings.recommended} />
+      <Stars filterByStar={filterByStar} rate={ratings.ratings} recommended={ratings.recommended} />
       <Product  ratings={ratings} />
 
     </div>

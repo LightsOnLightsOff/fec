@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FormModal from './FormModal.jsx'
+import styled from 'styled-components';
 
 function NewReview({productId, postData}) {
   const [toggleImage, setToggleImage] = useState(false)
@@ -14,7 +15,7 @@ function NewReview({productId, postData}) {
 
   return (
     <div>
-      <button onClick={formToggle}>Add </button>
+      <Button onClick={formToggle}>Add New Review </Button>
       <FormModal
       toggle={formToggle}
       showModal={toggleImage}
@@ -32,3 +33,14 @@ function NewReview({productId, postData}) {
 };
 
 export default NewReview;
+
+const Button = styled.button`
+padding: 8px;
+margin: 5px;
+border-radius: 7px;
+background-color: white;
+&:hover {
+  cursor: pointer
+}
+
+`;

@@ -5,24 +5,25 @@ import { faCheck, faArrowAltCircleLeft, faUserAstronaut, faFaceLaughWink, faImag
 
 
 
-function UploadImage({setShowImage, showImage}) {
+function UploadImage({ setShowImage, showImage }) {
 
-  //const [showImage, setShowImage] = useState([])
+  const [showTemplate, setShowTemplate] = useState(true)
   // console.log("SHOW IMAGE: ", showImage)
 
   let urlImages = []
   let count = 0
   const photoArray = (url) => {
-    console.log("COUNT: ", count++)
+    // console.log("COUNT: ", count++)
     urlImages.push(url)
     // console.log("URL: ", urlImages)
+    setShowTemplate(false)
     setShowImage(urlImages)
 
   }
 
   const checkUploadResult = (resultEvent) => {
     if (resultEvent.event === "success") {
-      console.log('Done! Here is the image info: ', resultEvent.info);
+      // console.log('Done! Here is the image info: ', resultEvent.info);
       photoArray(resultEvent.info.secure_url)
       // console.log("UPDATED IMAGE: ", photoArray)
       // setShowImage(photoArray)
@@ -46,29 +47,51 @@ function UploadImage({setShowImage, showImage}) {
 
 
   return (
-    <div>
+    <Main>
       <h4>Add a photo</h4>
       <Div>
         <ImageBox onClick={showWidget}>◕‿‿◕</ImageBox>
+      {showTemplate && <BoxFakeImage>  <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage> </BoxFakeImage>  }
         {/* <Img src="https://res.cloudinary.com/dpbkoptqh/image/upload/v1658013211/ojuymnw187z1m0vcjvzx.jpg"></Img>
         <Img src="https://res.cloudinary.com/dpbkoptqh/image/upload/v1658013212/xcghswbujsdudywxvvw6.jpg"></Img> */}
         {showImage.map((url, index) => {
           index += 1;
           return <Img key={index} src={url} alt="Sorry image cannot upload :("></Img>
-
-
         })}
 
-
-
       </Div>
-    </div>
+
+
+
+
+    </Main>
   )
 }
 
 export default UploadImage;
 
+
+
+const Main = styled.div`
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 10px;
+text-align: center;
+
+`;
+
+
+
+
 const ImageBox = styled.div`
+margin-left: 280px;
+text-align: center;
 font-size: 15px;
 display: flex;
 flex-direction: column;
@@ -84,7 +107,18 @@ border-width: 2px;
 border-radius: 5px;
 &:hover {
   cursor: pointer
-}
+};
+
+
+`;
+const FakeImage = styled(ImageBox)`
+margin-left: 10px;
+
+`;
+
+const BoxFakeImage = styled.div`
+display: flex;
+flex-direction: row;
 
 `;
 
@@ -97,6 +131,10 @@ height: 68px;
 
 const Div = styled.div`
 display: flex;
-flex-direction: row:
+flex-direction: row;
+padding-left: 50px;
+
+
+
 
 `;
