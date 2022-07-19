@@ -1,4 +1,4 @@
-.below-pic{
+.below-pic {
   margin-top: 0;
   margin-bottom: 0;
 
@@ -38,38 +38,21 @@
 }
 
 
-.title, .plus-button,.slider{
+.title,
+.plus-button,
+.slider {
   margin-top: 50px;
   margin-right: 450px;
   margin-left: 380px;
 }
 
-.section{
+.section {
   position: relative;
 }
 
-
- /* .thestar {
-  display: inline-block;
-  position: relative;
-  font-size: px;
-  color: #ddd;
-}
-
-.thestar:after {
-  font-family: FontAwesome;
-  content: "\2605\2605\2605\2605\2605";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #f80;
-}  */
 
 .modal-container {
   position: absolute;
-  /* width: 60%; */
   background: #ffffff;
   left: 25%;
   top: 30%;
@@ -77,30 +60,25 @@
   border: 1px solid black;
 }
 
- /* th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  color:black;
-} */
-
-.modal-container td, .modal-container th {
+.modal-container td,
+.modal-container th {
   padding: 8px;
 }
 
-.left-tick{
+.left-tick {
   text-align: right;
 }
 
-.centerText{
+.centerText {
   text-align: center;
 }
 
-.fav-1{
+.fav-1 {
   position: absolute;
   z-index: 1;
 }
-.under-star{
+
+.under-star {
   position: relative;
 }
 
@@ -113,16 +91,27 @@
   height: 100%;
   width: 100%;
 }
+
 .arrow-btn {
   top: 45%;
   z-index: 1;
 }
+
 .next {
   float: right;
 }
 
-#main-left,#main-right{
-  /* color:orange; */
+#main-left,
+#main-right {
+  color: orange;
   top: 150px;
-  margin-right:850px;
+  margin-right: 850px;
+}
+
+.slick-list {margin: 0 -10px;}
+.slick-slide>div {padding: 0 10px;}
+
+.main-card{
+  border: solid gray;
+
 }

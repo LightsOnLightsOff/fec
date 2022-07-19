@@ -9,6 +9,7 @@ import ButtonBase from '@mui/material/ButtonBase'
 import Slider from 'react-slick'
 import ImgandButton from './SliderImgButton.jsx'
 import Description from './SliderDescription.jsx'
+import CardContent from '@mui/material/CardContent';
 
 export function Control ({
   style,
@@ -52,8 +53,9 @@ export function Control ({
     arrows: false,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3,
-    ref: sliderRef
+    slidesToScroll: 1,
+    ref: sliderRef,
+    rows: 1
   }
 
   var arrowClick = function (e) {
@@ -103,12 +105,14 @@ export function Control ({
       <div className='slider'>
         {renderArrows()}
         <Slider {...settings}>
+
           {product.map((item, index) => {
             {
               /* console.log('####Loop through index and style',index,style) */
             }
             return (
-              <section key={index}>
+
+              <section key={index} className="main-card">
                 <ImgandButton
                   item={item}
                   style={style}
@@ -125,8 +129,10 @@ export function Control ({
                   rating={rating}
                 />
               </section>
+
             )
           })}
+
         </Slider>
       </div>
     </div>
