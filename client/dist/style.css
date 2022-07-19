@@ -122,7 +122,7 @@
 }
 
 #main-left,#main-right{
-  color:orange;
+  /* color:orange; */
   top: 150px;
   margin-right:850px;
 }

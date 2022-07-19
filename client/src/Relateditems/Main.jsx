@@ -202,7 +202,7 @@ function Related (props) {
     setShow(false)
   }
 
-  // console.log('the right and left arrow', mainLeft,mainRight, outfit.length,mainDiff, mainDiff === outfit.length - 3)
+  // console.log('product in main',product)
 
   if (
     product.length > 1 &&

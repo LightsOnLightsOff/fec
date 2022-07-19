@@ -116,6 +116,7 @@ export function Control ({
                   imgs={imgs}
                   clickProduct={clickProduct}
                   clickStar={clickStar}
+                  product={product}
                 />
                 <Description
                   item={item}
