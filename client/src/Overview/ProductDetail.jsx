@@ -41,26 +41,31 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
   }, [])
 
   return (
-    <div>
-        <div>{category}</div>
-        <div>{name}</div>
-        <div>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div>
-        <div>Product Features: </div>
-        {featureKey.map((featureValue) => {
-          return  <div key = {featureValue}>
-                    <img className = 'check-logo' src = {checkLogo}/>
-                    {featureValue[0]}: {featureValue[1]}
-                  </div>
-        })}
-        {originalPrice && !salePrice ? <div>Price: {originalPrice}</div> :
+    <div className = 'product-detail'>
+        <div className = 'product-category'>{category}</div>
+        <div className = 'product-name'>{name}</div>
+        <div className = 'product-star-rating'>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div>
+        {originalPrice && !salePrice ?
           <div>
-            <span >Sale Price! </span>
+            <span className = 'product-original-price-label'>Price: </span>
+            <span className = 'product-original-price-number'>{originalPrice}</span>
+          </div> :
+          <div>
+            <span className = 'product-original-price-label'>Sale Price! </span>
             <span className = 'original-price-strikethrough'>{originalPrice}</span>
-            <span className = 'sale-price'>    {salePrice}</span>
+            <span className = 'product-sale-price'>    {salePrice}</span>
           </div>
         }
-        <div>{slogan}</div>
-        <div>{description}</div>
+        <div className = 'product-slogan'>{slogan}</div>
+        <div className = 'product-description'>{description}</div>
+        <div className = 'product-overall-feature'>
+          {featureKey.map((featureValue) => {
+            return  <div key = {featureValue}>
+                      <img className = 'check-logo' src = {checkLogo}/>
+                      <span className  = 'product-feature' >{featureValue[0]}: {featureValue[1]}</span>
+                    </div>
+          })}
+        </div>
     </div>
   )
 }

@@ -1,3 +1,62 @@
+.product-detail {
+  margin-top: 50px;
+  margin-right: 50px;
+}
+
+.product-category {
+  font: small-caps 20px serif;
+}
+
+.product-name {
+  padding-top: 5px;
+  font: small-caps 70px serif;
+}
+
+.product-original-price-label {
+  padding-top: 10px;
+  font: small-caps 30px serif;
+}
+
+.product-original-price-number {
+  padding-top: 10px;
+  font: small-caps 30px serif;
+}
+
+.product-sale-price {
+  padding-top: 10px;
+  font: small-caps bold 30px serif;
+  color: red;
+}
+
+.product-slogan {
+  padding-top: 5px;
+  font: small-caps bold 30px serif;
+  text-decoration: underline;
+}
+
+.product-description {
+  font: small-caps 20px serif;
+  padding-bottom: 10px;
+}
+
+.product-overall-feature {
+  padding-bottom: 10px;
+}
+
+.product-feature {
+  font: small-caps 20px serif;
+}
+
+.style-label {
+  padding-bottom: 20px;
+  font: small-caps 25px serif;
+}
+
+.style-name {
+  padding-bottom: 20px;
+  font: small-caps bold 27px serif;
+}
+
 .check-logo {
   height: 20px;
   width: 20px;
@@ -191,13 +250,16 @@
 .thumbnail-image-carousel {
   display: flex;
   justify-content: center;
-  margin-left: auto;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .main-image-carousel {
   display: flex;
   justify-content: center;
   overflow: hidden;
+  margin-top: 50px;
 }
 
 .drop-down-menu {
@@ -218,10 +280,7 @@
 
 .original-price-strikethrough{
   text-decoration: line-through;
-}
-
-.sale-price {
-  color: red;
+  font: small-caps 20px serif;
 }
 
 .q-and-a {
