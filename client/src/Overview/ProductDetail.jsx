@@ -15,6 +15,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
 
   var tempArray = [];
   var checkLogo = 'https://i.pinimg.com/originals/c7/75/fc/c775fc6d3433da085d8f579f54b7c758.jpg';
+  var percentDiscount;
 
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344', {
@@ -40,6 +41,11 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     })
   }, [])
 
+  if (salePrice) {
+    percentDiscount = ((originalPrice - salePrice) / originalPrice * 100).toFixed(2);
+    console.log (percentDiscount, 'percentDiscount')
+  }
+
   return (
     <div className = 'product-detail'>
         <div className = 'product-category'>{category}</div>
@@ -53,7 +59,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
           <div>
             <span className = 'product-original-price-label'>Sale Price! </span>
             <span className = 'original-price-strikethrough'>${originalPrice}</span>
-            <span className = 'product-sale-price'>    ${salePrice}</span>
+            <span className = 'product-sale-price'>    ${salePrice} ({percentDiscount})% off!</span>
           </div>
         }
         <div className = 'product-slogan'>{slogan}</div>
