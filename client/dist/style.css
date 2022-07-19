@@ -49,12 +49,12 @@
 
 .style-label {
   padding-bottom: 20px;
-  font: small-caps 25px serif;
+  font: small-caps 30px serif;
 }
 
 .style-name {
   padding-bottom: 20px;
-  font: small-caps bold 27px serif;
+  font: small-caps bold 30px serif;
 }
 
 .check-logo {
@@ -140,7 +140,7 @@
   width: calc(100% / 7);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  align-items: center;
+  place-items: center;
 
 }
 
@@ -271,6 +271,9 @@
 
 .drop-down-menu {
   cursor: pointer;
+  font: small-caps 25px serif;
+  width: auto;
+  text-align: center;
 }
 
 .send-social-modal {

@@ -31,7 +31,7 @@ function ImageThumbnail ({show, children}) {
           {(index > 0) && <button className = 'left-arrow' onClick = {previousImage}>&lt;</button>}
           <div className = 'carousel-content-wrapper'>
             {(index < (length - show)) && <button className="right-arrow" onClick = {nextImage}>&gt;</button>}
-            <div className={`carousel-content show-${show}`} style={{ transform: `translateX(-${index * (100 / show)}%)`}}>
+            <div className={`carousel-content show-${show}`} style={{transform: `translateX(-${index * (100 / show)}%)`}}>
               {children}
             </div>
           </div>
