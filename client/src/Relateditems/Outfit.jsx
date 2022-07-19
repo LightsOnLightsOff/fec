@@ -6,7 +6,7 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
-import ReactCustomArrow from './OutfitArrow.jsx'
+import OutfitArrow from './OutfitArrow.jsx'
 import {Control} from './SliderControl.jsx'
 
 function Outfit ({
@@ -20,14 +20,14 @@ function Outfit ({
   setCurrS,
   rating,
   countClick,
-  setCount
+  setCount,
+  product
 }) {
   const [clicked, setC] = useState(false)
   const imgStyles = {
     width: '100%',
     height: '320px',
     objectFit: 'cover'
-    // position: 'absolute'
   }
   var renderArrows = () => {
     return (
@@ -68,7 +68,7 @@ function Outfit ({
   }
 
   useEffect(() => {
-    // console.log('ONCE List of variable currentProduct', outfit,currentProduct);
+    // console.log('ONCE List of variable currentProduct',product);
     findCurrentStyle(currentProduct.id)
   }, [])
 
@@ -84,7 +84,7 @@ function Outfit ({
           onClick={clickPlus}
         />
         <div className='slider'>
-        <ReactCustomArrow outfit={outfit} countClick={countClick} currentStyle={currentStyle} imgStyles={imgStyles} style={style} rating={rating}/>
+        <OutfitArrow outfit={outfit} countClick={countClick} currentStyle={currentStyle} imgStyles={imgStyles} style={style} rating={rating} product={product} setOutfit={setOutfit} setCount={setCount} setCurrS={setCurrS}/>
 
         </div>
       </div>

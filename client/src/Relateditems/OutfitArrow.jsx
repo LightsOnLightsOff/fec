@@ -8,6 +8,10 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import ButtonBase from '@mui/material/ButtonBase'
 import Link from '@mui/material/Link'
 import { ColorRating } from './style.css/star.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
+var starStyle = { position: 'absolute', zIndex: '1', color: 'orange' }
 
 class ReactCustomArrow extends React.Component {
   constructor (props) {
@@ -38,6 +42,16 @@ class ReactCustomArrow extends React.Component {
     }
   }
 
+  clickTrash (index) {
+    var afterDelete = this.props.outfit.filter(
+      (item, iterateIn) => iterateIn !== index
+    )
+    console.log('index of clicking', index, afterDelete)
+    this.props.setOutfit(afterDelete)
+    this.props.setCount(prev => prev - 1)
+    this.props.setCurrS(prev=>prev.filter((item,num)=>num !== index ))
+  }
+
   renderArrows = () => {
     return (
       <div className='slider-arrow'>
@@ -47,7 +61,7 @@ class ReactCustomArrow extends React.Component {
           style={this.state.arrowDiff === 0 ? { display: 'none' } : null}
           onClick={this.arrowClick.bind(this)}
         >
-          <ArrowLeftIcon />
+          <ArrowLeftIcon sx={{ fontSize: '80px' }} />
         </ButtonBase>
         <ButtonBase
           className='arrow-btn next'
@@ -58,13 +72,18 @@ class ReactCustomArrow extends React.Component {
           }
           onClick={this.arrowClick.bind(this)}
         >
-          <ArrowRightIcon />
+          <ArrowRightIcon sx={{ fontSize: '80px' }} />
         </ButtonBase>
       </div>
     )
   }
+
   render () {
-    console.log('left and right ', this.state.leftArrow, this.state.rightArrow)
+    {
+      console.log('current styles', this.props.currentStyle);
+
+      console.log('outfuttt???', this.props.outfit)
+    }
     if (
       this.props.outfit.length > 0 &&
       this.props.countClick === this.props.outfit.length
@@ -81,10 +100,24 @@ class ReactCustomArrow extends React.Component {
             >
               {this.props.outfit.map((item, index) => {
                 {
+                  /* {
                   console.log('Loop index and current photo', index, item)
+                } */
                 }
+                var l = this.props.outfit.length
                 return (
                   <section key={index} className='outfitSlider'>
+                    <div
+                      className='fav'
+                      onClick={() => this.clickTrash(index)}
+                      style={{
+                        ...starStyle,
+                        right: `${(l - index - 1) * 350 + 15}px`
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </div>
+
                     <img
                       src={this.props.currentStyle[index].photo}
                       style={this.props.imgStyles}

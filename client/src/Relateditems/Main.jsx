@@ -230,6 +230,7 @@ function Related (props) {
           rating={rating}
           countClick={countClick}
           setCount={setCount}
+          product={product}
         />
       </div>
     )
