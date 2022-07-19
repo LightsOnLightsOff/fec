@@ -41,7 +41,7 @@ function MainImage ({children, indexOfPicture, setIndexOfPicture, thumbnailClick
   }
 
   return (
-    <div>
+    <div className = 'main-image-carousel'>
       <div className = 'carousel-overall'>
         <div className = 'carousel-container'>
           <div className = 'carousel-wrapper' >

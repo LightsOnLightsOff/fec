@@ -68,6 +68,11 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.image-and-thumbnail-carousels {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+}
+
 .expanded-image-only {
   display: flex;
   justify-content: center;
