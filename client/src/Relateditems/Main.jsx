@@ -264,7 +264,7 @@ function Related (props) {
               )
             })}
             </Slider>
-          <Control style={style} />
+          {/* <Control style={style} /> */}
         </div>
         <Modal
           currentProduct={currentProduct}
