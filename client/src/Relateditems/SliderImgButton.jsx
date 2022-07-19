@@ -10,24 +10,25 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar }) {
   const imgStyles = {
     width: '100%',
     height: '320px',
-    objectFit: 'cover'
-    // position: 'absolute'
+    objectFit: 'cover',
+    position: 'relative'
   }
   const [show, setShow] = useState(false)
 
   return (
     <div>
-      <button
-        id='fav-1'
+      <div
+        className='fav'
         onClick={() => {
           clickStar(item)
         }}
         name={item.name}
-        style={{ position: 'relative' }}
+        style={{ position: 'absolute',zIndex:'1',color:'orange' }}
       >
-        ☆
-      </button>
+        <FontAwesomeIcon icon={faStar} />
+      </div>
       <img
+      className='under-star'
         onClick={clickProduct}
         src={style[index].photo ? style[index].photo : imgs}
         style={imgStyles}

@@ -3,50 +3,166 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
 import 'tiny-slider/dist/tiny-slider.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft'
+import ArrowRightIcon from '@mui/icons-material/ArrowRight'
+import ButtonBase from '@mui/material/ButtonBase'
+import Slider from 'react-slick'
+import ImgandButton from './SliderImgButton.jsx'
+import Description from './SliderDescription.jsx'
 
-function Control ({style}) {
-  const [leftArrow, setLeft] = useState(0)
-  const [rightArrow, setRight] = useState(0)
-  const [arrowDiff, setDiff] = useState(0)
+export function Control ({
+  style,
+  product,
+  imgs,
+  clickStar,
+  rating,
+  setStyle,
+  findFeature,
+  updateProductByid,
+  findstyleByid
+}) {
+  const [mainLeft, setLeft] = useState(0)
+  const [mainRight, setRight] = useState(0)
+  const [mainDiff, setDiff] = useState(0)
+  const sliderRef = React.useRef()
 
+  function clickProduct (e) {
+    setLeft(0)
+    setRight(0)
+    setDiff(0)
+    setStyle([])
+    var clickedId = e.target.attributes.getNamedItem('name').value
+    // console.log('I am clicking the picuture id:', clickedId)
+    findFeature(clickedId)
+    updateProductByid(clickedId).then(related => {
+      axios
+        .all(
+          related.map(item => {
+            return findstyleByid(item)
+          })
+        )
+        .then(res => {
+          console.log('array of styles', res)
+          setStyle(res)
+        })
+    })
+  }
+  const settings = {
+    infinite: false,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    ref: sliderRef
+  }
 
   var arrowClick = function (e) {
-    if (e.target.getAttribute('id') === 'first-btn') {
+    console.log('clicked the arrow ', e.target)
+    if (
+      e.target.getAttribute('data-testid') === 'ArrowLeftIcon' ||
+      e.target.getAttribute('d') === 'm14 7-5 5 5 5V7z'
+    ) {
       setLeft(pre => pre + 1)
-      var diff = rightArrow - leftArrow - 1
+      var diff = mainRight - mainLeft - 1
       setDiff(diff)
+      return sliderRef.current.slickPrev()
     } else {
       setRight(pre => pre + 1)
-      var diff = rightArrow + 1 - leftArrow
+      var diff = mainRight + 1 - mainLeft
       setDiff(diff)
+      return sliderRef.current.slickNext()
     }
   }
 
+  var renderArrows = () => {
+    return (
+      <div className='slider-arrow'>
+        <ButtonBase
+          className='arrow-btn prev'
+          id='main-left'
+          style={mainDiff === 0 ? { display: 'none' } : null}
+          onClick={arrowClick}
+        >
+          <ArrowLeftIcon sx={{ fontSize: "80px" }} />
+        </ButtonBase>
+        <ButtonBase
+          className='arrow-btn next'
+          id='main-right'
+          style={mainDiff <= product.length - 4 ? null : { display: 'none' }}
+          onClick={arrowClick}
+        >
+          <ArrowRightIcon sx={{ fontSize: "80px" }}/>
+        </ButtonBase>
+      </div>
+    )
+  }
 
   return (
     <div>
-      <div className='controls'>
-        <button
-          onClick={arrowClick}
-          id='first-btn'
-          type='button'
-          style={arrowDiff === 0 ? { display: 'none' } : null}
-        >
-          ❮
-        </button>
-        <button
-          onClick={arrowClick}
-          id='second-btn'
-          type='button'
-          style={arrowDiff === style.length - 3 ? { display: 'none' } : null}
-        >
-          ❯
-        </button>
+      <h4 className='title'>RELATED PRODUCTS</h4>
+      <div className='slider'>
+        {renderArrows()}
+        <Slider {...settings}>
+          {product.map((item, index) => {
+            {
+              /* console.log('####Loop through index and style',index,style) */
+            }
+            return (
+              <section key={index}>
+                <ImgandButton
+                  item={item}
+                  style={style}
+                  index={index}
+                  imgs={imgs}
+                  clickProduct={clickProduct}
+                  clickStar={clickStar}
+                />
+                <Description
+                  item={item}
+                  style={style}
+                  index={index}
+                  rating={rating}
+                />
+              </section>
+            )
+          })}
+        </Slider>
       </div>
     </div>
   )
 }
 
-export default memo(Control)
+// var arrowClick = function (e) {
+//   if (e.target.getAttribute('id') === 'first-btn') {
+//     setLeft(pre => pre + 1)
+//     var diff = rightArrow - leftArrow - 1
+//     setDiff(diff)
+//   } else {
+//     setRight(pre => pre + 1)
+//     var diff = rightArrow + 1 - leftArrow
+//     setDiff(diff)
+//   }
+// }
+
+// return (
+//   <div>
+//     <div className='controls'>
+//       <button
+//         onClick={arrowClick}
+//         id='first-btn'
+//         type='button'
+//         style={arrowDiff === 0 ? { display: 'none' } : null}
+//       >
+//         ❮
+//       </button>
+//       <button
+//         onClick={arrowClick}
+//         id='second-btn'
+//         type='button'
+//         style={arrowDiff === style.length - 3 ? { display: 'none' } : null}
+//       >
+//         ❯
+//       </button>
+//     </div>
+//   </div>
+// )

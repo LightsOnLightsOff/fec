@@ -52,7 +52,7 @@ class ReactCustomArrow extends React.Component {
         <ButtonBase
           className='arrow-btn next'
           style={
-            this.state.arrowDiff <= this.props.outfit.length - 3
+            this.state.arrowDiff <= this.props.outfit.length - 4
               ? null
               : { display: 'none' }
           }
@@ -77,7 +77,7 @@ class ReactCustomArrow extends React.Component {
               ref={c => (this.slider = c)}
               infinite={false}
               arrows={false}
-              slidesToShow={2}
+              slidesToShow={3}
             >
               {this.props.outfit.map((item, index) => {
                 {

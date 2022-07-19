@@ -96,26 +96,12 @@
   text-align: center;
 }
 
-.fav{
-  /* position: absolute; */
+.fav-1{
+  position: absolute;
+  z-index: 1;
 }
-
-/* img{
+.under-star{
   position: relative;
-  display: inline;
-} */
-
-/*
-section{
-  position: relative;
-}
-.tns-lazy-img{
-
-} */
-
-.slick-prev:before,
-.slick-next:before {
-  color: orange!important;
 }
 
 .App {
@@ -133,4 +119,10 @@ section{
 }
 .next {
   float: right;
+}
+
+#main-left,#main-right{
+  color:orange;
+  top: 150px;
+  margin-right:850px;
 }
