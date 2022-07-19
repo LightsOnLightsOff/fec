@@ -65,7 +65,7 @@
 
 .product-overview-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 5fr 4fr;
 }
 
 .image-and-thumbnail-carousels {
@@ -211,16 +211,23 @@
   column-gap: 5px;
 }
 
-.add-to-cart-section {
-  display: flex;
-  justify-content: space-evenly;
+.select-size-quantity-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: left;
   padding-top: 15px;
+}
+
+.add-to-cart-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: left;
 }
 
 .social-media-button {
   width: 35px;
   height: 35px;
-  border-radius: 15px;
+  border-radius: 50px;
 }
 
 #instagram-button {
@@ -272,7 +279,8 @@
 .drop-down-menu {
   cursor: pointer;
   font: small-caps 25px serif;
-  width: auto;
+  width: 200px;
+  height: 50px;
   text-align: center;
 }
 

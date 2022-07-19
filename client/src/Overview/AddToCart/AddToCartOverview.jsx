@@ -22,10 +22,12 @@ function AddToCartOverview ({skus, productName, styleName, thumbnailURL, default
 
   return (
     <div>
-      <div className = 'add-to-cart-section'>
-          <SizeSelector skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} activateQuantity = {activateQuantity} setSizeOption = {setSizeOption} setQuantityAvailable = {setQuantityAvailable}/>
-          <QuantitySelector quantityDisabled = {quantityDisabled} quantityAvailable = {quantityAvailable} setQuantityPurchased = {setQuantityPurchased}/>
-          <AddToCartFunction sizeOption = {sizeOption} quantityDisabled = {quantityDisabled} quantityPurchased = {quantityPurchased} setItemsInCart = {setItemsInCart} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL} itemsInCart = {itemsInCart} setItemsInCart = {setItemsInCart} />
+      <div className = 'select-size-quantity-buttons'>
+        <SizeSelector skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} activateQuantity = {activateQuantity} setSizeOption = {setSizeOption} setQuantityAvailable = {setQuantityAvailable}/>
+        <AddToCartFunction sizeOption = {sizeOption} quantityDisabled = {quantityDisabled} quantityPurchased = {quantityPurchased} setItemsInCart = {setItemsInCart} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL} itemsInCart = {itemsInCart} setItemsInCart = {setItemsInCart} />
+      </div>
+      <div className = 'add-to-cart-button'>
+        <QuantitySelector quantityDisabled = {quantityDisabled} quantityAvailable = {quantityAvailable} setQuantityPurchased = {setQuantityPurchased}/>
       </div>
     </div>
   )

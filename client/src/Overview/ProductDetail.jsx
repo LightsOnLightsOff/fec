@@ -43,7 +43,6 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
 
   if (salePrice) {
     percentDiscount = ((originalPrice - salePrice) / originalPrice * 100).toFixed(2);
-    console.log (percentDiscount, 'percentDiscount')
   }
 
   return (
