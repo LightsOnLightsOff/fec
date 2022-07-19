@@ -165,6 +165,12 @@
   right: 20px;
 }
 
+#zoomed-image:hover {
+  transform: scale(2.5);
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
 .product-information-and-style {
   display: flex;
   flex-direction: column;

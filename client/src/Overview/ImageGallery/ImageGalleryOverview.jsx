@@ -9,7 +9,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
 
   const [indexOfPicture, setIndexOfPicture] = useState(null);
   const [thumbnailClicked, setThumbnailClicked] = useState(false);
-  const [defaultMainImageHeight, setDefaultMainImageHeight] = useState(400)
+  const [defaultMainImageHeight, setDefaultMainImageHeight] = useState(300)
   const [clickedOnImage, setClickedOnImage] = useState (false);
   const [zoomedView, setZoomedView] = useState(false);
   const [styleIndex, setStyleIndex] = useState(1);
@@ -44,7 +44,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
 
   const expandImage = (event) => {
     setClickedOnImage(true);
-    setDefaultMainImageHeight(500)
+    setDefaultMainImageHeight(400)
     setInExpandedView(true)
   }
 
@@ -57,26 +57,37 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
 
   const exitExpandedImage = (event) => {
     event.preventDefault();
-    setDefaultMainImageHeight(400)
+    setDefaultMainImageHeight(300)
     setClickedOnImage(false)
     setInExpandedView(false)
   }
 
+  const zoomImage = (event) => {
+    console.log('clicked on image, lets zoom now')
+  }
+
+  const panImage = (event) => {
+    console.log('mouse has moved in the image')
+    console.log(event.screenX, event.screenY)
+  }
+
   return (
-    <div className = 'image-and-thumbnail-carousels'>
-      <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked} setLeftArrowClicked = {setLeftArrowClicked} setNewIndex = {setNewIndex} setRightArrowClicked = {setRightArrowClicked}>
+    <div>
+        <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked} setLeftArrowClicked = {setLeftArrowClicked} setNewIndex = {setNewIndex} setRightArrowClicked = {setRightArrowClicked}>
         {imageArray.map(url => {
           return  <div className = 'main-image-carousel'>
-                    <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: !inExpandedView ? 'pointer' : 'default'}} src= {url}/>
+                    {!inExpandedView ?  <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: !inExpandedView ? 'pointer' : 'default'}} src= {url}/> :
+                                        <img onMouseMove = {panImage} onClick = {zoomImage} id = 'zoomed-image' style = {{backgroundImage: `url(${url})`, height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: inExpandedView ? 'zoom-in' : 'default'}} src= {url}></img>}
                     {clickedOnImage ? <button onClick = {exitExpandedImage} className = 'close-expanded-view'>X</button> : null}
                   </div>
         })}
       </MainImage>
+
       <ImageThumbnail show = {7}>
         {thumbnailArray.map((url, index)=> {
           index += 1
           return  <div src= {url} className = 'thumbnail-image-carousel' >
-                    <img onClick = {() => {handleClickThumbnail(event, index)}} className = 'individual-thumbnail-image-gallery' style = {{borderRadius: 10, border: ((index === styleIndex))? '5px solid #4E6E58': 'none'}} src= {url} />
+                    <img onClick = {() => {handleClickThumbnail(event, index)}} className = 'individual-thumbnail-image-gallery' style = {{border: ((index === styleIndex))? '5px solid darkgoldenrod': 'none'}} src= {url} />
                   </div>
         })}
       </ImageThumbnail>
