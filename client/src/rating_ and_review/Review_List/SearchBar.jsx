@@ -134,7 +134,7 @@ function SearchBar(props) {
       <div className="rating">
         <Ratings filterByStar={filterByStar} />
         <div>
-          <Input onChange={(e) => { setSearchReview(e.target.value) }} type="text" placeholder="Search Reviews"></Input>
+          <Input data-testid="searchbar" onChange={(e) => { setSearchReview(e.target.value) }} type="text" placeholder="Search Reviews"></Input>
           <ReviewList
             setDisplayButton={setDisplayButton}
             setProduct={setProduct}
