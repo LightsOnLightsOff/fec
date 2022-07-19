@@ -33,10 +33,9 @@ function Outfit ({
     // position: 'absolute'
   }
 
-
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: outfit.length > 3,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3
@@ -47,11 +46,10 @@ function Outfit ({
       setOutfit(pre => {
         return [...pre, currentProduct]
       })
-      setCount(pre=>pre+1)
+      setCount(pre => pre + 1)
     }
     console.log('currentProduct:', currentProduct)
     setC(true)
-
   }
 
   var findCurrentStyle = function (id) {
@@ -66,7 +64,7 @@ function Outfit ({
     findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('      outfit before rendering', countClick,outfit.length)
+  console.log('      outfit before rendering', countClick, outfit.length)
   if (outfit.length > 0 && countClick === outfit.length) {
     return (
       <div>
@@ -81,17 +79,17 @@ function Outfit ({
           <Slider {...settings}>
             {outfit.map((item, index) => {
               {
-                console.log('Loop index and current photo', index,item)
+                console.log('Loop index and current photo', index, item)
               }
               return (
                 <section key={index} className='outfitSlider'>
                   <img
-                    src={ currentStyle[index].photo}
+                    src={currentStyle[index].photo}
                     style={imgStyles}
                     name={item.id}
                   />
-                  <p className='below-pic'>{ item.detail.category}</p>
-                  <h3 className='below-pic'>{ item.detail.name}</h3>
+                  <p className='below-pic'>{item.detail.category}</p>
+                  <h3 className='below-pic'>{item.detail.name}</h3>
                   <p
                     className='below-pic'
                     style={
@@ -103,7 +101,7 @@ function Outfit ({
                         : null
                     }
                   >
-                   { `$${ item.detail.default_price}`}
+                    {`$${item.detail.default_price}`}
                   </p>
                   <p className='below-pic' style={{ display: 'inline' }}>
                     {style[index].salePrice}
@@ -119,7 +117,6 @@ function Outfit ({
               )
             })}
           </Slider>
-
           {/* <Control style={style} /> */}
         </div>
       </div>
