@@ -18,7 +18,7 @@ function QandA (props) {
       params: {
         product_id: 44785,
         page: 1,
-        count: 5
+        count: 20
       },
       headers: {Authorization: config.TOKEN}
     })
