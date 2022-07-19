@@ -9,8 +9,8 @@ import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
 import { ColorRating } from './style.css/star.js'
 import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css" ;
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 function Outfit ({
   currentProduct,
@@ -21,7 +21,9 @@ function Outfit ({
   setOutfit,
   currentStyle,
   setCurrS,
-  rating
+  rating,
+  countClick,
+  setCount
 }) {
   const [clicked, setC] = useState(false)
   const imgStyles = {
@@ -31,22 +33,25 @@ function Outfit ({
     // position: 'absolute'
   }
 
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3
-  };
+  }
 
   var clickPlus = function (e) {
     if (!clicked) {
       setOutfit(pre => {
-        return [...pre, [currentProduct]]
+        return [...pre, currentProduct]
       })
+      setCount(pre=>pre+1)
     }
     console.log('currentProduct:', currentProduct)
     setC(true)
+
   }
 
   var findCurrentStyle = function (id) {
@@ -61,62 +66,77 @@ function Outfit ({
     findCurrentStyle(currentProduct.id)
   }, [])
 
-  // console.log('      outfit before rendering', outfit)
-  return (
-    <div>
-      <h4 className='title'> YOUR OUTFIT</h4>
-      <FontAwesomeIcon
-        icon={faCirclePlus}
-        size='3x'
-        className='plus-button'
-        onClick={clickPlus}
-      />
-      <div className='slider'>
-        <Slider {...settings}>
-          {outfit.map((item, index) => {
-            {
-               console.log('Loop index and current photo',  index,currentStyle)
-            }
-            return (
-              <section key={index} className='outfitSlider'>
-                <img
-                  src={currentStyle[index].photo && currentStyle[index].photo}
-                  style={index === 0 ? { display: 'none' } : imgStyles}
-                  name={item.id}
-                />
-                <p className='below-pic'>{item[0].detail.category}</p>
-                <h3 className='below-pic'>{item[0].detail.name}</h3>
-                <p
-                  className='below-pic'
-                  style={
-                    style[index].salePrice
-                      ? {
-                          textDecoration: 'line-through',
-                          display: 'inline'
-                        }
-                      : null
-                  }
-                >{index !== 0 && `$${item[0].detail.default_price}`}</p>
-                <p className='below-pic' style={{ display: 'inline' }}>
-                  {style[index].salePrice}
-                </p>
-                <ColorRating
-                style={index === 0 ? {display:'none'} : null}
-                  wid={`${(Math.floor((rating[index] / 5) * 4) / 4) * 100}%`}
-                >
-                  <span className='thestar'>
-                    &#9733;&#9733;&#9733;&#9733;&#9733;
-                  </span>
-                </ColorRating>
-              </section>
-            )
-          })}
-        </Slider>
+  console.log('      outfit before rendering', countClick,outfit.length)
+  if (outfit.length > 0 && countClick === outfit.length) {
+    return (
+      <div>
+        <h4 className='title'> YOUR OUTFIT</h4>
+        <FontAwesomeIcon
+          icon={faCirclePlus}
+          size='3x'
+          className='plus-button'
+          onClick={clickPlus}
+        />
+        <div className='slider'>
+          <Slider {...settings}>
+            {outfit.map((item, index) => {
+              {
+                console.log('Loop index and current photo', index,item)
+              }
+              return (
+                <section key={index} className='outfitSlider'>
+                  <img
+                    src={ currentStyle[index].photo}
+                    style={imgStyles}
+                    name={item.id}
+                  />
+                  <p className='below-pic'>{ item.detail.category}</p>
+                  <h3 className='below-pic'>{ item.detail.name}</h3>
+                  <p
+                    className='below-pic'
+                    style={
+                      style[index].salePrice
+                        ? {
+                            textDecoration: 'line-through',
+                            display: 'inline'
+                          }
+                        : null
+                    }
+                  >
+                   { `$${ item.detail.default_price}`}
+                  </p>
+                  <p className='below-pic' style={{ display: 'inline' }}>
+                    {style[index].salePrice}
+                  </p>
+                  <ColorRating
+                    wid={`${(Math.floor((rating[index] / 5) * 4) / 4) * 100}%`}
+                  >
+                    <span className='thestar'>
+                      &#9733;&#9733;&#9733;&#9733;&#9733;
+                    </span>
+                  </ColorRating>
+                </section>
+              )
+            })}
+          </Slider>
 
-        {/* <Control style={style} /> */}
+          {/* <Control style={style} /> */}
+        </div>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div>
+        <h4 className='title'> YOUR OUTFIT</h4>
+        <FontAwesomeIcon
+          icon={faCirclePlus}
+          size='3x'
+          className='plus-button'
+          onClick={clickPlus}
+        />
+      </div>
+    )
+  }
 }
 
 export default Outfit

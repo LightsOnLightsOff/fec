@@ -38,9 +38,10 @@ function Related (props) {
     features: [],
     detail: []
   })
-  const [outfit, setOutfit] = useState([[{ detail:{category: '',name:''} }]])
-  // const [outfit, setOutfit] = useState([]);
-  const [currentStyle, setCurrS] = useState([{ salePrice: '', photo: '' }])
+  // const [outfit, setOutfit] = useState([[{ detail:{category: '',name:''} }]])
+  const [outfit, setOutfit] = useState([]);
+  const [currentStyle, setCurrS] = useState([])
+  const [countClick,setCount] = useState(0)
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -296,6 +297,8 @@ function Related (props) {
           currentStyle={currentStyle}
           setCurrS={setCurrS}
           rating={rating}
+          countClick={countClick}
+          setCount={setCount}
         />
       </div>
     )
