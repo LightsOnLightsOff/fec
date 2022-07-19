@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
-import AddQuestionButton from './AddQuestionButton.jsx';
-import MoreQuestions from './MoreQuestions.jsx'
+// import AddQuestionButton from './AddQuestionButton.jsx';
+import MoreQuestions from './MoreQuestions.jsx';
+import AddQuestionModal from './AddQuestionModal.jsx';
 import config from '../../../config.js'
 
 function QandA (props) {
@@ -11,6 +12,7 @@ function QandA (props) {
   const [isLoading, setIsLoading] = useState(true);
   const [questionData, setQuestions] = useState({});
   const [currentQuestions, changeCurrentQuestions] = useState([]);
+  const [showingQuestionModal, setShowingQuestionModal] = useState(false);
 
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
@@ -33,6 +35,10 @@ function QandA (props) {
     })
   }, [])
 
+  var handleAddQuestion = (e) => {
+    setShowingQuestionModal(true);
+  }
+
   return (
     <div className='q-and-a'>
       <h2>QUESTIONS & ANSWERS</h2>
@@ -40,7 +46,10 @@ function QandA (props) {
       <QuestionList currentQuestions={currentQuestions}/>
       <div>
         <MoreQuestions changeCurrentQuestions={changeCurrentQuestions} currentQuestions= {currentQuestions} questionData={questionData}/>
-        <AddQuestionButton />
+        <button onClick={handleAddQuestion}>
+          ADD A QUESTION +
+        </button>
+        {showingQuestionModal && <AddQuestionModal setShowingQuestionModal={setShowingQuestionModal}/>}
       </div>
     </div>
   )

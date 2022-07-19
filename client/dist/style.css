@@ -1,3 +1,4 @@
+
 .product-detail {
   margin-top: 50px;
   margin-right: 50px;
@@ -55,6 +56,12 @@
 .style-name {
   padding-bottom: 20px;
   font: small-caps bold 30px serif;
+}
+
+
+.below-pic{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .check-logo {
@@ -395,7 +402,7 @@ overflow-y: auto; */
 /* ReviewList */
 .reviewList {
   /* border: #000 solid; */
-  max-height: 600px;
+  max-height: 700px;
   overflow-y: auto;
   width: 900px;
   overflow-x: auto;
@@ -438,6 +445,27 @@ overflow-y: auto; */
 }
 
 
+.title, .plus-button,.slider{
+  margin-top: 50px;
+  margin-right: 450px;
+  margin-left: 380px;
+}
+
+.section{
+  position: relative;
+}
+
+
+ /* .thestar {
+  display: inline-block;
+  position: relative;
+  font-size: px;
+  color: #ddd;
+}
+
+.thestar:after {
+  font-family: FontAwesome;
+  content: "\2605\2605\2605\2605\2605";
 .newest:hover,
 .helpful:hover,
 .relevant:hover {
@@ -453,8 +481,8 @@ overflow-y: auto; */
 .filter {
   padding-bottom: 0px;
   height: 40px;
-  /* border: #000 solid; */
-}
+  border: #000 solid;
+}*/
 
 
 .helpful {
@@ -492,6 +520,11 @@ overflow-y: auto; */
   transition: all 0.5s ease;
   margin-top: 1rem;
   left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f80;
+}
   display: none;
 } */
 
@@ -509,6 +542,7 @@ overflow-y: auto; */
   opacity: 1;
   display: block;
   cursor: pointer;
+  save
 
 } */
 
@@ -518,6 +552,16 @@ overflow-y: auto; */
   flex-direction: row;
 }
 
+ /* th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color:black;
+} */
+
+.modal-container td, .modal-container th {
+  padding: 8px;
+}
 .eachImage {
   padding: 5px;
   height: 100px;
@@ -557,8 +601,18 @@ overflow-y: auto; */
   justify-content: flex-end;
 }
 
+/* img{
+  position: relative;
+  display: inline;
+} */
 
+/*
+section{
+  position: relative;
+}
+.tns-lazy-img{
 
+} */
 /* Review Index */
 .rating {
   display: flex;
