@@ -19,12 +19,13 @@ function SearchBar(props) {
   const [relevantData, setRelevantData] = useState([])
   const [productId, setProductId] = useState('') //TEMP KEEP THIS UNTIL WE USE USECONTEXT
   const [count, setCount] = useState(1)
+  const [displayLessButton, setDisplayLessButton] = useState(false)
   //var updateData = [] //storing the data but in pairs
   const [currentReviewId, setCurrentReviewId] = useState('') //check if the helpful already clicked
   const [filterStarRating, setFilterStarRating] = useState(false) //check if we need to filter out the star
   const [numStar, setNumStar] = useState(0)
 
-// console.log("THIS IS THE SET DATA IN SEARCH BAR: ", data)
+  // console.log("THIS IS THE SET DATA IN SEARCH BAR: ", data)
 
   useEffect(() => {
     const getData = async () => {
@@ -67,14 +68,26 @@ function SearchBar(props) {
     var increaseCount = count + 1
     if (product.length === increaseCount) {
       // //re-render last review and remove button
+      setDisplayLessButton(false)
       setDisplayButton(false)
       setCount(count + 1)
 
     } else {
       //increment count
+      setDisplayLessButton(true)
       setCount(count + 1)
     }
 
+  }
+
+  const removeReviews = () => {
+    var increaseCount = count - 1
+    if (increaseCount === 1) {
+      setDisplayLessButton(false)
+      setCount(count - 1)
+    } else {
+      setCount(count - 1)
+    }
   }
 
   const filterByStar = (num) => {
@@ -117,32 +130,34 @@ function SearchBar(props) {
     }, [])
 
     // console.log("WHAT IS SPLIT FILTER: ", splitFilter)
-  return (
-    <div className="rating">
+    return (
+      <div className="rating">
         <Ratings filterByStar={filterByStar} />
-      <div>
-      <Input onChange={(e) => {setSearchReview(e.target.value)}} type="text" placeholder="Search Reviews"></Input>
-      <ReviewList
-      setDisplayButton={setDisplayButton}
-      setProduct={setProduct}
-      setData={setData}
-      setRelevantData={setRelevantData}
-      setProductId={setProductId}
-      setCount={setCount}
-      setCurrentReviewId={setCurrentReviewId}
-      splitFilter={splitFilter}
-      filterData={filterData}
-      relevantData={relevantData}
-      productId={productId}
-      renderMoreReviews={renderMoreReviews}
-      count={count}
-      displayButton={displayButton}
-      currentReviewId={currentReviewId} />
+        <div>
+          <Input onChange={(e) => { setSearchReview(e.target.value) }} type="text" placeholder="Search Reviews"></Input>
+          <ReviewList
+            setDisplayButton={setDisplayButton}
+            setProduct={setProduct}
+            setData={setData}
+            setRelevantData={setRelevantData}
+            setProductId={setProductId}
+            setCount={setCount}
+            setCurrentReviewId={setCurrentReviewId}
+            splitFilter={splitFilter}
+            filterData={filterData}
+            relevantData={relevantData}
+            productId={productId}
+            renderMoreReviews={renderMoreReviews}
+            count={count}
+            displayButton={displayButton}
+            currentReviewId={currentReviewId}
+            displayLessButton={displayLessButton}
+            removeReviews={removeReviews} />
 
-    </div>
-    </div>
+        </div>
+      </div>
 
-  )
+    )
   }
 }
 
@@ -150,5 +165,8 @@ export default SearchBar;
 
 
 const Input = styled.input`
+padding: 10px;
+border-radius: 7px;
+width: 80%;
 
 `;

@@ -79,9 +79,9 @@ function FormModal({ toggle, showModal, productId, postData }) {
       characteristics: {}
 
     }
-
-    if (starIndex === 0 || summarys.length === 0 || bodys.length > 50 || recommends === ''
-      || username.length === 0 || emails.includes("@")) {
+console.log(username.length === 0 || emails.includes("@"))
+    if (starIndex === 0 || summaryLength === 0 || bodyLength < 50 || recommends === ''
+      || username.length === 0 || emails.indexOf('@') === -1) {
       setDisplayError(true)
       setTimeout(() => {
         setDisplayError(false)
@@ -94,6 +94,8 @@ function FormModal({ toggle, showModal, productId, postData }) {
       setSummary('')
       setBody('')
       setStarIndex(0)
+      setSummaryLength(0)
+      setBodyLength(0)
       toggle()
       postData(data)
 
@@ -153,9 +155,9 @@ function FormModal({ toggle, showModal, productId, postData }) {
     return (
       <FormOverlay >
         <FormWrapper>
-          <Button onClick={toggle} className="modal-button">
+          <XButton onClick={toggle} className="modal-button">
             <span>&times;</span>
-          </Button>
+          </XButton>
           <Forms>
             <Title>About the <code>**Product Name**</code></Title>
             <OverallAndStar>
@@ -208,23 +210,30 @@ function FormModal({ toggle, showModal, productId, postData }) {
 
           <TextBox>
             <Recommend>
-            {displayError && <Error>Please fill</Error>}
+              {displayError && <Error>Please fill</Error>}
               <TextSummary placeholder="  Please provide summary: ie. Best purchase ever!" name="summary" rows="5" cols="60" value={summarys} onChange={summarysLength}></TextSummary>
               <code>Characters: {summaryLength} / 60</code>
             </Recommend>
 
+            <Recommend>
+              <UploadImage setShowImage={setShowImage} showImage={showImage} />
+              </Recommend>
 
-            <UploadImage setShowImage={setShowImage} showImage={showImage} />
 
 
 
             <Recommend>
-            {displayError && <Error>Please fill</Error>}
+              {displayError && <Error>Please fill</Error>}
               <TextSummary placeholder="  Why did you like the product or not?" name="body" rows="10" cols="60" value={bodys} onChange={bodysLength} ></TextSummary>
               <code>Characters: {bodyLength} {bodyLength >= 50 && <code style={{ position: 'static' }}>Minimun reached &#128077;  </code>}</code>
             </Recommend>
+            <Recommend>
+            <Button onClick={postReq}>Submit Review</Button>
+
+            </Recommend>
+
           </TextBox>
-          <Button onClick={postReq}>Submit Review</Button>
+
         </FormWrapper>
       </FormOverlay>
 
@@ -373,14 +382,23 @@ padding-left: 80px;
 `;
 
 const Button = styled.button`
+text-align: center;
+width: 35%;
 padding: 8px;
 margin: 5px;
+
 border-radius: 7px;
-float: right;
 background-color: white;
 &:hover {
   cursor: pointer
 }
 
 `;
+
+const XButton = styled(Button)`
+float: left;
+width: fit-content;
+margin-left: 10px;
+
+`
 

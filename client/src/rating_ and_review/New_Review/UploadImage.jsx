@@ -7,7 +7,7 @@ import { faCheck, faArrowAltCircleLeft, faUserAstronaut, faFaceLaughWink, faImag
 
 function UploadImage({ setShowImage, showImage }) {
 
-  //const [showImage, setShowImage] = useState([])
+  const [showTemplate, setShowTemplate] = useState(true)
   // console.log("SHOW IMAGE: ", showImage)
 
   let urlImages = []
@@ -16,6 +16,7 @@ function UploadImage({ setShowImage, showImage }) {
     console.log("COUNT: ", count++)
     urlImages.push(url)
     // console.log("URL: ", urlImages)
+    setShowTemplate(false)
     setShowImage(urlImages)
 
   }
@@ -50,6 +51,11 @@ function UploadImage({ setShowImage, showImage }) {
       <h4>Add a photo</h4>
       <Div>
         <ImageBox onClick={showWidget}>◕‿‿◕</ImageBox>
+      {showTemplate && <BoxFakeImage>  <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage>
+        <FakeImage ></FakeImage> </BoxFakeImage>  }
         {/* <Img src="https://res.cloudinary.com/dpbkoptqh/image/upload/v1658013211/ojuymnw187z1m0vcjvzx.jpg"></Img>
         <Img src="https://res.cloudinary.com/dpbkoptqh/image/upload/v1658013212/xcghswbujsdudywxvvw6.jpg"></Img> */}
         {showImage.map((url, index) => {
@@ -68,6 +74,8 @@ function UploadImage({ setShowImage, showImage }) {
 
 export default UploadImage;
 
+
+
 const Main = styled.div`
 
 display: flex;
@@ -78,7 +86,11 @@ text-align: center;
 
 `;
 
+
+
+
 const ImageBox = styled.div`
+margin-left: 280px;
 text-align: center;
 font-size: 15px;
 display: flex;
@@ -97,6 +109,16 @@ border-radius: 5px;
   cursor: pointer
 };
 
+
+`;
+const FakeImage = styled(ImageBox)`
+margin-left: 10px;
+
+`;
+
+const BoxFakeImage = styled.div`
+display: flex;
+flex-direction: row;
 
 `;
 

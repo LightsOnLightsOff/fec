@@ -10,7 +10,7 @@ import config from '../../../../config.js'
 import styled from 'styled-components';
 
 
-function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, setProductId, setCount, setCurrentReviewId, splitFilter, filterData, relevantData, productId, renderMoreReviews, count, displayButton, currentReviewId }) {
+function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, setProductId, setCount, setCurrentReviewId, splitFilter, filterData, relevantData, productId, renderMoreReviews, count, displayButton, currentReviewId, displayLessButton, removeReviews }) {
 
   const [toggleImage, setToggleImage] = useState(false)
   const [newUrl, setNewUrl] = useState('')
@@ -184,7 +184,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
         <Review addReport={addReport} productId={productId} addHelpfull={addHelpfull} renderMoreReviews={renderMoreReviews} product={splitFilter} count={count} />
 
         {displayButton && <Button onClick={renderMoreReviews}>More Reviews +</Button>}
-        {/* <NewReview postData={postData} productId={splitFilter} /> */}
+        {displayLessButton && <Button onClick={removeReviews}>Less Reviews -</Button>}
         <Button onClick={formToggle}>Add New Review </Button>
         <FormModal
           toggle={formToggle}
