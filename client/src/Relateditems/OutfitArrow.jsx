@@ -49,7 +49,11 @@ class ReactCustomArrow extends React.Component {
     console.log('index of clicking', index, afterDelete)
     this.props.setOutfit(afterDelete)
     this.props.setCount(prev => prev - 1)
-    this.props.setCurrS(prev=>prev.filter((item,num)=>num !== index ))
+    var styleNotDelete = this.props.currentStyle.filter(
+      (item, num) => num !== index
+    )
+    this.props.setCurrS(styleNotDelete)
+    this.props.setC(false)
   }
 
   renderArrows = () => {
@@ -80,13 +84,13 @@ class ReactCustomArrow extends React.Component {
 
   render () {
     {
-      console.log('current styles', this.props.currentStyle);
-
+      console.log('current styles in outfitarrow', this.props.currentStyle)
       console.log('outfuttt???', this.props.outfit)
     }
     if (
       this.props.outfit.length > 0 &&
-      this.props.countClick === this.props.outfit.length
+      this.props.countClick === this.props.outfit.length &&
+      this.props.countClick === this.props.currentStyle.length
     ) {
       return (
         <div className='App'>
@@ -100,9 +104,13 @@ class ReactCustomArrow extends React.Component {
             >
               {this.props.outfit.map((item, index) => {
                 {
-                  /* {
-                  console.log('Loop index and current photo', index, item)
-                } */
+                  {
+                    console.log(
+                      'Loop index and current photo',
+                      index,
+                      this.props.currentStyle[index]
+                    )
+                  }
                 }
                 var l = this.props.outfit.length
                 return (
@@ -119,7 +127,11 @@ class ReactCustomArrow extends React.Component {
                     </div>
 
                     <img
-                      src={this.props.currentStyle[index].photo}
+                      src={
+                        this.props.currentStyle.length > 0
+                          ? this.props.currentStyle[index].photo
+                          : null
+                      }
                       style={this.props.imgStyles}
                       name={item.id}
                     />

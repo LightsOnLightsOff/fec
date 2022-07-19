@@ -50,29 +50,32 @@ function Outfit ({
 
 
   var clickPlus = function (e) {
+        console.log('currentProduct:', currentProduct)
     if (!clicked) {
       setOutfit(pre => {
         return [...pre, currentProduct]
       })
       setCount(pre => pre + 1)
+      findCurrentStyle(currentProduct.id)
     }
-    console.log('currentProduct:', currentProduct)
+
     setC(true)
   }
 
   var findCurrentStyle = function (id) {
+    // console.log('currentstyle invoke after mounting', id)
     findstyleByid(id).then(res => {
-      // console.log('currentstyle invoke after mounting', res)
+      console.log('currentstyle invoke after mounting',id, res)
       setCurrS(pre => [...pre, res])
     })
   }
 
   useEffect(() => {
     // console.log('ONCE List of variable currentProduct',product);
-    findCurrentStyle(currentProduct.id)
+    // findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('      outfit before rendering', countClick, outfit.length)
+  console.log('      outfit before rendering', countClick, currentStyle)
   if (outfit.length > 0 && countClick === outfit.length) {
     return (
       <div>
@@ -84,7 +87,7 @@ function Outfit ({
           onClick={clickPlus}
         />
         <div className='slider'>
-        <OutfitArrow outfit={outfit} countClick={countClick} currentStyle={currentStyle} imgStyles={imgStyles} style={style} rating={rating} product={product} setOutfit={setOutfit} setCount={setCount} setCurrS={setCurrS}/>
+        <OutfitArrow outfit={outfit} countClick={countClick} currentStyle={currentStyle} imgStyles={imgStyles} style={style} rating={rating} product={product} setOutfit={setOutfit} setCount={setCount} setCurrS={setCurrS} setC={setC}/>
 
         </div>
       </div>
