@@ -29,7 +29,7 @@ function SearchBar(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344&count=200&sort=relevant', {
+      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40355&count=200&sort=relevant', {
         headers: {
           Authorization: config.TOKEN
         }

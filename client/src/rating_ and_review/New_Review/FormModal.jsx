@@ -68,7 +68,7 @@ function FormModal({ toggle, showModal, productId, postData }) {
 
   const postReq = () => {
     var data = {
-      product_id: 40344,
+      product_id: Number(productId),
       rating: starIndex,
       summary: summarys,
       body: bodys,
@@ -79,6 +79,7 @@ function FormModal({ toggle, showModal, productId, postData }) {
       characteristics: {}
 
     }
+    console.log("DATA: ", data)
 // console.log(username.length === 0 || emails.includes("@"))
     if (starIndex === 0 || summaryLength === 0 || bodyLength < 50 || recommends === ''
       || username.length === 0 || emails.indexOf('@') === -1) {
