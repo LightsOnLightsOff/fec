@@ -11,7 +11,7 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
   const [clickedName, setClickedName] = useState('');
 
   useEffect (() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40345/styles', {
     params: { page: 1, count: 1 },
     headers: {
 

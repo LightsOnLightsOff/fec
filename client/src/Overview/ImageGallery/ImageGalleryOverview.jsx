@@ -18,6 +18,8 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   const [leftArrowClicked, setLeftArrowClicked] = useState(false);
   const [newIndex, setNewIndex] = useState(0);
 
+  let urlDoesNotExist = 'https://static.thenounproject.com/png/1400397-200.png'
+
   if (leftArrowClicked) {
     setLeftArrowClicked(false);
     setStyleIndex(newIndex)
@@ -31,20 +33,38 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   if (Object.keys(selectedStyle).length === 0 ) {
     let photos = defaultSKU.photos;
     for (let key in photos) {
-      thumbnailArray.push(photos[key].thumbnail_url)
-      imageArray.push(photos[key].url)
+      if (photos[key].thumbnail_url) {
+        thumbnailArray.push(photos[key].thumbnail_url)
+      } else {
+        thumbnailArray.push (urlDoesNotExist)
+      }
+
+      if (photos[key].url) {
+        imageArray.push(photos[key].url)
+      } else {
+        imageArray.push(urlDoesNotExist)
+      }
     }
   } else {
     let photos = selectedStyle.photos;
     for (let key in photos) {
-      thumbnailArray.push(photos[key].thumbnail_url)
-      imageArray.push(photos[key].url)
+      if (photos[key].thumbnail_url) {
+        thumbnailArray.push(photos[key].thumbnail_url)
+      } else {
+        thumbnailArray.push (urlDoesNotExist)
+      }
+
+      if (photos[key].url) {
+        imageArray.push(photos[key].url)
+      } else {
+        imageArray.push(urlDoesNotExist)
+      }
     }
   }
 
   const expandImage = (event) => {
     setClickedOnImage(true);
-    setDefaultMainImageHeight(400)
+    setDefaultMainImageHeight(300)
     setInExpandedView(true)
   }
 
@@ -77,7 +97,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
         {imageArray.map(url => {
           return  <div className = 'main-image-carousel'>
                     {!inExpandedView ?  <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: !inExpandedView ? 'pointer' : 'default'}} src= {url}/> :
-                                        <img onMouseMove = {panImage} onClick = {zoomImage} id = 'zoomed-image' style = {{backgroundImage: `url(${url})`, height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: inExpandedView ? 'zoom-in' : 'default'}} src= {url}></img>}
+                      <img onMouseMove = {panImage} onClick = {zoomImage} id = 'zoomed-image' style = {{backgroundImage: `url(${url})`, height: defaultMainImageHeight , width: 'auto', borderRadius: 20, cursor: inExpandedView ? 'zoom-in' : 'default'}} src= {url}></img>}
                     {clickedOnImage ? <button onClick = {exitExpandedImage} className = 'close-expanded-view'>X</button> : null}
                   </div>
         })}
