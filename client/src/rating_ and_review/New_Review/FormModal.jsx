@@ -79,7 +79,7 @@ function FormModal({ toggle, showModal, productId, postData }) {
       characteristics: {}
 
     }
-console.log(username.length === 0 || emails.includes("@"))
+// console.log(username.length === 0 || emails.includes("@"))
     if (starIndex === 0 || summaryLength === 0 || bodyLength < 50 || recommends === ''
       || username.length === 0 || emails.indexOf('@') === -1) {
       setDisplayError(true)
@@ -88,7 +88,7 @@ console.log(username.length === 0 || emails.includes("@"))
       }, 3000)
       return;
     } else {
-      console.log("DATA WE PUT TOGETHER: ", data)
+      // console.log("DATA WE PUT TOGETHER: ", data)
       setUsername('')
       setEmail('')
       setSummary('')

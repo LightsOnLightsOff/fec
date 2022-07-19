@@ -83,7 +83,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
           }
           return result
         }, [])
-        console.log("GET DATA HERE FROM HELPFUL: ", splitData.length)
+        // console.log("GET DATA HERE FROM HELPFUL: ", splitData.length)
 
         //updateData response.data.results
         if (splitData.length < 2) {
@@ -156,7 +156,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
       }
     })
       .then((res) => {
-        console.log("ANYTHING?: ", res.data)
+        // console.log("ANYTHING?: ", res.data)
         getDataAgain()
       })
       .catch((err) => {

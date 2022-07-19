@@ -4,8 +4,8 @@ import styled from 'styled-components';
 function Characteristics({data, displayError}) {
 
   const onChangeValue = (e) => {
-    console.log("CHARACTERISTICCS: ", e.target.value )
-    // data.state(e.target.value)
+    // console.log("CHARACTERISTICCS: ", e.target.value )
+    data.state(e.target.value)
 
   }
 

@@ -13,7 +13,7 @@ function UploadImage({ setShowImage, showImage }) {
   let urlImages = []
   let count = 0
   const photoArray = (url) => {
-    console.log("COUNT: ", count++)
+    // console.log("COUNT: ", count++)
     urlImages.push(url)
     // console.log("URL: ", urlImages)
     setShowTemplate(false)
@@ -23,7 +23,7 @@ function UploadImage({ setShowImage, showImage }) {
 
   const checkUploadResult = (resultEvent) => {
     if (resultEvent.event === "success") {
-      console.log('Done! Here is the image info: ', resultEvent.info);
+      // console.log('Done! Here is the image info: ', resultEvent.info);
       photoArray(resultEvent.info.secure_url)
       // console.log("UPDATED IMAGE: ", photoArray)
       // setShowImage(photoArray)
