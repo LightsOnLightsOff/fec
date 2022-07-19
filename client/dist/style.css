@@ -281,7 +281,6 @@
 .individual-thumbnail-image-gallery {
   height: 50px ;
   width: 'auto';
-  border-radius: 10;
   cursor: pointer;
 }
 

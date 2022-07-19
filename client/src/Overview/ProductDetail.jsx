@@ -48,12 +48,12 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
         {originalPrice && !salePrice ?
           <div>
             <span className = 'product-original-price-label'>Price: </span>
-            <span className = 'product-original-price-number'>{originalPrice}</span>
+            <span className = 'product-original-price-number'>${originalPrice}</span>
           </div> :
           <div>
             <span className = 'product-original-price-label'>Sale Price! </span>
-            <span className = 'original-price-strikethrough'>{originalPrice}</span>
-            <span className = 'product-sale-price'>    {salePrice}</span>
+            <span className = 'original-price-strikethrough'>${originalPrice}</span>
+            <span className = 'product-sale-price'>    ${salePrice}</span>
           </div>
         }
         <div className = 'product-slogan'>{slogan}</div>
