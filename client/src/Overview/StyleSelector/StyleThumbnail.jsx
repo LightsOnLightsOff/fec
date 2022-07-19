@@ -12,13 +12,11 @@ function StyleThumbnail ({setSelectedStyle, style, setClickedName, setOriginalPr
 
   return (
     <div >
-      <div>------------Style Thumbnail----------------
-        <div className = 'style-thumbnail-layout'>
-          {(style) ? style.map((style, index) => {
-            index += 1
-            return <IndividualThumbnail setSelectedStyle = {setSelectedStyle} style = {style} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL} index = {index} thumbnailIndex = {thumbnailIndex} setThumbnailIndex = {setThumbnailIndex} setChangeBorder = {setChangeBorder} />
-          }) : null}
-        </div>
+      <div className = 'style-thumbnail-layout'>
+        {(style) ? style.map((style, index) => {
+          index += 1
+          return <IndividualThumbnail setSelectedStyle = {setSelectedStyle} style = {style} setClickedName = {setClickedName} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setThumbnailURL = {setThumbnailURL} index = {index} thumbnailIndex = {thumbnailIndex} setThumbnailIndex = {setThumbnailIndex} setChangeBorder = {setChangeBorder} />
+        }) : null}
       </div>
     </div>
   )

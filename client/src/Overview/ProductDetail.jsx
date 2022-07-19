@@ -15,9 +15,10 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
 
   var tempArray = [];
   var checkLogo = 'https://i.pinimg.com/originals/c7/75/fc/c775fc6d3433da085d8f579f54b7c758.jpg';
+  var percentDiscount;
 
   useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65633', {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344', {
      params: { page: 1, count: 1 },
      headers: {
        Authorization: config.TOKEN
@@ -40,22 +41,36 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     })
   }, [])
 
+  if (salePrice) {
+    percentDiscount = ((originalPrice - salePrice) / originalPrice * 100).toFixed(2);
+  }
+
   return (
-    <div>
-      <div>------------------List of Product Details--------------</div>
-        <div>{category}</div>
-        <div>{name}</div>
-        <div>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div>
-        <div>Product Features: </div>
-        {featureKey.map((featureValue) => {
-          return  <div key = {featureValue}>
-                    <img className = 'check-logo' src = {checkLogo}/>
-                    {featureValue[0]}: {featureValue[1]}
-                  </div>
-        })}
-        {originalPrice && !salePrice ? <div>Price: {originalPrice}</div> : <div>Sale Price! {originalPrice} {salePrice}</div>}
-        <div>{slogan}</div>
-        <div>{description}</div>
+    <div className = 'product-detail'>
+        <div className = 'product-category'>{category}</div>
+        <div className = 'product-name'>{name}</div>
+        <div className = 'product-star-rating'>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div>
+        {originalPrice && !salePrice ?
+          <div>
+            <span className = 'product-original-price-label'>Price: </span>
+            <span className = 'product-original-price-number'>${originalPrice}</span>
+          </div> :
+          <div>
+            <span className = 'product-original-price-label'>Sale Price! </span>
+            <span className = 'original-price-strikethrough'>${originalPrice}</span>
+            <span className = 'product-sale-price'>    ${salePrice} ({percentDiscount})% off!</span>
+          </div>
+        }
+        <div className = 'product-slogan'>{slogan}</div>
+        <div className = 'product-description'>{description}</div>
+        <div className = 'product-overall-feature'>
+          {featureKey.map((featureValue) => {
+            return  <div key = {featureValue}>
+                      <img className = 'check-logo' src = {checkLogo}/>
+                      <span className  = 'product-feature' >{featureValue[0]}: {featureValue[1]}</span>
+                    </div>
+          })}
+        </div>
     </div>
   )
 }
