@@ -82,11 +82,6 @@
 }
 
 
-.below-pic{
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .check-logo {
   height: 20px;
   width: 20px;
@@ -195,6 +190,14 @@
   right: 20px;
 }
 
+#zoomed-image:hover {
+  transform: scale(1.5);
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: auto;
+
+}
+
 .product-information-and-style {
   display: flex;
   flex-direction: column;
@@ -290,13 +293,15 @@
   cursor: pointer
 }
 
-.close-expanded-view {
-  position: relative;
+#close-expanded-view {
+  position: absolute;
   color: rgb(35, 25, 35);
   background-color: white;
   border: none;
-  top: -49%;
   cursor: pointer;
+  top: 5px;
+  right: 5px;
+  color: red;
 }
 
 .thumbnail-image-carousel {
@@ -304,11 +309,13 @@
   margin-bottom: 20px;
 }
 
-.main-image-carousel {
+.main-image-carousel,
+.main-image-carousel2 {
   display: flex;
   justify-content: center;
   overflow: hidden;
   margin-top: 50px;
+  position: relative;
 }
 
 .drop-down-menu {
@@ -328,6 +335,7 @@
   height: 50px ;
   width: 'auto';
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .original-price-strikethrough{
@@ -335,40 +343,114 @@
   font: small-caps 20px serif;
 }
 
+.answers-list {
+  display: flex;
+  flex-direction: row;
+}
+
 .q-and-a {
   padding: 100px
+}
+
+.qanda-modal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qanda-modal-content {
+  width: 400px;
+  height: 360px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+.qanda-modal-content header {
+  padding-left: 10px;
+  font-size: larger
+}
+
+.qanda-modal-content form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items:flex-start;
+}
+
+.qanda-modal-content input {
+  width: 200px;
+}
+
+.qanda-modal-content label {
+  margin-top: 15px;
+}
+
+.qanda-modal-content button {
+  margin-top: 20px;
+}
+
+.qanda-modal-content footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.qanda-body-textarea {
+  height: 100px;
+  width: 350px;
+  resize: none;
 }
 
 .question-header{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding-right: 50px;
+  gap: 70px;
 }
 
 .answer-footer{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 40px;
   align-items: center;
+}
+
+.helpful-yes-button{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.qanda-report{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.question-search{
+  width: 350px;
+  font-size: 18px;
+}
+
+.question-list{
+  overflow: auto;
+  max-height: 800px;
 }
 
 /* html, body {
   display: flex;
 align-items: center;
 justify-content: center;
-} */
-
-/* #root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: solid black;
-  max-height: 1000px;
-overflow-y: auto;
-  width: fit-content;
-
 } */
 
 /* reviewIndex */
@@ -468,27 +550,36 @@ overflow-y: auto;
 }
 
 
-.title, .plus-button,.slider{
-  margin-top: 50px;
+.title,
+.plus-button,
+.slider {
+  /* margin-top: 50px; */
   margin-right: 450px;
   margin-left: 380px;
 }
 
-.section{
+
+.section {
   position: relative;
 }
 
+.outfitSlider{
+  border: solid grey;
+}
 
- /* .thestar {
-  display: inline-block;
-  position: relative;
-  font-size: px;
-  color: #ddd;
+.modal-container {
+  position: absolute;
+  background: #ffffff;
+  left: 30%;
+  top: 150%;
+  padding: 20px;
+  border: 1px solid black;
 }
 
 .thestar:after {
   font-family: FontAwesome;
   content: "\2605\2605\2605\2605\2605";
+}
 .newest:hover,
 .helpful:hover,
 .relevant:hover {
@@ -571,14 +662,8 @@ overflow-y: auto;
   flex-direction: row;
 }
 
- /* th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  color:black;
-} */
-
-.modal-container td, .modal-container th {
+.modal-container td,
+.modal-container th {
   padding: 8px;
 }
 .eachImage {
@@ -587,6 +672,15 @@ overflow-y: auto;
   width: 100px;
   border-radius: 15px;
 }
+
+.left-tick {
+  text-align: right;
+}
+
+.centerText {
+  text-align: center;
+}
+
 
 .eachImage:hover {
   cursor: pointer;
@@ -614,25 +708,12 @@ overflow-y: auto;
 }
 
 
-
-
 .header {
   display: flex;
   justify-content: flex-end;
 }
 
-/* img{
-  position: relative;
-  display: inline;
-} */
 
-/*
-section{
-  position: relative;
-}
-.tns-lazy-img{
-
-} */
 /* Review Index */
 .rating {
   display: flex;
@@ -680,4 +761,49 @@ flex-direction: row;
 } */
 
 /* Product */
+
+/* Below are shanshan */
+
+
+.below-pic{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.under-star {
+  position: relative;
+}
+
+.App {
+  font-family: sans-serif;
+}
+
+.slider-arrow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.arrow-btn,.outfit-arrow {
+  z-index: 1;
+}
+
+.left-outfit{
+  color: aqua;
+}
+
+ .next,.NEXT {
+  float: right;
+}
+.prev,.PREV{
+  float: left;
+}
+
+
+.slick-list {margin: 0 -10px;}
+.slick-slide>div {padding: 0 10px;}
+
+.main-card{
+  border: solid grey;
+}
 

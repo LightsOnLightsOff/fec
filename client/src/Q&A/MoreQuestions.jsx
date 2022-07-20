@@ -9,13 +9,13 @@ function MoreQuestions(props) {
   }
 
   useEffect(() => {
-    if (props.currentQuestions?.length >= props.questionData.results?.length) {
+    if (props.currentQuestions?.length >= props.questionData.results?.length || props.searching === true) {
       changeShowing(false);
     }
     else {
       changeShowing(true);
     }
-  }, [props.currentQuestions])
+  }, [props.currentQuestions, props.searching])
 
   if (showing) {
     return (
