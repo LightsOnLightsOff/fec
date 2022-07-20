@@ -528,6 +528,10 @@ justify-content: center;
 
 }
 
+.filter {
+  padding-left: 5px;
+}
+
 .sortList {
   /* border: #000 solid; */
   width: fit-content;
