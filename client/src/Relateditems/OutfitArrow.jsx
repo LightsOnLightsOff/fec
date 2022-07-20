@@ -32,7 +32,7 @@ class ReactCustomArrow extends React.Component {
       this.setState({ arrowDiff: diff })
       return this.slider.slickPrev()
     } else {
-      console.log('right arrow clicked', e.target)
+      // console.log('right arrow clicked', e.target)
       this.setState(prev => {
         return { rightArrow: prev.rightArrow + 1 }
       })
@@ -46,7 +46,7 @@ class ReactCustomArrow extends React.Component {
     var afterDelete = this.props.outfit.filter(
       (item, iterateIn) => iterateIn !== index
     )
-    console.log('index of clicking', index, afterDelete)
+    // console.log('index of clicking', index, afterDelete)
     this.props.setOutfit(afterDelete)
     this.props.setCount(prev => prev - 1)
     var styleNotDelete = this.props.currentStyle.filter(
@@ -84,8 +84,8 @@ class ReactCustomArrow extends React.Component {
 
   render () {
     {
-      console.log('current styles in outfitarrow', this.props.currentStyle)
-      console.log('outfuttt???', this.props.outfit)
+      // console.log('current styles in outfitarrow', this.props.currentStyle)
+      // console.log('outfuttt???', this.props.outfit)
     }
     if (
       this.props.outfit.length > 0 &&
@@ -103,7 +103,7 @@ class ReactCustomArrow extends React.Component {
               slidesToShow={3}
             >
               {this.props.outfit.map((item, index) => {
-                {
+                {/* {
                   {
                     console.log(
                       'Loop index and current photo',
@@ -111,7 +111,7 @@ class ReactCustomArrow extends React.Component {
                       this.props.currentStyle[index]
                     )
                   }
-                }
+                } */}
                 var l = this.props.outfit.length
                 return (
                   <section key={index} className='outfitSlider'>
