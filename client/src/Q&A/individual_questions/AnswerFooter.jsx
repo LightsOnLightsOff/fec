@@ -13,14 +13,11 @@ function AnswerFooter(props) {
     justifyContent: 'space-around'
   }
 
-  console.log('answer: ', props.answer)
-
   var helpfulClick = () => {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${props.answer.id}/helpful`, null, {
       headers: {Authorization: config.TOKEN}
     })
     .then((response) => {
-      console.log(response);
       setHelpful(1);
     })
     .catch((err) => {
