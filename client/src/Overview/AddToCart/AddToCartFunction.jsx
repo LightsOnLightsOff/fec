@@ -12,7 +12,7 @@ function AddToCartFunction ({sizeOption, quantityDisabled, quantityPurchased, se
 
   return (
     <span>
-      <button disabled = {quantityDisabled || (quantityPurchased === 0 || quantityPurchased === 'Select Quantity')} onClick = {handleClick} className = 'drop-down-menu' >Add To Cart</button>
+      <button disabled = {quantityDisabled || (quantityPurchased === 0 || quantityPurchased === 'Select Quantity')} onClick = {handleClick} className = 'drop-down-menu' style = {{backgroundColor : (quantityDisabled || (quantityPurchased === 0 || quantityPurchased === 'Select Quantity')) ? 'default' : '#A6ECE0'}} id = 'add-to-cart-style'>Add To Cart</button>
     </span>
   )
 }
