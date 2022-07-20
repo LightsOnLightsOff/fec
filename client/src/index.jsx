@@ -2,7 +2,7 @@ import React, { useState, createContext } from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Related from './Relateditems/Main.jsx';
-import MultipleItems from  './Relateditems/Demo.jsx'
+
 import Main from './Relateditems/Main.jsx'
 import Overview from './Overview/Overview.jsx';
 import QandA from './Q&A/Q&A.jsx'

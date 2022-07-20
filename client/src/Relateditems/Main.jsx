@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, Component } from 'react'
+import React, { useState, useEffect, memo, Component, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
@@ -6,14 +6,12 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
-import ImgandButton from './SliderImgButton.jsx'
-import Description from './SliderDescription.jsx'
-import Control from './SliderControl.jsx'
+
+import { Control } from './SliderControl.jsx'
 import Modal from './Modalwindow.jsx'
 import Outfit from './Outfit.jsx'
-import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css" ;
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 function Related (props) {
   const imgs =
@@ -25,9 +23,7 @@ function Related (props) {
   const [related, setR] = useState([])
   const [show, setShow] = useState(false)
   const [rating, setRating] = useState([])
-  const [leftArrow, setLeft] = useState(0)
-  const [rightArrow, setRight] = useState(0)
-  const [arrowDiff, setDiff] = useState(0)
+
   const [currentProduct, setCurrent] = useState({
     name: '',
     features: []
@@ -38,8 +34,10 @@ function Related (props) {
     features: [],
     detail: []
   })
-  const [outfit, setOutfit] = useState([{ 0: 'button' }])
-  const [currentStyle, setCurrS] = useState([{ salePrice: '', photo: '' }])
+  // const [outfit, setOutfit] = useState([[{ detail:{category: '',name:''} }]])
+  const [outfit, setOutfit] = useState([])
+  const [currentStyle, setCurrS] = useState([])
+  const [countClick, setCount] = useState(0)
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -188,28 +186,6 @@ function Related (props) {
     })
   }, [])
 
-  var clickProduct = function (e) {
-    setLeft(0)
-    setRight(0)
-    setDiff(0)
-    setStyle([])
-    var clickedId = e.target.attributes.getNamedItem('name').value
-    // console.log('I am clicking the picuture id:', clickedId)
-    findFeature(clickedId)
-    updateProductByid(clickedId).then(related => {
-      axios
-        .all(
-          related.map(item => {
-            return findstyleByid(item)
-          })
-        )
-        .then(res => {
-          console.log('array of styles', res)
-          setStyle(res)
-        })
-    })
-  }
-
   var clickStar = function (item) {
     setShow(true)
     // console.log('modal window for comparison', item.features)
@@ -221,19 +197,7 @@ function Related (props) {
     setShow(false)
   }
 
-  const settings = {
-    lazyload: true,
-    nav: false,
-    mouseDrag: true,
-    loop: false,
-    items: 3,
-    gutter: 20,
-    edgePadding: 200
-    // controls: true,
-    // controlsContainer: '.controls'
-  }
-
-  // console.log('product &&&&&& style ', product, style, currentProduct)
+  // console.log('product in main',product)
 
   if (
     product.length > 1 &&
@@ -242,32 +206,17 @@ function Related (props) {
   ) {
     return (
       <div>
-        <h4 className='title'>RELATED PRODUCTS</h4>
-        <div className='slider'>
-          <TinySlider settings={settings}>
-            {product.map((item, index) => {
-              return (
-                <section key={index}>
-                  <ImgandButton
-                    item={item}
-                    style={style}
-                    index={index}
-                    imgs={imgs}
-                    clickProduct={clickProduct}
-                    clickStar={clickStar}
-                  />
-                  <Description
-                    item={item}
-                    style={style}
-                    index={index}
-                    rating={rating}
-                  />
-                </section>
-              )
-            })}
-          </TinySlider>
-          <Control style={style} />
-        </div>
+        <Control
+          style={style}
+          product={product}
+          imgs={imgs}
+          clickStar={clickStar}
+          rating={rating}
+          setStyle={setStyle}
+          findFeature={findFeature}
+          updateProductByid={updateProductByid}
+          findstyleByid={findstyleByid}
+        />
         <Modal
           currentProduct={currentProduct}
           compareProduct={compareProduct}
@@ -276,15 +225,17 @@ function Related (props) {
         />
         <Outfit
           currentProduct={currentProduct}
-          // settings={settings}
           findstyleByid={findstyleByid}
-          clickProduct={clickProduct}
           imgs={imgs}
           style={style}
           outfit={outfit}
           setOutfit={setOutfit}
           currentStyle={currentStyle}
           setCurrS={setCurrS}
+          rating={rating}
+          countClick={countClick}
+          setCount={setCount}
+          product={product}
         />
       </div>
     )

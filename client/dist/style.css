@@ -82,11 +82,6 @@
 }
 
 
-.below-pic{
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .check-logo {
   height: 20px;
   width: 20px;
@@ -458,17 +453,6 @@ align-items: center;
 justify-content: center;
 } */
 
-/* #root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: solid black;
-  max-height: 1000px;
-overflow-y: auto;
-  width: fit-content;
-
-} */
-
 /* reviewIndex */
 
 /* .bear {
@@ -566,27 +550,36 @@ overflow-y: auto;
 }
 
 
-.title, .plus-button,.slider{
-  margin-top: 50px;
+.title,
+.plus-button,
+.slider {
+  /* margin-top: 50px; */
   margin-right: 450px;
   margin-left: 380px;
 }
 
-.section{
+
+.section {
   position: relative;
 }
 
+.outfitSlider{
+  border: solid grey;
+}
 
- /* .thestar {
-  display: inline-block;
-  position: relative;
-  font-size: px;
-  color: #ddd;
+.modal-container {
+  position: absolute;
+  background: #ffffff;
+  left: 30%;
+  top: 150%;
+  padding: 20px;
+  border: 1px solid black;
 }
 
 .thestar:after {
   font-family: FontAwesome;
   content: "\2605\2605\2605\2605\2605";
+}
 .newest:hover,
 .helpful:hover,
 .relevant:hover {
@@ -673,14 +666,8 @@ overflow-y: auto;
   flex-direction: row;
 }
 
- /* th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  color:black;
-} */
-
-.modal-container td, .modal-container th {
+.modal-container td,
+.modal-container th {
   padding: 8px;
 }
 .eachImage {
@@ -689,6 +676,15 @@ overflow-y: auto;
   width: 100px;
   border-radius: 15px;
 }
+
+.left-tick {
+  text-align: right;
+}
+
+.centerText {
+  text-align: center;
+}
+
 
 .eachImage:hover {
   cursor: pointer;
@@ -716,25 +712,12 @@ overflow-y: auto;
 }
 
 
-
-
 .header {
   display: flex;
   justify-content: flex-end;
 }
 
-/* img{
-  position: relative;
-  display: inline;
-} */
 
-/*
-section{
-  position: relative;
-}
-.tns-lazy-img{
-
-} */
 /* Review Index */
 .rating {
   display: flex;
@@ -782,4 +765,49 @@ flex-direction: row;
 } */
 
 /* Product */
+
+/* Below are shanshan */
+
+
+.below-pic{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.under-star {
+  position: relative;
+}
+
+.App {
+  font-family: sans-serif;
+}
+
+.slider-arrow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.arrow-btn,.outfit-arrow {
+  z-index: 1;
+}
+
+.left-outfit{
+  color: aqua;
+}
+
+ .next,.NEXT {
+  float: right;
+}
+.prev,.PREV{
+  float: left;
+}
+
+
+.slick-list {margin: 0 -10px;}
+.slick-slide>div {padding: 0 10px;}
+
+.main-card{
+  border: solid grey;
+}
 
