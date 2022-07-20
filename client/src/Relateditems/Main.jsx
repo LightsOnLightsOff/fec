@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, Component, useRef } from 'react'
+import React, { useState, useEffect, useContext, createContext, memo, Component, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
@@ -6,7 +6,7 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
-
+import {UserContext} from '../index.jsx';
 import { Control } from './SliderControl.jsx'
 import Modal from './Modalwindow.jsx'
 import Outfit from './Outfit.jsx'
@@ -38,6 +38,8 @@ function Related (props) {
   const [outfit, setOutfit] = useState([])
   const [currentStyle, setCurrS] = useState([])
   const [countClick, setCount] = useState(0)
+
+  const productPassing = useContext(UserContext);
 
   var getRelatedProduct = function (id) {
     return axios.get(
