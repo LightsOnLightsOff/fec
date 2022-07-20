@@ -172,6 +172,14 @@
   right: 20px;
 }
 
+#zoomed-image:hover {
+  transform: scale(1.5);
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: auto;
+
+}
+
 .product-information-and-style {
   display: flex;
   flex-direction: column;
@@ -267,13 +275,15 @@
   cursor: pointer
 }
 
-.close-expanded-view {
-  position: relative;
+#close-expanded-view {
+  position: absolute;
   color: rgb(35, 25, 35);
   background-color: white;
   border: none;
-  top: -49%;
   cursor: pointer;
+  top: 5px;
+  right: 5px;
+  color: red;
 }
 
 .thumbnail-image-carousel {
@@ -281,11 +291,13 @@
   margin-bottom: 20px;
 }
 
-.main-image-carousel {
+.main-image-carousel,
+.main-image-carousel2 {
   display: flex;
   justify-content: center;
   overflow: hidden;
   margin-top: 50px;
+  position: relative;
 }
 
 .drop-down-menu {
@@ -305,6 +317,7 @@
   height: 50px ;
   width: 'auto';
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .original-price-strikethrough{
