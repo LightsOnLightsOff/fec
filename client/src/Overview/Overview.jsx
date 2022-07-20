@@ -17,6 +17,11 @@ function Overview (props) {
   const [selectedStyle, setSelectedStyle] = useState({});
   const [inExpandedView, setInExpandedView] = useState(false);
 
+  if (thumbnailURL.length === 0 && Object.keys(defaultSKU).length > 0) {
+    let newThumbnailURL = defaultSKU.photos[0].thumbnail_url;
+    setThumbnailURL(newThumbnailURL)
+  }
+
   if (!inExpandedView) {
     return (
       <div className = 'product-overview-container'>

@@ -209,7 +209,8 @@
     transform: translate(-50%, -50%);
     background-color: #ccc;
     padding: 10px;
-    z-index: 1000
+    z-index: 1000;
+    width: auto
 }
 
 .style-thumbnail-layout {
@@ -316,6 +317,38 @@
 .original-price-strikethrough{
   text-decoration: line-through;
   font: small-caps 20px serif;
+}
+
+.style-add-to-cart {
+  display: flex;
+  justify-content: center;
+}
+
+.style-modal-add-to-cart {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 25px;
+}
+
+.cart-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+}
+
+.cart-modal-name {
+  font: bold 30px Verdana, sans-serif;
+}
+
+.cart-modal-style {
+  font: small-caps 30px Verdana, sans-serif;
+}
+
+.cart-modal-thumbnail-image {
+  max-width: 100%;
+  max-height: auto;
+  border-radius: 20px;
+
 }
 
 .q-and-a {
