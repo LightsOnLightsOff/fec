@@ -6,13 +6,10 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
-<<<<<<< HEAD
 import OutfitArrow from './OutfitArrow.jsx'
 import { Control } from './SliderControl.jsx'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
-=======
 // import OutfitImage from './OutfitImage.jsx'
->>>>>>> main
 
 function Outfit ({
   currentProduct,

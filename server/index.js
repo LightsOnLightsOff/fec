@@ -9,10 +9,7 @@ app.use(express.static('client/dist'));
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 app.listen(3000,()=>{
   console.log('listening on port 3000');
 })

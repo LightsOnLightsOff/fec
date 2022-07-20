@@ -2,15 +2,11 @@ import React, { useState, createContext } from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Related from './Relateditems/Main.jsx';
-<<<<<<< HEAD
 
-=======
-import MultipleItems from  './Relateditems/Demo.jsx'
 import Main from './Relateditems/Main.jsx'
 import Overview from './Overview/Overview.jsx';
 import QandA from './Q&A/Q&A.jsx'
 import ReviewIndex from './rating_ and_review/ReviewIndex.jsx'
->>>>>>> main
 
 const UserContext = createContext() // this will help us pass down down without having to chain every single child
 
