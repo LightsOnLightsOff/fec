@@ -452,8 +452,8 @@ justify-content: center;
 .modal-container {
   position: absolute;
   background: #ffffff;
-  left: 25%;
-  top: 30%;
+  left: 30%;
+  top: 150%;
   padding: 20px;
   border: 1px solid black;
 }
