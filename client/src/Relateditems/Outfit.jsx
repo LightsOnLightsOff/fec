@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
 import OutfitArrow from './OutfitArrow.jsx'
-import {Control} from './SliderControl.jsx'
+import { Control } from './SliderControl.jsx'
+import ControlPointIcon from '@mui/icons-material/ControlPoint'
 
 function Outfit ({
   currentProduct,
@@ -48,9 +49,8 @@ function Outfit ({
     )
   }
 
-
   var clickPlus = function (e) {
-        console.log('currentProduct:', currentProduct)
+    console.log('currentProduct:', currentProduct)
     if (!clicked) {
       setOutfit(pre => {
         return [...pre, currentProduct]
@@ -65,7 +65,7 @@ function Outfit ({
   var findCurrentStyle = function (id) {
     // console.log('currentstyle invoke after mounting', id)
     findstyleByid(id).then(res => {
-      console.log('currentstyle invoke after mounting',id, res)
+      console.log('currentstyle invoke after mounting', id, res)
       setCurrS(pre => [...pre, res])
     })
   }
@@ -81,16 +81,27 @@ function Outfit ({
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
-        {/* <FontAwesomeIcon
+        <FontAwesomeIcon
           icon={faCirclePlus}
           size='3x'
-          className='plus-button'
+          className='plusIcon'
           onClick={clickPlus}
-        /> */}
-         <div onClick={clickPlus} > ++++</div>
+          style={{marginLeft:'380px',position:'absolute'}}
+        />
         <div className='slider'>
-        <OutfitArrow outfit={outfit} countClick={countClick} currentStyle={currentStyle} imgStyles={imgStyles} style={style} rating={rating} product={product} setOutfit={setOutfit} setCount={setCount} setCurrS={setCurrS} setC={setC}/>
-
+          <OutfitArrow
+            outfit={outfit}
+            countClick={countClick}
+            currentStyle={currentStyle}
+            imgStyles={imgStyles}
+            style={style}
+            rating={rating}
+            product={product}
+            setOutfit={setOutfit}
+            setCount={setCount}
+            setCurrS={setCurrS}
+            setC={setC}
+          />
         </div>
       </div>
     )
@@ -99,13 +110,15 @@ function Outfit ({
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
-        <div onClick={clickPlus} > ++++</div>
-        {/* <FontAwesomeIcon
-          icon={faCirclePlus}
-          size='3x'
-          className='plus-button'
-          onClick={clickPlus}
-        /> */}
+        <div>
+          <FontAwesomeIcon
+            icon={faCirclePlus}
+            size='3x'
+            className='plusIcon'
+            onClick={clickPlus}
+            style={{marginLeft:'380px',position:'absolute'}}
+          />
+        </div>
       </div>
     )
   }

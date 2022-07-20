@@ -41,15 +41,19 @@
 .title,
 .plus-button,
 .slider {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   margin-right: 450px;
   margin-left: 380px;
 }
+
 
 .section {
   position: relative;
 }
 
+.outfitSlider{
+  border: solid grey;
+}
 
 .modal-container {
   position: absolute;

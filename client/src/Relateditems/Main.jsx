@@ -7,12 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
 
-import {Control} from './SliderControl.jsx'
+import { Control } from './SliderControl.jsx'
 import Modal from './Modalwindow.jsx'
 import Outfit from './Outfit.jsx'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-
 
 function Related (props) {
   const imgs =
@@ -39,8 +38,6 @@ function Related (props) {
   const [outfit, setOutfit] = useState([])
   const [currentStyle, setCurrS] = useState([])
   const [countClick, setCount] = useState(0)
-
-
 
   var getRelatedProduct = function (id) {
     return axios.get(
@@ -189,8 +186,6 @@ function Related (props) {
     })
   }, [])
 
-
-
   var clickStar = function (item) {
     setShow(true)
     // console.log('modal window for comparison', item.features)
@@ -211,7 +206,17 @@ function Related (props) {
   ) {
     return (
       <div>
-        <Control style={style} product={product} imgs={imgs} clickStar={clickStar} rating={rating} setStyle={setStyle} findFeature={findFeature} updateProductByid={updateProductByid} findstyleByid={findstyleByid}/>
+        <Control
+          style={style}
+          product={product}
+          imgs={imgs}
+          clickStar={clickStar}
+          rating={rating}
+          setStyle={setStyle}
+          findFeature={findFeature}
+          updateProductByid={updateProductByid}
+          findstyleByid={findstyleByid}
+        />
         <Modal
           currentProduct={currentProduct}
           compareProduct={compareProduct}
