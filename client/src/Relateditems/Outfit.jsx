@@ -9,7 +9,7 @@ import config from '../../../config.js'
 import OutfitArrow from './OutfitArrow.jsx'
 import { Control } from './SliderControl.jsx'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
-// import OutfitImage from './OutfitImage.jsx'
+
 
 function Outfit ({
   currentProduct,
@@ -25,31 +25,13 @@ function Outfit ({
   setCount,
   product
 }) {
+
   const [clicked, setC] = useState(false)
   const imgStyles = {
     width: '100%',
     height: '320px',
     objectFit: 'cover'
   }
-  // var renderArrows = () => {
-  //   return (
-  //     <div className='outlit-arrow'>
-  //       <ButtonBase
-  //         className='left-outfit'
-  //         onClick={() => slider.slickPrev()}
-  //         style={{color:'red'}}
-  //       >
-  //         <ArrowLeftIcon />
-  //       </ButtonBase>
-  //       <ButtonBase
-  //         className='right-outfit'
-  //         onClick={() => slider.slickNext()}
-  //       >
-  //         <ArrowRightIcon />
-  //       </ButtonBase>
-  //     </div>
-  //   )
-  // }
 
   var clickPlus = function (e) {
     console.log('currentProduct:', currentProduct)
@@ -74,12 +56,11 @@ function Outfit ({
 
   useEffect(() => {
     // console.log('ONCE List of variable currentProduct',product);
-    // findCurrentStyle(currentProduct.id)
-  }, [])
+  }, [clicked])
 
-  // console.log('      check the clickplus', clicked)
+  console.log('      check the useeffect', outfit,countClick)
   if (outfit.length > 0 && countClick === outfit.length) {
-    // console.log('in the first one')
+    console.log('in the first one')
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
@@ -110,7 +91,7 @@ function Outfit ({
       </div>
     )
   } else {
-    // console.log('in the second one')
+    console.log('in the second one')
     return (
       <div >
         <h4 className='title'> YOUR OUTFIT</h4>

@@ -14,6 +14,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 function Related (props) {
+
   const imgs =
     'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
 
@@ -23,7 +24,6 @@ function Related (props) {
   const [related, setR] = useState([])
   const [show, setShow] = useState(false)
   const [rating, setRating] = useState([])
-
   const [currentProduct, setCurrent] = useState({
     name: '',
     features: []
@@ -35,9 +35,30 @@ function Related (props) {
     detail: []
   })
   // const [outfit, setOutfit] = useState([[{ detail:{category: '',name:''} }]])
-  const [outfit, setOutfit] = useState([])
-  const [currentStyle, setCurrS] = useState([])
-  const [countClick, setCount] = useState(0)
+  var getStorageValue = function (item,original) {
+    var result = localStorage.getItem(item);
+    // console.log('local storage result when mount', result)
+    return JSON.parse(result) || original
+  }
+
+  const [outfit, setOutfit] = useState(  ()=>getStorageValue('outfit',[]))
+  const [currentStyle, setCurrS] = useState(  ()=>getStorageValue('currentStyle',[]))
+  const [countClick, setCount] = useState( ()=>getStorageValue('countClick',0))
+
+
+
+  useEffect(() => {
+    localStorage.setItem('outfit', JSON.stringify(outfit));
+  }, [outfit])
+
+  useEffect(() => {
+    localStorage.setItem('currentStyle', JSON.stringify(currentStyle));
+  }, [currentStyle])
+
+  useEffect(() => {
+    localStorage.setItem('countClick', JSON.stringify(countClick));
+  }, [countClick])
+
 
   var getRelatedProduct = function (id) {
     return axios.get(
