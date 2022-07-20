@@ -14,6 +14,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
 
   const [toggleImage, setToggleImage] = useState(false)
   const [newUrl, setNewUrl] = useState('')
+  const [getDataBySort, setGetDataBySort] = useState('relevant')
 
   //sort the data based off what was clicked on
   const sortData = (value) => {
@@ -37,6 +38,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
 
       setData(sortData)
       setProduct(reduceData)
+      setGetDataBySort('newest')
 
     } else if (value === ' Helpful') {
 
@@ -53,6 +55,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
 
       setData(sortData)
       setProduct(reduceData)
+      setGetDataBySort('helpful')
 
     } else if (value === " Relevant") {
       var splitDataAgain = relevantData.reduce((result, value, index, array) => {
@@ -64,6 +67,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
 
       setData(relevantData)
       setProduct(splitDataAgain)
+      setGetDataBySort('relevant')
 
     }
 
@@ -71,7 +75,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
   }
 
   const getDataAgain = (reviewId) => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344&count=200&sort=relevant', {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40355&count=200&sort=${getDataBySort}`, {
       headers: {
         Authorization: config.TOKEN
       }
@@ -189,7 +193,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
         <FormModal
           toggle={formToggle}
           showModal={toggleImage}
-          productId={splitFilter}
+          productId={productId}
           postData={postData}
         />
       </div>

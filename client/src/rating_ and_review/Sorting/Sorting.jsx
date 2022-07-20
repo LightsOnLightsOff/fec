@@ -63,6 +63,8 @@ function Sorting({ data, sortData }) {
 export default Sorting;
 
 const H3 = styled.h3`
+
+border-radius: 7px;
 &:hover {
   cursor: pointer;
 }

@@ -49,7 +49,7 @@ function Stars({ rate, recommended, filterByStar}) {
 
   return (
     <div className="stars">
-      <h1>{avgTotal} <StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></h1>
+      <h1>{avgTotal} <StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9734;</StarBaby></h1>
 
       {/* style={{ width: '70%' }} */}
       <h4>{Math.round((recommended['true'] / recommendTotal) * 100)}% of reviews recommend this product</h4>
@@ -100,12 +100,17 @@ export default Stars;
 // const StarBabyAfter = styled.
 
 const StarBaby = styled.span`
+
   display: inline-block;
   position: relative;
   font-size: 30px;
-  color: #ddd;
+
+  border-radius: 7px;
+  color: #bebebe;
   &:after {
-    content: "\\2605\\2605\\2605\\2605\\2605";
+    content: "\\2B50\\2B50\\2B50\\2B50\\2B50";
+    padding-top: 3px;
+
     position: absolute;
     left: 0;
     top: 0;
@@ -120,7 +125,9 @@ const StarBreakdown = styled.div`
 
   display: flex;
   flex-direction: row;
-  padding-bottom: 10px
+  padding-bottom: 17px;
+  padding-top: 14px;
+
 
 
 `;
@@ -136,9 +143,10 @@ const StarBreakdown = styled.div`
 
 const Container = styled.div`
 width: 230px;
-height: 8px;
+height: 17px;
 position: relative;
 background-color: #ddd;
+border-radius: 5px;
 
 left: -20;
     right: 0px;
@@ -163,9 +171,9 @@ left: -20;
 
 const Breakdown = styled.span`
   width: ${props => {return props.starAvg}};
-  height: 8px;
+  height: 17px;
   border-width: thin;
-
+  border-radius: 5px;
   background-color: #f80;
   position: absolute;
 

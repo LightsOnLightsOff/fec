@@ -122,7 +122,7 @@ const StarRating = styled.span`
 `;
 
 const EachStarRating = styled.p`
-color: ${props => props.index - 1 < props.rating ? "black" : "nothing" }
+color: ${props => props.index - 1 < props.rating ? "#f9a920" : "nothing" }
 `;
 
 const StarsAndDate = styled.div`
