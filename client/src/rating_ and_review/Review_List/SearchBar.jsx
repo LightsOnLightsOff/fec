@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from "../../index.jsx"
 import ReviewList from './ReviewList.jsx'
 import Ratings from '../Rating_Breakdown/Ratings.jsx'
 import styled from 'styled-components';
@@ -7,7 +8,8 @@ import config from '../../../../config.js'
 
 
 function SearchBar(props) {
-  // console.log("WHAT DOES THE DATA LOOK LIKE: ", data)
+  const context = useContext(UserContext)
+  console.log("WHAT DOES THE DATA LOOK LIKE: ", context)
 
   const [searchReview, setSearchReview] = useState('')
 
@@ -29,7 +31,7 @@ function SearchBar(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40355&count=200&sort=relevant', {
+      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${context.productInfo.id}&count=200&sort=relevant`, {
         headers: {
           Authorization: config.TOKEN
         }
@@ -61,7 +63,7 @@ function SearchBar(props) {
         console.log("ERROR: ", err)
       })
 
-  }, [props.id])
+  }, [context.productInfo.id])
 
   const renderMoreReviews = () => {
     //setCount(count + 1)

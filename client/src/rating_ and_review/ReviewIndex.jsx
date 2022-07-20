@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReviewList from './Review_List/ReviewList.jsx'
-
+// import { UserContext } from "../index.jsx"
 import Ratings from './Rating_Breakdown/Ratings.jsx'
 import SearchBar from './Review_List/SearchBar.jsx'
 import styled from 'styled-components';
 
 function ReviewIndex(props) {
-
+  // const context = useContext(UserContext)
 
   return (
     <div>
