@@ -20,7 +20,8 @@ export function Control ({
   setStyle,
   findFeature,
   updateProductByid,
-  findstyleByid
+  findstyleByid,
+
 }) {
   const [mainLeft, setLeft] = useState(0)
   const [mainRight, setRight] = useState(0)
@@ -78,14 +79,15 @@ export function Control ({
 
   var renderArrows = () => {
     return (
-      <div className='slider-arrow'>
+      <div className='main-arrow'>
         <ButtonBase
           className='arrow-btn prev'
           id='main-left'
           style={mainDiff === 0 ? { display: 'none' } : null}
           onClick={arrowClick}
         >
-          <ArrowLeftIcon sx={{ fontSize: "80px" }} />
+          {/* <ArrowLeftIcon sx={{ fontSize: "80px" }} /> */}
+          ❮
         </ButtonBase>
         <ButtonBase
           className='arrow-btn next'
@@ -93,7 +95,7 @@ export function Control ({
           style={mainDiff <= product.length - 4 ? null : { display: 'none' }}
           onClick={arrowClick}
         >
-          <ArrowRightIcon sx={{ fontSize: "80px" }}/>
+          {/* <ArrowRightIcon sx={{ fontSize: "80px" }}/> */}
         </ButtonBase>
       </div>
     )
@@ -108,7 +110,7 @@ export function Control ({
 
           {product.map((item, index) => {
             {
-              /* console.log('####Loop through index and style',index,style) */
+               {/* console.log('####Loop through index and style',index,style) */}
             }
             return (
 

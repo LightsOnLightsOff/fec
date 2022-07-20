@@ -75,7 +75,7 @@ function Outfit ({
     // findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('      outfit before rendering', countClick, currentStyle)
+  console.log('      check the clickplus',clicked)
   if (outfit.length > 0 && countClick === outfit.length) {
     console.log('in the first one')
     return (
@@ -86,7 +86,7 @@ function Outfit ({
           size='3x'
           className='plusIcon'
           onClick={clickPlus}
-          style={{marginLeft:'380px',position:'absolute'}}
+          style={{position:'absolute'}}
         />
         <div className='slider'>
           <OutfitArrow
@@ -108,7 +108,7 @@ function Outfit ({
   } else {
     console.log('in the second one')
     return (
-      <div>
+      <div className=''>
         <h4 className='title'> YOUR OUTFIT</h4>
         <div>
           <FontAwesomeIcon
@@ -116,7 +116,7 @@ function Outfit ({
             size='3x'
             className='plusIcon'
             onClick={clickPlus}
-            style={{marginLeft:'380px',position:'absolute'}}
+            style={{position:'absolute'}}
           />
         </div>
       </div>
