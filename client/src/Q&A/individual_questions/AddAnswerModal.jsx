@@ -21,10 +21,7 @@ function AddAnswerModal(props) {
     })
     .then((response) => {
       if (response.status === 201){
-        console.log('post response: ', response)
         props.setShowingAnswerModal(false);
-        console.log('posted answer to server');
-        return response;
       }
     })
     .then(() => {

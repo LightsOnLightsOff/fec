@@ -18,16 +18,12 @@ function AddQuestionModal(props) {
     {headers: {Authorization: config.TOKEN}})
     .then((response) => {
       if (response.status === 201){
-        console.log('post response: ', response)
         props.setShowingQuestionModal(false);
-        console.log('posted question to server')
-
       }
     })
     .then(() => {
       props.renderQuestions();
-      }
-    )
+    })
     .catch((err) => {
       console.error(err);
       alert('Could not process the question, please make sure your question and email are formatted correctly')
