@@ -23,7 +23,7 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar,product 
   }
 
 
-// console.log('product in imgandbutton',(product.length-index)*350)
+console.log('product in imgandbutton',(product.length-index-1)*350+5)
     // console.log('let me know the index after render', index)
     return (
       <div>
@@ -33,7 +33,7 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar,product 
             clickStar(item)
           }}
           name={item.name}
-          style={{ ...starStyle, right: `${(product.length-index-1)*350+15}px` }}
+          style={{ ...starStyle, right: `${(product.length-index-1)*330+10}px` }}
         >
           <FontAwesomeIcon icon={faStar} />
         </div>
