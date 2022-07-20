@@ -15,10 +15,13 @@ function QandA (props) {
   const [showingQuestionModal, setShowingQuestionModal] = useState(false);
   const [showingAnswerModal, setShowingAnswerModal] = useState(false);
   const [questionBeingAnswered, setQuestionBeingAnswered] = useState(null);
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     renderQuestions()
   }, [])
+
+
 
   var renderQuestions = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
@@ -35,6 +38,7 @@ function QandA (props) {
     })
     .then((data) => {
       changeCurrentQuestions(data.results.slice(0, 2));
+      console.log('question data in Q&A: ', questionData);
     })
     .catch((err) => {
       console.error(err);
@@ -62,15 +66,17 @@ function QandA (props) {
   return (
     <div className='q-and-a'>
       <h2>QUESTIONS & ANSWERS</h2>
-      <Search />
-      <QuestionList currentQuestions={currentQuestions} handleAddAnswer={handleAddAnswer} renderQuestions={renderQuestions}/>
-      <div>
-        <MoreQuestions changeCurrentQuestions={changeCurrentQuestions} currentQuestions= {currentQuestions} questionData={questionData}/>
-        <button onClick={handleAddQuestion}>
-          ADD A QUESTION +
-        </button>
-        {showingQuestionModal && <AddQuestionModal setShowingQuestionModal={setShowingQuestionModal} renderQuestions={renderQuestions}/>}
-        {showingAnswerModal && <AddAnswerModal setShowingAnswerModal={setShowingAnswerModal} renderQuestions={renderQuestions} questionId={questionBeingAnswered} setQuestionBeingAnswered={setQuestionBeingAnswered}/>}
+      <Search changeCurrentQuestions={changeCurrentQuestions} questionData={questionData} setSearching={setSearching}/>
+      <div className='question-list'>
+        <QuestionList currentQuestions={currentQuestions} handleAddAnswer={handleAddAnswer} renderQuestions={renderQuestions} />
+        <div>
+          <MoreQuestions changeCurrentQuestions={changeCurrentQuestions} currentQuestions= {currentQuestions} questionData={questionData} searching={searching}/>
+          <button onClick={handleAddQuestion}>
+            ADD A QUESTION +
+          </button>
+          {showingQuestionModal && <AddQuestionModal setShowingQuestionModal={setShowingQuestionModal} renderQuestions={renderQuestions}/>}
+          {showingAnswerModal && <AddAnswerModal setShowingAnswerModal={setShowingAnswerModal} renderQuestions={renderQuestions} questionId={questionBeingAnswered} setQuestionBeingAnswered={setQuestionBeingAnswered}/>}
+        </div>
       </div>
     </div>
   )

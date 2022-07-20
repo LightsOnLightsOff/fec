@@ -27,8 +27,9 @@ function AnswersList(props) {
   }
 
   return (
+    <div>
     <div className='answers-list'>
-      <h3>
+      <h3 className='answer-tag'>
         A:
       </h3>
       <ul>
@@ -38,6 +39,7 @@ function AnswersList(props) {
           )
         })}
       </ul>
+      </div>
       {answerData.length > 2 && <button onClick={handleButton}>{!showingAll ? 'show more answers' : 'collapse answers'}</button>}
     </div>
   )

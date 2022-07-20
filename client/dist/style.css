@@ -312,6 +312,11 @@
   font: small-caps 20px serif;
 }
 
+.answers-list {
+  display: flex;
+  flex-direction: row;
+}
+
 .q-and-a {
   padding: 100px
 }
@@ -377,15 +382,17 @@
 .question-header{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding-right: 50px;
+  gap: 70px;
 }
 
 .answer-footer{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 40px;
   align-items: center;
 }
 
@@ -397,6 +404,16 @@
 .qanda-report{
   text-decoration: underline;
   cursor: pointer;
+}
+
+.question-search{
+  width: 350px;
+  font-size: 18px;
+}
+
+.question-list{
+  overflow: auto;
+  max-height: 800px;
 }
 
 /* html, body {
