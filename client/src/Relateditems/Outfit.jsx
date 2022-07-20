@@ -31,7 +31,7 @@ function Outfit ({
   }
   var renderArrows = () => {
     return (
-      <div className='slider-arrow'>
+      <div className='outlit-arrow'>
         <ButtonBase
           className='arrow-btn prev'
           onClick={() => slider.slickPrev()}
@@ -77,15 +77,17 @@ function Outfit ({
 
   console.log('      outfit before rendering', countClick, currentStyle)
   if (outfit.length > 0 && countClick === outfit.length) {
+    console.log('in the first one')
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
-        <FontAwesomeIcon
+        {/* <FontAwesomeIcon
           icon={faCirclePlus}
           size='3x'
           className='plus-button'
           onClick={clickPlus}
-        />
+        /> */}
+         <div onClick={clickPlus} > ++++</div>
         <div className='slider'>
         <OutfitArrow outfit={outfit} countClick={countClick} currentStyle={currentStyle} imgStyles={imgStyles} style={style} rating={rating} product={product} setOutfit={setOutfit} setCount={setCount} setCurrS={setCurrS} setC={setC}/>
 
@@ -93,15 +95,17 @@ function Outfit ({
       </div>
     )
   } else {
+    console.log('in the second one')
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
-        <FontAwesomeIcon
+        <div onClick={clickPlus} > ++++</div>
+        {/* <FontAwesomeIcon
           icon={faCirclePlus}
           size='3x'
           className='plus-button'
           onClick={clickPlus}
-        />
+        /> */}
       </div>
     )
   }
