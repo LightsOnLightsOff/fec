@@ -669,20 +669,20 @@ flex-direction: row;
   width: 100%;
 }
 
-.arrow-btn {
-  top: 45%;
+.arrow-btn,.outfit-arrow {
   z-index: 1;
 }
+
 .left-outfit{
   color: aqua;
 }
- .next {
+
+ .next,.NEXT {
   float: right;
 }
-.prev{
+.prev,.PREV{
   float: left;
 }
-
 
 
 .slick-list {margin: 0 -10px;}
@@ -690,5 +690,5 @@ flex-direction: row;
 
 .main-card{
   border: solid grey;
-
 }
+

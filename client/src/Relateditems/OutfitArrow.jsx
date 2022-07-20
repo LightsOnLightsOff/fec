@@ -60,19 +60,18 @@ class ReactCustomArrow extends React.Component {
     return (
       <div className='slider-arrow'>
         <ButtonBase
-          className='outfit-arrow pre'
+          className='outfit-arrow PREV'
           id='first-arrow'
-          style={this.state.arrowDiff === 0 ? { display: 'none' } : null} //arrow is the bug
+          style={this.state.arrowDiff === 0 ? { display: 'none' } : {marginTop:'150px',color:'orange'}} //arrow is the bug
           onClick={this.arrowClick.bind(this)}
-
         >
           <ArrowLeftIcon sx={{ fontSize: '80px' }} />
         </ButtonBase>
         <ButtonBase
-          className='outfit-arrow nex'
+          className='outfit-arrow NEXT'
           style={
             this.state.arrowDiff <= this.props.outfit.length - 4
-              ? null
+              ? {marginTop:'150px',color:'orange'}
               : { display: 'none' }
           }
           onClick={this.arrowClick.bind(this)}
