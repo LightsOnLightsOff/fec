@@ -272,6 +272,7 @@ text-align: center;
 
 const Forms = styled.div`
 display: flex;
+
 flex-direction: column;
 justify-content: center;
 width: 80%;
