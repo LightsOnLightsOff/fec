@@ -394,6 +394,11 @@
   cursor: pointer;
 }
 
+.qanda-report{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* html, body {
   display: flex;
 align-items: center;

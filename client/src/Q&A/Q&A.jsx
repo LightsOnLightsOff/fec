@@ -63,7 +63,7 @@ function QandA (props) {
     <div className='q-and-a'>
       <h2>QUESTIONS & ANSWERS</h2>
       <Search />
-      <QuestionList currentQuestions={currentQuestions} handleAddAnswer={handleAddAnswer}/>
+      <QuestionList currentQuestions={currentQuestions} handleAddAnswer={handleAddAnswer} renderQuestions={renderQuestions}/>
       <div>
         <MoreQuestions changeCurrentQuestions={changeCurrentQuestions} currentQuestions= {currentQuestions} questionData={questionData}/>
         <button onClick={handleAddQuestion}>

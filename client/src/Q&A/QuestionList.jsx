@@ -5,7 +5,7 @@ function QuestionList(props) {
   return (
     <ul>
       {props.currentQuestions.map((question) => {
-        return (<QuestionEntry key={question.question_id} question={question} handleAddAnswer={props.handleAddAnswer}/>)
+        return (<QuestionEntry key={question.question_id} question={question} handleAddAnswer={props.handleAddAnswer} renderQuestions={props.renderQuestions}/>)
       })}
     </ul>
   )
