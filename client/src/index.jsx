@@ -16,9 +16,9 @@ export default function App (props) {
 
   return (
     <div>
-      {/* <Overview />
+      <Overview />
       <Main />
-      <QandA /> */}
+      <QandA />
       <ReviewIndex />
 
     </div>
