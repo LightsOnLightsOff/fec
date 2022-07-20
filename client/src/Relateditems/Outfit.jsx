@@ -34,13 +34,13 @@ function Outfit ({
     return (
       <div className='outlit-arrow'>
         <ButtonBase
-          className='arrow-btn prev'
+          className='outfit-sub prev'
           onClick={() => slider.slickPrev()}
         >
           <ArrowLeftIcon />
         </ButtonBase>
         <ButtonBase
-          className='arrow-btn next'
+          className='outfit-sub next'
           onClick={() => slider.slickNext()}
         >
           <ArrowRightIcon />
@@ -86,7 +86,7 @@ function Outfit ({
           size='3x'
           className='plusIcon'
           onClick={clickPlus}
-          style={{position:'absolute'}}
+          style={{position:'absolute',zIndex:'1'}}
         />
         <div className='slider'>
           <OutfitArrow
@@ -116,7 +116,7 @@ function Outfit ({
             size='3x'
             className='plusIcon'
             onClick={clickPlus}
-            style={{position:'absolute'}}
+            style={{position:'absolute',zIndex:'1'}}
           />
         </div>
       </div>

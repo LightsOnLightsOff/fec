@@ -90,11 +90,11 @@
   font-family: sans-serif;
 }
 
-.slider-arrow {
+/* .slider-arrow {
   position: absolute;
   height: 100%;
   width: 100%;
-}
+} */
 
 .arrow-btn {
   top: 45%;
@@ -103,6 +103,9 @@
 
 .next {
   float: right;
+}
+.prev{
+  float: left;
 }
 
 #main-left,

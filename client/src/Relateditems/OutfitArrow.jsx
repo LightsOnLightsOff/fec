@@ -60,7 +60,7 @@ class ReactCustomArrow extends React.Component {
     return (
       <div className='slider-arrow'>
         <ButtonBase
-          className='arrow-btn prev'
+          className='outfit-arrow pre'
           id='first-arrow'
           style={this.state.arrowDiff === 0 ? { display: 'none' } : null}
           onClick={this.arrowClick.bind(this)}
@@ -68,7 +68,7 @@ class ReactCustomArrow extends React.Component {
           <ArrowLeftIcon sx={{ fontSize: '80px' }} />
         </ButtonBase>
         <ButtonBase
-          className='arrow-btn next'
+          className='outfit-arrow nex'
           style={
             this.state.arrowDiff <= this.props.outfit.length - 4
               ? null
