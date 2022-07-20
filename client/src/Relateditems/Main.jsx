@@ -6,8 +6,14 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
+<<<<<<< HEAD
 
 import { Control } from './SliderControl.jsx'
+=======
+import ImgandButton from './SliderImgButton.jsx'
+import Description from './SliderDescription.jsx'
+import Control from './SliderControl.jsx'
+>>>>>>> main
 import Modal from './Modalwindow.jsx'
 import Outfit from './Outfit.jsx'
 import 'slick-carousel/slick/slick.css'
