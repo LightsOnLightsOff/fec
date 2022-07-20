@@ -4,7 +4,8 @@ import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
 import MoreQuestions from './MoreQuestions.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
-import config from '../../../config.js'
+import AddAnswerModal from './individual_questions/AddAnswerModal.jsx';
+import config from '../../../config.js';
 
 function QandA (props) {
 
@@ -12,8 +13,14 @@ function QandA (props) {
   const [questionData, setQuestions] = useState({});
   const [currentQuestions, changeCurrentQuestions] = useState([]);
   const [showingQuestionModal, setShowingQuestionModal] = useState(false);
+  const [showingAnswerModal, setShowingAnswerModal] = useState(false);
+  const [questionBeingAnswered, setQuestionBeingAnswered] = useState(null);
 
   useEffect(() => {
+    renderQuestions()
+  }, [])
+
+  var renderQuestions = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
       params: {
         product_id: 44785,
@@ -32,23 +39,38 @@ function QandA (props) {
     .catch((err) => {
       console.error(err);
     })
-  }, [])
+  }
+
 
   var handleAddQuestion = (e) => {
     setShowingQuestionModal(true);
+  }
+
+  var handleAddAnswer = (e, questionId) => {
+    var setQuestionId = new Promise((resolve, reject) => {
+      resolve(setQuestionBeingAnswered(questionId));
+    })
+
+    setQuestionId.then(() => {
+      setShowingAnswerModal(true);
+    })
+    .catch((err) => {
+      console.error(err);
+    })
   }
 
   return (
     <div className='q-and-a'>
       <h2>QUESTIONS & ANSWERS</h2>
       <Search />
-      <QuestionList currentQuestions={currentQuestions}/>
+      <QuestionList currentQuestions={currentQuestions} handleAddAnswer={handleAddAnswer}/>
       <div>
         <MoreQuestions changeCurrentQuestions={changeCurrentQuestions} currentQuestions= {currentQuestions} questionData={questionData}/>
         <button onClick={handleAddQuestion}>
           ADD A QUESTION +
         </button>
-        {showingQuestionModal && <AddQuestionModal setShowingQuestionModal={setShowingQuestionModal}/>}
+        {showingQuestionModal && <AddQuestionModal setShowingQuestionModal={setShowingQuestionModal} renderQuestions={renderQuestions}/>}
+        {showingAnswerModal && <AddAnswerModal setShowingAnswerModal={setShowingAnswerModal} renderQuestions={renderQuestions} questionId={questionBeingAnswered} setQuestionBeingAnswered={setQuestionBeingAnswered}/>}
       </div>
     </div>
   )

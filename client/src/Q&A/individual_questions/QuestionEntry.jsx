@@ -15,7 +15,7 @@ function QuestionEntry(props) {
       <div className='question-header'>
         <h3>Q: {props.question.question_body}</h3>
         <div>helpful? ({props.question.question_helpfulness})</div>
-        <button>Add an answer</button>
+        <button onClick={(e) => props.handleAddAnswer(e, props.question.question_id)}>Add an answer</button>
       </div>
       <AnswersList answers={props.question.answers}/>
     </div>

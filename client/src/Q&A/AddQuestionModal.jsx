@@ -21,8 +21,13 @@ function AddQuestionModal(props) {
         console.log('post response: ', response)
         props.setShowingQuestionModal(false);
         console.log('posted question to server')
+
       }
     })
+    .then(() => {
+      props.renderQuestions();
+      }
+    )
     .catch((err) => {
       console.error(err);
       alert('Could not process the question, please make sure your question and email are formatted correctly')
@@ -41,7 +46,7 @@ function AddQuestionModal(props) {
             <input type='text' name='nickname' onChange={(e) => {setNickname(e.target.value)}}/>
             <label htmlFor='email'>Email</label>
             <input type='text' name='email' onChange={(e) => {setEmail(e.target.value)}}/>
-            <button type='submit' for='question-form'>Submit</button>
+            <button type='submit' htmlFor='question-form'>Submit</button>
           </form>
         <footer>
 
