@@ -158,7 +158,7 @@ class ReactCustomArrow extends React.Component {
                         4) *
                         100}%`}
                     >
-                      <span className='thestar'>
+                      <span >
                         &#9733;&#9733;&#9733;&#9733;&#9733;
                       </span>
                     </ColorRating>
