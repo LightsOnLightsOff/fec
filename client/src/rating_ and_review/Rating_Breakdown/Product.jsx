@@ -132,9 +132,11 @@ text-decoration: underline;
 
 const SizeFit = styled(Breakdown)`
 width: 79px;
+height: 15px;
 padding-right: 0px;
 margin: 3px;
-margin-bottom: 0px
+margin-bottom: 0px;
+border-radius: 7px;
 
 `;
 
