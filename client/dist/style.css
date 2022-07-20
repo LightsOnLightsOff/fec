@@ -293,10 +293,6 @@
   position: relative;
 }
 
-.main-image-carousel2{
-
-}
-
 .drop-down-menu {
   cursor: pointer;
   font: small-caps 25px serif;
@@ -314,6 +310,7 @@
   height: 50px ;
   width: 'auto';
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .original-price-strikethrough{
