@@ -44,7 +44,7 @@ export function Control ({
           })
         )
         .then(res => {
-          console.log('array of styles', res)
+          // console.log('array of styles', res)
           setStyle(res)
         })
     })
@@ -60,7 +60,7 @@ export function Control ({
   }
 
   var arrowClick = function (e) {
-    console.log('clicked the arrow ', e.target)
+    // console.log('clicked the arrow ', e.target)
     if (
       e.target.getAttribute('data-testid') === 'ArrowLeftIcon' ||
       e.target.getAttribute('d') === 'm14 7-5 5 5 5V7z'

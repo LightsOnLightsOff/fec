@@ -67,7 +67,7 @@ function Outfit ({
   var findCurrentStyle = function (id) {
     // console.log('currentstyle invoke after mounting', id)
     findstyleByid(id).then(res => {
-      console.log('currentstyle invoke after mounting', id, res)
+      // console.log('currentstyle invoke after mounting', id, res)
       setCurrS(pre => [...pre, res])
     })
   }
@@ -77,9 +77,9 @@ function Outfit ({
     // findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('      check the clickplus', clicked)
+  // console.log('      check the clickplus', clicked)
   if (outfit.length > 0 && countClick === outfit.length) {
-    console.log('in the first one')
+    // console.log('in the first one')
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
@@ -110,7 +110,7 @@ function Outfit ({
       </div>
     )
   } else {
-    console.log('in the second one')
+    // console.log('in the second one')
     return (
       <div >
         <h4 className='title'> YOUR OUTFIT</h4>
