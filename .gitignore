@@ -2,9 +2,6 @@ node_modules/
 client/dist/bundle.js
 .env
 .DS_Store
-<<<<<<< HEAD
 config.js
-=======
->>>>>>> main
 package-lock.json
 config.js
