@@ -30,24 +30,25 @@ function Outfit ({
     height: '320px',
     objectFit: 'cover'
   }
-  var renderArrows = () => {
-    return (
-      <div className='outlit-arrow'>
-        <ButtonBase
-          className='outfit-sub prev'
-          onClick={() => slider.slickPrev()}
-        >
-          <ArrowLeftIcon />
-        </ButtonBase>
-        <ButtonBase
-          className='outfit-sub next'
-          onClick={() => slider.slickNext()}
-        >
-          <ArrowRightIcon />
-        </ButtonBase>
-      </div>
-    )
-  }
+  // var renderArrows = () => {
+  //   return (
+  //     <div className='outlit-arrow'>
+  //       <ButtonBase
+  //         className='left-outfit'
+  //         onClick={() => slider.slickPrev()}
+  //         style={{color:'red'}}
+  //       >
+  //         <ArrowLeftIcon />
+  //       </ButtonBase>
+  //       <ButtonBase
+  //         className='right-outfit'
+  //         onClick={() => slider.slickNext()}
+  //       >
+  //         <ArrowRightIcon />
+  //       </ButtonBase>
+  //     </div>
+  //   )
+  // }
 
   var clickPlus = function (e) {
     console.log('currentProduct:', currentProduct)
@@ -75,19 +76,21 @@ function Outfit ({
     // findCurrentStyle(currentProduct.id)
   }, [])
 
-  console.log('      check the clickplus',clicked)
+  console.log('      check the clickplus', clicked)
   if (outfit.length > 0 && countClick === outfit.length) {
     console.log('in the first one')
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
-        <FontAwesomeIcon
-          icon={faCirclePlus}
-          size='3x'
-          className='plusIcon'
-          onClick={clickPlus}
-          style={{position:'absolute',zIndex:'1'}}
-        />
+        <div style={{zIndex:'1',position:'absolute',marginLeft:'300px'}}>
+          <FontAwesomeIcon
+            icon={faCirclePlus}
+            size='3x'
+            className='plusIcon'
+            onClick={clickPlus}
+          />
+        </div>
+
         <div className='slider'>
           <OutfitArrow
             outfit={outfit}
@@ -108,15 +111,15 @@ function Outfit ({
   } else {
     console.log('in the second one')
     return (
-      <div className=''>
+      <div >
         <h4 className='title'> YOUR OUTFIT</h4>
-        <div>
+        <div style={{zIndex:'1',position:'absolute',marginLeft:'300px'}}>
           <FontAwesomeIcon
             icon={faCirclePlus}
             size='3x'
             className='plusIcon'
             onClick={clickPlus}
-            style={{position:'absolute',zIndex:'1'}}
+            style={{ position: 'absolute', zIndex: '1' }}
           />
         </div>
       </div>

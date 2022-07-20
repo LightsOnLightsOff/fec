@@ -62,8 +62,9 @@ class ReactCustomArrow extends React.Component {
         <ButtonBase
           className='outfit-arrow pre'
           id='first-arrow'
-          style={this.state.arrowDiff === 0 ? { display: 'none' } : null}
+          style={this.state.arrowDiff === 0 ? { display: 'none' } : null} //arrow is the bug
           onClick={this.arrowClick.bind(this)}
+
         >
           <ArrowLeftIcon sx={{ fontSize: '80px' }} />
         </ButtonBase>

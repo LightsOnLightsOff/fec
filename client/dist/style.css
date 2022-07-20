@@ -100,7 +100,9 @@
   top: 45%;
   z-index: 1;
 }
-
+.left-outfit{
+  color: aqua;
+}
 .next {
   float: right;
 }

@@ -82,6 +82,7 @@ export function Control ({
       <div >
         <ButtonBase
           className='arrow-btn prev'
+
           style={mainDiff === 0 ? { display: 'none' } : null}
           onClick={arrowClick}
         >
@@ -90,6 +91,7 @@ export function Control ({
         </ButtonBase>
         <ButtonBase
           className='arrow-btn next'
+          // id='main-right'
           style={mainDiff <= product.length - 4 ? null : { display: 'none' }}
           onClick={arrowClick}
         >
