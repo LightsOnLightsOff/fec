@@ -83,22 +83,21 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   }
 
   const zoomImage = (event) => {
-    console.log('clicked on image, lets zoom now')
   }
 
   const panImage = (event) => {
-    console.log('mouse has moved in the image')
-    console.log(event.screenX, event.screenY)
   }
 
   return (
     <div>
         <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked} setLeftArrowClicked = {setLeftArrowClicked} setNewIndex = {setNewIndex} setRightArrowClicked = {setRightArrowClicked}>
         {imageArray.map(url => {
-          return  <div className = 'main-image-carousel'>
+          return  <div className = 'main-image-carousel2'>
                     {!inExpandedView ?  <img onClick = {expandImage} style = {{height: defaultMainImageHeight, width: 'auto', borderRadius: 20, cursor: !inExpandedView ? 'pointer' : 'default'}} src= {url}/> :
                       <img onMouseMove = {panImage} onClick = {zoomImage} id = 'zoomed-image' style = {{backgroundImage: `url(${url})`, height: defaultMainImageHeight , width: 'auto', borderRadius: 20, cursor: inExpandedView ? 'zoom-in' : 'default'}} src= {url}></img>}
-                    {clickedOnImage ? <button onClick = {exitExpandedImage} className = 'close-expanded-view'>X</button> : null}
+                    {clickedOnImage ?
+                        <button onClick = {exitExpandedImage} id = 'close-expanded-view'>X</button>
+                      : null}
                   </div>
         })}
       </MainImage>
