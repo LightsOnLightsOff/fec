@@ -6,10 +6,11 @@ import { faCheck, faArrowAltCircleLeft, faUserAstronaut, faFaceLaughWink, faStar
 import styled from 'styled-components';
 
 
-function Overview({ result, addHelpfull }) {
+function Overview({ result, addHelpfull, addReport }) {
   //body description
   const [showDescription, setShowDescription] = useState(false)
-  //helpfullness data
+  //report data
+  const [reportClicked, setReportClicked] = useState(false)
   //provide correct format date
   const formatDate = Moment(result.date).format("MMMM Do, YYYY")
   const anotherDate =  Moment(result.date).format("YYYY-MM-DD")
@@ -26,8 +27,18 @@ function Overview({ result, addHelpfull }) {
     greatSummary= true
   }
 
-  //style components
-  // const Wrapper = styled.
+  const report = () => {
+    if (reportClicked) {
+      return;
+    } else {
+    setReportClicked(true)
+    addReport(result.review_id)
+
+
+    }
+
+
+  }
 
 
 
@@ -83,7 +94,7 @@ function Overview({ result, addHelpfull }) {
       <div >
         {/*Idk if i should add a "No" */}
         <p>Helpful? <Yes onClick={() => {addHelpfull(result.review_id)}}>Yes</Yes> ({result.helpfulness})
-           | <Yes >Report</Yes> </p>
+           | {!reportClicked && <Yes onClick={report} >Report</Yes>} {reportClicked && <Yes>Reported</Yes>} </p>
       </div>
 
 
@@ -111,7 +122,7 @@ const StarRating = styled.span`
 `;
 
 const EachStarRating = styled.p`
-color: ${props => props.index - 1 < props.rating ? "black" : "nothing" }
+color: ${props => props.index - 1 < props.rating ? "#f9a920" : "nothing" }
 `;
 
 const StarsAndDate = styled.div`
@@ -127,4 +138,5 @@ text-decoration: underline;
   cursor: pointer;
 }
 `;
+
 

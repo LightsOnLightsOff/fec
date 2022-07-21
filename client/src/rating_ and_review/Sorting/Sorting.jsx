@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components';
 
 //data of reviewList will be passed down here and filter out the reviews here
 
 function Sorting({ data, sortData }) {
 
-  const [sort, setSort] = useState(" Helpful")
+  const [sort, setSort] = useState(" Relevant") //
   const [dropDown1, setDropDown1] = useState(" Newest")
-  const [dropDown2, setDropDown2] = useState(" Relevant")
+  const [dropDown2, setDropDown2] = useState(" Helpful") //
 
   const clickSort = (num) => {
     // console.log("WHAT IS NUM: ", num)
@@ -29,17 +30,17 @@ function Sorting({ data, sortData }) {
   return (
     <div className="sort">
       <div>
-        <h3>{data.length} Reviews, Sorted by </h3>
+        <H3>{data.length} Reviews, Sorted by </H3>
       </div>
       <div>
         <div className="dropDown">
           <div className="filter">
-          <h3 onClick={clickSort} className="helpful"> {sort} <FontAwesomeIcon className="arrowDown" icon={faAngleDown} /> </h3>
+          <H3 onClick={clickSort} className="helpful"> {sort} <FontAwesomeIcon className="arrowDown" icon={faAngleDown} /> </H3>
           </div>
 
           <div className="sortList">
-            <h3 onClick={() => {clickSort(1)}} value="newest" className="newest">{dropDown1}</h3>
-            <h3 onClick={() => {clickSort(2)}} value="helpful" className="relevant">{dropDown2}</h3>
+            <H3 onClick={() => {clickSort(1)}} value="newest" className="newest">{dropDown1}</H3>
+            <H3 onClick={() => {clickSort(2)}} value="helpful" className="relevant">{dropDown2}</H3>
           </div>
         </div>
 
@@ -60,3 +61,12 @@ function Sorting({ data, sortData }) {
 }
 
 export default Sorting;
+
+const H3 = styled.h3`
+
+border-radius: 7px;
+&:hover {
+  cursor: pointer;
+}
+
+`

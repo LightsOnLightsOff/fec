@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-function Stars({ rate, recommended }) {
+function Stars({ rate, recommended, filterByStar}) {
+
+  // console.log("RATE IN STARS: ", rate)
 
   // console.log("RATe: ", rate)
   const keys = Object.keys(rate)
@@ -30,37 +32,61 @@ function Stars({ rate, recommended }) {
     recommendTotal += Number(key)
   })
   // console.log("recommendTotal: ", recommendTotal)
+  var totalStars = 0
+  values.forEach((key) => {
+    totalStars += Number(key)
+  })
+
+
+
+  const eachStar = values.map((each) => {
+    return Math.round((each * 100) / totalStars) + "%"
+  })
+
+  //  console.log("TOTAL  Each STARS: ", eachStar)
 
 
 
   return (
     <div className="stars">
-      <h1>{avgTotal} <StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></h1>
+      <h1>{avgTotal} <StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9734;</StarBaby></h1>
 
       {/* style={{ width: '70%' }} */}
       <h4>{Math.round((recommended['true'] / recommendTotal) * 100)}% of reviews recommend this product</h4>
 
       <StarBreakdown>
-        <NumStar>5 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <NumStar onClick={() => {filterByStar(5)}}>5 stars</NumStar>
+        <Container>
+        <Breakdown starAvg={eachStar[4]}> </Breakdown>
+        </Container>
+
+
         {/* <AnotherBreakDown></AnotherBreakDown> */}
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>4 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <NumStar onClick={() => {filterByStar(4)}}>4 stars</NumStar>
+        <Container>
+        <Breakdown starAvg={eachStar[3]}> </Breakdown>
+        </Container>
         {/* <AnotherBreakDown></AnotherBreakDown> */}
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>3 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <NumStar onClick={() => {filterByStar(3)}}>3 stars</NumStar>
+        <Container>
+        <Breakdown starAvg={eachStar[2]}> </Breakdown>
+        </Container>
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>2 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <NumStar onClick={() => {filterByStar(2)}}>2 stars</NumStar>
+        <Container>
+        <Breakdown starAvg={eachStar[1]}> </Breakdown>
+        </Container>
       </StarBreakdown>
       <StarBreakdown>
-        <NumStar>1 stars</NumStar>
-        <Breakdown> </Breakdown>
+        <NumStar onClick={() => {filterByStar(1)}}>1 stars</NumStar>
+        <Container>
+        <Breakdown starAvg={eachStar[0]}> </Breakdown>
+        </Container>
       </StarBreakdown>
 
 
@@ -74,12 +100,17 @@ export default Stars;
 // const StarBabyAfter = styled.
 
 const StarBaby = styled.span`
+
   display: inline-block;
   position: relative;
   font-size: 30px;
-  color: #ddd;
+
+  border-radius: 7px;
+  color: #bebebe;
   &:after {
-    content: "\\2605\\2605\\2605\\2605\\2605";
+    content: "\\2B50\\2B50\\2B50\\2B50\\2B50";
+    padding-top: 3px;
+
     position: absolute;
     left: 0;
     top: 0;
@@ -91,30 +122,61 @@ const StarBaby = styled.span`
 `;
 
 const StarBreakdown = styled.div`
+
   display: flex;
   flex-direction: row;
-  padding-bottom: 10px
+  padding-bottom: 17px;
+  padding-top: 14px;
+
+
+
+`;
+/**
+
+    left: -20;
+    right: 0px;
+    left: -30;
+    left: -20px;
+    top: 2px;
+
+ */
+
+const Container = styled.div`
+width: 230px;
+height: 17px;
+position: relative;
+background-color: #ddd;
+border-radius: 5px;
+
+left: -20;
+    right: 0px;
+    left: -30;
+    left: -20px;
+    top: 4px;
 
 
 `;
 
-const Breakdown = styled.span`
-  width: 200px;
-  height: 8px;
-  border-width: thin;
-  margin-top: 4px;
-  margin-left: 10px;
-  background-color: #ddd;
-  &:after {
-    position: relative;
-    background-color: black;
-    width: 200px;
-    height: 8px;
-    left: 0;
-    top: 0;
+//&:after {
 
-    overflow: hidden;
-  }
+//   background-color: blue;
+//   width: 200px;
+
+//   left: 0;
+//   top: 0;
+
+//   overflow: hidden;
+// }
+
+
+const Breakdown = styled.span`
+  width: ${props => {return props.starAvg}};
+  height: 17px;
+  border-width: thin;
+  border-radius: 5px;
+  background-color: #f80;
+  position: absolute;
+
 `;
 // position: absolute;
 //     left: 0;
@@ -136,6 +198,9 @@ margin: 0px;
 padding: 0px;
 width: 90px;
 text-decoration: underline;
+&:hover {
+  cursor: pointer;
+}
 
 `
 

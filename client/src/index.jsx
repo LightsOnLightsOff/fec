@@ -1,25 +1,36 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import Related from './Relateditems/Main.jsx';
 
+import Main from './Relateditems/Main.jsx'
 import Overview from './Overview/Overview.jsx';
 import QandA from './Q&A/Q&A.jsx'
 import ReviewIndex from './rating_ and_review/ReviewIndex.jsx'
 
-const UserContext = createContext() // this will help us pass down down without having to chain every single child
+
+export const UserContext = createContext()
 
 function App (props) {
-  const [productId, setProductId] = useState('')
+
+  const [productInfo, setProductInfo] = useState({id: 40344, name: 'Camo Onesie'})
 
   return (
     <div>
-      <Overview />
-      <QandA />
-      <ReviewIndex />
+      <UserContext.Provider value={{
+        productInfo: productInfo,
+        setProductInfo: setProductInfo
+        }}>
+        <Overview />
+        <Main />
+        <QandA />
+        <ReviewIndex />
+      </UserContext.Provider>
     </div>
   )
 }
-
-export default App
-
-ReactDOM.render(<App />, document.getElementById('root'))
+// After
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);
