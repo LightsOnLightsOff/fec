@@ -64,7 +64,7 @@ function StarRating (props) {
     //console.log("STAR COME OUT TO PLAY")
     const keys = Object.keys(rate)
     const values = Object.values(rate)
-     console.log("KEYS: ", keys, "VALUES: ", values)
+    ///console.log("KEYS: ", keys, "VALUES: ", values)
     totalValues = 0
     var totalKeyAndValues = 0
     values.forEach((key, index) => {
