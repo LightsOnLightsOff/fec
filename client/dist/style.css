@@ -247,7 +247,7 @@ html {
     top: 50%;
     left : 50%;
     transform: translate(-50%, -50%);
-    background-color: #ccc;
+    background-color: white;
     padding: 10px;
     z-index: 1000;
     width: auto
@@ -353,6 +353,12 @@ html {
   display: flex;
   justify-content: center;
 }
+
+
+.to-message-social-modal {
+  font-size: 20px;
+}
+
 
 .individual-thumbnail-image-gallery {
   height: 50px ;

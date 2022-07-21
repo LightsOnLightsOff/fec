@@ -31,10 +31,10 @@ function InstagramModal ({open, onClose}) {
       <div className = 'modal-overlay-styles'>
         <div className = 'modal-modal-styles'>
           <button onClick = {onClose} className = 'close-modal-button'>X</button>
-          <div>To:</div>
+          <div className = 'to-message-social-modal'>To:</div>
             <input value = {toLineInstagram} onChange = {handleChangeToLine} placeholder = '@ Someone' ></input>
             {submit &&!toLineInstagram ? <div>Please enter valid username(s).</div> : null}
-          <div>Message:</div>
+          <div className = 'to-message-social-modal'>Message:</div>
             <input value = {messageLineInstagram} onChange = {handleChangeMessageLine} placeholder = 'Send a message.'></input>
             {submit && !messageLineInstagram ? <div>Please enter a valid message.</div> : null}
           <div className = 'send-social-modal'>
