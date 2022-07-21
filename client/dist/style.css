@@ -348,8 +348,25 @@
   flex-direction: row;
 }
 
+.answer-img {
+  height: 100px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.answer-img:hover {
+  cursor: pointer;
+  border: solid black 2px;
+}
+
+#image
+
 .q-and-a {
-  padding: 100px
+  padding: 100px;
+  max-width: 1500px;
+  min-width: 900px;
 }
 
 .qanda-modal-container {
@@ -362,6 +379,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#image-modal-container {
+  flex-direction: column;
+}
+
+#image-modal-container button{
+  position: relative;
+  bottom: 50px;
+  left: 150px;
 }
 
 .qanda-modal-content {
