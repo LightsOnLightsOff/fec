@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
-
+import React, {useState, useEffect, useContext} from 'react';
+import { UserContext } from '../../index.jsx'
 import axios from 'axios';
-
 import StyleName from './StyleName.jsx';
 import StyleThumbnail from './StyleThumbnail.jsx';
 import config from '../../../../config.js'
@@ -10,8 +9,10 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
   const [styles, setStyles] = useState(0);
   const [clickedName, setClickedName] = useState('');
 
+  const context = useContext(UserContext)
+
   useEffect (() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles', {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${context.productInfo.id}/styles`, {
     params: { page: 1, count: 1 },
     headers: {
 
@@ -22,7 +23,7 @@ function StyleSelectorOverview ({setSelectedStyle, setOriginalPrice, setSalePric
       let styleGuide = res.data;
       setStyles(styleGuide.results)
     })
-  }, [])
+  }, [context.productInfo.id])
 
   return (
     <div className = 'style-selector-section'>
