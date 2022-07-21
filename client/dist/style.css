@@ -679,8 +679,8 @@ justify-content: center;
 .plus-button,
 .slider {
   /* margin-top: 50px; */
-  margin-right: 450px;
-  margin-left: 380px;
+  margin-right: 300px;
+  margin-left: 200px;
 }
 
 
@@ -696,9 +696,10 @@ justify-content: center;
   position: absolute;
   background: #ffffff;
   left: 30%;
-  top: 150%;
+  top: 100%;
   padding: 20px;
   border: 1px solid black;
+  z-index: 1;
 }
 
 .thestar:after {

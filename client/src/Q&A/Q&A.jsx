@@ -41,7 +41,6 @@ function QandA (props) {
     })
     .then((data) => {
       changeCurrentQuestions(data.results.slice(0, 2));
-      console.log('data results: ', data.results)
     })
     .catch((err) => {
       console.error(err);
