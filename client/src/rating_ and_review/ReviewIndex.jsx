@@ -11,8 +11,8 @@ function ReviewIndex(props) {
   return (
     <div>
 
-      <RatingAndReview>Rating & Reviews &#128161; <Bear>ʕ•ᴥ•ʔ</Bear></RatingAndReview>
-      <div className="rating">
+      <RatingAndReview>Rating & Reviews<Bear></Bear></RatingAndReview>
+      <div className="rating" id='brandonNeedsThisDiv'>
     {/* <Ratings />  this component will have product is passed down here as well */}
         <SearchBar />
         {/*<ReviewList /> this componenet will have product id passed down */}

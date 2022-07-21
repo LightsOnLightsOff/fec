@@ -78,7 +78,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
   }
 
   const getDataAgain = (reviewId) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${context.productInfo.id}&count=200&sort=${getDataBySort}`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${context.productInfo.id}&count=5000&sort=${getDataBySort}`, {
       headers: {
         Authorization: config.TOKEN
       }

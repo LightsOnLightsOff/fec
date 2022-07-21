@@ -9,7 +9,7 @@ import config from '../../../../config.js'
 
 function SearchBar(props) {
   const context = useContext(UserContext)
-  console.log("WHAT DOES THE DATA LOOK LIKE: ", context)
+  // console.log("WHAT DOES THE DATA LOOK LIKE: ", context)
 
   const [searchReview, setSearchReview] = useState('')
 
@@ -31,7 +31,7 @@ function SearchBar(props) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${context.productInfo.id}&count=200&sort=relevant`, {
+      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${context.productInfo.id}&count=5000&sort=relevant`, {
         headers: {
           Authorization: config.TOKEN
         }
