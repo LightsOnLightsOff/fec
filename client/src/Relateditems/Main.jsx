@@ -34,15 +34,14 @@ function Related (props) {
     detail: []
   })
 
-  var getStorageValue = function (item,original) {
+  var getStorageValue = function (item,orginal) {
     var result = localStorage.getItem(item);
-    // console.log('local storage result when mount', result)
-    return JSON.parse(result) || original
+      return JSON.parse(result) || orginal
   }
 
-  const [outfit, setOutfit] = useState(  ()=>getStorageValue('outfit',[]))
-  const [currentStyle, setCurrS] = useState(  ()=>getStorageValue('currentStyle',[]))
-  const [countClick, setCount] = useState( ()=>getStorageValue('countClick',0))
+  const [outfit, setOutfit] = useState(  ()=>getStorageValue('outfit',['button']))
+  const [currentStyle, setCurrS] = useState(  ()=>getStorageValue('currentStyle',['button']))
+  const [countClick, setCount] = useState( ()=>getStorageValue('countClick',1))
 
 
 

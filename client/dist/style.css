@@ -686,12 +686,17 @@ justify-content: center;
 }
 
 
+
 .section {
   position: relative;
 }
 
 .outfitSlider{
   border: solid grey;
+}
+
+.the-whole-outfit{
+  margin-bottom: 100px;
 }
 
 .modal-container {
@@ -930,6 +935,10 @@ flex-direction: row;
 
 .slick-list {margin: 0 -10px;}
 .slick-slide>div {padding: 0 10px;}
+.slick-track{
+  margin-left:0;
+}
+
 
 .main-card{
   border: solid grey;

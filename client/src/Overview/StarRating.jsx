@@ -17,7 +17,7 @@ function StarRating (props) {
       const newData = await response.data
 
       //useState to update
-      console.log("We got data from ratings in Brandon's file!: ", newData.ratings)
+      // console.log("We got data from ratings in Brandon's file!: ", newData.ratings)
       setRatings(newData.ratings)
 
     }
@@ -58,7 +58,7 @@ function StarRating (props) {
 
 
   if (Object.keys(rate).length > 0) {
-    console.log("STAR COME OUT TO PLAY")
+    // console.log("STAR COME OUT TO PLAY")
     const keys = Object.keys(rate)
     const values = Object.values(rate)
     // console.log("KEYS: ", keys, "VALUES: ", values)
