@@ -49,7 +49,6 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     <div className = 'product-detail'>
         <div className = 'product-category'>{category}</div>
         <div className = 'product-name'>{name}</div>
-
         <StarRating/>
         {originalPrice && !salePrice ?
           <div>

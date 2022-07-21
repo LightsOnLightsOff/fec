@@ -80,7 +80,7 @@ function StarRating (props) {
     <div className="stars">
       <span><StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></span>
       <span>
-        <a href="#brandonNeedsThisDiv">{totalValues} Ratings</a>
+        <a href="#brandonNeedsThisDiv" id = 'star-rating-styling'>{totalValues} Ratings</a>
       </span>
     </div>
   )

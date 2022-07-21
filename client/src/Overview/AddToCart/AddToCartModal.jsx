@@ -25,10 +25,8 @@ function AddToCartModal ({open, onClose, itemsInCart, setItemsInCart, totalPrice
             <span className = 'added-to-cart-label'>Added to Cart!</span>
           </div>
           <div className = 'style-modal-add-to-cart'>
-            <div >
-              <div>
-                <img className = 'cart-modal-thumbnail-image' src = {itemsInCart[0][4]}></img>
-              </div>
+            <div className =  'thumbnail-product-modal'>
+              <img className = 'cart-modal-thumbnail-image' src = {itemsInCart[0][4]}></img>
             </div>
             <div className = 'cart-modal-product-info'>
               <div className = 'cart-modal-name'>{itemsInCart[0][0]}</div>
