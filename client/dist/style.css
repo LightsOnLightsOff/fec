@@ -304,6 +304,13 @@ html {
   cursor: pointer
 }
 
+.send-social-media-button {
+  padding: 3px;
+  margin: 5px;
+  border-radius: 7px;
+  background-color: white;
+}
+
 #close-expanded-view {
   position: absolute;
   color: rgb(35, 25, 35);
