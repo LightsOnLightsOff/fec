@@ -9,8 +9,6 @@ function AddToCartModal ({open, onClose, itemsInCart, setItemsInCart, totalPrice
   const [submit, setSubmit] = useState(false);
   var cartURL = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3KoNpySX6KZDN0GJtebbCnuYtu2FIClZGA&usqp=CAU'
 
-  // console.log (price, 'price in the Modal');
-
   const submitButton = (event) => {
     event.preventDefault();
     setSubmit(true);

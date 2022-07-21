@@ -421,12 +421,14 @@ html {
   cursor: pointer;
   font: small-caps 25px serif;
   text-align: center;
+  border-radius: 10px;
 }
 
 #add-to-cart-checkout-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 10px;
+
 }
 
 #back-shopping-button {
