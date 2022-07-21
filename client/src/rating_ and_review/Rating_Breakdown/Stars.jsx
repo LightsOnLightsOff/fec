@@ -49,7 +49,7 @@ function Stars({ rate, recommended, filterByStar}) {
 
   return (
     <div className="stars">
-      <h1>{avgTotal} <StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9734;</StarBaby></h1>
+      <h1>{avgTotal} <StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></h1>
 
       {/* style={{ width: '70%' }} */}
       <h4>{Math.round((recommended['true'] / recommendTotal) * 100)}% of reviews recommend this product</h4>

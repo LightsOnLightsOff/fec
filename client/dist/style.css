@@ -528,6 +528,10 @@ justify-content: center;
 
 }
 
+.filter {
+  padding-left: 5px;
+}
+
 .sortList {
   /* border: #000 solid; */
   width: fit-content;
@@ -592,11 +596,7 @@ justify-content: center;
   display: block;
 }
 
-.filter {
-  padding-bottom: 0px;
-  height: 40px;
-  border: #000 solid;
-}*/
+*/
 
 
 .helpful {

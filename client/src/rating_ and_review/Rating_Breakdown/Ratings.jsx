@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Stars from './Stars.jsx';
 import Product from './Product.jsx'
 import config from '../../../../config.js'
+import { UserContext } from "../../index.jsx"
 
 function Ratings({filterByStar}) {
 
+  const context = useContext(UserContext)
   const [ratings, setRatings] = useState([])
   // console.log("WE GOT RATINGS: ", ratings)
   /*
@@ -49,7 +51,7 @@ function Ratings({filterByStar}) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=40355', {
+      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${context.productInfo.id}`, {
         headers: {
           Authorization: config.TOKEN
         }
@@ -68,7 +70,7 @@ function Ratings({filterByStar}) {
         console.log("ERROR: ", err)
       })
 
-  }, []) //props.id <---- will need this when we pass down the prop ID
+  }, [context.productInfo.id]) //props.id <---- will need this when we pass down the prop ID
 
 if (Object.keys(ratings).length > 0) {
   return (
