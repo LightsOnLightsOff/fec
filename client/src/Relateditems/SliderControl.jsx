@@ -97,7 +97,7 @@ export function Control ({
         <ButtonBase
           className='arrow-btn prev'
 
-          style={mainDiff === 0 ? { display: 'none' } : null}
+          style={mainDiff === 0 ? { display: 'none' } : {top:'260px',color:'orange'}}
           onClick={arrowClick}
         >
           <ArrowLeftIcon sx={{ fontSize: "80px" }} />
@@ -106,7 +106,7 @@ export function Control ({
         <ButtonBase
           className='arrow-btn next'
           // id='main-right'
-          style={mainDiff <= product.length - 4 ? null : { display: 'none' }}
+          style={mainDiff <= product.length - 4 ?{top:'260px',marginLeft:'1300px',color:'orange'} : { display: 'none' }}
           onClick={arrowClick}
         >
           <ArrowRightIcon sx={{ fontSize: "80px" }}/>

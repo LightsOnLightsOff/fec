@@ -925,12 +925,12 @@ flex-direction: row;
   color: aqua;
 }
 
- .next,.NEXT {
+ /* .next,.NEXT {
   float: right;
 }
 .prev,.PREV{
   float: left;
-}
+} */
 
 
 .slick-list {margin: 0 -10px;}

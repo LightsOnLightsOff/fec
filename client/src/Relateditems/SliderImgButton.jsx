@@ -33,7 +33,7 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar,product 
             clickStar(item)
           }}
           name={item.name}
-          style={{ ...starStyle, right: `${(product.length-index-1)*440+5}px` }}
+          style={{ ...starStyle, right: `${(product.length-index-1)*470+15}px` }}
         >
           <FontAwesomeIcon icon={faStar} />
         </div>
