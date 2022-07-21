@@ -38,7 +38,7 @@ function QandA (props) {
     })
     .then((data) => {
       changeCurrentQuestions(data.results.slice(0, 2));
-      console.log('question data in Q&A: ', questionData);
+      // console.log('question data in Q&A: ', questionData);
     })
     .catch((err) => {
       console.error(err);

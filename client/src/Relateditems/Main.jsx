@@ -6,7 +6,6 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
-import {UserContext} from '../index.jsx';
 import { Control } from './SliderControl.jsx'
 import Modal from './Modalwindow.jsx'
 import Outfit from './Outfit.jsx'
@@ -14,7 +13,6 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 function Related (props) {
-
   const imgs =
     'https://img.freepik.com/free-photo/smooth-green-background_53876-108464.jpg'
 
@@ -34,7 +32,7 @@ function Related (props) {
     features: [],
     detail: []
   })
-  // const [outfit, setOutfit] = useState([[{ detail:{category: '',name:''} }]])
+
   var getStorageValue = function (item,original) {
     var result = localStorage.getItem(item);
     // console.log('local storage result when mount', result)
@@ -60,7 +58,6 @@ function Related (props) {
   }, [countClick])
 
 
-  const productPassing = useContext(UserContext);
 
   var getRelatedProduct = function (id) {
     return axios.get(
