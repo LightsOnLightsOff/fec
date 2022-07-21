@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import ReactDom from 'react-dom';
 
-function AddToCartModal ({open, onClose, itemsInCart, setItemsInCart}) {
+function AddToCartModal ({open, onClose, itemsInCart, setItemsInCart, totalPrice}) {
   if (!open) {
     return null
   }
-  const [submit, setSubmit] = useState(false);
-  var cartURL = 'https://thumbs.dreamstime.com/b/shopping-cart-icon-blue-color-design-perfect-use-print-media-web-stock-images-commercial-any-kind-project-209472475.jpg'
 
-  console.log (itemsInCart, 'in the Modal');
+  const [submit, setSubmit] = useState(false);
+  var cartURL = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL3KoNpySX6KZDN0GJtebbCnuYtu2FIClZGA&usqp=CAU'
+
+  // console.log (price, 'price in the Modal');
 
   const submitButton = (event) => {
     event.preventDefault();
@@ -23,7 +24,7 @@ function AddToCartModal ({open, onClose, itemsInCart, setItemsInCart}) {
         <div className = 'modal-modal-styles'>
           <div className = 'style-add-to-cart'>
             <img className = 'cart-logo' src = {cartURL}/>
-            <span>Added to Cart!</span>
+            <span className = 'added-to-cart-label'>Added to Cart!</span>
           </div>
           <div className = 'style-modal-add-to-cart'>
             <div >
@@ -34,14 +35,22 @@ function AddToCartModal ({open, onClose, itemsInCart, setItemsInCart}) {
             <div className = 'cart-modal-product-info'>
               <div className = 'cart-modal-name'>{itemsInCart[0][0]}</div>
               <div className = 'cart-modal-style'>{itemsInCart[0][1]}</div>
-              <div>Size: {itemsInCart[0][2]}</div>
-              <div className = 'cart-modal-price'>Price: </div>
+              <div className = 'add-to-cart-section-label' >
+                <span className = 'add-to-cart-label'>Size: </span>
+                <span className = 'add-to-cart-size'>{itemsInCart[0][2]}</span>
+              </div>
+              <div className = 'add-to-cart-section-label'>
+                <span className = 'add-to-cart-label'>Price: </span>
+                <span className = 'add-to-cart-size'>${totalPrice}</span>
+              </div>
             </div>
           </div>
-          <div>Happy Birthday! Enter 'BDAY2022' for 10% off ENTIRE order!!</div>
-          <div className = 'send-social-modal'>
-            <button onClick = {submitButton} style = {{cursor: 'pointer'}}>Back to Shopping</button>
-            <button onClick = {submitButton} style = {{cursor: 'pointer'}}>Checkout {itemsInCart[0][3]} item(s)</button>
+          <div className = 'promotion'>
+            <div className = 'add-to-cart-promotion'>Happy Birthday! Enter 'BDAY2022' for 10% off your ENTIRE order!!</div>
+          </div>
+            <div className = 'send-social-modal' id = 'add-to-cart-checkout-buttons'>
+            <button onClick = {submitButton} className = 'add-to-cart-modal-buttons' style = {{cursor: 'pointer'}}>Back to Shopping</button>
+            <button onClick = {submitButton} className = 'add-to-cart-modal-buttons' style = {{cursor: 'pointer'}}>Checkout {itemsInCart[0][3]} item(s)</button>
           </div>
         </div>
       </div>
