@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-import config from '../../../config.js'
+import config from '../../../config.js';
 import StarRating from './StarRating.jsx';
+import { UserContext } from '../index.jsx';
 //my current DEFAULT product: Camo Onesie (id: 65631)
 
 function ProductDetail ({originalPrice, salePrice, setProductName}) {
@@ -17,8 +18,11 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
   var checkLogo = 'https://i.pinimg.com/originals/c7/75/fc/c775fc6d3433da085d8f579f54b7c758.jpg';
   var percentDiscount;
 
+  const context = useContext(UserContext)
+
   useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344', {
+
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${context.productInfo.id}`, {
      params: { page: 1, count: 1 },
      headers: {
        Authorization: config.TOKEN
@@ -39,7 +43,7 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
       setSlogan(productDetail.slogan);
       setDescription(productDetail.description);
     })
-  }, [])
+  }, [context.productInfo.id])
 
   if (salePrice) {
     percentDiscount = ((originalPrice - salePrice) / originalPrice * 100).toFixed(2);
