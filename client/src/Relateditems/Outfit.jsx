@@ -58,9 +58,9 @@ function Outfit ({
     // console.log('ONCE List of variable currentProduct',product);
   }, [clicked])
 
-  console.log('      check the useeffect', outfit,countClick)
+  // console.log('      check the useeffect', outfit,countClick)
   if (outfit.length > 0 && countClick === outfit.length) {
-    console.log('in the first one')
+    // console.log('in the first one')
     return (
       <div>
         <h4 className='title'> YOUR OUTFIT</h4>
@@ -91,7 +91,7 @@ function Outfit ({
       </div>
     )
   } else {
-    console.log('in the second one')
+    // console.log('in the second one')
     return (
       <div >
         <h4 className='title'> YOUR OUTFIT</h4>

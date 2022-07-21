@@ -120,7 +120,7 @@ class ReactCustomArrow extends React.Component {
                       onClick={() => this.clickTrash(index)}
                       style={{
                         ...starStyle,
-                        right: `${(l - index - 1) * 350 + 15}px`
+                        right: `${(l - index - 1) * 360 + 15}px`
                       }}
                     >
                       <FontAwesomeIcon icon={faTrash} />

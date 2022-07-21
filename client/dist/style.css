@@ -571,9 +571,10 @@ justify-content: center;
   position: absolute;
   background: #ffffff;
   left: 30%;
-  top: 150%;
+  top: 100%;
   padding: 20px;
   border: 1px solid black;
+  z-index: 1;
 }
 
 .thestar:after {
