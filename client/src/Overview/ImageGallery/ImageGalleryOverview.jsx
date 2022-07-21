@@ -89,7 +89,7 @@ function ImageGalleryOverview ({selectedStyle, defaultSKU, setInExpandedView, in
   }
 
   return (
-    <div>
+    <div className = 'image-gallery'>
         <MainImage indexOfPicture = {indexOfPicture} setIndexOfPicture = {setIndexOfPicture} thumbnailClicked = {thumbnailClicked} setThumbnailClicked = {setThumbnailClicked} setLeftArrowClicked = {setLeftArrowClicked} setNewIndex = {setNewIndex} setRightArrowClicked = {setRightArrowClicked}>
         {imageArray.map(url => {
           return  <div className = 'main-image-carousel2'>

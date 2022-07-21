@@ -82,6 +82,12 @@ html {
   justify-content: center;
 }
 
+/* .image-gallery {
+  display: grid;
+  grid-template-rows: 6fr 2fr;
+  row-gap: 20px;
+} */
+
 .carousel-container,
 .carousel-container-thumbnail {
   display: flex;
