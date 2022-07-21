@@ -7,6 +7,7 @@ import Main from './Relateditems/Main.jsx'
 import Overview from './Overview/Overview.jsx';
 import QandA from './Q&A/Q&A.jsx'
 import ReviewIndex from './rating_ and_review/ReviewIndex.jsx'
+import styled from 'styled-components';
 
 
 export const UserContext = createContext()
@@ -18,7 +19,7 @@ function App (props) {
 
 
   return (
-    <div>
+    <Div>
       <UserContext.Provider value={{
         productInfo: productInfo,
         setProductInfo: setProductInfo
@@ -28,7 +29,7 @@ function App (props) {
         <QandA />
         <ReviewIndex />
       </UserContext.Provider>
-    </div>
+    </Div>
   )
 }
 // After
@@ -36,3 +37,9 @@ import { createRoot } from 'react-dom/client';
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(<App />);
+
+
+const Div = styled.div`
+padding-left: 60px;
+
+`;
