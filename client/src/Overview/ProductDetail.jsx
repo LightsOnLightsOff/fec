@@ -49,8 +49,8 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     <div className = 'product-detail'>
         <div className = 'product-category'>{category}</div>
         <div className = 'product-name'>{name}</div>
+        <a href="#brandonNeedsThisDiv">Ratings</a>
         <StarRating/>
-        {/* <div className = 'product-star-rating'>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div> */}
         {originalPrice && !salePrice ?
           <div>
             <span className = 'product-original-price-label'>Price: </span>

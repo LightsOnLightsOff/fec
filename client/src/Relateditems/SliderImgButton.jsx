@@ -23,7 +23,7 @@ function ImgButton ({ item, style, index, imgs, clickProduct, clickStar,product 
   }
 
 
-console.log('product in imgandbutton',(product.length-index-1)*350+5)
+// console.log('product in imgandbutton',(product.length-index-1)*350+5)
     // console.log('let me know the index after render', index)
     return (
       <div>

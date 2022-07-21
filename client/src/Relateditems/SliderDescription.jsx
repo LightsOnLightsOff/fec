@@ -28,7 +28,7 @@ function Description ({ item, style, index,rating }) {
       </p>
 
       <ColorRating wid={`${Math.floor(rating[index]/5*4)/4*100}%`} >
-        <span className='thestar'>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span >&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       </ColorRating>
     </div>
   )

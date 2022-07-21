@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect,useContext, memo } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import TinySlider from 'tiny-slider-react'
@@ -10,6 +10,8 @@ import Slider from 'react-slick'
 import ImgandButton from './SliderImgButton.jsx'
 import Description from './SliderDescription.jsx'
 import CardContent from '@mui/material/CardContent';
+import {UserContext} from '../index.jsx';
+import config from '../../../config.js'
 
 export function Control ({
   style,
@@ -27,6 +29,7 @@ export function Control ({
   const [mainRight, setRight] = useState(0)
   const [mainDiff, setDiff] = useState(0)
   const sliderRef = React.useRef()
+  const {setProductInfo} = useContext(UserContext);
 
   function clickProduct (e) {
     setLeft(0)
@@ -34,6 +37,17 @@ export function Control ({
     setDiff(0)
     setStyle([])
     var clickedId = e.target.attributes.getNamedItem('name').value
+
+    axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${clickedId}`,
+      {
+        headers: {
+          Authorization: config.TOKEN
+        }
+      }
+    )
+    .then(res=>setProductInfo({id:clickedId,name:res.data.name}))
     // console.log('I am clicking the picuture id:', clickedId)
     findFeature(clickedId)
     updateProductByid(clickedId).then(related => {
@@ -44,7 +58,7 @@ export function Control ({
           })
         )
         .then(res => {
-          console.log('array of styles', res)
+          // console.log('array of styles', res)
           setStyle(res)
         })
     })
@@ -60,7 +74,7 @@ export function Control ({
   }
 
   var arrowClick = function (e) {
-    console.log('clicked the arrow ', e.target)
+    // console.log('clicked the arrow ', e.target)
     if (
       e.target.getAttribute('data-testid') === 'ArrowLeftIcon' ||
       e.target.getAttribute('d') === 'm14 7-5 5 5 5V7z'

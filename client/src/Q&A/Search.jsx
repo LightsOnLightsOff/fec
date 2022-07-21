@@ -9,7 +9,7 @@ function Search(props) {
   }
 
   useEffect(() => {
-    console.log('Question Data: ', props.questionData)
+    // console.log('Question Data: ', props.questionData)
     if(term.length >= 3) {
       props.setSearching(true);
       var results = [];
