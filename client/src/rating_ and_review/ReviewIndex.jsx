@@ -33,5 +33,5 @@ const Bear = styled.span`
 
 const RatingAndReview = styled.h1`
   padding: 10px;
+  padding-left: 68px;
 `;
-
