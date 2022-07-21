@@ -22,44 +22,45 @@
 
 
 
+
 .product-detail {
   margin-top: 50px;
   margin-right: 50px;
 }
 
 .product-category {
-  font: small-caps 20px serif;
+  font: small-caps 20px 'Edu NSW ACT Foundation', cursive;
 }
 
 .product-name {
   padding-top: 5px;
-  font: small-caps 70px serif;
+  font: small-caps 70px 'Edu NSW ACT Foundation', cursive;
 }
 
 .product-original-price-label {
   padding-top: 10px;
-  font: small-caps 30px serif;
+  font: small-caps 30px 'Edu NSW ACT Foundation', cursive;
 }
 
 .product-original-price-number {
   padding-top: 10px;
-  font: small-caps 30px serif;
+  font: small-caps 30px 'Edu NSW ACT Foundation', cursive;
 }
 
 .product-sale-price {
   padding-top: 10px;
-  font: small-caps bold 30px serif;
+  font: small-caps bold 30px 'Edu NSW ACT Foundation', cursive;
   color: red;
 }
 
 .product-slogan {
   padding-top: 5px;
-  font: small-caps bold 30px serif;
+  font: small-caps bold 30px 'Edu NSW ACT Foundation', cursive;
   text-decoration: underline;
 }
 
 .product-description {
-  font: small-caps 20px serif;
+  font: small-caps 20px 'Edu NSW ACT Foundation', cursive;
   padding-bottom: 10px;
 }
 
@@ -68,17 +69,17 @@
 }
 
 .product-feature {
-  font: small-caps 20px serif;
+  font: small-caps 20px 'Edu NSW ACT Foundation', cursive;
 }
 
 .style-label {
   padding-bottom: 20px;
-  font: small-caps 30px serif;
+  font: small-caps 30px 'Edu NSW ACT Foundation', cursive;
 }
 
 .style-name {
   padding-bottom: 20px;
-  font: small-caps bold 30px serif;
+  font: small-caps bold 30px 'Edu NSW ACT Foundation', cursive;
 }
 
 
@@ -320,7 +321,7 @@
 
 .drop-down-menu {
   cursor: pointer;
-  font: small-caps 25px serif;
+  font: small-caps 25px 'Edu NSW ACT Foundation', cursive;
   width: 200px;
   height: 50px;
   text-align: center;
@@ -340,7 +341,7 @@
 
 .original-price-strikethrough{
   text-decoration: line-through;
-  font: small-caps 20px serif;
+  font: small-caps 20px 'Edu NSW ACT Foundation', cursive;
 }
 
 .answers-list {
@@ -779,7 +780,7 @@ flex-direction: row;
 }
 
 .App {
-  font-family: sans-serif;
+  font-family: 'Edu NSW ACT Foundation', cursive;
 }
 
 .slider-arrow {
@@ -811,3 +812,8 @@ flex-direction: row;
   border: solid grey;
 }
 
+* {
+
+font-family: 'Edu NSW ACT Foundation', cursive;
+
+}
