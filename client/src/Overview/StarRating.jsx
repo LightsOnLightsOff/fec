@@ -6,7 +6,7 @@ import config from '../../../config.js'
 function StarRating (props) {
 
   const [rate, setRatings] = useState([])
-
+  var totalValues;
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=40355', {
@@ -17,7 +17,7 @@ function StarRating (props) {
       const newData = await response.data
 
       //useState to update
-      console.log("We got data from ratings in Brandon's file!: ", newData.ratings)
+      // console.log("We got data from ratings in Brandon's file!: ", newData.ratings)
       setRatings(newData.ratings)
 
     }
@@ -62,7 +62,7 @@ function StarRating (props) {
     const keys = Object.keys(rate)
     const values = Object.values(rate)
     // console.log("KEYS: ", keys, "VALUES: ", values)
-    var totalValues = 0
+    totalValues = 0
     var totalKeyAndValues = 0
     values.forEach((key, index) => {
       totalValues += Number(key)
@@ -78,8 +78,10 @@ function StarRating (props) {
     const starAvg = (avgTotal * 100) / 5 + '%'
   return (
     <div className="stars">
-      <h1><StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></h1>
-
+      <span><StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></span>
+      <span>
+        <a href="#brandonNeedsThisDiv">{totalValues} Ratings</a>
+      </span>
     </div>
   )
   }
