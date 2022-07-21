@@ -295,7 +295,7 @@ position: fixed;
   z-index: 1040;
   width: 100vw;
   height: 100vh;
-  background-color: #7adfbb;
+  background-color: #F4F0DB;
   display: flex;
   align-items: center;
   justify-content: center;
