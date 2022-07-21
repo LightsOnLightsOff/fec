@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Characteristics from './Characteristics.jsx'
 import UploadImage from './UploadImage.jsx'
 import axios from 'axios'
 import config from '../../../../config.js'
+import { UserContext } from "../../index.jsx"
 
 function FormModal({ toggle, showModal, productId, postData }) {
   /*
@@ -18,7 +19,7 @@ function FormModal({ toggle, showModal, productId, postData }) {
 
   */
 
-
+const context = useContext(UserContext)
 
 
   const [starIndex, setStarIndex] = useState(0)
@@ -160,7 +161,7 @@ function FormModal({ toggle, showModal, productId, postData }) {
             <span>&times;</span>
           </XButton>
           <Forms>
-            <Title>About the <code>**Product Name**</code></Title>
+            <Title>About the {context.productInfo.name}</Title>
             <OverallAndStar>
               <TextBox>
                 <p>But first, what do I call you?<Need>*</Need></p>
@@ -294,7 +295,7 @@ position: fixed;
   z-index: 1040;
   width: 100vw;
   height: 100vh;
-  background-color: #7adfbb;
+  background-color: #F4F0DB;
   display: flex;
   align-items: center;
   justify-content: center;

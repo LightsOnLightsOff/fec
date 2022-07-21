@@ -17,6 +17,11 @@ function Overview (props) {
   const [selectedStyle, setSelectedStyle] = useState({});
   const [inExpandedView, setInExpandedView] = useState(false);
 
+  if (thumbnailURL.length === 0 && Object.keys(defaultSKU).length > 0) {
+    let newThumbnailURL = defaultSKU.photos[0].thumbnail_url;
+    setThumbnailURL(newThumbnailURL)
+  }
+
   if (!inExpandedView) {
     return (
       <div className = 'product-overview-container'>
@@ -24,7 +29,7 @@ function Overview (props) {
         <div className = 'product-information-and-style'>
           <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
           <StyleSelectorOverview  setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
-          <AddToCartOverview skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL}/>
+          <AddToCartOverview skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL} originalPrice = {originalPrice} salePrice = {salePrice}/>
           <ShareSocialMedia />
         </div>
       </div>
@@ -36,7 +41,7 @@ function Overview (props) {
         <div style = {{display : 'none'}}>
           <ProductDetail originalPrice = {originalPrice} salePrice = {salePrice} setProductName = {setProductName}/>
           <StyleSelectorOverview  setSelectedStyle = {setSelectedStyle} setOriginalPrice = {setOriginalPrice} setSalePrice = {setSalePrice} setSKUS = {setSKUS} skus = {skus} setStyleName = {setStyleName} setThumbnailURL = {setThumbnailURL} setDefaultSKU = {setDefaultSKU}/>
-          <AddToCartOverview skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL}/>
+          <AddToCartOverview skus = {skus} defaultSKU = {defaultSKU} setSKUS = {setSKUS} productName = {productName} styleName = {styleName} thumbnailURL = {thumbnailURL} />
           <ShareSocialMedia />
         </div>
       </div>

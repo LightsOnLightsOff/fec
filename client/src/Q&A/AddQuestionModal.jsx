@@ -1,16 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import config from '../../../config.js';
+import {UserContext} from '../index.jsx';
 
 function AddQuestionModal(props) {
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 
+  const context = useContext(UserContext);
+
   var handleSubmit = (e) => {
     e.preventDefault();
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
-      product_id: 44785,
+      product_id: context.productInfo.id,
       body: question,
       name: nickname,
       email: email

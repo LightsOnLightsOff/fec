@@ -6,6 +6,7 @@ import 'tiny-slider/dist/tiny-slider.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import config from '../../../config.js'
+import { UserContext } from '../index.jsx';
 import { Control } from './SliderControl.jsx'
 import Modal from './Modalwindow.jsx'
 import Outfit from './Outfit.jsx'

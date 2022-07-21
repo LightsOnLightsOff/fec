@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import config from '../../../config.js'
-
+import StarRating from './StarRating.jsx';
 //my current DEFAULT product: Camo Onesie (id: 65631)
 
 function ProductDetail ({originalPrice, salePrice, setProductName}) {
@@ -49,7 +49,8 @@ function ProductDetail ({originalPrice, salePrice, setProductName}) {
     <div className = 'product-detail'>
         <div className = 'product-category'>{category}</div>
         <div className = 'product-name'>{name}</div>
-        <div className = 'product-star-rating'>Star Rating! Get the SubComponent from Louisa. Also add hyperlink to scroll down the page to Ratings and Review</div>
+        <a href="#brandonNeedsThisDiv">Ratings</a>
+        <StarRating/>
         {originalPrice && !salePrice ?
           <div>
             <span className = 'product-original-price-label'>Price: </span>

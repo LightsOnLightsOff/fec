@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
 import QuestionList from './QuestionList.jsx';
@@ -6,6 +6,7 @@ import MoreQuestions from './MoreQuestions.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
 import AddAnswerModal from './individual_questions/AddAnswerModal.jsx';
 import config from '../../../config.js';
+import {UserContext} from '../index.jsx';
 
 function QandA (props) {
 
@@ -17,6 +18,8 @@ function QandA (props) {
   const [questionBeingAnswered, setQuestionBeingAnswered] = useState(null);
   const [searching, setSearching] = useState(false);
 
+  const context = useContext(UserContext);
+
   useEffect(() => {
     renderQuestions()
   }, [])
@@ -26,7 +29,7 @@ function QandA (props) {
   var renderQuestions = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
       params: {
-        product_id: 44785,
+        product_id: context.productInfo.id,
         page: 1,
         count: 20
       },
@@ -38,7 +41,6 @@ function QandA (props) {
     })
     .then((data) => {
       changeCurrentQuestions(data.results.slice(0, 2));
-      // console.log('question data in Q&A: ', questionData);
     })
     .catch((err) => {
       console.error(err);
