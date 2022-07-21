@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
 import Review from './Review.jsx'
 import Sorting from '../Sorting/Sorting.jsx'
@@ -7,10 +7,13 @@ import SearchBar from './SearchBar.jsx'
 import FormModal from '../New_Review/FormModal.jsx'
 import Moment from 'moment'
 import config from '../../../../config.js'
+import { UserContext } from "../../index.jsx"
 import styled from 'styled-components';
 
 
 function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, setProductId, setCount, setCurrentReviewId, splitFilter, filterData, relevantData, productId, renderMoreReviews, count, displayButton, currentReviewId, displayLessButton, removeReviews }) {
+
+  const context = useContext(UserContext)
 
   const [toggleImage, setToggleImage] = useState(false)
   const [newUrl, setNewUrl] = useState('')
@@ -75,7 +78,7 @@ function ReviewList({ setDisplayButton, setProduct, setData, setRelevantData, se
   }
 
   const getDataAgain = (reviewId) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40355&count=200&sort=${getDataBySort}`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${context.productInfo.id}&count=5000&sort=${getDataBySort}`, {
       headers: {
         Authorization: config.TOKEN
       }
