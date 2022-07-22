@@ -114,7 +114,7 @@ const StarBaby = styled.span`
   color: #bebebe;
   &:after {
     content: "\\2B50\\2B50\\2B50\\2B50\\2B50";
-    padding-top: 3px;
+    padding-top: 1.5px;
 
     position: absolute;
     left: 0;

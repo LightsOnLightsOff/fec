@@ -8,6 +8,8 @@ import Overview from './Overview/Overview.jsx';
 import QandA from './Q&A/Q&A.jsx'
 import ReviewIndex from './rating_ and_review/ReviewIndex.jsx'
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHandsClapping } from '@fortawesome/free-solid-svg-icons'
 
 
 export const UserContext = createContext()
@@ -20,6 +22,7 @@ function App (props) {
 
   return (
     <Div>
+      <h1>The Clapper <FontAwesomeIcon icon={faHandsClapping}/></h1>
       <UserContext.Provider value={{
         productInfo: productInfo,
         setProductInfo: setProductInfo
