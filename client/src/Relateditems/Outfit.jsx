@@ -37,6 +37,7 @@ function Outfit ({
     console.log('currentProduct:', currentProduct)
     if (!clicked) {
       setOutfit(pre => {
+        // console.log('previous outfit',pre)
         return [...pre, currentProduct]
       })
       setCount(pre => pre + 1)
@@ -58,21 +59,12 @@ function Outfit ({
     // console.log('ONCE List of variable currentProduct',product);
   }, [clicked])
 
-  // console.log('      check the useeffect', outfit,countClick)
+  // console.log('check the useeffect', outfit,countClick)
   if (outfit.length > 0 && countClick === outfit.length) {
     // console.log('in the first one')
     return (
-      <div>
+      <div className='the-whole-outfit'>
         <h4 className='title'> YOUR OUTFIT</h4>
-        <div style={{zIndex:'1',position:'absolute',marginLeft:'300px'}}>
-          <FontAwesomeIcon
-            icon={faCirclePlus}
-            size='3x'
-            className='plusIcon'
-            onClick={clickPlus}
-          />
-        </div>
-
         <div className='slider'>
           <OutfitArrow
             outfit={outfit}
@@ -86,27 +78,29 @@ function Outfit ({
             setCount={setCount}
             setCurrS={setCurrS}
             setC={setC}
-          />
-        </div>
-      </div>
-    )
-  } else {
-    // console.log('in the second one')
-    return (
-      <div >
-        <h4 className='title'> YOUR OUTFIT</h4>
-        <div style={{zIndex:'1',position:'absolute',marginLeft:'300px'}}>
-          <FontAwesomeIcon
-            icon={faCirclePlus}
-            size='3x'
-            className='plusIcon'
-            onClick={clickPlus}
-            style={{ position: 'absolute', zIndex: '1' }}
+            clickPlus={clickPlus}
           />
         </div>
       </div>
     )
   }
+  // else {
+  //   console.log('in the second one')
+  //   return (
+  //     <div >
+  //       <h4 className='title'> YOUR OUTFIT</h4>
+  //       <div style={{zIndex:'1',position:'absolute',marginLeft:'300px'}}>
+  //         <FontAwesomeIcon
+  //           icon={faCirclePlus}
+  //           size='3x'
+  //           className='plusIcon'
+  //           onClick={clickPlus}
+  //           style={{ position: 'absolute', zIndex: '1' }}
+  //         />
+  //       </div>
+  //     </div>
+  //   )
+  // }
 }
 
 export default Outfit

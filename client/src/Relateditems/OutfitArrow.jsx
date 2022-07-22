@@ -9,7 +9,7 @@ import ButtonBase from '@mui/material/ButtonBase'
 import Link from '@mui/material/Link'
 import { ColorRating } from './style.css/star.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
 var starStyle = { position: 'absolute', zIndex: '1', color: 'orange' }
 
@@ -62,7 +62,11 @@ class ReactCustomArrow extends React.Component {
         <ButtonBase
           className='outfit-arrow PREV'
           id='first-arrow'
-          style={this.state.arrowDiff === 0 ? { display: 'none' } : {marginTop:'150px',color:'orange'}} //arrow is the bug
+          style={
+            this.state.arrowDiff === 0
+              ? { display: 'none' }
+              : { marginTop: '150px', color: 'orange' }
+          } //arrow is the bug
           onClick={this.arrowClick.bind(this)}
         >
           <ArrowLeftIcon sx={{ fontSize: '80px' }} />
@@ -71,7 +75,7 @@ class ReactCustomArrow extends React.Component {
           className='outfit-arrow NEXT'
           style={
             this.state.arrowDiff <= this.props.outfit.length - 4
-              ? {marginTop:'150px',color:'orange'}
+              ? { marginTop: '150px', color: 'orange',marginLeft:'1300px' }
               : { display: 'none' }
           }
           onClick={this.arrowClick.bind(this)}
@@ -103,67 +107,88 @@ class ReactCustomArrow extends React.Component {
               slidesToShow={3}
             >
               {this.props.outfit.map((item, index) => {
-                {/* {
+                {
                   {
-                    console.log(
-                      'Loop index and current photo',
-                      index,
-                      this.props.currentStyle[index]
-                    )
+                    {
+                      console.log(
+                        'Loop index and current photo',
+                        index,
+                        this.props.currentStyle[index]
+                      )
+                    }
                   }
-                } */}
-                var l = this.props.outfit.length
-                return (
-                  <section key={index} className='outfitSlider'>
+                }
+                if (index === 0) {
+                  return (
                     <div
-                      className='fav'
-                      onClick={() => this.clickTrash(index)}
                       style={{
-                        ...starStyle,
-                        right: `${(l - index - 1) * 360 + 15}px`
+                        zIndex: '1',
+                        position: 'absolute',
+                        marginLeft: '300px'
                       }}
                     >
-                      <FontAwesomeIcon icon={faTrash} />
+                      <FontAwesomeIcon
+                        icon={faCirclePlus}
+                        size='3x'
+                        className='plusIcon'
+                        onClick={this.props.clickPlus}
+                      />
                     </div>
+                  )
+                } else {
+                  var l = this.props.outfit.length
+                  return (
+                    <section key={index} className='outfitSlider'>
+                      <div
+                        className='fav'
+                        onClick={() => this.clickTrash(index)}
+                        style={{
+                          ...starStyle,
+                          right: `${(l - index - 1) * 470 + 15}px`
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </div>
 
-                    <img
-                      src={
-                        this.props.currentStyle.length > 0
-                          ? this.props.currentStyle[index].photo
-                          : null
-                      }
-                      style={this.props.imgStyles}
-                      name={item.id}
-                    />
-                    <p className='below-pic'>{item.detail.category}</p>
-                    <h3 className='below-pic'>{item.detail.name}</h3>
-                    <p
-                      className='below-pic'
-                      style={
-                        this.props.style[index].salePrice
-                          ? {
-                              textDecoration: 'line-through',
-                              display: 'inline'
-                            }
-                          : null
-                      }
-                    >
-                      {`$${item.detail.default_price}`}
-                    </p>
-                    <p className='below-pic' style={{ display: 'inline' }}>
-                      {this.props.style[index].salePrice}
-                    </p>
-                    <ColorRating
-                      wid={`${(Math.floor((this.props.rating[index] / 5) * 4) /
-                        4) *
-                        100}%`}
-                    >
-                      <span >
-                        &#9733;&#9733;&#9733;&#9733;&#9733;
-                      </span>
-                    </ColorRating>
-                  </section>
-                )
+                      <img
+                        src={
+                          this.props.currentStyle.length > 0
+                            ? this.props.currentStyle[index].photo
+                            : null
+                        }
+                        style={this.props.imgStyles}
+                        name={item.id}
+                      />
+                      <p className='below-pic'>{item.detail.category}</p>
+                      <h3 className='below-pic'>{item.detail.name}</h3>
+                      <p
+                        className='below-pic'
+                        style={
+                          this.props.style[index].salePrice
+                            ? {
+                                textDecoration: 'line-through',
+                                display: 'inline'
+                              }
+                            : null
+                        }
+                      >
+                        {`$${item.detail.default_price}`}
+                      </p>
+                      <p className='below-pic' style={{ display: 'inline' }}>
+                        {this.props.style[index].salePrice}
+                      </p>
+                      <ColorRating
+                        wid={`${(Math.floor(
+                          (this.props.rating[index] / 5) * 4
+                        ) /
+                          4) *
+                          100}%`}
+                      >
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                      </ColorRating>
+                    </section>
+                  )
+                }
               })}
             </Slider>
           </div>
