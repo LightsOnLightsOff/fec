@@ -38,7 +38,7 @@ function FacebookModal ({open, onClose}) {
             <input value = {messageLineFacebook} onChange = {handleChangeMessageLine} placeholder = 'Send a message'></input>
             {submit && !messageLineFacebook ? <div>Please enter a valid message.</div> : null}
           <div className = 'send-social-modal'>
-            <button onClick = {handleSubmit} style = {{cursor: 'pointer'}} >Send!</button>
+            <button onClick = {handleSubmit} style = {{cursor: 'pointer'}} className = 'send-social-media-button'>Send!</button>
           </div>
         </div>
       </div>
