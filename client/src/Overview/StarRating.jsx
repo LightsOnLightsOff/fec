@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../index.jsx';
 import styled from 'styled-components';
 import axios from 'axios';
 import config from '../../../config.js'
@@ -6,10 +7,12 @@ import config from '../../../config.js'
 function StarRating (props) {
 
   const [rate, setRatings] = useState([])
+  const context = useContext(UserContext)
 
+  var totalValues;
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=40355', {
+      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${context.productInfo.id}`, {
         headers: {
           Authorization: config.TOKEN
         }
@@ -17,7 +20,7 @@ function StarRating (props) {
       const newData = await response.data
 
       //useState to update
-      console.log("We got data from ratings in Brandon's file!: ", newData.ratings)
+      // console.log("We got data from ratings in Brandon's file!: ", newData.ratings)
       setRatings(newData.ratings)
 
     }
@@ -28,7 +31,7 @@ function StarRating (props) {
         console.log("ERROR: ", err)
       })
 
-  }, []) //<--add props.id here
+  }, [context.productInfo.id]) //<--add props.id here
 
   // console.log("RATE IN STARS: ", rate)
 
@@ -58,11 +61,11 @@ function StarRating (props) {
 
 
   if (Object.keys(rate).length > 0) {
-    console.log("STAR COME OUT TO PLAY")
+    //console.log("STAR COME OUT TO PLAY")
     const keys = Object.keys(rate)
     const values = Object.values(rate)
-    // console.log("KEYS: ", keys, "VALUES: ", values)
-    var totalValues = 0
+    ///console.log("KEYS: ", keys, "VALUES: ", values)
+    totalValues = 0
     var totalKeyAndValues = 0
     values.forEach((key, index) => {
       totalValues += Number(key)
@@ -78,8 +81,10 @@ function StarRating (props) {
     const starAvg = (avgTotal * 100) / 5 + '%'
   return (
     <div className="stars">
-      <h1><StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></h1>
-
+      <span><StarBaby starAvg={starAvg} >&#9733;&#9733;&#9733;&#9733;&#9733;</StarBaby></span>
+      <span>
+        <a href="#brandonNeedsThisDiv" id = 'star-rating-styling'>{totalValues} Ratings</a>
+      </span>
     </div>
   )
   }
