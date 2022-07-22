@@ -75,7 +75,7 @@ class ReactCustomArrow extends React.Component {
           className='outfit-arrow NEXT'
           style={
             this.state.arrowDiff <= this.props.outfit.length - 4
-              ? { marginTop: '150px', color: 'orange',marginLeft:'1300px' }
+              ? { marginTop: '150px', color: 'orange',mariginLeft:'1300px' }
               : { display: 'none' }
           }
           onClick={this.arrowClick.bind(this)}
@@ -88,7 +88,7 @@ class ReactCustomArrow extends React.Component {
 
   render () {
     {
-      // console.log('current styles in outfitarrow', this.props.currentStyle)
+      // console.log('current styles in outfitarrow', this.props.currentStyle,this.props.countClick)
       // console.log('outfuttt???', this.props.outfit)
     }
     if (
