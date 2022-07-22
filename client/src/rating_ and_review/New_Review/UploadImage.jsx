@@ -90,7 +90,7 @@ text-align: center;
 
 
 const ImageBox = styled.div`
-margin-left: 400px;
+margin-left: 350px;
 text-align: center;
 font-size: 15px;
 display: flex;
