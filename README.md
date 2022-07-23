@@ -9,14 +9,18 @@ Realted Products: Shanshan Xia\
 Questions and Answers: Noa Tongi\
 Ratings and Reviews: Louisa Yonzon
 
+
+
 ## Available Scripts
 ```sh
 npm install
 ```
 
+
 Duplicate `config-example.js` in the root directory\
 Rename to `config.js`\
 Replace the `TOKEN_HERE` to your API Token and save
+
 
 To create a production build:
 
@@ -24,11 +28,13 @@ To create a production build:
 npm run build
 ```
 
+
 To create development build:
 
 ```sh
 npm run server
 ```
+
 
 
 ## Technologies Used
