@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 function Stars({ rate, recommended, filterByStar}) {
 
-  // console.log("RATE IN STARS: ", rate)
+  console.log("RATE IN STARS: ", rate)
 
   // console.log("RATe: ", rate)
   const keys = Object.keys(rate)
   const values = Object.values(rate)
-  // console.log("KEYS: ", keys, "VALUES: ", values)
+  console.log("KEYS: ", keys, "VALUES: ", values)
   var totalValues = 0
   var totalKeyAndValues = 0
   values.forEach((key, index) => {
@@ -37,13 +37,13 @@ function Stars({ rate, recommended, filterByStar}) {
     totalStars += Number(key)
   })
 
-
+console.log("MATH FOR TOTAL STARS: ", totalStars)
 
   const eachStar = values.map((each) => {
-    return Math.round((each * 100) / totalStars) + "%"
+    return Math.round((Number(each) * 100) / totalStars) + "%"
   })
 
-  //  console.log("TOTAL  Each STARS: ", eachStar)
+   console.log("TOTAL  Each STARS: ", eachStar)
 
 
 
@@ -59,34 +59,39 @@ function Stars({ rate, recommended, filterByStar}) {
         <Container>
         <Breakdown starAvg={eachStar[4]}> </Breakdown>
         </Container>
+        <Num>{values[4]}</Num>
 
 
-        {/* <AnotherBreakDown></AnotherBreakDown> */}
       </StarBreakdown>
       <StarBreakdown>
         <NumStar onClick={() => {filterByStar(4)}}>4 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[3]}> </Breakdown>
         </Container>
-        {/* <AnotherBreakDown></AnotherBreakDown> */}
+        <Num>{values[3]}</Num>
+
+
       </StarBreakdown>
       <StarBreakdown>
         <NumStar onClick={() => {filterByStar(3)}}>3 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[2]}> </Breakdown>
         </Container>
+        <Num>{values[2]}</Num>
       </StarBreakdown>
       <StarBreakdown>
         <NumStar onClick={() => {filterByStar(2)}}>2 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[1]}> </Breakdown>
         </Container>
+        <Num>{values[1]}</Num>
       </StarBreakdown>
       <StarBreakdown>
         <NumStar onClick={() => {filterByStar(1)}}>1 stars</NumStar>
         <Container>
         <Breakdown starAvg={eachStar[0]}> </Breakdown>
         </Container>
+        <Num>{values[0]}</Num>
       </StarBreakdown>
 
 
@@ -109,7 +114,7 @@ const StarBaby = styled.span`
   color: #bebebe;
   &:after {
     content: "\\2B50\\2B50\\2B50\\2B50\\2B50";
-    padding-top: 3px;
+    padding-top: 1.5px;
 
     position: absolute;
     left: 0;
@@ -140,6 +145,14 @@ const StarBreakdown = styled.div`
     top: 2px;
 
  */
+
+const Num = styled.p`
+font-size: 15px;
+padding: 0px;
+margin-top: 0px;
+margin-bottom: 0px;
+
+`;
 
 const Container = styled.div`
 width: 230px;

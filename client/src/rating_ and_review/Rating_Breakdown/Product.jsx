@@ -131,7 +131,7 @@ text-decoration: underline;
 `
 
 const SizeFit = styled(Breakdown)`
-width: 79px;
+width: 83px;
 height: 15px;
 padding-right: 0px;
 margin: 3px;
