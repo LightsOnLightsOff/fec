@@ -22,9 +22,7 @@ function QandA (props) {
 
   useEffect(() => {
     renderQuestions()
-  }, [])
-
-
+  }, [context])
 
   var renderQuestions = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
@@ -36,11 +34,12 @@ function QandA (props) {
       headers: {Authorization: config.TOKEN}
     })
     .then((results) => {
+      console.log(results.data);
       setQuestions(results.data);
       return results.data
     })
     .then((data) => {
-      changeCurrentQuestions(data.results.slice(0, 2));
+      changeCurrentQuestions(data.results.slice(0, 4));
     })
     .catch((err) => {
       console.error(err);

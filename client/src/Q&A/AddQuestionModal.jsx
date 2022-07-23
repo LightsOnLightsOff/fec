@@ -39,10 +39,11 @@ function AddQuestionModal(props) {
       <div className='qanda-modal-content'>
         <header>Add your question</header>
           <form onSubmit={handleSubmit} name='question-form'>
-            <label htmlFor='question'>Question</label>
-            <textarea className='qanda-body-textarea' type='text' name='question' onChange={(e) => {setQuestion(e.target.value)}}/>
-            <label htmlFor='nickname'>Nickname</label>
-            <input type='text' name='nickname' onChange={(e) => {setNickname(e.target.value)}}/>
+            <label htmlFor='question'>Your Question</label>
+            <textarea maxLength='1000' className='qanda-body-textarea' type='text' name='question' onChange={(e) => {setQuestion(e.target.value)}}/>
+            <label htmlFor='nickname'>What is your nickname</label>
+            <input type='text' placeholder='Example: jackson11!' name='nickname' onChange={(e) => {setNickname(e.target.value)}}/>
+            <p>For privacy reasons, do not use your full name or email address</p>
             <label htmlFor='email'>Email</label>
             <input type='text' name='email' onChange={(e) => {setEmail(e.target.value)}}/>
             <button type='submit' htmlFor='question-form'>Submit</button>
