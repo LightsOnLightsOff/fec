@@ -47,6 +47,10 @@
   font: small-caps 30px 'Edu NSW ACT Foundation', cursive;
 }
 
+#star-rating-styling {
+  padding-left: 10px;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -243,7 +247,7 @@ html {
     top: 50%;
     left : 50%;
     transform: translate(-50%, -50%);
-    background-color: #ccc;
+    background-color: white;
     padding: 10px;
     z-index: 1000;
     width: auto
@@ -305,6 +309,13 @@ html {
   cursor: pointer
 }
 
+.send-social-media-button {
+  padding: 3px;
+  margin: 5px;
+  border-radius: 7px;
+  background-color: white;
+}
+
 #close-expanded-view {
   position: absolute;
   color: rgb(35, 25, 35);
@@ -343,6 +354,12 @@ html {
   justify-content: center;
 }
 
+
+.to-message-social-modal {
+  font-size: 20px;
+}
+
+
 .individual-thumbnail-image-gallery {
   height: 50px ;
   width: 'auto';
@@ -374,20 +391,26 @@ html {
 }
 
 .added-to-cart-label {
-  font: 25px Verdana, sans-serif;
+  font: 25px 'Edu NSW ACT Foundation', cursive;
   font-weight: 500;
   display: inline-flex;
-  align-items: center;
 }
 
 .cart-modal-name {
-  font: 30px Verdana, sans-serif;
+  padding-top: 10px;
+  font: 40px 'Edu NSW ACT Foundation', cursive;
   font-weight: 550;
+}
+
+.thumbnail-product-modal {
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
 
 .cart-modal-style {
   padding-top: 10px;
-  font: small-caps 25px Verdana, sans-serif;
+  font: small-caps 25px 'Edu NSW ACT Foundation', cursive;
 }
 
 .add-to-cart-section-label {
@@ -395,32 +418,34 @@ html {
 }
 
 .add-to-cart-label {
-  font: bold 18px Verdana, sans-serif;
+  font: bold 25px 'Edu NSW ACT Foundation', cursive;
 }
 
 .add-to-cart-size {
-  font: 18px Verdana, sans-serif;
+  font: 25px 'Edu NSW ACT Foundation', cursive;
 }
 
 .add-to-cart-promotion {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #6A66A3;
-  font: 22px Verdana, sans-serif;
+  font: 22px 'Edu NSW ACT Foundation', cursive;
   font-weight: 600;
   text-align: center;
 }
 
 .add-to-cart-modal-buttons {
   cursor: pointer;
-  font: small-caps 25px serif;
+  font: small-caps 25px 'Edu NSW ACT Foundation', cursive;
   text-align: center;
+  border-radius: 10px;
 }
 
 #add-to-cart-checkout-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 10px;
+
 }
 
 #back-shopping-button {
@@ -461,8 +486,9 @@ html {
 
 .q-and-a {
   padding: 100px;
-  max-width: 1500px;
-  min-width: 900px;
+  padding-left: 70px;
+  margin-left: 70px;;
+
 }
 
 .qanda-modal-container {
@@ -630,7 +656,7 @@ justify-content: center;
 /* ReviewList */
 .reviewList {
   /* border: #000 solid; */
-  max-height: 700px;
+  max-height: 750px;
   overflow-y: auto;
   width: 900px;
   overflow-x: auto;
@@ -859,7 +885,7 @@ justify-content: center;
 /* Rating */
 .starProduct {
 
-  padding: 60px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   width: 300px
@@ -947,5 +973,6 @@ flex-direction: row;
 * {
 
 font-family: 'Edu NSW ACT Foundation', cursive;
+
 
 }

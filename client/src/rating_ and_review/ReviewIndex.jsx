@@ -9,10 +9,10 @@ function ReviewIndex(props) {
   // const context = useContext(UserContext)
 
   return (
-    <div>
+    <Div>
 
-      <RatingAndReview>Rating & Reviews<Bear></Bear></RatingAndReview>
-      <div className="rating" id='brandonNeedsThisDiv'>
+      <RatingAndReview  id='brandonNeedsThisDiv'> Rating & Reviews<Bear></Bear></RatingAndReview>
+      <div className="rating">
     {/* <Ratings />  this component will have product is passed down here as well */}
         <SearchBar />
         {/*<ReviewList /> this componenet will have product id passed down */}
@@ -21,7 +21,7 @@ function ReviewIndex(props) {
 
 
 
-    </div>
+    </Div>
   )
 }
 
@@ -33,5 +33,10 @@ const Bear = styled.span`
 
 const RatingAndReview = styled.h1`
   padding: 10px;
-  padding-left: 68px;
+  padding-left: 35px;
 `;
+
+const Div = styled.div`
+padding-bottom: 10px;
+margin-bottom: 20px;
+`
