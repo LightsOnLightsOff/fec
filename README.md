@@ -1,6 +1,6 @@
 # Description
 
-
+Developed a fully-functional front-end website that could display millions of products from an existing database. You can navigate between different styles of a product, assemble an outfit and view related products, and also create new and/or view existing reviews and questions/answers.
 
 
 ## Components and Contributers
